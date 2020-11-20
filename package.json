@@ -48,7 +48,7 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
+    "**/*.ts?(x)": [
       "eslint --cache --fix",
       "prettier --write"
     ]
