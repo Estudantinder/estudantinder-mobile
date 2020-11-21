@@ -6,7 +6,8 @@
     "plugin:react/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
