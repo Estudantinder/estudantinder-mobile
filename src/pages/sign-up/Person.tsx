@@ -1,8 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
 import PersonStyled from '../../styles/pages/sign-up/Person.styled'
 
 const Person: React.FC = () => {
+  const router = useNavigation()
+
+  function handleNavigateToSchool() {
+    router.navigate('sign-up/School')
+  }
+
   return (
     <PersonStyled.Container>
       <PersonStyled.Header>
@@ -16,7 +23,7 @@ const Person: React.FC = () => {
       </PersonStyled.Main>
 
       <PersonStyled.Footer>
-        <PersonStyled.Button onPress={() => alert('press')}>
+        <PersonStyled.Button onPress={handleNavigateToSchool}>
           <PersonStyled.ButtonText>Continuar</PersonStyled.ButtonText>
         </PersonStyled.Button>
       </PersonStyled.Footer>
