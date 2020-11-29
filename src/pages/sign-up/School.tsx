@@ -1,8 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
 import SchoolStyled from '../../styles/pages/sign-up/School.styled'
 
 const School: React.FC = () => {
+  const router = useNavigation()
+
+  function handleNavigateToContacts() {
+    return router.navigate('sign-up/Contacts')
+  }
+
   return (
     <SchoolStyled.Container>
       <SchoolStyled.Header>
@@ -18,7 +25,7 @@ const School: React.FC = () => {
       </SchoolStyled.Main>
 
       <SchoolStyled.Footer>
-        <SchoolStyled.Button>
+        <SchoolStyled.Button onPress={handleNavigateToContacts}>
           <SchoolStyled.ButtonText>Continuar</SchoolStyled.ButtonText>
         </SchoolStyled.Button>
       </SchoolStyled.Footer>

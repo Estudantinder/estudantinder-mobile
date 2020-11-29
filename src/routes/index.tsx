@@ -4,6 +4,7 @@ import React from 'react'
 
 import Home from '../pages/Home'
 import Landing from '../pages/Landing'
+import Contacts from '../pages/sign-up/Contacts'
 import Person from '../pages/sign-up/Person'
 import School from '../pages/sign-up/School'
 import Secrets from '../pages/sign-up/Secrets'
@@ -23,6 +24,7 @@ export default function Router() {
         <Screen name="sign-up/Secrets" component={Secrets} />
         <Screen name="sign-up/Person" component={Person} />
         <Screen name="sign-up/School" component={School} />
+        <Screen name="sign-up/Contacts" component={Contacts} />
       </Navigator>
     </NavigationContainer>
   )
