@@ -5,20 +5,26 @@ import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
 
 import Input from 'src/components/Input'
+import { useSignUpContext } from 'src/context/sign-up'
 import SecretsStyled from 'src/styles/pages/sign-up/Secrets.styled'
+
+interface FormData {
+  email: string
+  password: string
+  confirm_password: string
+}
 
 const Secrets: React.FC = () => {
   const router = useNavigation()
 
+  const { secrets, setSecrets } = useSignUpContext()
+
   const formRef = useRef<FormHandles>(null)
 
-  function handleSubmit(data: unknown) {
-    console.log(data)
+  function handleSubmit(data: FormData) {
+    setSecrets({ email: data.email, password: data.password })
 
-    // eslint-disable-next-line no-constant-condition
-    if (false) {
-      handleNavigateToPerson()
-    }
+    handleNavigateToPerson()
   }
 
   function handleNavigateToPerson() {
@@ -32,15 +38,15 @@ const Secrets: React.FC = () => {
       </SecretsStyled.Header>
 
       <SecretsStyled.Main>
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <Form ref={formRef} onSubmit={handleSubmit} initialData={secrets}>
           <Input name="email" label="email" />
-          <Input name="senha" label="senha" />
-          <Input name="confirmar senha" label="confirmar senha" />
+          <Input name="password" label="senha" />
+          <Input name="confirm_password" label="confirmar senha" />
         </Form>
       </SecretsStyled.Main>
 
       <SecretsStyled.Footer>
-        <SecretsStyled.Button onPress={() => formRef!.current!.submitForm()}>
+        <SecretsStyled.Button onPress={() => formRef?.current?.submitForm()}>
           <SecretsStyled.ButtonText>Continuar</SecretsStyled.ButtonText>
         </SecretsStyled.Button>
       </SecretsStyled.Footer>
