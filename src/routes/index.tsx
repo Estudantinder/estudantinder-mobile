@@ -6,6 +6,7 @@ import Home from '../pages/Home'
 import Landing from '../pages/Landing'
 import Contacts from '../pages/sign-up/Contacts'
 import Details from '../pages/sign-up/Details'
+import Images from '../pages/sign-up/Images'
 import Person from '../pages/sign-up/Person'
 import School from '../pages/sign-up/School'
 import Secrets from '../pages/sign-up/Secrets'
@@ -27,6 +28,7 @@ export default function Router() {
         <Screen name="sign-up/School" component={School} />
         <Screen name="sign-up/Contacts" component={Contacts} />
         <Screen name="sign-up/Details" component={Details} />
+        <Screen name="sign-up/Images" component={Images} />
       </Navigator>
     </NavigationContainer>
   )

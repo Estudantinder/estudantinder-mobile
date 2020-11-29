@@ -1,8 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
 import DetailsStyled from '../../styles/pages/sign-up/Details.styled'
 
 const Details: React.FC = () => {
+  const router = useNavigation()
+
+  function handleNavigateToImages() {
+    router.navigate('sign-up/Images')
+  }
+
   return (
     <DetailsStyled.Container>
       <DetailsStyled.Header>
@@ -17,7 +24,7 @@ const Details: React.FC = () => {
       </DetailsStyled.Main>
 
       <DetailsStyled.Footer>
-        <DetailsStyled.Button>
+        <DetailsStyled.Button onPress={handleNavigateToImages}>
           <DetailsStyled.ButtonText>Continuar</DetailsStyled.ButtonText>
         </DetailsStyled.Button>
       </DetailsStyled.Footer>
