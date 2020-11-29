@@ -3,16 +3,14 @@ import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
+import * as Yup from 'yup'
 
 import Input from 'src/components/Input'
 import { useSignUpContext } from 'src/context/sign-up'
 import SecretsStyled from 'src/styles/pages/sign-up/Secrets.styled'
-
-interface FormData {
-  email: string
-  password: string
-  confirm_password: string
-}
+import ValidateSignUpSecret, {
+  IValidateSignUpSecretData,
+} from 'src/validators/sign-up/Secret'
 
 const Secrets: React.FC = () => {
   const router = useNavigation()
@@ -21,10 +19,33 @@ const Secrets: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
 
-  function handleSubmit(data: FormData) {
-    setSecrets({ email: data.email, password: data.password })
+  async function handleSubmit(data: IValidateSignUpSecretData) {
+    try {
+      // Remove all previous errors
+      formRef?.current?.setErrors({})
 
-    handleNavigateToPerson()
+      const schema = ValidateSignUpSecret(data)
+
+      await schema.validate(data, {
+        abortEarly: false,
+      })
+
+      setSecrets({ email: data.email, password: data.password })
+
+      handleNavigateToPerson()
+    } catch (err) {
+      const validationErrors: Record<string, string> = {}
+
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message
+        })
+
+        return formRef?.current?.setErrors(validationErrors)
+      }
+
+      return alert(err)
+    }
   }
 
   function handleNavigateToPerson() {
