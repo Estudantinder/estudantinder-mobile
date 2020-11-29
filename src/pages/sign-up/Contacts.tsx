@@ -1,8 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
 import ContactsStyled from '../../styles/pages/sign-up/Contacts.styled'
 
 const Contacts: React.FC = () => {
+  const router = useNavigation()
+
+  function handleNavigateToDetails() {
+    router.navigate('sign-up/Details')
+  }
+
   return (
     <ContactsStyled.Container>
       <ContactsStyled.Header>
@@ -17,7 +24,7 @@ const Contacts: React.FC = () => {
       </ContactsStyled.Main>
 
       <ContactsStyled.Footer>
-        <ContactsStyled.Button>
+        <ContactsStyled.Button onPress={handleNavigateToDetails}>
           <ContactsStyled.ButtonText>Continuar</ContactsStyled.ButtonText>
         </ContactsStyled.Button>
       </ContactsStyled.Footer>
