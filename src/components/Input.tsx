@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { Text, TextInputProps } from 'react-native'
+import { TextInputProps } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
 import { useField } from '@unform/core'
+
+import InputStyled from 'src/styles/components/Input.styled'
 
 interface Props {
   name: string
@@ -12,7 +14,7 @@ interface Props {
 type InputProps = TextInputProps & Props
 
 export interface TextInputRef extends TextInput {
-  value: unknown
+  value: string
 }
 
 const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
@@ -29,10 +31,10 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
   }, [fieldName, registerField])
 
   return (
-    <>
-      {label && <Text>{label}</Text>}
-      <TextInput
-        ref={inputRef}
+    <InputStyled.Container>
+      {label && <InputStyled.Label>{label}</InputStyled.Label>}
+      <InputStyled.TextInput
+        ref={inputRef as never}
         onChangeText={(value) => {
           if (inputRef.current) {
             inputRef.current.value = value
@@ -41,8 +43,8 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
         defaultValue={defaultValue}
         {...rest}
       />
-      {error && <Text>{error}</Text>}
-    </>
+      {error && <InputStyled.TextError>{error}</InputStyled.TextError>}
+    </InputStyled.Container>
   )
 }
 export default Input

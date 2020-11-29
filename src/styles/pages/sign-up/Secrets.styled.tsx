@@ -23,17 +23,6 @@ const Main = styled.View`
   align-items: center;
 `
 
-const Input = styled.TextInput`
-  height: 42px;
-  width: 300px;
-
-  background-color: #ccc;
-
-  padding: 0px 16px;
-
-  color: #0fad58;
-`
-
 const Footer = styled.View``
 
 const Button = styled(RectButton)`
@@ -58,7 +47,6 @@ export default {
   Header,
   Title,
   Main,
-  Input,
   Footer,
   Button,
   ButtonText,
