@@ -1,10 +1,26 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useRef } from 'react'
+
+import Input from 'src/components/Input'
+
+import { FormHandles } from '@unform/core'
+import { Form } from '@unform/mobile'
 
 import SecretsStyled from '../../styles/pages/sign-up/Secrets.styled'
 
 const Secrets: React.FC = () => {
   const router = useNavigation()
+
+  const formRef = useRef<FormHandles>(null)
+
+  function handleSubmit(data: unknown) {
+    console.log(data)
+
+    // eslint-disable-next-line no-constant-condition
+    if (false) {
+      handleNavigateToPerson()
+    }
+  }
 
   function handleNavigateToPerson() {
     router.navigate('sign-up/Person')
@@ -17,13 +33,15 @@ const Secrets: React.FC = () => {
       </SecretsStyled.Header>
 
       <SecretsStyled.Main>
-        <SecretsStyled.Input placeholder="email" />
-        <SecretsStyled.Input placeholder="senha" />
-        <SecretsStyled.Input placeholder="confirmar senha" />
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input name="email" label="email" />
+          <Input name="senha" label="senha" />
+          <Input name="confirmar senha" label="confirmar senha" />
+        </Form>
       </SecretsStyled.Main>
 
       <SecretsStyled.Footer>
-        <SecretsStyled.Button onPress={handleNavigateToPerson}>
+        <SecretsStyled.Button onPress={() => formRef!.current!.submitForm()}>
           <SecretsStyled.ButtonText>Continuar</SecretsStyled.ButtonText>
         </SecretsStyled.Button>
       </SecretsStyled.Footer>
