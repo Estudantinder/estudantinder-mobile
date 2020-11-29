@@ -15,7 +15,9 @@ const TextInput = styled.TextInput`
   color: #0fad58;
 `
 
-const TextError = styled.Text``
+const TextError = styled.Text`
+  color: #f00;
+`
 
 const Label = styled.Text`
   margin-bottom: 8px;
