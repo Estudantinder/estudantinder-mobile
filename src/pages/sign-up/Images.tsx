@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ImagesStyled from '../../styles/pages/sign-up/Images.styled'
+import ImagesStyled from 'src/styles/pages/sign-up/Images.styled'
 
 const Images: React.FC = () => {
   return (

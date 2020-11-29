@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
-import LandingStyled from '../styles/pages/Landing.styled'
+import LandingStyled from 'src/styles/pages/Landing.styled'
 
 const Landing: React.FC = () => {
   const router = useNavigation()

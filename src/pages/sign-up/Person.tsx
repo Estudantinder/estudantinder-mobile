@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
-import PersonStyled from '../../styles/pages/sign-up/Person.styled'
+import PersonStyled from 'src/styles/pages/sign-up/Person.styled'
 
 const Person: React.FC = () => {
   const router = useNavigation()

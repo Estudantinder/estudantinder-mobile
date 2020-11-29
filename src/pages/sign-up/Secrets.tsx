@@ -1,12 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
-import Input from 'src/components/Input'
-
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
 
-import SecretsStyled from '../../styles/pages/sign-up/Secrets.styled'
+import Input from 'src/components/Input'
+import SecretsStyled from 'src/styles/pages/sign-up/Secrets.styled'
 
 const Secrets: React.FC = () => {
   const router = useNavigation()

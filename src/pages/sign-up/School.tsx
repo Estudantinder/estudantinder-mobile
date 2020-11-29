@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
-import SchoolStyled from '../../styles/pages/sign-up/School.styled'
+import SchoolStyled from 'src/styles/pages/sign-up/School.styled'
 
 const School: React.FC = () => {
   const router = useNavigation()

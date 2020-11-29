@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
-import ContactsStyled from '../../styles/pages/sign-up/Contacts.styled'
+import ContactsStyled from 'src/styles/pages/sign-up/Contacts.styled'
 
 const Contacts: React.FC = () => {
   const router = useNavigation()

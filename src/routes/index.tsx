@@ -2,14 +2,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
-import Home from '../pages/Home'
-import Landing from '../pages/Landing'
-import Contacts from '../pages/sign-up/Contacts'
-import Details from '../pages/sign-up/Details'
-import Images from '../pages/sign-up/Images'
-import Person from '../pages/sign-up/Person'
-import School from '../pages/sign-up/School'
-import Secrets from '../pages/sign-up/Secrets'
+import Home from 'src/pages/Home'
+import Landing from 'src/pages/Landing'
+import Contacts from 'src/pages/sign-up/Contacts'
+import Details from 'src/pages/sign-up/Details'
+import Images from 'src/pages/sign-up/Images'
+import Person from 'src/pages/sign-up/Person'
+import School from 'src/pages/sign-up/School'
+import Secrets from 'src/pages/sign-up/Secrets'
 
 const { Navigator, Screen } = createStackNavigator()
 
