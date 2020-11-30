@@ -6,14 +6,22 @@ interface ISecrets {
   password: string
 }
 
+interface IPerson {
+  name: string
+  birth_date: string
+  gender: string
+}
+
 export interface SignUpContext {
   // State
 
   secrets: ISecrets
+  person: IPerson
 
   // Actions
 
   setSecrets(secrets: ISecrets): void
+  setPerson(person: IPerson): void
 }
 
 type Ctx = SignUpContext
@@ -34,12 +42,20 @@ export const SignUpContextProvider: FC = ({ children }) => {
     password: '',
   })
 
+  const [person, setPerson] = useState<Ctx['person']>({
+    birth_date: '',
+    gender: '',
+    name: '',
+  })
+
   const value = useMemo<Ctx>(
     () => ({
       secrets,
       setSecrets,
+      person,
+      setPerson,
     }),
-    [secrets, setSecrets]
+    [person, secrets]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
