@@ -28,7 +28,9 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
       ref: inputRef.current,
       path: 'value',
     })
-  }, [fieldName, registerField])
+
+    inputRef.current ? (inputRef.current.value = defaultValue) : null
+  }, [defaultValue, fieldName, registerField])
 
   return (
     <InputStyled.Container>
@@ -40,7 +42,6 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
             inputRef.current.value = value
           }
         }}
-        defaultValue={defaultValue}
         {...rest}
       />
       {error && <InputStyled.TextError>{error}</InputStyled.TextError>}
