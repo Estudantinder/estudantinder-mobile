@@ -1,6 +1,8 @@
 import React from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
+import Contacts from 'src/entities/Contacts'
+
 export interface ISecrets {
   email: string
   password: string
@@ -20,18 +22,27 @@ export interface ISchool {
   classroom: string
 }
 
+export interface IDetails {
+  description: string
+  subjects: Array<string>
+}
+
 export interface SignUpContext {
   // State
 
   secrets: ISecrets
   person: IPerson
   school: ISchool
+  contacts: Contacts
+  details: IDetails
 
   // Actions
 
   setSecrets(secrets: ISecrets): void
   setPerson(person: IPerson): void
   setSchool(school: ISchool): void
+  setContacts(contacts: Contacts): void
+  setDetails(details: IDetails): void
 }
 
 type Ctx = SignUpContext
@@ -66,6 +77,18 @@ export const SignUpContextProvider: FC = ({ children }) => {
     school: '',
   })
 
+  const [contacts, setContacts] = useState<Ctx['contacts']>({
+    facebook: '',
+    instagram: '',
+    twitter: '',
+    whatsapp: '',
+  })
+
+  const [details, setDetails] = useState<Ctx['details']>({
+    description: '',
+    subjects: ['', '', ''],
+  })
+
   const value = useMemo<Ctx>(
     () => ({
       secrets,
@@ -74,8 +97,12 @@ export const SignUpContextProvider: FC = ({ children }) => {
       setPerson,
       school,
       setSchool,
+      contacts,
+      setContacts,
+      details,
+      setDetails,
     }),
-    [person, school, secrets]
+    [secrets, person, school, contacts, details]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
