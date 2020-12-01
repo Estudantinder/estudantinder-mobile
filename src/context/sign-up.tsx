@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import Contacts from 'src/entities/Contacts'
+import User from 'src/entities/User'
 
 export interface ISecrets {
   email: string
@@ -43,6 +44,8 @@ export interface SignUpContext {
   setSchool(school: ISchool): void
   setContacts(contacts: Contacts): void
   setDetails(details: IDetails): void
+
+  getUser(): User
 }
 
 type Ctx = SignUpContext
@@ -89,6 +92,21 @@ export const SignUpContextProvider: FC = ({ children }) => {
     subjects: ['', '', ''],
   })
 
+  const getUser = useCallback<Ctx['getUser']>(() => {
+    return new User({
+      ...secrets,
+      ...school,
+      ...person,
+      ...details,
+      contacts: {
+        facebook: contacts.facebook === '' ? undefined : contacts.facebook,
+        whatsapp: contacts.whatsapp === '' ? undefined : contacts.whatsapp,
+        instagram: contacts.instagram === '' ? undefined : contacts.instagram,
+        twitter: contacts.twitter === '' ? undefined : contacts.twitter,
+      },
+    })
+  }, [contacts, details, person, secrets, school])
+
   const value = useMemo<Ctx>(
     () => ({
       secrets,
@@ -101,8 +119,9 @@ export const SignUpContextProvider: FC = ({ children }) => {
       setContacts,
       details,
       setDetails,
+      getUser,
     }),
-    [secrets, person, school, contacts, details]
+    [secrets, person, school, contacts, details, getUser]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>

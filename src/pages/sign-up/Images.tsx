@@ -1,8 +1,15 @@
 import React from 'react'
 
+import { useSignUpContext } from 'src/context/sign-up'
 import ImagesStyled from 'src/styles/pages/sign-up/Images.styled'
 
 const Images: React.FC = () => {
+  const { getUser } = useSignUpContext()
+
+  function handleSubmit() {
+    console.log(getUser())
+  }
+
   return (
     <ImagesStyled.Container>
       <ImagesStyled.Header>
@@ -32,7 +39,7 @@ const Images: React.FC = () => {
       </ImagesStyled.Main>
 
       <ImagesStyled.Footer>
-        <ImagesStyled.Button>
+        <ImagesStyled.Button onPress={handleSubmit}>
           <ImagesStyled.ButtonText>Continuar</ImagesStyled.ButtonText>
         </ImagesStyled.Button>
       </ImagesStyled.Footer>

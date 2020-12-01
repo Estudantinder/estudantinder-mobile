@@ -3,15 +3,21 @@ import Contacts from './Contacts'
 export default class User {
   public email: string
   public password: string
+
   public name: string
   public birth_date: string
   public gender: string
+
   public school: string
   public course: string
   public grade: string
   public period: string
   public classroom: string
+
   public contacts: Contacts
+
+  public description: string
+  public subjects: Array<string>
 
   constructor(props: User) {
     this.email = props.email
@@ -25,5 +31,7 @@ export default class User {
     this.period = props.period
     this.classroom = props.classroom
     this.contacts = props.contacts
+    this.subjects = props.subjects
+    this.description = props.description
   }
 }
