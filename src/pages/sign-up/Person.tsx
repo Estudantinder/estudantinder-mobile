@@ -5,14 +5,8 @@ import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
 
 import Input from 'src/components/Input'
-import { useSignUpContext } from 'src/context/sign-up'
+import { IPerson, useSignUpContext } from 'src/context/sign-up'
 import PersonStyled from 'src/styles/pages/sign-up/Person.styled'
-
-interface FormData {
-  birth_date: string
-  name: string
-  gender: string
-}
 
 const Person: React.FC = () => {
   const router = useNavigation()
@@ -25,7 +19,7 @@ const Person: React.FC = () => {
     router.navigate('sign-up/School')
   }
 
-  function handleSubmit(data: FormData) {
+  function handleSubmit(data: IPerson) {
     setPerson(data)
     handleNavigateToSchool()
   }
