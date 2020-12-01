@@ -1,15 +1,23 @@
 import React from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
-interface ISecrets {
+export interface ISecrets {
   email: string
   password: string
 }
 
-interface IPerson {
+export interface IPerson {
   name: string
   birth_date: string
   gender: string
+}
+
+export interface ISchool {
+  school: string
+  course: string
+  grade: string
+  period: string
+  classroom: string
 }
 
 export interface SignUpContext {
@@ -17,11 +25,13 @@ export interface SignUpContext {
 
   secrets: ISecrets
   person: IPerson
+  school: ISchool
 
   // Actions
 
   setSecrets(secrets: ISecrets): void
   setPerson(person: IPerson): void
+  setSchool(school: ISchool): void
 }
 
 type Ctx = SignUpContext
@@ -48,14 +58,24 @@ export const SignUpContextProvider: FC = ({ children }) => {
     name: '',
   })
 
+  const [school, setSchool] = useState<Ctx['school']>({
+    classroom: '',
+    course: '',
+    grade: '',
+    period: '',
+    school: '',
+  })
+
   const value = useMemo<Ctx>(
     () => ({
       secrets,
       setSecrets,
       person,
       setPerson,
+      school,
+      setSchool,
     }),
-    [person, secrets]
+    [person, school, secrets]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
