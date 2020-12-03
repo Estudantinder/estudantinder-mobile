@@ -1,13 +1,10 @@
 export default class Contacts {
-  public facebook: string | undefined
-  public instagram: string | undefined
-  public whatsapp: string | undefined
-  public twitter: string | undefined
+  public facebook?: string
+  public instagram?: string
+  public whatsapp?: string
+  public twitter?: string
 
   constructor(props: Contacts) {
-    this.facebook = props.facebook
-    this.instagram = props.instagram
-    this.whatsapp = props.whatsapp
-    this.twitter = props.twitter
+    Object.assign(this, props) // TODO: make more safe
   }
 }
