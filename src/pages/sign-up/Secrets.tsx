@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import { Platform } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 import { FormHandles } from '@unform/core'
@@ -14,6 +15,9 @@ import ValidateSignUpSecret, {
 } from 'src/validators/sign-up/Secret'
 
 const Secrets: React.FC = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false)
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
+
   const router = useNavigation()
 
   const { secrets, setSecrets } = useSignUpContext()
@@ -61,17 +65,37 @@ const Secrets: React.FC = () => {
 
       <SecretsStyled.Main>
         <Form ref={formRef} onSubmit={handleSubmit} initialData={secrets}>
-          <Input name="email" label="email" />
-          <Input name="password" label="senha">
-            <TouchableOpacity onPress={() => alert('oi')}>
-              <SecretsStyled.Icon />
-            </TouchableOpacity>
+          <Input name="email" label="email" keyboardType="email-address" />
+          <Input
+            name="password"
+            label="senha"
+            secureTextEntry={Platform.OS === 'ios' ? true : !passwordVisible}
+          >
+            {Platform.OS !== 'ios' && (
+              <TouchableOpacity
+                onPress={() => setPasswordVisible(!passwordVisible)}
+              >
+                <SecretsStyled.Icon />
+              </TouchableOpacity>
+            )}
           </Input>
 
-          <Input name="confirm_password" label="Confirmar senha">
-            <TouchableOpacity onPress={() => alert('oi')}>
-              <SecretsStyled.Icon />
-            </TouchableOpacity>
+          <Input
+            name="confirm_password"
+            label="Confirmar senha"
+            secureTextEntry={
+              Platform.OS === 'ios' ? true : !confirmPasswordVisible
+            }
+          >
+            {Platform.OS !== 'ios' && (
+              <TouchableOpacity
+                onPress={() =>
+                  setConfirmPasswordVisible(!confirmPasswordVisible)
+                }
+              >
+                <SecretsStyled.Icon />
+              </TouchableOpacity>
+            )}
           </Input>
         </Form>
       </SecretsStyled.Main>
