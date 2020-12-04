@@ -1,5 +1,6 @@
 import { RectButton } from 'react-native-gesture-handler'
 
+import { Feather } from '@expo/vector-icons'
 import styled from 'styled-components/native'
 
 const Container = styled.View`
@@ -42,6 +43,12 @@ const ButtonText = styled.Text`
   font-size: 16px;
 `
 
+const Icon = styled(Feather).attrs({
+  name: 'eye',
+  size: 20,
+  color: '#000',
+})``
+
 export default {
   Container,
   Header,
@@ -50,4 +57,5 @@ export default {
   Footer,
   Button,
   ButtonText,
+  Icon,
 }

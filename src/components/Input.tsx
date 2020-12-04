@@ -17,7 +17,7 @@ export interface TextInputRef extends TextInput {
   value: string
 }
 
-const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
+const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
   const inputRef = useRef<TextInputRef>(null)
 
   const { fieldName, defaultValue, registerField, error } = useField(name)
@@ -44,7 +44,10 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
         }}
         {...rest}
       />
-      {error && <InputStyled.TextError>{error}</InputStyled.TextError>}
+
+      {children && <InputStyled.Suffix>{children}</InputStyled.Suffix>}
+
+      <InputStyled.TextError>{error}</InputStyled.TextError>
     </InputStyled.Container>
   )
 }
