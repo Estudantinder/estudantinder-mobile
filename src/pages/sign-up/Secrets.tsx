@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef, useState } from 'react'
-import { Platform } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Platform, View } from 'react-native'
+import {
+  BorderlessButton,
+  TouchableOpacity,
+} from 'react-native-gesture-handler'
 
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
@@ -57,10 +60,20 @@ const Secrets: React.FC = () => {
     router.navigate('sign-up/Person')
   }
 
+  function handleGoBack() {
+    router.goBack()
+  }
+
   return (
     <SecretsStyled.Container>
       <SecretsStyled.Header>
+        <BorderlessButton onPress={handleGoBack}>
+          <SecretsStyled.BackIcon />
+        </BorderlessButton>
+
         <SecretsStyled.Title>Cadastre-se</SecretsStyled.Title>
+
+        <View />
       </SecretsStyled.Header>
 
       <SecretsStyled.Main>

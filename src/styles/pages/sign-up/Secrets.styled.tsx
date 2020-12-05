@@ -10,7 +10,12 @@ const Container = styled.View`
   align-items: center;
 `
 
-const Header = styled.View``
+const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+`
 
 const Title = styled.Text`
   font-size: 32px;
@@ -49,6 +54,12 @@ const Icon = styled(Feather).attrs({
   color: '#000',
 })``
 
+const BackIcon = styled(Feather).attrs({
+  name: 'arrow-left',
+  size: 24,
+  color: '#000',
+})``
+
 export default {
   Container,
   Header,
@@ -58,4 +69,5 @@ export default {
   Button,
   ButtonText,
   Icon,
+  BackIcon,
 }
