@@ -65,7 +65,9 @@ const Secrets: React.FC = () => {
   }
 
   return (
-    <SecretsStyled.Container>
+    <SecretsStyled.Container
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <SecretsStyled.Header>
         <BorderlessButton onPress={handleGoBack}>
           <SecretsStyled.BackIcon />
