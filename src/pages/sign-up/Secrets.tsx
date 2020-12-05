@@ -78,7 +78,12 @@ const Secrets: React.FC = () => {
 
       <SecretsStyled.Main>
         <Form ref={formRef} onSubmit={handleSubmit} initialData={secrets}>
-          <Input name="email" label="email" keyboardType="email-address" />
+          <Input
+            name="email"
+            label="email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
           <Input
             name="password"
             label="senha"
