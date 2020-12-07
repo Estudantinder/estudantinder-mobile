@@ -1,10 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef, useState } from 'react'
 import { Platform, View } from 'react-native'
-import {
-  BorderlessButton,
-  TouchableOpacity,
-} from 'react-native-gesture-handler'
+import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
@@ -92,11 +89,15 @@ const Secrets: React.FC = () => {
             secureTextEntry={Platform.OS === 'ios' ? true : !passwordVisible}
           >
             {Platform.OS !== 'ios' && (
-              <TouchableOpacity
+              <BorderlessButton
                 onPress={() => setPasswordVisible(!passwordVisible)}
               >
-                <SecretsStyled.Icon />
-              </TouchableOpacity>
+                {passwordVisible ? (
+                  <SecretsStyled.EyeOffIcon />
+                ) : (
+                  <SecretsStyled.EyeIcon />
+                )}
+              </BorderlessButton>
             )}
           </Input>
 
@@ -108,13 +109,17 @@ const Secrets: React.FC = () => {
             }
           >
             {Platform.OS !== 'ios' && (
-              <TouchableOpacity
+              <BorderlessButton
                 onPress={() =>
                   setConfirmPasswordVisible(!confirmPasswordVisible)
                 }
               >
-                <SecretsStyled.Icon />
-              </TouchableOpacity>
+                {confirmPasswordVisible ? (
+                  <SecretsStyled.EyeOffIcon />
+                ) : (
+                  <SecretsStyled.EyeIcon />
+                )}
+              </BorderlessButton>
             )}
           </Input>
         </Form>

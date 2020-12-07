@@ -48,8 +48,14 @@ const ButtonText = styled.Text`
   font-size: 16px;
 `
 
-const Icon = styled(Feather).attrs({
+const EyeIcon = styled(Feather).attrs({
   name: 'eye',
+  size: 20,
+  color: '#000',
+})``
+
+const EyeOffIcon = styled(Feather).attrs({
+  name: 'eye-off',
   size: 20,
   color: '#000',
 })``
@@ -68,6 +74,7 @@ export default {
   Footer,
   Button,
   ButtonText,
-  Icon,
+  EyeIcon,
+  EyeOffIcon,
   BackIcon,
 }
