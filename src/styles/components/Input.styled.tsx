@@ -20,6 +20,7 @@ const TextInput = styled.TextInput`
 const TextError = styled.Text`
   color: #f00;
   height: 24px;
+  width: 300px;
 `
 
 const Label = styled.Text`
