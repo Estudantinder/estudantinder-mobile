@@ -68,7 +68,7 @@ const Secrets: React.FC = () => {
         <SignUpSecretsForm ref={formRef} onSubmit={handleSubmit} />
       </SecretsStyled.Main>
 
-      <Footer onPress={onButtonPress} title="Continuar" />
+      <Footer onPress={onButtonPress} buttonTitle="Continuar" />
     </SecretsStyled.Container>
   )
 }
