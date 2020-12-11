@@ -7,8 +7,8 @@ import Landing from 'src/pages/Landing'
 import Contacts from 'src/pages/sign-up/Contacts'
 import Details from 'src/pages/sign-up/Details'
 import Images from 'src/pages/sign-up/Images'
-import Person from 'src/pages/sign-up/Person'
 import School from 'src/pages/sign-up/School'
+import Person from 'src/views/sign-up/Person'
 import Secrets from 'src/views/sign-up/Secrets'
 
 const { Navigator, Screen } = createStackNavigator()

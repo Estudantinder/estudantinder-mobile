@@ -5,10 +5,13 @@ import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
 import { ValidationError } from 'yup'
 
+import Footer from 'src/components/Footer'
+import Header from 'src/components/Header'
 import Input from 'src/components/Input'
 import { IPerson, useSignUpContext } from 'src/context/sign-up'
-import PersonStyled from 'src/styles/pages/sign-up/Person.styled'
 import ValidateSignUpPerson from 'src/validators/sign-up/Person'
+
+import PersonStyled from './styles/Person.styled'
 
 const Person: React.FC = () => {
   const router = useNavigation()
@@ -52,9 +55,7 @@ const Person: React.FC = () => {
 
   return (
     <PersonStyled.Container>
-      <PersonStyled.Header>
-        <PersonStyled.Title>Suas informações</PersonStyled.Title>
-      </PersonStyled.Header>
+      <Header title="Suas informações" />
 
       <PersonStyled.Main>
         <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
@@ -64,11 +65,10 @@ const Person: React.FC = () => {
         </Form>
       </PersonStyled.Main>
 
-      <PersonStyled.Footer>
-        <PersonStyled.Button onPress={() => formRef.current?.submitForm()}>
-          <PersonStyled.ButtonText>Continuar</PersonStyled.ButtonText>
-        </PersonStyled.Button>
-      </PersonStyled.Footer>
+      <Footer
+        buttonTitle="Continuar"
+        onPress={() => formRef.current?.submitForm()}
+      />
     </PersonStyled.Container>
   )
 }
