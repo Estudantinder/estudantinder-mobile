@@ -8,7 +8,7 @@ export interface IValidateSignUpPersonData {
 
 export default function ValidateSignUpPerson() {
   return Yup.object().shape<IValidateSignUpPersonData>({
-    name: Yup.string().required().strip(true),
+    name: Yup.string().required().trim(),
     birth_date: Yup.date().required(),
     gender: Yup.string().optional(),
   })
