@@ -42,6 +42,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
             inputRef.current.value = value
           }
         }}
+        defaultValue={defaultValue}
         {...rest}
       />
 

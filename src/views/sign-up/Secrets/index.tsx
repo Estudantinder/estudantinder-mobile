@@ -26,7 +26,7 @@ const Secrets: React.FC = () => {
   }
 
   function onButtonPress() {
-    formRef.current?.submitForm
+    formRef.current?.submitForm()
   }
 
   async function handleSubmit(data: IValidateSignUpSecretData) {
