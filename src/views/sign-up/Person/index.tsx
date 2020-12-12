@@ -33,8 +33,6 @@ const Person: React.FC = () => {
 
       const schema = ValidateSignUpPerson()
 
-      console.log(data)
-
       await schema.validate(data, {
         abortEarly: false,
       })

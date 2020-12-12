@@ -26,4 +26,10 @@ const HelpMessage = styled.Text`
   color: #868686;
 `
 
-export default { Container, Button, Label, HelpMessage }
+const TextError = styled.Text`
+  color: #f00;
+  height: 24px;
+  width: 300px;
+`
+
+export default { Container, Button, Label, HelpMessage, TextError }

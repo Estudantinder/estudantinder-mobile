@@ -17,7 +17,11 @@ const maxDate = new Date(`12/31/${actualYear - 12}`)
 const minDate = new Date(`1/1/${actualYear - 21}`)
 
 export const PersonDatePicker = () => {
-  const { fieldName, defaultValue, registerField } = useField('birth_date')
+  const { fieldName, defaultValue, registerField, error } = useField(
+    'birth_date'
+  )
+
+  const [wasSelected, setWasSelected] = useState(!!defaultValue)
 
   const [date, setDate] = useState<Date>(defaultValue || maxDate)
   const [show, setShow] = useState(Platform.OS === 'ios')
@@ -35,17 +39,21 @@ export const PersonDatePicker = () => {
   }, [defaultValue, fieldName, registerField])
 
   function onChange(event: Event, newDate?: Date) {
-    setShow(Platform.OS === 'ios')
+    Platform.OS !== 'ios' && setShow(false)
 
-    newDate && setDate(newDate)
+    if (!newDate) return
 
-    ref?.current && (ref.current.value = date)
+    if (ref?.current) {
+      ref.current.value = newDate
+    }
+
+    setDate(newDate)
+
+    setWasSelected(true)
   }
 
   function getPlaceholder() {
-    if (date.toDateString() === maxDate.toDateString()) {
-      return 'Selecione sua data de nascimento'
-    }
+    if (!wasSelected) return 'Selecione sua data de nascimento'
 
     return date.toDateString()
   }
@@ -60,9 +68,13 @@ export const PersonDatePicker = () => {
         </DatePickerStyled.Button>
       )}
 
-      <DatePickerStyled.HelpMessage>
-        Você precisa ser maior que 12 anos e menor que 21 para entrar no app
-      </DatePickerStyled.HelpMessage>
+      {error ? (
+        <DatePickerStyled.TextError>{error}</DatePickerStyled.TextError>
+      ) : (
+        <DatePickerStyled.HelpMessage>
+          Você precisa ser maior que 12 anos e menor que 21 para entrar no app
+        </DatePickerStyled.HelpMessage>
+      )}
 
       {show && (
         <DateTimePicker
