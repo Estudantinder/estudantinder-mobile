@@ -57,7 +57,13 @@ const Person: React.FC = () => {
   }
 
   return (
-    <PersonStyled.Container>
+    <PersonStyled.Container
+      contentContainerStyle={{
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flex: 1,
+      }}
+    >
       <Header title="Suas informações" />
 
       <PersonStyled.Main>
