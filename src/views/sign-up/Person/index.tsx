@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
+import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
@@ -58,26 +59,30 @@ const Person: React.FC = () => {
 
   return (
     <PersonStyled.Container
-      contentContainerStyle={{
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flex: 1,
-      }}
+      behavior={Platform.OS == 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={10}
     >
-      <Header title="Suas informações" />
+      <PersonStyled.Scroll
+        contentContainerStyle={{
+          minHeight: '100%',
+          justifyContent: 'center',
+        }}
+      >
+        <Header title="Suas informações" />
 
-      <PersonStyled.Main>
-        <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
-          <Input name="name" label="Nome Completo" />
-          <PersonDatePicker />
-          <Input name="gender" label="Gênero (opcional)" />
-        </Form>
-      </PersonStyled.Main>
+        <PersonStyled.Main>
+          <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
+            <Input name="name" label="Nome Completo" />
+            <PersonDatePicker />
+            <Input name="gender" label="Gênero (opcional)" />
+          </Form>
+        </PersonStyled.Main>
 
-      <Footer
-        buttonTitle="Continuar"
-        onPress={() => formRef.current?.submitForm()}
-      />
+        <Footer
+          buttonTitle="Continuar"
+          onPress={() => formRef.current?.submitForm()}
+        />
+      </PersonStyled.Scroll>
     </PersonStyled.Container>
   )
 }
