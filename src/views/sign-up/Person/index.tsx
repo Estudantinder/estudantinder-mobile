@@ -11,6 +11,7 @@ import Input from 'src/components/Input'
 import { IPerson, useSignUpContext } from 'src/context/sign-up'
 import ValidateSignUpPerson from 'src/validators/sign-up/Person'
 
+import { PersonDatePicker } from './components/DatePicker'
 import PersonStyled from './styles/Person.styled'
 
 const Person: React.FC = () => {
@@ -30,6 +31,8 @@ const Person: React.FC = () => {
       formRef?.current?.setErrors({})
 
       const schema = ValidateSignUpPerson()
+
+      console.log(data)
 
       await schema.validate(data, {
         abortEarly: false,
@@ -60,7 +63,7 @@ const Person: React.FC = () => {
       <PersonStyled.Main>
         <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
           <Input name="name" label="Nome Completo" />
-          <Input name="birth_date" label="Data de nascimento" />
+          <PersonDatePicker />
           <Input name="gender" label="Gênero (opcional)" />
         </Form>
       </PersonStyled.Main>
