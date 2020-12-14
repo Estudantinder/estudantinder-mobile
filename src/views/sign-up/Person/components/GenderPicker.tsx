@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
 import OptionButton from 'src/components/OptionButton'
 
+import GenderPickerStyled from '../styles/GenderPicker.styled'
 import StatefulInput from './StatefulInput'
 
 interface ViewRef extends View {
@@ -51,10 +52,10 @@ const SignUpGenderPicker: React.FC = () => {
   }
 
   return (
-    <View ref={ref}>
-      <Text>Gênero (Opcional)</Text>
+    <GenderPickerStyled.Container ref={ref}>
+      <GenderPickerStyled.Label>Gênero (Opcional)</GenderPickerStyled.Label>
 
-      <View style={{ flexDirection: 'row' }}>
+      <GenderPickerStyled.OptionsContainer>
         <OptionButton
           label="Feminino"
           isActive={gender.toUpperCase() === 'FEMININO'}
@@ -65,19 +66,17 @@ const SignUpGenderPicker: React.FC = () => {
           isActive={gender.toUpperCase() === 'MASCULINO'}
           onPress={handleSelectMasc}
         />
-      </View>
+      </GenderPickerStyled.OptionsContainer>
 
-      <Text>ou</Text>
+      <GenderPickerStyled.OrText>ou</GenderPickerStyled.OrText>
 
-      <View>
-        <StatefulInput
-          label="Digite o seu gênero"
-          setState={handleChangeGender}
-          state={gender}
-          error={error}
-        />
-      </View>
-    </View>
+      <StatefulInput
+        label="Digite o seu gênero"
+        setState={handleChangeGender}
+        state={gender}
+        error={error}
+      />
+    </GenderPickerStyled.Container>
   )
 }
 
