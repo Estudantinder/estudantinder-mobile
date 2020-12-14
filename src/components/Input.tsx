@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
       path: 'value',
     })
 
-    inputRef.current ? (inputRef.current.value = defaultValue) : null
+    inputRef.current && (inputRef.current.value = defaultValue)
   }, [defaultValue, fieldName, registerField])
 
   return (

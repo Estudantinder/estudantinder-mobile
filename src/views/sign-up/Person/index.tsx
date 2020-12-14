@@ -13,6 +13,7 @@ import { IPerson, useSignUpContext } from 'src/context/sign-up'
 import ValidateSignUpPerson from 'src/validators/sign-up/Person'
 
 import { PersonDatePicker } from './components/DatePicker'
+import SignUpGenderPicker from './components/GenderPicker'
 import PersonStyled from './styles/Person.styled'
 
 const Person: React.FC = () => {
@@ -27,6 +28,8 @@ const Person: React.FC = () => {
   }
 
   async function handleSubmit(data: IPerson) {
+    console.log(data)
+
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
@@ -72,7 +75,7 @@ const Person: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
             <Input name="name" label="Nome Completo" />
             <PersonDatePicker />
-            <Input name="gender" label="Gênero (opcional)" />
+            <SignUpGenderPicker />
           </Form>
         </PersonStyled.Main>
 
