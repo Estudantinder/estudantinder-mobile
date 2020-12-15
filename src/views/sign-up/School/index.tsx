@@ -79,7 +79,12 @@ const School: React.FC = () => {
             <SignUpCoursePicker />
             <SignUpSchoolYearPicker />
             <SignUpShiftPicker />
-            <Input name="classroom" label="Sala" placeholder="Ex: F" />
+            <Input
+              name="classroom"
+              label="Sala"
+              placeholder="Ex: F"
+              maxLength={1}
+            />
           </Form>
         </SchoolStyled.Main>
 

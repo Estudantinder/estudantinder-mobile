@@ -39,12 +39,12 @@ const SignUpShiftPicker: React.FC = () => {
       <View style={{ flexDirection: 'row' }}>
         <OptionButton
           label="Manhã"
-          isActive={shift === 1}
+          isActive={shift === Shifts.MORNING}
           onPress={() => handleChangeShift(Shifts.MORNING)}
         />
         <OptionButton
           label="Tarde"
-          isActive={shift === 2}
+          isActive={shift === Shifts.AFTERNOON}
           onPress={() => handleChangeShift(Shifts.AFTERNOON)}
         />
       </View>
