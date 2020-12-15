@@ -9,38 +9,37 @@ import { ValidationError } from 'yup'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
 import Input from 'src/components/Input'
-import { IPerson, useSignUpContext } from 'src/context/sign-up'
-import ValidateSignUpPerson from 'src/validators/sign-up/Person'
+import { ISchool, useSignUpContext } from 'src/context/sign-up'
+import ValidateSignUpSchool from 'src/validators/sign-up/School'
+import SchoolStyled from 'src/views/sign-up/School/styles/School.styled'
 
-import { PersonDatePicker } from './components/DatePicker'
-import SignUpGenderPicker from './components/GenderPicker'
-import PersonStyled from './styles/Person.styled'
-
-const Person: React.FC = () => {
+const School: React.FC = () => {
   const router = useNavigation()
 
   const formRef = useRef<FormHandles>(null)
 
-  const { person, setPerson } = useSignUpContext()
+  const { school, setSchool } = useSignUpContext()
 
-  function handleNavigateToSchool() {
-    router.navigate('sign-up/School')
+  function handleNavigateToContacts() {
+    return router.navigate('sign-up/Contacts')
   }
 
-  async function handleSubmit(data: IPerson) {
+  async function handleSubmit(data: ISchool) {
+    console.log(data)
+
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateSignUpPerson()
+      const schema = ValidateSignUpSchool()
 
       await schema.validate(data, {
         abortEarly: false,
       })
 
-      setPerson(data)
+      setSchool(data)
 
-      handleNavigateToSchool()
+      handleNavigateToContacts()
     } catch (err) {
       const validationErrors: Record<string, string> = {}
 
@@ -54,36 +53,40 @@ const Person: React.FC = () => {
 
       return alert(err)
     }
+
+    handleNavigateToContacts()
   }
 
   return (
-    <PersonStyled.Container
+    <SchoolStyled.Container
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={10}
     >
-      <PersonStyled.Scroll
+      <SchoolStyled.Scroll
         contentContainerStyle={{
           minHeight: '100%',
           justifyContent: 'center',
         }}
       >
-        <Header title="Suas informações" />
+        <Header title="Informações escolares" />
 
-        <PersonStyled.Main>
-          <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
-            <Input name="name" label="Nome Completo" />
-            <PersonDatePicker />
-            <SignUpGenderPicker />
+        <SchoolStyled.Main>
+          <Form ref={formRef} onSubmit={handleSubmit} initialData={school}>
+            <Input name="school" label="Escola" />
+            <Input name="course_id" label="Curso" />
+            <Input name="school_year" label="Série" />
+            <Input name="shift" label="Turno" />
+            <Input name="classroom" label="Sala" />
           </Form>
-        </PersonStyled.Main>
+        </SchoolStyled.Main>
 
         <Footer
-          buttonTitle="Continuar"
           onPress={() => formRef.current?.submitForm()}
+          buttonTitle="Continuar"
         />
-      </PersonStyled.Scroll>
-    </PersonStyled.Container>
+      </SchoolStyled.Scroll>
+    </SchoolStyled.Container>
   )
 }
 
-export default Person
+export default School
