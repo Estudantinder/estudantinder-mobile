@@ -7,8 +7,8 @@ interface IStyledRectButtonProps {
 }
 
 const Button = styled(RectButton)<IStyledRectButtonProps>`
-  width: 140px;
   height: 54px;
+  flex: 1;
 
   margin-right: 12px;
 

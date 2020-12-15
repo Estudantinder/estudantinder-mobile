@@ -14,6 +14,7 @@ import ValidateSignUpSchool from 'src/validators/sign-up/School'
 import SchoolStyled from 'src/views/sign-up/School/styles/School.styled'
 
 import SignUpCoursePicker from './components/CoursePicker'
+import SignUpSchoolYearPicker from './components/SchoolYearPicker'
 
 const School: React.FC = () => {
   const router = useNavigation()
@@ -75,7 +76,7 @@ const School: React.FC = () => {
         <SchoolStyled.Main>
           <Form ref={formRef} onSubmit={handleSubmit} initialData={school}>
             <SignUpCoursePicker />
-            <Input name="school_year" label="Série" />
+            <SignUpSchoolYearPicker />
             <Input name="shift" label="Turno" />
             <Input name="classroom" label="Sala" />
           </Form>
