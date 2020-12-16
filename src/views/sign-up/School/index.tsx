@@ -29,8 +29,6 @@ const School: React.FC = () => {
   }
 
   async function handleSubmit(data: ISchool) {
-    console.log(data)
-
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
