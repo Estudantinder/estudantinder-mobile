@@ -4,9 +4,12 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
 
+import Footer from 'src/components/Footer'
+import Header from 'src/components/Header'
 import Input from 'src/components/Input'
 import { IDetails, useSignUpContext } from 'src/context/sign-up'
-import DetailsStyled from 'src/styles/pages/sign-up/Details.styled'
+
+import DetailsStyled from './styles/Details.styled'
 
 const Details: React.FC = () => {
   const router = useNavigation()
@@ -29,24 +32,27 @@ const Details: React.FC = () => {
 
   return (
     <DetailsStyled.Container>
-      <DetailsStyled.Header>
-        <DetailsStyled.Title>Um pouco sobre você</DetailsStyled.Title>
-      </DetailsStyled.Header>
+      <Header title="Um pouco sobre você" />
 
       <DetailsStyled.Main>
         <Form ref={formRef} onSubmit={handleSubmit} initialData={details}>
-          <Input name="description" label="Descrição" />
+          <DetailsStyled.TextAreaInput
+            name="description"
+            label="Descrição"
+            maxLength={256}
+            textAlignVertical="top"
+            multiline
+          />
           <Input name="subjects[0]" label="Matéria 1" />
           <Input name="subjects[1]" label="Matéria 2" />
           <Input name="subjects[2]" label="Matéria 3" />
         </Form>
       </DetailsStyled.Main>
 
-      <DetailsStyled.Footer>
-        <DetailsStyled.Button onPress={() => formRef.current?.submitForm()}>
-          <DetailsStyled.ButtonText>Continuar</DetailsStyled.ButtonText>
-        </DetailsStyled.Button>
-      </DetailsStyled.Footer>
+      <Footer
+        onPress={() => formRef.current?.submitForm()}
+        buttonTitle="Continuar"
+      />
     </DetailsStyled.Container>
   )
 }
