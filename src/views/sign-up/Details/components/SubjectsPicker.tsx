@@ -33,6 +33,8 @@ const SubjectsPicker: React.FC = () => {
 
   const [subjects, setSubjects] = useState<string[]>(defaultValue || [])
 
+  console.log(defaultValue)
+
   useEffect(() => {
     registerField({
       name: fieldName,

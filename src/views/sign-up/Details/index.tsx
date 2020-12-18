@@ -4,10 +4,12 @@ import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
+import { ValidationError } from 'yup'
 
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
 import { IDetails, useSignUpContext } from 'src/context/sign-up'
+import ValidateSignUpDetails from 'src/validators/sign-up/Details'
 
 import SubjectsPicker from './components/SubjectsPicker'
 import DetailsStyled from './styles/Details.styled'
@@ -23,10 +25,33 @@ const Details: React.FC = () => {
     router.navigate('sign-up/Images')
   }
 
-  function handleSubmit(data: IDetails) {
-    console.log(data)
+  async function handleSubmit(data: IDetails) {
+    try {
+      // Remove all previous errors
+      formRef?.current?.setErrors({})
 
-    setDetails(data)
+      const schema = ValidateSignUpDetails()
+
+      await schema.validate(data, {
+        abortEarly: false,
+      })
+
+      setDetails(data)
+
+      handleNavigateToImages()
+    } catch (err) {
+      const validationErrors: Record<string, string> = {}
+
+      if (err instanceof ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message
+        })
+
+        return formRef?.current?.setErrors(validationErrors)
+      }
+
+      return alert(err)
+    }
 
     handleNavigateToImages()
   }

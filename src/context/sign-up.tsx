@@ -89,7 +89,7 @@ export const SignUpContextProvider: FC = ({ children }) => {
 
   const [details, setDetails] = useState<Ctx['details']>({
     description: '',
-    subjects: ['', '', ''],
+    subjects: [],
   })
 
   const getUser = useCallback<Ctx['getUser']>(() => {
