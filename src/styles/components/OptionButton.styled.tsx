@@ -9,9 +9,7 @@ interface IStyledRectButtonProps {
 const Button = styled(RectButton)<IStyledRectButtonProps>`
   height: 54px;
   flex: 1;
-
   margin-right: 12px;
-
   background-color: ${(props) => (props.isActive ? '#6D36DA' : '#fff')};
 `
 
