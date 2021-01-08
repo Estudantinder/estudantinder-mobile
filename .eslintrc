@@ -22,7 +22,8 @@
           "/react/",
           "module",
           "/src/",
-          ["parent", "sibling", "index"]
+          ["parent", "sibling", "index"],
+          "/./styles/"
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }

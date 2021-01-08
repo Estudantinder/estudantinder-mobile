@@ -4,7 +4,7 @@ import React from 'react'
 
 import Home from 'src/pages/Home'
 import Landing from 'src/pages/Landing'
-import Images from 'src/pages/sign-up/Images'
+import Images from 'src/views/pages/sign-up/Images'
 import Contacts from 'src/views/sign-up/Contacts'
 import Details from 'src/views/sign-up/Details'
 import Person from 'src/views/sign-up/Person'
