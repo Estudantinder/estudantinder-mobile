@@ -21,7 +21,9 @@
         "groups": [
           "/react/",
           "module",
-          "/src/",
+          "/main/",
+          "/views/",
+          "/shared/",
           ["parent", "sibling", "index"],
           "/./styles/"
         ],

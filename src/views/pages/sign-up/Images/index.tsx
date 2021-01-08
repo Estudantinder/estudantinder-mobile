@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import * as ExpoImagePicker from 'expo-image-picker'
 
-import ImagePicker from 'src/views/components/molecules/ImagePicker'
+import ImagePicker from 'views/components/molecules/ImagePicker'
 
 import Styled from './styles'
 

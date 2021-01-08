@@ -1,9 +1,9 @@
 import React from 'react'
 
-import ImagePickerButton from '../../atoms/ImagePickerButton'
+import ImagePickerButton from 'views/components/atoms/ImagePickerButton'
 import ImagePickerImage, {
   ImagePickerImageProps,
-} from '../../atoms/ImagePickerImage'
+} from 'views/components/atoms/ImagePickerImage'
 
 import Styled from './styles'
 

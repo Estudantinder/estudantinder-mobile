@@ -15,7 +15,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"]
+      "main/*": ["./src/main/*"],
+      "shared/*": ["./src/shared/*"],
+      "views/*": ["./src/views/*"]
     }
   }
 }

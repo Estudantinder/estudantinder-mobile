@@ -2,9 +2,10 @@ import React from 'react'
 
 import { ThemeProvider } from 'styled-components'
 
-import Router from './src/routes'
-import theme from './src/styles/theme'
-import AppProvider from 'src/context'
+import AppProvider from 'main/context'
+
+import Router from 'views/routes'
+import theme from 'views/styles/theme'
 
 export default function App() {
   return (
