@@ -1,23 +1,23 @@
-import { RectButton, TouchableOpacity } from 'react-native-gesture-handler'
-
 import styled from 'styled-components/native'
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: space-around;
-  align-items: center;
+const ImageContainer = styled.View`
+  margin-bottom: 12px;
 `
 
-const Main = styled.View`
-  height: 200px;
+const ButtonsContainer = styled.View`
+  width: 100%;
 
-  justify-content: space-around;
   align-items: center;
 `
 
 const Title = styled.Text`
-  font-size: 32px;
+  font-family: ${(props) => props.theme.fonts.title};
+  font-size: 18px;
+  font-weight: 500;
   text-align: center;
+  color: #4f4f4f;
+
+  margin-top: 12px;
 `
 
 const Footer = styled.View`
@@ -27,27 +27,32 @@ const Footer = styled.View`
   align-items: center;
 `
 
-const SignUpButton = styled(RectButton)`
-  background-color: #0fad58;
+const SignUpButton = styled.TouchableOpacity`
+  background-color: ${(props) => props.theme.colors.primary.green};
 
-  width: 290px;
+  width: 100%;
   height: 45px;
 
   justify-content: center;
   align-items: center;
 
   border-radius: 10px;
+
+  margin-bottom: 16px;
 `
 
 const SignUpText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.button};
+  font-weight: 700;
+  text-align: center;
   color: #fff;
-  font-size: 16px;
 `
 
-const SignInButton = styled(TouchableOpacity)`
-  border-color: #0fad58;
+const SignInButton = styled.TouchableOpacity`
+  border-color: ${(props) => props.theme.colors.primary.green};
   border-width: 2px;
-  width: 290px;
+
+  width: 100%;
   height: 45px;
 
   justify-content: center;
@@ -56,13 +61,19 @@ const SignInButton = styled(TouchableOpacity)`
   border-radius: 10px;
 `
 
-const SignInText = styled.Text``
+const SignInText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.button};
+  font-weight: 700;
+  text-align: center;
+
+  color: ${(props) => props.theme.colors.primary.green};
+`
 
 export default {
-  Container,
-  Main,
   Title,
   Footer,
+  ImageContainer,
+  ButtonsContainer,
   SignInButton,
   SignUpButton,
   SignInText,

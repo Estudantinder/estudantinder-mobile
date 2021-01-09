@@ -1,5 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
+import { Image } from 'react-native'
+
+import { StatusBar } from 'expo-status-bar'
+
+import LandingImage from 'views/assets/landing.png'
+import Logo from 'views/assets/logo.png'
+import { Container } from 'views/styles/globalStyles'
 
 import Styled from './styles'
 
@@ -11,21 +18,30 @@ const Landing: React.FC = () => {
   }
 
   return (
-    <Styled.Container>
-      <Styled.Main>
-        <Styled.Title>Crie nova conexões enquanto aprende</Styled.Title>
-      </Styled.Main>
+    <Container>
+      <StatusBar translucent />
 
-      <Styled.Footer>
-        <Styled.SignUpButton onPress={handleNavigationToSignUp}>
+      <Image source={Logo} />
+
+      <Styled.ImageContainer>
+        <Image source={LandingImage} />
+
+        <Styled.Title>Crie novas conexões enquanto aprende!</Styled.Title>
+      </Styled.ImageContainer>
+
+      <Styled.ButtonsContainer>
+        <Styled.SignUpButton
+          activeOpacity={0.8}
+          onPress={handleNavigationToSignUp}
+        >
           <Styled.SignUpText>Quero fazer parte!</Styled.SignUpText>
         </Styled.SignUpButton>
 
-        <Styled.SignInButton>
+        <Styled.SignInButton activeOpacity={0.8}>
           <Styled.SignInText>Já possui uma conta? Entre aqui</Styled.SignInText>
         </Styled.SignInButton>
-      </Styled.Footer>
-    </Styled.Container>
+      </Styled.ButtonsContainer>
+    </Container>
   )
 }
 
