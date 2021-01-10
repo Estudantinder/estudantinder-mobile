@@ -27,27 +27,6 @@ const Footer = styled.View`
   align-items: center;
 `
 
-const SignUpButton = styled.TouchableOpacity`
-  background-color: ${(props) => props.theme.colors.primary.green};
-
-  width: 100%;
-  height: 45px;
-
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 10px;
-
-  margin-bottom: 16px;
-`
-
-const SignUpText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.button};
-  font-weight: 700;
-  text-align: center;
-  color: #fff;
-`
-
 const SignInButton = styled.TouchableOpacity`
   border-color: ${(props) => props.theme.colors.primary.green};
   border-width: 2px;
@@ -75,7 +54,5 @@ export default {
   ImageContainer,
   ButtonsContainer,
   SignInButton,
-  SignUpButton,
   SignInText,
-  SignUpText,
 }

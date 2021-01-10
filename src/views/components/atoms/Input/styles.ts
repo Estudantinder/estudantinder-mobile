@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 const Container = styled.View`
-  margin-top: 10px;
+  margin-top: 8px;
 `
 
 const TextInput = styled.TextInput`

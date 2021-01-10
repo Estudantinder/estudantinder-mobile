@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
-import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/mobile'
@@ -11,12 +10,12 @@ import ValidateSignUpSecret, {
   IValidateSignUpSecretData,
 } from 'main/validators/sign-up/Secret'
 
+import FormButton from 'views/components/atoms/FormButton'
+import GoBackButton from 'views/components/atoms/GoBackButton'
 import Input from 'views/components/atoms/Input'
 import PasswordInput from 'views/components/atoms/PasswordInput'
-import Footer from 'views/components/organisms/Footer'
-import Header from 'views/components/organisms/Header'
-
-import Styled from './styles'
+import SignUpContainer from 'views/components/templates/SignUpContainer'
+import { FormMain, FormTitle } from 'views/styles/globalStyles'
 
 const Secrets: React.FC = () => {
   const router = useNavigation()
@@ -29,7 +28,7 @@ const Secrets: React.FC = () => {
     router.navigate('sign-up/Person')
   }
 
-  function onButtonPress() {
+  function onFormButtonPress() {
     formRef.current?.submitForm()
   }
 
@@ -63,10 +62,12 @@ const Secrets: React.FC = () => {
   }
 
   return (
-    <Styled.Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <Header title="Cadastre-se" />
+    <SignUpContainer>
+      <GoBackButton />
 
-      <Styled.Main>
+      <FormMain>
+        <FormTitle>Cadastre-se</FormTitle>
+
         <Form ref={formRef} onSubmit={handleSubmit} initialData={secrets}>
           <Input
             name="email"
@@ -79,10 +80,10 @@ const Secrets: React.FC = () => {
 
           <PasswordInput name="confirm_password" label="Confirmar senha" />
         </Form>
-      </Styled.Main>
 
-      <Footer onPress={onButtonPress} buttonTitle="Continuar" />
-    </Styled.Container>
+        <FormButton title="CONTINUAR" onPress={onFormButtonPress} />
+      </FormMain>
+    </SignUpContainer>
   )
 }
 

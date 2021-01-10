@@ -14,3 +14,18 @@ export const Container = styled.View`
 
   background-color: #f5f5f5;
 `
+
+export const FormTitle = styled.Text`
+  font-family: ${(props) => props.theme.fonts.title};
+  font-size: 18px;
+
+  margin-bottom: 12px;
+`
+
+export const FormMain = styled.View`
+  min-height: 60%;
+  width: 100%;
+
+  justify-content: space-around;
+  align-items: center;
+`
