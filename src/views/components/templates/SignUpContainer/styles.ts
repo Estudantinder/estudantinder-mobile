@@ -17,6 +17,7 @@ const Container = styled.KeyboardAvoidingView`
 
 const Scroll = styled.ScrollView`
   flex: 1;
+  width: 100%;
 `
 
 export default { Container, Scroll }

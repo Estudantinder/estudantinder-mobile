@@ -12,7 +12,6 @@ import ValidateSignUpSchool from 'main/validators/sign-up/School'
 import Input from 'views/components/atoms/Input'
 import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
 import SignUpCoursePicker from 'views/components/molecules/SignUpCoursePicker'
-import Footer from 'views/components/organisms/Footer'
 import Header from 'views/components/organisms/Header'
 
 import { Shifts } from 'shared/Shift'
@@ -100,11 +99,6 @@ const School: React.FC = () => {
             />
           </Form>
         </Styled.Main>
-
-        <Footer
-          onPress={() => formRef.current?.submitForm()}
-          buttonTitle="Continuar"
-        />
       </Styled.Scroll>
     </Styled.Container>
   )

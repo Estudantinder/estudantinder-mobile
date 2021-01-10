@@ -10,7 +10,6 @@ import { IDetails, useSignUpContext } from 'main/context/sign-up'
 import ValidateSignUpDetails from 'main/validators/sign-up/Details'
 
 import SubjectsPicker from 'views/components/molecules/SignUpSubjectsPicker'
-import Footer from 'views/components/organisms/Footer'
 import Header from 'views/components/organisms/Header'
 
 import Styled from './styles'
@@ -82,11 +81,6 @@ const Details: React.FC = () => {
             <SubjectsPicker />
           </Form>
         </Styled.Main>
-
-        <Footer
-          onPress={() => formRef.current?.submitForm()}
-          buttonTitle="Continuar"
-        />
       </Styled.Scroll>
     </Styled.Container>
   )

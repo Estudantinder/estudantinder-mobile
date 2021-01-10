@@ -1,17 +1,18 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { TextInputProps } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
 import { useField } from '@unform/core'
+import { useTheme } from 'styled-components'
 
 import Styled from './styles'
 
-interface Props {
+export interface InputComponentProps {
   name: string
   label?: string
 }
 
-type InputProps = TextInputProps & Props
+export type InputProps = TextInputProps & InputComponentProps
 
 export interface TextInputRef extends TextInput {
   value: string
@@ -19,6 +20,10 @@ export interface TextInputRef extends TextInput {
 
 const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
   const inputRef = useRef<TextInputRef>(null)
+
+  const [isActive, setIsActive] = useState(false)
+
+  const theme = useTheme()
 
   const { fieldName, defaultValue, registerField, error } = useField(name)
 
@@ -42,13 +47,28 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
             inputRef.current.value = value
           }
         }}
+        isInvalid={!!error}
+        isActive={isActive}
         defaultValue={defaultValue}
+        placeholderTextColor={theme.colors.input.placeholder}
+        selectionColor={theme.colors.primary.purple}
         {...rest}
+        onFocus={(e) => {
+          setIsActive(true)
+          rest.onFocus?.(e)
+        }}
+        onEndEditing={(e) => {
+          setIsActive(false)
+          rest.onEndEditing?.(e)
+        }}
       />
 
       {children && <Styled.Suffix>{children}</Styled.Suffix>}
 
-      <Styled.TextError>{error}</Styled.TextError>
+      <Styled.InvalidContainer>
+        {error && <Styled.InvalidIcon />}
+        {error && <Styled.InvalidText>error</Styled.InvalidText>}
+      </Styled.InvalidContainer>
     </Styled.Container>
   )
 }

@@ -9,6 +9,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/archivo": "^0.1.0",
     "@expo-google-fonts/poppins": "^0.1.0",
     "@react-native-community/datetimepicker": "3.0.0",
     "@react-native-community/masked-view": "0.1.10",

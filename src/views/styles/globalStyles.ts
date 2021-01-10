@@ -17,7 +17,7 @@ export const Container = styled.View`
 
 export const FormTitle = styled.Text`
   font-family: ${(props) => props.theme.fonts.title};
-  font-size: 18px;
+  font-size: 20px;
 
   margin-bottom: 12px;
 `

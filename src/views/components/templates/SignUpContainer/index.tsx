@@ -12,6 +12,7 @@ const SignUpContainer: React.FC = (props) => {
       <Styled.Scroll
         contentContainerStyle={{
           minHeight: '100%',
+          width: '100%',
           justifyContent: 'center',
           position: 'relative',
         }}

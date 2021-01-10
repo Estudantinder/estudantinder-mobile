@@ -68,15 +68,20 @@ const Secrets: React.FC = () => {
       <FormMain>
         <FormTitle>Cadastre-se</FormTitle>
 
-        <Form ref={formRef} onSubmit={handleSubmit} initialData={secrets}>
+        <Form
+          style={{ marginBottom: 32 }}
+          ref={formRef}
+          onSubmit={handleSubmit}
+          initialData={secrets}
+        >
           <Input
             name="email"
-            label="email"
+            label="E-mail"
             keyboardType="email-address"
             autoCapitalize="none"
           />
 
-          <PasswordInput name="password" label="senha" />
+          <PasswordInput name="password" label="Senha" />
 
           <PasswordInput name="confirm_password" label="Confirmar senha" />
         </Form>

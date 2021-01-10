@@ -12,7 +12,6 @@ import ValidateSignUpPerson from 'main/validators/sign-up/Person'
 import Input from 'views/components/atoms/Input'
 import PersonDatePicker from 'views/components/atoms/SignUpDatePicker'
 import PersonGenderPicker from 'views/components/molecules/SignUpGenderPicker'
-import Footer from 'views/components/organisms/Footer'
 import Header from 'views/components/organisms/Header'
 
 import Styled from './styles'
@@ -77,11 +76,6 @@ const Person: React.FC = () => {
             <PersonGenderPicker />
           </Form>
         </Styled.Main>
-
-        <Footer
-          buttonTitle="Continuar"
-          onPress={() => formRef.current?.submitForm()}
-        />
       </Styled.Scroll>
     </Styled.Container>
   )

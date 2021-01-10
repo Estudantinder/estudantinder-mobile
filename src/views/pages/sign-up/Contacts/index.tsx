@@ -9,7 +9,6 @@ import { useSignUpContext } from 'main/context/sign-up'
 import ContactsEntity from 'main/entities/Contacts'
 import ValidateSignUpContacts from 'main/validators/sign-up/Contacts'
 
-import Footer from 'views/components/organisms/Footer'
 import Header from 'views/components/organisms/Header'
 
 import Styled from './styles'
@@ -84,11 +83,6 @@ const Contacts: React.FC = () => {
           />
         </Form>
       </Styled.Main>
-
-      <Footer
-        onPress={() => formRef.current?.submitForm()}
-        buttonTitle="Continuar"
-      />
     </Styled.Container>
   )
 }
