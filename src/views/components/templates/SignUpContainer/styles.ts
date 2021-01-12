@@ -12,7 +12,7 @@ const Container = styled.KeyboardAvoidingView`
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
 
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.colors.background.page};
 `
 
 const Scroll = styled.ScrollView`

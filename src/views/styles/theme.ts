@@ -6,6 +6,7 @@ const theme = {
     },
     background: {
       light_purple: '#F3EDFF',
+      page: '#fff',
     },
     input: {
       background: '#F0F0F0',
