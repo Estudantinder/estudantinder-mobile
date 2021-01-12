@@ -30,9 +30,4 @@ const ArrowRightIcon = styled(Entypo).attrs({
   margin-bottom: 2px;
 `
 
-const HelpMessage = styled.Text`
-  width: 100%;
-  color: #868686;
-`
-
-export default { Button, HelpMessage, ButtonText, ArrowRightIcon }
+export default { Button, ButtonText, ArrowRightIcon }

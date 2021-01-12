@@ -1,5 +1,5 @@
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, Platform } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
@@ -88,16 +88,10 @@ const SignUpDatePicker = () => {
       )}
 
       <InputInvalidContainer>
-        {error ? (
-          <Fragment>
-            <InputInvalidIcon />
-            <InputInvalidText>{error}</InputInvalidText>
-          </Fragment>
-        ) : (
-          <Styled.HelpMessage>
-            Você precisa ter entre 14 e 21 anos
-          </Styled.HelpMessage>
-        )}
+        <InputInvalidIcon style={error ? {} : { color: '#9b9b9b' }} />
+        <InputInvalidText style={error ? {} : { color: '#9b9b9b' }}>
+          {error || 'Você precisa ter entre 14 e 21 anos'}
+        </InputInvalidText>
       </InputInvalidContainer>
 
       {show && (
