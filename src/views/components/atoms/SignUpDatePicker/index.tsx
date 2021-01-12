@@ -27,7 +27,7 @@ const MAX_DATE = new Date(`12/31/${ACTUAL_YEAR - 12}`)
 
 const MIN_DATE = new Date(`1/1/${ACTUAL_YEAR - 21}`)
 
-const SignUpDatePicker = () => {
+const SignUpDatePicker: React.FC = () => {
   const { fieldName, defaultValue, registerField, error } = useField(
     'birth_date'
   )
@@ -46,10 +46,15 @@ const SignUpDatePicker = () => {
       path: 'value',
     })
 
-    ref?.current && (ref.current.value = defaultValue)
+    if (ref?.current) {
+      ref.current.value = defaultValue
+      ref.current.focus = () => {
+        setShow(true)
+      }
+    }
   }, [defaultValue, fieldName, registerField])
 
-  function onChange(event: Event, newDate?: Date) {
+  function onChange(_: Event, newDate?: Date) {
     Platform.OS !== 'ios' && setShow(false)
 
     if (!newDate) return

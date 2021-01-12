@@ -71,7 +71,14 @@ const Person: React.FC = () => {
         <FormTitle>Suas Informações</FormTitle>
 
         <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={person}>
-          <Input name="name" label="Nome Completo" />
+          <Input
+            name="name"
+            label="Nome Completo"
+            blurOnSubmit
+            onSubmitEditing={() =>
+              formRef.current?.getFieldRef('birth_date').focus()
+            }
+          />
           <PersonDatePicker />
           <PersonGenderPicker />
         </SignUpForm>
