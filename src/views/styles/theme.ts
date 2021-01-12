@@ -21,6 +21,7 @@ const theme = {
     button: 'Poppins_700Bold',
     input: {
       label: 'Archivo_600SemiBold',
+      text: 'Archivo_500Medium',
     },
   },
 } as const

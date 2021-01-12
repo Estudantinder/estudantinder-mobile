@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { Archivo_600SemiBold } from '@expo-google-fonts/archivo'
+import {
+  Archivo_600SemiBold,
+  Archivo_500Medium,
+} from '@expo-google-fonts/archivo'
 import { Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import { AppLoading } from 'expo'
 import { useFonts } from 'expo-font'
@@ -16,6 +19,7 @@ export default function App() {
     Poppins_500Medium,
     Poppins_700Bold,
     Archivo_600SemiBold,
+    Archivo_500Medium,
   })
 
   if (!fontsLoaded) {
