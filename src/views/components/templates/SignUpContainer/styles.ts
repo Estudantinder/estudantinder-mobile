@@ -8,9 +8,9 @@ const Container = styled.KeyboardAvoidingView`
   justify-content: space-around;
   align-items: center;
 
-  padding: 30px;
-  padding-top: ${Constants.statusBarHeight + 10}px;
-  padding-bottom: 12px;
+  padding: 20px;
+  padding-top: ${Constants.statusBarHeight + 20}px;
+  padding-bottom: 0px;
 
   background-color: #f5f5f5;
 `

@@ -52,6 +52,8 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
         defaultValue={defaultValue}
         placeholderTextColor={theme.colors.input.placeholder}
         selectionColor={theme.colors.primary.purple}
+        returnKeyType="next"
+        blurOnSubmit={false}
         {...rest}
         onFocus={(e) => {
           setIsActive(true)
@@ -67,7 +69,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
 
       <Styled.InvalidContainer>
         {error && <Styled.InvalidIcon />}
-        {error && <Styled.InvalidText>error</Styled.InvalidText>}
+        {error && <Styled.InvalidText>{error}</Styled.InvalidText>}
       </Styled.InvalidContainer>
     </Styled.Container>
   )

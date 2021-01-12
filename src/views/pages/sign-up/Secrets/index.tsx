@@ -79,11 +79,25 @@ const Secrets: React.FC = () => {
             label="E-mail"
             keyboardType="email-address"
             autoCapitalize="none"
+            onSubmitEditing={() =>
+              formRef.current?.getFieldRef('password').focus()
+            }
           />
 
-          <PasswordInput name="password" label="Senha" />
+          <PasswordInput
+            name="password"
+            label="Senha"
+            onSubmitEditing={() =>
+              formRef.current?.getFieldRef('confirm_password').focus()
+            }
+          />
 
-          <PasswordInput name="confirm_password" label="Confirmar senha" />
+          <PasswordInput
+            name="confirm_password"
+            label="Confirmar senha"
+            returnKeyType="done"
+            onSubmitEditing={onFormButtonPress}
+          />
         </Form>
 
         <FormButton title="CONTINUAR" onPress={onFormButtonPress} />
