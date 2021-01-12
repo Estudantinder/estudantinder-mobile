@@ -8,12 +8,18 @@ const Container = styled.View`
 `
 
 const Label = styled.Text`
-  height: 16px;
-
   font-family: ${(props) => props.theme.fonts.input.label};
   color: ${(props) => props.theme.colors.input.label};
 
   margin-bottom: 10px;
+`
+
+const TextInputContainer = styled.View`
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+  position: relative;
 `
 
 export interface InputStyleProps {
@@ -23,8 +29,6 @@ export interface InputStyleProps {
 
 const TextInput = styled.TextInput<InputStyleProps>`
   min-width: 100%;
-
-  position: relative;
 
   padding: 4px 15px;
 
@@ -47,8 +51,6 @@ const Suffix = styled.View`
 
   width: 24px;
   height: 24px;
-
-  margin-top: 34px;
 
   background-color: ${(props) => props.theme.colors.input.background};
 
@@ -91,4 +93,5 @@ export default {
   Suffix,
   InvalidContainer,
   InvalidIcon,
+  TextInputContainer,
 }

@@ -40,32 +40,34 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
   return (
     <Styled.Container>
       {label && <Styled.Label>{label}</Styled.Label>}
-      <Styled.TextInput
-        ref={inputRef as never}
-        onChangeText={(value) => {
-          if (inputRef.current) {
-            inputRef.current.value = value
-          }
-        }}
-        isInvalid={!!error}
-        isActive={isActive}
-        defaultValue={defaultValue}
-        placeholderTextColor={theme.colors.input.placeholder}
-        selectionColor={theme.colors.primary.purple}
-        returnKeyType="next"
-        blurOnSubmit={false}
-        {...rest}
-        onFocus={(e) => {
-          setIsActive(true)
-          rest.onFocus?.(e)
-        }}
-        onEndEditing={(e) => {
-          setIsActive(false)
-          rest.onEndEditing?.(e)
-        }}
-      />
+      <Styled.TextInputContainer>
+        <Styled.TextInput
+          ref={inputRef as never}
+          onChangeText={(value) => {
+            if (inputRef.current) {
+              inputRef.current.value = value
+            }
+          }}
+          isInvalid={!!error}
+          isActive={isActive}
+          defaultValue={defaultValue}
+          placeholderTextColor={theme.colors.input.placeholder}
+          selectionColor={theme.colors.primary.purple}
+          returnKeyType="next"
+          blurOnSubmit={false}
+          {...rest}
+          onFocus={(e) => {
+            setIsActive(true)
+            rest.onFocus?.(e)
+          }}
+          onEndEditing={(e) => {
+            setIsActive(false)
+            rest.onEndEditing?.(e)
+          }}
+        />
 
-      {children && <Styled.Suffix>{children}</Styled.Suffix>}
+        {children && <Styled.Suffix>{children}</Styled.Suffix>}
+      </Styled.TextInputContainer>
 
       <Styled.InvalidContainer>
         {error && <Styled.InvalidIcon />}
