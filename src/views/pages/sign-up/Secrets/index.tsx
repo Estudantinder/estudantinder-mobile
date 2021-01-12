@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 import { ValidationError } from 'yup'
 
 import { useSignUpContext } from 'main/context/sign-up'
@@ -15,7 +14,7 @@ import GoBackButton from 'views/components/atoms/GoBackButton'
 import Input from 'views/components/atoms/Input'
 import PasswordInput from 'views/components/atoms/PasswordInput'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
-import { FormMain, FormTitle } from 'views/styles/globalStyles'
+import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
 import setValidationErrors from 'shared/setValidationErrors'
 
@@ -64,12 +63,7 @@ const Secrets: React.FC = () => {
       <FormMain>
         <FormTitle>Cadastre-se</FormTitle>
 
-        <Form
-          style={{ marginBottom: 32 }}
-          ref={formRef}
-          onSubmit={handleSubmit}
-          initialData={secrets}
-        >
+        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={secrets}>
           <Input
             name="email"
             label="E-mail"
@@ -93,8 +87,9 @@ const Secrets: React.FC = () => {
             label="Confirmar senha"
             returnKeyType="done"
             onSubmitEditing={onFormButtonPress}
+            blurOnSubmit
           />
-        </Form>
+        </SignUpForm>
 
         <FormButton title="CONTINUAR" onPress={onFormButtonPress} />
       </FormMain>

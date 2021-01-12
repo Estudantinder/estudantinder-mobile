@@ -1,9 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { TextInputProps } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
 import { useField } from '@unform/core'
 import { useTheme } from 'styled-components'
+
+import {
+  InputLabel,
+  InputContainer,
+  InputSuffix,
+  Row,
+  InputInvalidContainer,
+  InputInvalidText,
+  InputInvalidIcon,
+} from 'views/styles/globalStyles'
 
 import Styled from './styles'
 
@@ -38,9 +48,9 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
   }, [defaultValue, fieldName, registerField])
 
   return (
-    <Styled.Container>
-      {label && <Styled.Label>{label}</Styled.Label>}
-      <Styled.TextInputContainer>
+    <InputContainer>
+      {label && <InputLabel>{label}</InputLabel>}
+      <Row>
         <Styled.TextInput
           ref={inputRef as never}
           onChangeText={(value) => {
@@ -66,14 +76,18 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
           }}
         />
 
-        {children && <Styled.Suffix>{children}</Styled.Suffix>}
-      </Styled.TextInputContainer>
+        {children && <InputSuffix>{children}</InputSuffix>}
+      </Row>
 
-      <Styled.InvalidContainer>
-        {error && <Styled.InvalidIcon />}
-        {error && <Styled.InvalidText>{error}</Styled.InvalidText>}
-      </Styled.InvalidContainer>
-    </Styled.Container>
+      <InputInvalidContainer>
+        {error && (
+          <Fragment>
+            <InputInvalidIcon />
+            <InputInvalidText>{error}</InputInvalidText>
+          </Fragment>
+        )}
+      </InputInvalidContainer>
+    </InputContainer>
   )
 }
 export default Input
