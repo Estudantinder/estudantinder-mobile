@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text } from 'react-native'
 
 import Styled from './styles'
 
@@ -12,7 +11,9 @@ export interface IOptionButtonProps {
 const OptionButton: React.FC<IOptionButtonProps> = (props) => {
   return (
     <Styled.Button onPress={props.onPress} isActive={props.isActive}>
-      <Text>{props.label}</Text>
+      <Styled.ButtonText isActive={props.isActive}>
+        {props.label}
+      </Styled.ButtonText>
     </Styled.Button>
   )
 }

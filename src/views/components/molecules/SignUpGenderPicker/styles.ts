@@ -1,19 +1,20 @@
 import styled from 'styled-components/native'
 
-const Container = styled.View``
+import { InputLabel } from 'views/styles/globalStyles'
 
-const Label = styled.Text``
-
-const OptionsContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
+const Divider = styled.View`
+  width: 10px;
 `
 
-const OrText = styled.Text``
+const OrText = styled(InputLabel)`
+  text-align: center;
+  justify-content: center;
+
+  margin-bottom: -10px;
+  margin-top: 10px;
+`
 
 export default {
-  Container,
-  Label,
-  OptionsContainer,
+  Divider,
   OrText,
 }
