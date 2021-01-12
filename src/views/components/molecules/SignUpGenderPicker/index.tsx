@@ -3,8 +3,8 @@ import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
+import Input from 'views/components/atoms/Input'
 import OptionButton from 'views/components/atoms/OptionButton'
-import StatefulInput from 'views/components/atoms/StatefulInput'
 
 import Styled from './styles'
 
@@ -15,7 +15,7 @@ interface ViewRef extends View {
 const SignUpGenderPicker: React.FC = () => {
   const ref = useRef<ViewRef>(null)
 
-  const { fieldName, defaultValue, registerField, error } = useField('gender')
+  const { fieldName, defaultValue, registerField } = useField('gender')
 
   const [gender, setGender] = useState<string>(defaultValue)
 
@@ -70,11 +70,11 @@ const SignUpGenderPicker: React.FC = () => {
 
       <Styled.OrText>ou</Styled.OrText>
 
-      <StatefulInput
+      <Input
         label="Digite o seu gênero"
-        setState={handleChangeGender}
-        state={gender}
-        error={error}
+        onChangeText={handleChangeGender}
+        value={gender}
+        name="custom_gender"
       />
     </Styled.Container>
   )

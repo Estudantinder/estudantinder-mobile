@@ -1,20 +1,21 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
-import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 import { ValidationError } from 'yup'
 
 import { IPerson, useSignUpContext } from 'main/context/sign-up'
 import ValidateSignUpPerson from 'main/validators/sign-up/Person'
 
+import FormButton from 'views/components/atoms/FormButton'
+import GoBackButton from 'views/components/atoms/GoBackButton'
 import Input from 'views/components/atoms/Input'
 import PersonDatePicker from 'views/components/atoms/SignUpDatePicker'
 import PersonGenderPicker from 'views/components/molecules/SignUpGenderPicker'
-import Header from 'views/components/organisms/Header'
+import SignUpContainer from 'views/components/templates/SignUpContainer'
+import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
-import Styled from './styles'
+import setValidationErrors from 'shared/setValidationErrors'
 
 const Person: React.FC = () => {
   const router = useNavigation()
@@ -22,6 +23,10 @@ const Person: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
   const { person, setPerson } = useSignUpContext()
+
+  function onFormButtonPress() {
+    formRef.current?.submitForm()
+  }
 
   function handleNavigateToSchool() {
     router.navigate('sign-up/School')
@@ -42,14 +47,16 @@ const Person: React.FC = () => {
 
       handleNavigateToSchool()
     } catch (err) {
-      const validationErrors: Record<string, string> = {}
-
       if (err instanceof ValidationError) {
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message
-        })
+        setValidationErrors(err, formRef)
 
-        return formRef?.current?.setErrors(validationErrors)
+        const genderError = formRef.current?.getFieldError('gender')
+
+        if (genderError) {
+          formRef.current?.setFieldError('custom_gender', genderError)
+        }
+
+        return
       }
 
       return alert(err)
@@ -57,27 +64,21 @@ const Person: React.FC = () => {
   }
 
   return (
-    <Styled.Container
-      behavior={Platform.OS == 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={10}
-    >
-      <Styled.Scroll
-        contentContainerStyle={{
-          minHeight: '100%',
-          justifyContent: 'center',
-        }}
-      >
-        <Header title="Suas informações" />
+    <SignUpContainer>
+      <GoBackButton />
 
-        <Styled.Main>
-          <Form ref={formRef} onSubmit={handleSubmit} initialData={person}>
-            <Input name="name" label="Nome Completo" />
-            <PersonDatePicker />
-            <PersonGenderPicker />
-          </Form>
-        </Styled.Main>
-      </Styled.Scroll>
-    </Styled.Container>
+      <FormMain>
+        <FormTitle>Suas Informações</FormTitle>
+
+        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={person}>
+          <Input name="name" label="Nome Completo" />
+          <PersonDatePicker />
+          <PersonGenderPicker />
+        </SignUpForm>
+
+        <FormButton onPress={onFormButtonPress} title="Continuar" />
+      </FormMain>
+    </SignUpContainer>
   )
 }
 
