@@ -1,8 +1,19 @@
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
-import React, { useEffect, useRef, useState } from 'react'
-import { View, Platform, Text } from 'react-native'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
+import { View, Platform } from 'react-native'
+import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { useField } from '@unform/core'
+
+import {
+  InputContainer,
+  InputInvalidContainer,
+  InputInvalidIcon,
+  InputInvalidText,
+  InputLabel,
+  InputSuffix,
+  Row,
+} from 'views/styles/globalStyles'
 
 import Styled from './styles'
 
@@ -10,11 +21,11 @@ interface ViewRef extends View {
   value: Date
 }
 
-const actualYear = new Date().getFullYear()
+const ACTUAL_YEAR = new Date().getFullYear()
 
-const maxDate = new Date(`12/31/${actualYear - 12}`)
+const MAX_DATE = new Date(`12/31/${ACTUAL_YEAR - 12}`)
 
-const minDate = new Date(`1/1/${actualYear - 21}`)
+const MIN_DATE = new Date(`1/1/${ACTUAL_YEAR - 21}`)
 
 const SignUpDatePicker = () => {
   const { fieldName, defaultValue, registerField, error } = useField(
@@ -23,7 +34,7 @@ const SignUpDatePicker = () => {
 
   const [wasSelected, setWasSelected] = useState(!!defaultValue)
 
-  const [date, setDate] = useState<Date>(defaultValue || maxDate)
+  const [date, setDate] = useState<Date>(defaultValue || MAX_DATE)
   const [show, setShow] = useState(Platform.OS === 'ios')
 
   const ref = useRef<ViewRef>(null)
@@ -53,39 +64,52 @@ const SignUpDatePicker = () => {
   }
 
   function getPlaceholder() {
-    if (!wasSelected) return 'Selecione sua data de nascimento'
+    if (!wasSelected) return '00/00/0000'
 
-    return date.toDateString()
+    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
   }
 
   return (
-    <Styled.Container ref={ref}>
-      <Styled.Label>Data de nascimento</Styled.Label>
+    <InputContainer ref={ref}>
+      <InputLabel>Data de nascimento</InputLabel>
 
       {Platform.OS !== 'ios' && (
-        <Styled.Button onPress={() => setShow(true)}>
-          <Text>{getPlaceholder()}</Text>
-        </Styled.Button>
+        <Row>
+          <Styled.Button onPress={() => setShow(true)}>
+            <Styled.ButtonText>{getPlaceholder()}</Styled.ButtonText>
+          </Styled.Button>
+
+          <InputSuffix>
+            <BorderlessButton onPress={() => setShow(true)}>
+              <Styled.ArrowRightIcon />
+            </BorderlessButton>
+          </InputSuffix>
+        </Row>
       )}
 
-      {error ? (
-        <Styled.TextError>{error}</Styled.TextError>
-      ) : (
-        <Styled.HelpMessage>
-          Você precisa ser maior que 12 anos e menor que 21 para entrar no app
-        </Styled.HelpMessage>
-      )}
+      <InputInvalidContainer>
+        {error ? (
+          <Fragment>
+            <InputInvalidIcon />
+            <InputInvalidText>{error}</InputInvalidText>
+          </Fragment>
+        ) : (
+          <Styled.HelpMessage>
+            Você precisa ter entre 14 e 21 anos
+          </Styled.HelpMessage>
+        )}
+      </InputInvalidContainer>
 
       {show && (
         <DateTimePicker
           value={date}
           mode="date"
           onChange={onChange}
-          maximumDate={maxDate}
-          minimumDate={minDate}
+          maximumDate={MAX_DATE}
+          minimumDate={MIN_DATE}
         />
       )}
-    </Styled.Container>
+    </InputContainer>
   )
 }
 

@@ -1,35 +1,38 @@
-import { RectButton } from 'react-native-gesture-handler'
-
+import { Entypo } from '@expo/vector-icons'
 import styled from 'styled-components/native'
 
-const Container = styled.View``
+const Button = styled.TouchableOpacity`
+  min-width: 100%;
+  height: 40px;
 
-const Button = styled(RectButton)`
-  height: 42px;
-  width: 300px;
+  background-color: ${(props) => props.theme.colors.input.background};
 
-  background-color: #ccc;
-
-  padding: 0px 16px;
+  padding: 4px 15px;
 
   flex-direction: row;
   align-items: center;
+
+  margin-bottom: 4px;
+
+  border-radius: 4px;
 `
 
-const Label = styled.Text`
-  margin-bottom: 8px;
-  height: 20px;
+const ButtonText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.input.text};
+  color: ${(props) => props.theme.colors.input.active_text};
+`
+
+const ArrowRightIcon = styled(Entypo).attrs({
+  name: 'chevron-thin-right',
+  size: 14,
+  color: '#2d2d2d',
+})`
+  margin-bottom: 2px;
 `
 
 const HelpMessage = styled.Text`
-  width: 300px;
+  width: 100%;
   color: #868686;
 `
 
-const TextError = styled.Text`
-  color: #f00;
-  height: 24px;
-  width: 300px;
-`
-
-export default { Container, Button, Label, HelpMessage, TextError }
+export default { Button, HelpMessage, ButtonText, ArrowRightIcon }
