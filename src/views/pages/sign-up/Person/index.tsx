@@ -76,7 +76,7 @@ const Person: React.FC = () => {
           <PersonGenderPicker />
         </SignUpForm>
 
-        <FormButton onPress={onFormButtonPress} title="Continuar" />
+        <FormButton onPress={onFormButtonPress} title="CONTINUAR" />
       </FormMain>
     </SignUpContainer>
   )
