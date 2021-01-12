@@ -7,6 +7,7 @@ import User from 'main/entities/User'
 export interface ISecrets {
   email: string
   password: string
+  confirm_password: string
 }
 
 export interface IPerson {
@@ -64,6 +65,7 @@ export const SignUpContextProvider: FC = ({ children }) => {
   const [secrets, setSecrets] = useState<Ctx['secrets']>({
     email: '',
     password: '',
+    confirm_password: '',
   })
 
   const [person, setPerson] = useState<Ctx['person']>({

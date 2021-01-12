@@ -4,10 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 import { ValidationError } from 'yup'
 
-import { useSignUpContext } from 'main/context/sign-up'
-import ValidateSignUpSecret, {
-  IValidateSignUpSecretData,
-} from 'main/validators/sign-up/Secret'
+import { ISecrets, useSignUpContext } from 'main/context/sign-up'
+import ValidateSignUpSecret from 'main/validators/sign-up/Secret'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -33,7 +31,7 @@ const Secrets: React.FC = () => {
     formRef.current?.submitForm()
   }
 
-  async function handleSubmit(data: IValidateSignUpSecretData) {
+  async function handleSubmit(data: ISecrets) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
@@ -44,7 +42,7 @@ const Secrets: React.FC = () => {
         abortEarly: false,
       })
 
-      setSecrets({ email: data.email, password: data.password })
+      setSecrets(data)
 
       handleNavigateToPerson()
     } catch (err) {
