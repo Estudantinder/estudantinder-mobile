@@ -17,6 +17,8 @@ import PasswordInput from 'views/components/atoms/PasswordInput'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle } from 'views/styles/globalStyles'
 
+import setValidationErrors from 'shared/setValidationErrors'
+
 const Secrets: React.FC = () => {
   const router = useNavigation()
 
@@ -47,14 +49,8 @@ const Secrets: React.FC = () => {
 
       handleNavigateToPerson()
     } catch (err) {
-      const validationErrors: Record<string, string> = {}
-
       if (err instanceof ValidationError) {
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message
-        })
-
-        return formRef?.current?.setErrors(validationErrors)
+        return setValidationErrors(err, formRef)
       }
 
       return alert(err)
