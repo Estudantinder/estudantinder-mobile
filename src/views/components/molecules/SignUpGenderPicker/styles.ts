@@ -2,10 +2,6 @@ import styled from 'styled-components/native'
 
 import { InputLabel } from 'views/styles/globalStyles'
 
-const Divider = styled.View`
-  width: 10px;
-`
-
 const OrText = styled(InputLabel)`
   text-align: center;
   justify-content: center;
@@ -15,6 +11,5 @@ const OrText = styled(InputLabel)`
 `
 
 export default {
-  Divider,
   OrText,
 }

@@ -1,9 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Text, View } from 'react-native'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
+import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
+import InputBottom from 'views/components/atoms/InputBottom'
 import OptionButton from 'views/components/atoms/OptionButton'
+import {
+  Divider,
+  InputContainer,
+  InputLabel,
+  Row,
+} from 'views/styles/globalStyles'
 
 interface ViewRef extends View {
   value: string
@@ -11,6 +18,7 @@ interface ViewRef extends View {
 
 export interface RowOptionsPickerProps {
   name: string
+  label: string
   options: Array<{
     label: string
     value: string
@@ -41,21 +49,23 @@ const RowOptionsPicker: React.FC<RowOptionsPickerProps> = (props) => {
   }
 
   return (
-    <View ref={ref}>
-      <Text>Série</Text>
-      <View style={{ flexDirection: 'row' }}>
-        {props.options.map((opt) => (
-          <OptionButton
-            key={opt.value}
-            label={opt.label}
-            isActive={value === opt.value}
-            onPress={() => handleChangeValue(opt.value)}
-          />
+    <InputContainer ref={ref}>
+      <InputLabel>{props.label}</InputLabel>
+      <Row>
+        {props.options.map((opt, index) => (
+          <Fragment key={opt.value}>
+            <OptionButton
+              label={opt.label}
+              isActive={value === opt.value}
+              onPress={() => handleChangeValue(opt.value)}
+            />
+            {props.options[index + 1] ? <Divider /> : null}
+          </Fragment>
         ))}
-      </View>
+      </Row>
 
-      <Text>{error}</Text>
-    </View>
+      <InputBottom text={error}></InputBottom>
+    </InputContainer>
   )
 }
 

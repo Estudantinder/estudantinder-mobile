@@ -1,22 +1,22 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
-import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 import { ValidationError } from 'yup'
 
 import { ISchool, useSignUpContext } from 'main/context/sign-up'
 import ValidateSignUpSchool from 'main/validators/sign-up/School'
 
+import FormButton from 'views/components/atoms/FormButton'
+import GoBackButton from 'views/components/atoms/GoBackButton'
 import Input from 'views/components/atoms/Input'
 import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
 import SignUpCoursePicker from 'views/components/molecules/SignUpCoursePicker'
-import Header from 'views/components/organisms/Header'
+import SignUpContainer from 'views/components/templates/SignUpContainer'
+import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
+import setValidationErrors from 'shared/setValidationErrors'
 import { Shifts } from 'shared/Shift'
-
-import Styled from './styles'
 
 const School: React.FC = () => {
   const router = useNavigation()
@@ -44,14 +44,8 @@ const School: React.FC = () => {
 
       handleNavigateToContacts()
     } catch (err) {
-      const validationErrors: Record<string, string> = {}
-
       if (err instanceof ValidationError) {
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message
-        })
-
-        return formRef?.current?.setErrors(validationErrors)
+        return setValidationErrors(err, formRef)
       }
 
       return alert(err)
@@ -60,47 +54,52 @@ const School: React.FC = () => {
     handleNavigateToContacts()
   }
 
-  return (
-    <Styled.Container
-      behavior={Platform.OS == 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={10}
-    >
-      <Styled.Scroll
-        contentContainerStyle={{
-          minHeight: '100%',
-          justifyContent: 'center',
-        }}
-      >
-        <Header title="Informações escolares" />
+  function handleButtonPress() {
+    formRef.current?.submitForm()
+  }
 
-        <Styled.Main>
-          <Form ref={formRef} onSubmit={handleSubmit} initialData={school}>
-            <SignUpCoursePicker />
-            <RowOptionsPicker
-              name="school_year"
-              options={[
-                { label: '1 ano', value: '1' },
-                { label: '2 ano', value: '2' },
-                { label: '3 ano', value: '3' },
-              ]}
-            />
-            <RowOptionsPicker
-              name="shift"
-              options={[
-                { label: 'Manha', value: String(Shifts.MORNING) },
-                { label: 'Tarde', value: String(Shifts.AFTERNOON) },
-              ]}
-            />
-            <Input
-              name="classroom"
-              label="Sala"
-              placeholder="Ex: F"
-              maxLength={1}
-            />
-          </Form>
-        </Styled.Main>
-      </Styled.Scroll>
-    </Styled.Container>
+  return (
+    <SignUpContainer>
+      <GoBackButton />
+
+      <FormMain>
+        <FormTitle>Informações Escolares</FormTitle>
+
+        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={school}>
+          <SignUpCoursePicker />
+
+          <RowOptionsPicker
+            name="school_year"
+            label="Série"
+            options={[
+              { label: '1 ano', value: '1' },
+              { label: '2 ano', value: '2' },
+              { label: '3 ano', value: '3' },
+            ]}
+          />
+
+          <RowOptionsPicker
+            name="shift"
+            label="Turno"
+            options={[
+              { label: 'Manhã', value: String(Shifts.MORNING) },
+              { label: 'Tarde', value: String(Shifts.AFTERNOON) },
+            ]}
+          />
+
+          <Input
+            name="classroom"
+            label="Sala"
+            placeholder="Ex: F"
+            maxLength={1}
+            onSubmitEditing={handleButtonPress}
+            blurOnSubmit
+          />
+        </SignUpForm>
+
+        <FormButton onPress={handleButtonPress} title="CONTINUAR" />
+      </FormMain>
+    </SignUpContainer>
   )
 }
 

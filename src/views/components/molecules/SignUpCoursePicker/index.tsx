@@ -1,36 +1,45 @@
-import { Picker } from '@react-native-picker/picker'
 import React, { ReactText, useEffect, useRef, useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+import { Item } from 'react-native-picker-select'
 
 import { useField } from '@unform/core'
 
+import useSchoolsData from 'main/api/useSchoolsData'
 import School from 'main/entities/School'
+
+import InputBottom from 'views/components/atoms/InputBottom'
+import Select from 'views/components/atoms/Select'
 
 interface ViewRef extends View {
   value: string
 }
 
-const items: School[] = [
-  {
-    courses: [{ id: '1', name: 'Informática' }],
-    name: 'Jardim Belval',
-    id: '1',
-  },
-  { courses: [{ id: '2', name: 'Redes' }], name: 'Parque viana', id: '2' },
-]
+function getSelectedSchool(
+  schools?: School[],
+  defaultValue?: string
+): string | undefined {
+  if (!defaultValue || !schools) return
+
+  const selectedSchool = schools.find((school) => {
+    const course = school.courses.find((course) => course.id === defaultValue)
+
+    return !!course
+  })
+
+  return selectedSchool?.id
+}
 
 const SignUpCoursePicker: React.FC = () => {
   const ref = useRef<ViewRef>(null)
+
+  const { schools, loading } = useSchoolsData()
 
   const { fieldName, defaultValue, registerField, error } = useField(
     'course_id'
   )
 
   const [selectedSchool, setSelectedSchool] = useState(
-    () =>
-      items.find((school) =>
-        school.courses.find((course) => course.id === defaultValue)
-      )?.id
+    getSelectedSchool(schools, defaultValue)
   )
 
   const [selectedCourse, setSelectedCourse] = useState(defaultValue)
@@ -53,53 +62,51 @@ const SignUpCoursePicker: React.FC = () => {
     setSelectedCourse(newCourse)
   }
 
+  function getSchoolItems(): Item[] {
+    if (schools) {
+      return schools.map((school) => ({
+        label: school.address,
+        value: String(school.id),
+      }))
+    }
+
+    return []
+  }
+
+  function getCourseItems(): Item[] {
+    if (schools && selectedSchool) {
+      const school = schools.find((school) => selectedSchool == school.id)
+
+      if (!school) return []
+
+      return school.courses.map((course) => ({
+        label: course.name,
+        value: String(course.id),
+      }))
+    }
+
+    return []
+  }
+
   return (
     <View ref={ref}>
-      <Text>Escola</Text>
+      <Select
+        label="Escola"
+        disabled={loading || !schools}
+        items={getSchoolItems()}
+        onValueChange={(value) => setSelectedSchool(String(value))}
+        value={selectedSchool}
+      />
 
-      <Picker
-        selectedValue={selectedSchool}
-        onValueChange={(itemValue) => setSelectedSchool(String(itemValue))}
-      >
-        <Picker.Item label="Selecione sua escola" value="" color="#c0c0c0" />
-        {items.map((item) => (
-          <Picker.Item
-            label={item.name}
-            value={item.id}
-            key={`school-${item.id}`}
-            color="#000"
-          />
-        ))}
-      </Picker>
-      <Text>Curso</Text>
-
-      <Picker
-        selectedValue={selectedCourse}
+      <Select
+        label="Curso"
+        disabled={loading || !selectedSchool}
+        items={getCourseItems()}
         onValueChange={handleChangeCourse}
-        enabled={selectedSchool !== ''}
-      >
-        <Picker.Item
-          label={
-            selectedSchool !== ''
-              ? 'Selecione seu item'
-              : 'Selecione sua escola primeiro!'
-          }
-          value=""
-          color="#c0c0c0"
-        />
-        {items
-          .find((item) => selectedSchool === item.id)
-          ?.courses.map((item) => (
-            <Picker.Item
-              label={item.name}
-              value={item.id}
-              key={`course-${item.id}`}
-              color="#000"
-            />
-          ))}
-      </Picker>
+        value={selectedCourse}
+      />
 
-      <Text>{error}</Text>
+      <InputBottom text={error} />
     </View>
   )
 }

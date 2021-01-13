@@ -7,13 +7,12 @@ import { useField } from '@unform/core'
 
 import {
   InputContainer,
-  InputInvalidContainer,
-  InputInvalidIcon,
-  InputInvalidText,
   InputLabel,
   InputSuffix,
   Row,
 } from 'views/styles/globalStyles'
+
+import InputBottom from '../InputBottom'
 
 import Styled from './styles'
 
@@ -92,12 +91,10 @@ const SignUpDatePicker: React.FC = () => {
         </Row>
       )}
 
-      <InputInvalidContainer>
-        <InputInvalidIcon style={error ? {} : { color: '#9b9b9b' }} />
-        <InputInvalidText style={error ? {} : { color: '#9b9b9b' }}>
-          {error || 'Você precisa ter entre 14 e 21 anos'}
-        </InputInvalidText>
-      </InputInvalidContainer>
+      <InputBottom
+        text={error || 'Você precisa ter entre 14 e 21 anos'}
+        customColor={error ? undefined : '#9b9b9b'}
+      />
 
       {show && (
         <DateTimePicker

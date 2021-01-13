@@ -5,7 +5,12 @@ import { useField } from '@unform/core'
 
 import Input from 'views/components/atoms/Input'
 import OptionButton from 'views/components/atoms/OptionButton'
-import { InputContainer, InputLabel, Row } from 'views/styles/globalStyles'
+import {
+  Divider,
+  InputContainer,
+  InputLabel,
+  Row,
+} from 'views/styles/globalStyles'
 
 import Styled from './styles'
 
@@ -62,7 +67,7 @@ const SignUpGenderPicker: React.FC = () => {
           isActive={gender.toUpperCase() === 'FEMININO'}
           onPress={handleSelectFem}
         />
-        <Styled.Divider />
+        <Divider />
         <OptionButton
           label="Masculino"
           isActive={gender.toUpperCase() === 'MASCULINO'}

@@ -70,7 +70,7 @@ export const InputSuffix = styled.View`
   align-items: center;
 `
 
-export const InputInvalidContainer = styled.View`
+export const InputBottomContainer = styled.View`
   height: 16px;
   width: 100%;
 
@@ -81,14 +81,14 @@ export const InputInvalidContainer = styled.View`
   align-items: flex-end;
 `
 
-export const InputInvalidIcon = styled(Feather).attrs({
+export const InputBottomIcon = styled(Feather).attrs({
   name: 'info',
   size: 14,
 })`
   color: ${(props) => props.theme.colors.input.invalid};
 `
 
-export const InputInvalidText = styled.Text`
+export const InputBottomText = styled.Text`
   font-family: ${(props) => props.theme.fonts.input.label};
   font-size: 12px;
   color: ${(props) => props.theme.colors.input.invalid};
@@ -99,4 +99,7 @@ export const InputInvalidText = styled.Text`
   width: 90%;
 
   overflow: hidden;
+`
+export const Divider = styled.View`
+  width: 10px;
 `

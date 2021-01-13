@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { TextInputProps } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
@@ -10,10 +10,9 @@ import {
   InputContainer,
   InputSuffix,
   Row,
-  InputInvalidContainer,
-  InputInvalidText,
-  InputInvalidIcon,
 } from 'views/styles/globalStyles'
+
+import InputError from '../InputBottom'
 
 import Styled from './styles'
 
@@ -79,14 +78,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
         {children && <InputSuffix>{children}</InputSuffix>}
       </Row>
 
-      <InputInvalidContainer>
-        {error && (
-          <Fragment>
-            <InputInvalidIcon />
-            <InputInvalidText>{error}</InputInvalidText>
-          </Fragment>
-        )}
-      </InputInvalidContainer>
+      <InputError text={error} />
     </InputContainer>
   )
 }

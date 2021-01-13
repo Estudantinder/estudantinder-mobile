@@ -82,9 +82,9 @@ const Person: React.FC = () => {
           <PersonDatePicker />
           <PersonGenderPicker />
         </SignUpForm>
-
-        <FormButton onPress={onFormButtonPress} title="CONTINUAR" />
       </FormMain>
+
+      <FormButton onPress={onFormButtonPress} title="CONTINUAR" />
     </SignUpContainer>
   )
 }
