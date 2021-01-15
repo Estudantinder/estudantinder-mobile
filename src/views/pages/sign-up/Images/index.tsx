@@ -1,85 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import * as ExpoImagePicker from 'expo-image-picker'
+import { useSignUpContext } from 'main/context/sign-up'
 
-import ImagePicker from 'views/components/molecules/ImagePicker'
-
-import Styled from './styles'
+import FormButton from 'views/components/atoms/FormButton'
+import GoBackButton from 'views/components/atoms/GoBackButton'
+import SignUpContainer from 'views/components/templates/SignUpContainer'
+import { FormMain, FormTitle, InputLabel } from 'views/styles/globalStyles'
 
 const SignUpImages: React.FC = () => {
-  const [images, setImages] = useState<string[]>([])
+  const { getUser } = useSignUpContext()
 
-  async function handleSelectPicker() {
-    const status = await ExpoImagePicker.requestCameraRollPermissionsAsync()
-
-    if (!status.granted) {
-      alert('Precisamos das suas fotos')
-      return
-    }
-
-    const result = await ExpoImagePicker.launchImageLibraryAsync({
-      quality: 1,
-      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
-    })
-
-    if (result.cancelled) return
-
-    const { uri } = result
-
-    setImages([...images, uri])
-  }
-
-  async function handleDeleteImage(index: number) {
-    const newImages = images.filter((_, i) => i !== index)
-
-    setImages(newImages)
+  function handleButtonPress() {
+    console.log(getUser())
   }
 
   return (
-    <Styled.Container>
-      <Styled.Header>
-        <ImagePicker
-          image={images[0]}
-          onSelectImage={handleSelectPicker}
-          onDeleteImage={() => handleDeleteImage(0)}
-        />
-      </Styled.Header>
+    <SignUpContainer>
+      <GoBackButton />
 
-      <Styled.Main>
-        <Styled.Row>
-          <ImagePicker
-            image={images[1]}
-            onSelectImage={handleSelectPicker}
-            onDeleteImage={() => handleDeleteImage(1)}
-          />
-          <ImagePicker
-            image={images[2]}
-            onSelectImage={handleSelectPicker}
-            onDeleteImage={() => handleDeleteImage(2)}
-          />
-          <ImagePicker
-            image={images[3]}
-            onSelectImage={handleSelectPicker}
-            onDeleteImage={() => handleDeleteImage(3)}
-          />
-        </Styled.Row>
+      <FormMain>
+        <FormTitle>Imagens</FormTitle>
 
-        <Styled.Row>
-          <ImagePicker
-            image={images[4]}
-            onSelectImage={handleSelectPicker}
-            onDeleteImage={() => handleDeleteImage(4)}
-          />
-          <ImagePicker
-            image={images[5]}
-            onSelectImage={handleSelectPicker}
-            onDeleteImage={() => handleDeleteImage(5)}
-          />
+        <InputLabel>{String(JSON.stringify(getUser()))}</InputLabel>
+      </FormMain>
 
-          <Styled.BlankImage />
-        </Styled.Row>
-      </Styled.Main>
-    </Styled.Container>
+      <FormButton onPress={handleButtonPress} title="CADASTRAR" />
+    </SignUpContainer>
   )
 }
 

@@ -1,9 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Text, View } from 'react-native'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
+import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
+import InputBottom from 'views/components/atoms/InputBottom'
 import OptionButton from 'views/components/atoms/OptionButton'
+import {
+  Divider,
+  InputContainer,
+  InputLabel,
+  Row,
+} from 'views/styles/globalStyles'
 
 const items = [
   { name: 'Artes', id: '1' },
@@ -20,6 +27,7 @@ const items = [
   { name: 'Português', id: '12' },
   { name: 'Química', id: '13' },
   { name: 'Sociologia', id: '14' },
+  { name: 'Dale', id: '15' },
 ]
 
 interface ViewRef extends View {
@@ -32,8 +40,6 @@ const SignUpSubjectsPicker: React.FC = () => {
   const { fieldName, defaultValue, registerField, error } = useField('subjects')
 
   const [subjects, setSubjects] = useState<string[]>(defaultValue || [])
-
-  console.log(defaultValue)
 
   useEffect(() => {
     registerField({
@@ -65,17 +71,17 @@ const SignUpSubjectsPicker: React.FC = () => {
   }
 
   return (
-    <View ref={ref}>
-      <Text>Escolha 03 matérias que você tem afinidade</Text>
-      <Text>{error}</Text>
+    <InputContainer ref={ref}>
+      <InputLabel>Escolha 03 matérias que você tem afinidade</InputLabel>
+
       {items.map((item, index) => {
         if (index % 2 !== 0) return
+
         return (
-          <View
+          <Row
             style={{
-              marginBottom: 20,
-              flexDirection: 'row',
-              width: items[index + 1] ? undefined : '50%',
+              marginBottom: items[index + 1] ? 20 : 0,
+              width: items[index + 1] ? '100%' : '48%',
             }}
             key={item.id}
           >
@@ -85,16 +91,21 @@ const SignUpSubjectsPicker: React.FC = () => {
               isActive={subjects.includes(item.id)}
             />
             {items[index + 1] && (
-              <OptionButton
-                onPress={() => handleSubjectsChange(items[index + 1].id)}
-                label={items[index + 1].name}
-                isActive={subjects.includes(items[index + 1].id)}
-              />
+              <Fragment>
+                <Divider />
+                <OptionButton
+                  onPress={() => handleSubjectsChange(items[index + 1].id)}
+                  label={items[index + 1].name}
+                  isActive={subjects.includes(items[index + 1].id)}
+                />
+              </Fragment>
             )}
-          </View>
+          </Row>
         )
       })}
-    </View>
+
+      <InputBottom>{error}</InputBottom>
+    </InputContainer>
   )
 }
 

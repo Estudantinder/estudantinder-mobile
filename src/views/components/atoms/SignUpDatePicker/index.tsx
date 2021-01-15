@@ -70,7 +70,19 @@ const SignUpDatePicker: React.FC = () => {
   function getPlaceholder() {
     if (!wasSelected) return '00/00/0000'
 
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+    const day = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+
+    let placeholder
+
+    placeholder = `${day < 10 ? '0' : ''}${day}/`
+
+    placeholder += `${month < 10 ? '0' : ''}${month + 1}/`
+
+    placeholder += year
+
+    return placeholder
   }
 
   return (
@@ -93,7 +105,7 @@ const SignUpDatePicker: React.FC = () => {
 
       <InputBottom
         text={error || 'Você precisa ter entre 14 e 21 anos'}
-        customColor={error ? undefined : '#9b9b9b'}
+        informative={!error}
       />
 
       {show && (

@@ -8,11 +8,11 @@ import {
 
 export interface InputBottomProps {
   text?: string
-  customColor?: string
+  informative?: boolean
 }
 
 const InputBottom: React.FC<InputBottomProps> = (props) => {
-  const style = props.customColor ? { color: props.customColor } : {}
+  const style = props.informative ? { color: '#9b9b9b' } : {}
 
   return (
     <InputBottomContainer>

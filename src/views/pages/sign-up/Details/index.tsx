@@ -1,16 +1,20 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
-import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 import { ValidationError } from 'yup'
 
-import { IDetails, useSignUpContext } from 'main/context/sign-up'
+import { useSignUpContext } from 'main/context/sign-up'
+import { UserDetails } from 'main/entities/User'
 import ValidateSignUpDetails from 'main/validators/sign-up/Details'
 
+import FormButton from 'views/components/atoms/FormButton'
+import GoBackButton from 'views/components/atoms/GoBackButton'
 import SubjectsPicker from 'views/components/molecules/SignUpSubjectsPicker'
-import Header from 'views/components/organisms/Header'
+import SignUpContainer from 'views/components/templates/SignUpContainer'
+import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
+
+import setValidationErrors from 'shared/setValidationErrors'
 
 import Styled from './styles'
 
@@ -25,7 +29,7 @@ const Details: React.FC = () => {
     router.navigate('sign-up/Images')
   }
 
-  async function handleSubmit(data: IDetails) {
+  async function handleSubmit(data: UserDetails) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
@@ -40,14 +44,8 @@ const Details: React.FC = () => {
 
       handleNavigateToImages()
     } catch (err) {
-      const validationErrors: Record<string, string> = {}
-
       if (err instanceof ValidationError) {
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message
-        })
-
-        return formRef?.current?.setErrors(validationErrors)
+        return setValidationErrors(err, formRef)
       }
 
       return alert(err)
@@ -56,33 +54,33 @@ const Details: React.FC = () => {
     handleNavigateToImages()
   }
 
-  return (
-    <Styled.Container
-      behavior={Platform.OS == 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={10}
-    >
-      <Styled.Scroll
-        contentContainerStyle={{
-          minHeight: '100%',
-          justifyContent: 'center',
-        }}
-      >
-        <Header title="Um pouco sobre você" />
+  function handleButtonPress() {
+    formRef.current?.submitForm()
+  }
 
-        <Styled.Main>
-          <Form ref={formRef} onSubmit={handleSubmit} initialData={details}>
-            <Styled.TextAreaInput
-              name="description"
-              label="Descrição"
-              maxLength={256}
-              textAlignVertical="top"
-              multiline
-            />
-            <SubjectsPicker />
-          </Form>
-        </Styled.Main>
-      </Styled.Scroll>
-    </Styled.Container>
+  return (
+    <SignUpContainer>
+      <GoBackButton />
+
+      <FormMain>
+        <FormTitle>Um pouco sobre você</FormTitle>
+
+        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={details}>
+          <Styled.TextAreaInput
+            name="bio"
+            label="Biografia"
+            info="Máximo de 256 caracteres"
+            maxLength={256}
+            textAlignVertical="top"
+            multiline
+          />
+
+          <SubjectsPicker />
+        </SignUpForm>
+
+        <FormButton onPress={handleButtonPress} title="CONTINUAR" />
+      </FormMain>
+    </SignUpContainer>
   )
 }
 

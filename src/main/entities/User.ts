@@ -1,37 +1,60 @@
+import { Gender, SHIFTS } from 'shared/Constants'
+
 import Contacts from './Contacts'
 
-export default class User {
+export interface UserSecrets {
+  email: string
+  password: string
+}
+export interface UserAbout {
+  name: string
+  birth_date: string
+  gender?: Gender
+}
+
+export interface UserSchool {
+  school_year: number
+  shift: SHIFTS
+  course_id: string
+  classroom: string
+}
+
+export interface UserDetails {
+  bio: string
+  subjects: Array<string>
+}
+
+export default class User
+  implements UserSecrets, UserAbout, UserSchool, UserDetails {
+  public name: string
   public email: string
   public password: string
 
-  public name: string
   public birth_date: string
-  public gender: string
+  public bio: string
+  public gender?: Gender
 
-  public school: string
-  public course: string
-  public grade: string
-  public period: string
+  public school_year: number
+  public shift: SHIFTS
+  public subjects: Array<string>
+  public course_id: string
   public classroom: string
 
   public contacts: Contacts
 
-  public description: string
-  public subjects: Array<string>
-
   constructor(props: User) {
+    this.name = props.name
     this.email = props.email
     this.password = props.password
-    this.name = props.name
     this.birth_date = props.birth_date
+    this.bio = props.bio
     this.gender = props.gender
-    this.school = props.school
-    this.course = props.course
-    this.grade = props.grade
-    this.period = props.period
-    this.classroom = props.classroom
-    this.contacts = props.contacts
+    this.school_year = props.school_year
+    this.shift = props.shift
     this.subjects = props.subjects
-    this.description = props.description
+    this.course_id = props.course_id
+    this.classroom = props.classroom
+
+    this.contacts = new Contacts(props.contacts)
   }
 }

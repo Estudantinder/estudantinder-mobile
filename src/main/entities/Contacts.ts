@@ -5,6 +5,9 @@ export default class Contacts {
   public twitter?: string
 
   constructor(props: Contacts) {
-    Object.assign(this, props) // TODO: make more safe
+    props.facebook && (this.facebook = props.facebook)
+    props.instagram && (this.instagram = props.instagram)
+    props.whatsapp && (this.whatsapp = props.whatsapp)
+    props.twitter && (this.twitter = props.twitter)
   }
 }

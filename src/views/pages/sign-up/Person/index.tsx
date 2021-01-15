@@ -4,7 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 import { ValidationError } from 'yup'
 
-import { IPerson, useSignUpContext } from 'main/context/sign-up'
+import { useSignUpContext } from 'main/context/sign-up'
+import { UserAbout } from 'main/entities/User'
 import ValidateSignUpPerson from 'main/validators/sign-up/Person'
 
 import FormButton from 'views/components/atoms/FormButton'
@@ -32,7 +33,7 @@ const Person: React.FC = () => {
     router.navigate('sign-up/School')
   }
 
-  async function handleSubmit(data: IPerson) {
+  async function handleSubmit(data: UserAbout) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})

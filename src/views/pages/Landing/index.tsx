@@ -19,7 +19,7 @@ const Landing: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container style={{ backgroundColor: '#FBFBFB' }}>
       <StatusBar translucent />
 
       <Image source={Logo} />

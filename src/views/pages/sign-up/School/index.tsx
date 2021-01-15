@@ -4,7 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 import { ValidationError } from 'yup'
 
-import { ISchool, useSignUpContext } from 'main/context/sign-up'
+import { useSignUpContext } from 'main/context/sign-up'
+import { UserSchool } from 'main/entities/User'
 import ValidateSignUpSchool from 'main/validators/sign-up/School'
 
 import FormButton from 'views/components/atoms/FormButton'
@@ -15,8 +16,8 @@ import SignUpCoursePicker from 'views/components/molecules/SignUpCoursePicker'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
+import { SHIFTS } from 'shared/Constants'
 import setValidationErrors from 'shared/setValidationErrors'
-import { Shifts } from 'shared/Shift'
 
 const School: React.FC = () => {
   const router = useNavigation()
@@ -29,7 +30,7 @@ const School: React.FC = () => {
     return router.navigate('sign-up/Contacts')
   }
 
-  async function handleSubmit(data: ISchool) {
+  async function handleSubmit(data: UserSchool) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
@@ -72,9 +73,9 @@ const School: React.FC = () => {
             name="school_year"
             label="Série"
             options={[
-              { label: '1 ano', value: '1' },
-              { label: '2 ano', value: '2' },
-              { label: '3 ano', value: '3' },
+              { label: '1º ano', value: '1' },
+              { label: '2º ano', value: '2' },
+              { label: '3º ano', value: '3' },
             ]}
           />
 
@@ -82,8 +83,8 @@ const School: React.FC = () => {
             name="shift"
             label="Turno"
             options={[
-              { label: 'Manhã', value: String(Shifts.MORNING) },
-              { label: 'Tarde', value: String(Shifts.AFTERNOON) },
+              { label: 'Manhã', value: String(SHIFTS.MORNING) },
+              { label: 'Tarde', value: String(SHIFTS.AFTERNOON) },
             ]}
           />
 

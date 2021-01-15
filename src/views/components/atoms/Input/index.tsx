@@ -12,13 +12,14 @@ import {
   Row,
 } from 'views/styles/globalStyles'
 
-import InputError from '../InputBottom'
+import InputBottom from '../InputBottom'
 
 import Styled from './styles'
 
 export interface InputComponentProps {
   name: string
   label?: string
+  info?: string
 }
 
 export type InputProps = TextInputProps & InputComponentProps
@@ -27,14 +28,26 @@ export interface TextInputRef extends TextInput {
   value: string
 }
 
-const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  label,
+  children,
+  info,
+  ...rest
+}) => {
   const inputRef = useRef<TextInputRef>(null)
 
   const [isActive, setIsActive] = useState(false)
 
   const theme = useTheme()
 
-  const { fieldName, defaultValue, registerField, error } = useField(name)
+  const {
+    fieldName,
+    defaultValue,
+    registerField,
+    error,
+    clearError,
+  } = useField(name)
 
   useEffect(() => {
     registerField({
@@ -66,6 +79,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
           blurOnSubmit={false}
           {...rest}
           onFocus={(e) => {
+            clearError()
             setIsActive(true)
             rest.onFocus?.(e)
           }}
@@ -78,7 +92,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
         {children && <InputSuffix>{children}</InputSuffix>}
       </Row>
 
-      <InputError text={error} />
+      <InputBottom text={error || info} informative={!error} />
     </InputContainer>
   )
 }

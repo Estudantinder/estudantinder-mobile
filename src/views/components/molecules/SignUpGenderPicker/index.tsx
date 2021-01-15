@@ -12,10 +12,12 @@ import {
   Row,
 } from 'views/styles/globalStyles'
 
+import { Gender, GENDERS_ENUM } from 'shared/Constants'
+
 import Styled from './styles'
 
 interface ViewRef extends View {
-  value: string
+  value: Gender
 }
 
 const SignUpGenderPicker: React.FC = () => {
@@ -23,7 +25,17 @@ const SignUpGenderPicker: React.FC = () => {
 
   const { fieldName, defaultValue, registerField } = useField('gender')
 
-  const [gender, setGender] = useState<string>(defaultValue)
+  function getDefaultValue() {
+    if (!defaultValue) return ''
+
+    if (isNaN(defaultValue)) return defaultValue
+
+    if (defaultValue === GENDERS_ENUM.FEMALE) return 'Feminino'
+
+    if (defaultValue === GENDERS_ENUM.MALE) return 'Masculino'
+  }
+
+  const [gender, setGender] = useState<string>(getDefaultValue())
 
   useEffect(() => {
     registerField({
@@ -52,7 +64,15 @@ const SignUpGenderPicker: React.FC = () => {
   }
 
   function handleChangeGender(newGender: string) {
-    ref?.current && (ref.current.value = newGender)
+    if (!ref.current) return setGender(newGender)
+
+    if (newGender.toUpperCase() === 'FEMININO') {
+      ref.current.value = GENDERS_ENUM.FEMALE
+    } else if (newGender.toUpperCase() === 'MASCULINO') {
+      ref.current.value = GENDERS_ENUM.MALE
+    } else {
+      ref.current.value = newGender
+    }
 
     setGender(newGender)
   }

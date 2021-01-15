@@ -1,13 +1,15 @@
 import * as Yup from 'yup'
 
-export interface IValidateSignUpSecretData {
-  email: string
-  password: string
+import { UserSecrets } from 'main/entities/User'
+
+export interface IValidateSignUpSecretData extends UserSecrets {
   confirm_password: string
 }
 
+type SecretsKeys = Record<keyof IValidateSignUpSecretData, unknown>
+
 export default function ValidateSignUpSecret(data: IValidateSignUpSecretData) {
-  return Yup.object().shape({
+  return Yup.object().shape<SecretsKeys>({
     email: Yup.string().email().required(),
     password: Yup.string().min(6).required(),
     confirm_password: Yup.string()

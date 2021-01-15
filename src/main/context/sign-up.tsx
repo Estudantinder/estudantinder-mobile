@@ -2,56 +2,55 @@ import React, { useCallback } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import Contacts from 'main/entities/Contacts'
-import User from 'main/entities/User'
+import User, {
+  UserAbout,
+  UserDetails,
+  UserSchool,
+  UserSecrets,
+} from 'main/entities/User'
 
-export interface ISecrets {
-  email: string
-  password: string
+import { SHIFTS } from 'shared/Constants'
+
+export interface ISecrets extends UserSecrets {
   confirm_password: string
 }
 
-export interface IPerson {
-  name: string
-  birth_date: string
-  gender: string
-}
-
-export interface ISchool {
-  school: string
-  course: string
-  grade: string
-  period: string
-  classroom: string
-}
-
-export interface IDetails {
-  description: string
-  subjects: Array<string>
-}
-
-export interface SignUpContext {
-  // State
-
+interface State {
   secrets: ISecrets
-  person: IPerson
-  school: ISchool
+  person: UserAbout
+  school: UserSchool
   contacts: Contacts
-  details: IDetails
+  details: UserDetails
+}
 
-  // Actions
-
+interface Actions {
   setSecrets(secrets: ISecrets): void
-  setPerson(person: IPerson): void
-  setSchool(school: ISchool): void
+  setPerson(person: UserAbout): void
+  setSchool(school: UserSchool): void
   setContacts(contacts: Contacts): void
-  setDetails(details: IDetails): void
+  setDetails(details: UserDetails): void
 
   getUser(): User
 }
 
+export type SignUpContext = State & Actions
+
 type Ctx = SignUpContext
 
 const Context = createContext<SignUpContext | null>(null)
+
+const INITIAL_STATE: State = {
+  secrets: { confirm_password: '', email: '', password: '' },
+  contacts: { facebook: '', instagram: '', twitter: '', whatsapp: '' },
+  details: { bio: '', subjects: [] },
+  person: { birth_date: '', name: '' },
+  school: {
+    classroom: '',
+    course_id: '',
+    school_year: 0,
+    shift: SHIFTS.MORNING,
+  },
+}
 
 export function useSignUpContext(): SignUpContext {
   const value = useContext(Context)
@@ -62,51 +61,18 @@ export function useSignUpContext(): SignUpContext {
 }
 
 export const SignUpContextProvider: FC = ({ children }) => {
-  const [secrets, setSecrets] = useState<Ctx['secrets']>({
-    email: '',
-    password: '',
-    confirm_password: '',
-  })
+  const [secrets, setSecrets] = useState<ISecrets>(INITIAL_STATE.secrets)
 
-  const [person, setPerson] = useState<Ctx['person']>({
-    birth_date: '',
-    gender: '',
-    name: '',
-  })
+  const [person, setPerson] = useState<UserAbout>(INITIAL_STATE.person)
 
-  const [school, setSchool] = useState<Ctx['school']>({
-    classroom: '',
-    course: '',
-    grade: '',
-    period: '',
-    school: '',
-  })
+  const [school, setSchool] = useState<UserSchool>(INITIAL_STATE.school)
 
-  const [contacts, setContacts] = useState<Ctx['contacts']>({
-    facebook: '',
-    instagram: '',
-    twitter: '',
-    whatsapp: '',
-  })
+  const [contacts, setContacts] = useState<Contacts>(INITIAL_STATE.contacts)
 
-  const [details, setDetails] = useState<Ctx['details']>({
-    description: '',
-    subjects: [],
-  })
+  const [details, setDetails] = useState<UserDetails>(INITIAL_STATE.details)
 
-  const getUser = useCallback<Ctx['getUser']>(() => {
-    return new User({
-      ...secrets,
-      ...school,
-      ...person,
-      ...details,
-      contacts: {
-        facebook: contacts.facebook === '' ? undefined : contacts.facebook,
-        whatsapp: contacts.whatsapp === '' ? undefined : contacts.whatsapp,
-        instagram: contacts.instagram === '' ? undefined : contacts.instagram,
-        twitter: contacts.twitter === '' ? undefined : contacts.twitter,
-      },
-    })
+  const getUser = useCallback<() => User>(() => {
+    return new User({ ...secrets, ...person, ...school, contacts, ...details })
   }, [contacts, details, person, secrets, school])
 
   const value = useMemo<Ctx>(
