@@ -1,8 +1,11 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
+import { Alert } from 'react-native'
 
 import { FormHandles } from '@unform/core'
 import { ValidationError } from 'yup'
 
+import createUserToken from 'main/use-cases/create-user-token'
 import { CreateUserTokenData } from 'main/use-cases/create-user-token/interfaces'
 
 import FormButton from 'views/components/atoms/FormButton'
@@ -18,12 +21,20 @@ import setValidationErrors from 'shared/setValidationErrors'
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
-  function handleSubmit(data: CreateUserTokenData) {
+  const router = useNavigation()
+
+  async function handleSubmit(data: CreateUserTokenData) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      console.log(data)
+      const { jwt, error } = await createUserToken(data)
+
+      if (error) return Alert.alert(error.title, error.message)
+
+      if (jwt) return router.navigate('Home')
+
+      return alert('Algo deu errado')
     } catch (err) {
       if (err instanceof ValidationError) {
         return setValidationErrors(err, formRef)
