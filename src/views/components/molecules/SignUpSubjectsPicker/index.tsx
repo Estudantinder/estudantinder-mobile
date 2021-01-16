@@ -40,6 +40,13 @@ const SignUpSubjectsPicker: React.FC = () => {
   }, [defaultValue, fieldName, registerField])
 
   function handleSubjectsChange(newSubjectId: string) {
+    if (!ref.current)
+      return setFavoriteSubjects([
+        newSubjectId,
+        favoriteSubjects[0],
+        favoriteSubjects[1],
+      ])
+
     if (favoriteSubjects.includes(newSubjectId)) {
       return
     }
@@ -51,13 +58,14 @@ const SignUpSubjectsPicker: React.FC = () => {
         favoriteSubjects[1],
       ]
 
-      ref?.current && (ref.current.value = newSubjects)
+      ref.current.value = newSubjects
 
       return setFavoriteSubjects(newSubjects)
     }
+
     const newSubjects = [newSubjectId, ...favoriteSubjects]
 
-    ref?.current && (ref.current.value = newSubjects)
+    ref.current.value = newSubjects
 
     return setFavoriteSubjects(newSubjects)
   }
