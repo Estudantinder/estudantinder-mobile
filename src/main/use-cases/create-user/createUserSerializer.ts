@@ -1,8 +1,8 @@
 import User from 'main/entities/User'
 
-import { ICreateUser } from './interfaces'
+import { CreateUserData } from './interfaces'
 
-export default function createUserSerializer(user: User): ICreateUser {
+export default function createUserSerializer(user: User): CreateUserData {
   function transformToUTCDate(date: string) {
     const newDate = new Date(date)
 

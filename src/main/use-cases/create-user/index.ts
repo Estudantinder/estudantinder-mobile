@@ -1,12 +1,10 @@
 import User from 'main/entities/User'
 import api from 'main/services/api'
 
+import { ApiError } from 'shared/interfaces'
+
 import createUserSerializer from './createUserSerializer'
-import {
-  CreateUserApiError,
-  CreateUserApiResponse,
-  CreateUserReturn,
-} from './interfaces'
+import { CreateUserApiResponse, CreateUserReturn } from './interfaces'
 
 export default async function createUser(
   user: User
@@ -22,7 +20,7 @@ export default async function createUser(
     return { id: data.id }
   } catch (err) {
     if (err.response) {
-      const { error: title, message } = err.response.data as CreateUserApiError
+      const { error: title, message } = err.response.data as ApiError
 
       return {
         id: '',
