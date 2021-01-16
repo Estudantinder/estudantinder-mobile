@@ -26,7 +26,7 @@ const Details: React.FC = () => {
   const { details, setDetails } = useSignUpContext()
 
   function handleNavigateToImages() {
-    router.navigate('sign-up/Images')
+    return router.navigate('sign-up/Images')
   }
 
   async function handleSubmit(data: UserDetails) {
@@ -50,8 +50,6 @@ const Details: React.FC = () => {
 
       return alert(err)
     }
-
-    handleNavigateToImages()
   }
 
   function handleButtonPress() {

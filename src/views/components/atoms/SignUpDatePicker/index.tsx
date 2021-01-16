@@ -17,7 +17,7 @@ import InputBottom from '../InputBottom'
 import Styled from './styles'
 
 interface ViewRef extends View {
-  value: Date
+  value: string
 }
 
 const ACTUAL_YEAR = new Date().getFullYear()
@@ -33,7 +33,9 @@ const SignUpDatePicker: React.FC = () => {
 
   const [wasSelected, setWasSelected] = useState(!!defaultValue)
 
-  const [date, setDate] = useState<Date>(defaultValue || MAX_DATE)
+  const [date, setDate] = useState<Date>(
+    (defaultValue && new Date(defaultValue)) || MAX_DATE
+  )
   const [show, setShow] = useState(Platform.OS === 'ios')
 
   const ref = useRef<ViewRef>(null)
@@ -59,7 +61,7 @@ const SignUpDatePicker: React.FC = () => {
     if (!newDate) return
 
     if (ref?.current) {
-      ref.current.value = newDate
+      ref.current.value = String(newDate)
     }
 
     setDate(newDate)
@@ -68,7 +70,7 @@ const SignUpDatePicker: React.FC = () => {
   }
 
   function getPlaceholder() {
-    if (!wasSelected) return '00/00/0000'
+    if (!wasSelected || !date) return '00/00/0000'
 
     const day = date.getDate()
     const month = date.getMonth()

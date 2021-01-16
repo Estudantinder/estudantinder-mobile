@@ -1,6 +1,6 @@
 export enum SHIFTS {
-  MORNING = 0,
-  AFTERNOON = 1,
+  MORNING = 1,
+  AFTERNOON = 2,
 }
 
 export enum GENDERS_ENUM {

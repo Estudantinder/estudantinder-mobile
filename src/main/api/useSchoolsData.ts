@@ -7,7 +7,7 @@ export default function useSchoolsData() {
   const { data, error } = useSWR<School[]>('/school', fetcher)
 
   return {
-    schools: data,
+    schools: data?.map((value) => new School(value)),
     loading: !error && !data,
     error,
   }

@@ -3,6 +3,8 @@ import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
+import useSubjectsData from 'main/api/useSubjectsData'
+
 import InputBottom from 'views/components/atoms/InputBottom'
 import OptionButton from 'views/components/atoms/OptionButton'
 import {
@@ -11,24 +13,6 @@ import {
   InputLabel,
   Row,
 } from 'views/styles/globalStyles'
-
-const items = [
-  { name: 'Artes', id: '1' },
-  { name: 'Biologia', id: '2' },
-  { name: 'Educação Física', id: '3' },
-  { name: 'Espanhol', id: '4' },
-  { name: 'Filosofia', id: '5' },
-  { name: 'Física', id: '6' },
-  { name: 'Geografia', id: '7' },
-  { name: 'História', id: '8' },
-  { name: 'Inglês', id: '9' },
-  { name: 'Literatura', id: '10' },
-  { name: 'Matemática', id: '11' },
-  { name: 'Português', id: '12' },
-  { name: 'Química', id: '13' },
-  { name: 'Sociologia', id: '14' },
-  { name: 'Dale', id: '15' },
-]
 
 interface ViewRef extends View {
   value: string[]
@@ -39,7 +23,11 @@ const SignUpSubjectsPicker: React.FC = () => {
 
   const { fieldName, defaultValue, registerField, error } = useField('subjects')
 
-  const [subjects, setSubjects] = useState<string[]>(defaultValue || [])
+  const { error: swrError, loading, subjects } = useSubjectsData()
+
+  const [favoriteSubjects, setFavoriteSubjects] = useState<string[]>(
+    defaultValue || []
+  )
 
   useEffect(() => {
     registerField({
@@ -52,51 +40,60 @@ const SignUpSubjectsPicker: React.FC = () => {
   }, [defaultValue, fieldName, registerField])
 
   function handleSubjectsChange(newSubjectId: string) {
-    if (subjects.includes(newSubjectId)) {
+    if (favoriteSubjects.includes(newSubjectId)) {
       return
     }
 
-    if (subjects.length > 2) {
-      const newSubjects = [newSubjectId, subjects[0], subjects[1]]
+    if (favoriteSubjects.length > 2) {
+      const newSubjects = [
+        newSubjectId,
+        favoriteSubjects[0],
+        favoriteSubjects[1],
+      ]
 
       ref?.current && (ref.current.value = newSubjects)
 
-      return setSubjects(newSubjects)
+      return setFavoriteSubjects(newSubjects)
     }
-    const newSubjects = [newSubjectId, ...subjects]
+    const newSubjects = [newSubjectId, ...favoriteSubjects]
 
     ref?.current && (ref.current.value = newSubjects)
 
-    return setSubjects(newSubjects)
+    return setFavoriteSubjects(newSubjects)
   }
+
+  if (swrError) return <InputBottom>{String(swrError)}</InputBottom>
+
+  if (!subjects || subjects?.length < 0 || loading)
+    return <InputLabel>Carregando...</InputLabel>
 
   return (
     <InputContainer ref={ref}>
       <InputLabel>Escolha 03 matérias que você tem afinidade</InputLabel>
 
-      {items.map((item, index) => {
+      {subjects.map((subject, index) => {
         if (index % 2 !== 0) return
 
         return (
           <Row
             style={{
-              marginBottom: items[index + 1] ? 20 : 0,
-              width: items[index + 1] ? '100%' : '48%',
+              marginBottom: subjects[index + 1] ? 12 : 0,
+              width: subjects[index + 1] ? '100%' : '48%',
             }}
-            key={item.id}
+            key={subject.id}
           >
             <OptionButton
-              onPress={() => handleSubjectsChange(item.id)}
-              label={item.name}
-              isActive={subjects.includes(item.id)}
+              onPress={() => handleSubjectsChange(subject.id)}
+              label={subject.name}
+              isActive={favoriteSubjects.includes(subject.id)}
             />
-            {items[index + 1] && (
+            {subjects[index + 1] && (
               <Fragment>
                 <Divider />
                 <OptionButton
-                  onPress={() => handleSubjectsChange(items[index + 1].id)}
-                  label={items[index + 1].name}
-                  isActive={subjects.includes(items[index + 1].id)}
+                  onPress={() => handleSubjectsChange(subjects[index + 1].id)}
+                  label={subjects[index + 1].name}
+                  isActive={favoriteSubjects.includes(subjects[index + 1].id)}
                 />
               </Fragment>
             )}
@@ -104,7 +101,7 @@ const SignUpSubjectsPicker: React.FC = () => {
         )
       })}
 
-      <InputBottom>{error}</InputBottom>
+      <InputBottom text={error} />
     </InputContainer>
   )
 }
