@@ -18,6 +18,10 @@ const Landing: React.FC = () => {
     router.navigate('sign-up/Secrets')
   }
 
+  function handleNavigationToLogin() {
+    router.navigate('Login')
+  }
+
   return (
     <Container style={{ backgroundColor: '#FBFBFB' }}>
       <StatusBar translucent />
@@ -36,7 +40,10 @@ const Landing: React.FC = () => {
           title="Quero fazer parte!"
         />
 
-        <Styled.SignInButton activeOpacity={0.8}>
+        <Styled.SignInButton
+          onPress={handleNavigationToLogin}
+          activeOpacity={0.8}
+        >
           <Styled.SignInText>Já possui uma conta? Entre aqui</Styled.SignInText>
         </Styled.SignInButton>
       </Styled.ButtonsContainer>

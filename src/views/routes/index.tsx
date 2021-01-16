@@ -4,6 +4,7 @@ import React from 'react'
 
 import Home from 'views/pages/Home'
 import Landing from 'views/pages/Landing'
+import Login from 'views/pages/Login'
 import Contacts from 'views/pages/sign-up/Contacts'
 import Details from 'views/pages/sign-up/Details'
 import Images from 'views/pages/sign-up/Images'
@@ -22,6 +23,7 @@ export default function Router() {
       >
         <Screen name="Home" component={Home} />
         <Screen name="Landing" component={Landing} />
+        <Screen name="Login" component={Login} />
 
         <Screen name="sign-up/Secrets" component={Secrets} />
         <Screen name="sign-up/Person" component={Person} />
