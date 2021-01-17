@@ -12,6 +12,11 @@ export default async function restoreAuthToken(): Promise<RestoreAuthTokenReturn
   )
 
   if (!storageToken || !expirationValue) {
+    AsyncStorage.multiRemove([
+      STORAGE_AUTH_TOKEN.EXPIRATION_KEY,
+      STORAGE_AUTH_TOKEN.TOKEN_KEY,
+    ])
+
     return {
       token: null,
     }
