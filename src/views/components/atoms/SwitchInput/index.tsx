@@ -4,7 +4,9 @@ import { Switch } from 'react-native'
 import { useField } from '@unform/core'
 import { useTheme } from 'styled-components'
 
-import { Row } from 'views/styles/globalStyles'
+import { InputContainer, Row } from 'views/styles/globalStyles'
+
+import InputBottom from '../InputBottom'
 
 import Styled from './styles'
 
@@ -20,7 +22,7 @@ interface SwitchRef extends Switch {
 const SwitchInput: React.FC<SwitchInputProps> = (props) => {
   const inputRef = useRef<SwitchRef>(null)
 
-  const { fieldName, defaultValue, registerField } = useField(props.name)
+  const { fieldName, defaultValue, registerField, error } = useField(props.name)
 
   const theme = useTheme()
 
@@ -45,21 +47,24 @@ const SwitchInput: React.FC<SwitchInputProps> = (props) => {
   }
 
   return (
-    <Row>
-      <Switch
-        ref={inputRef}
-        trackColor={{
-          false: '#767577',
-          true: theme.colors.background.light_purple,
-        }}
-        thumbColor={isEnabled ? theme.colors.primary.purple : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={handleChangeValue}
-        value={isEnabled}
-      />
+    <InputContainer>
+      <Row>
+        <Switch
+          ref={inputRef}
+          trackColor={{
+            false: '#767577',
+            true: theme.colors.background.light_purple,
+          }}
+          thumbColor={isEnabled ? theme.colors.primary.purple : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={handleChangeValue}
+          value={isEnabled}
+        />
 
-      <Styled.InputText>{props.label}</Styled.InputText>
-    </Row>
+        <Styled.InputText>{props.label}</Styled.InputText>
+      </Row>
+      <InputBottom text={error} />
+    </InputContainer>
   )
 }
 

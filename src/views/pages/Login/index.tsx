@@ -6,6 +6,7 @@ import { ValidationError } from 'yup'
 
 import { useAuthContext } from 'main/context/auth'
 import { CreateAuthTokenData } from 'main/use-cases/create-auth-token/interfaces'
+import ValidateLogin from 'main/validators/Login'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -29,6 +30,10 @@ const Login: React.FC = () => {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
+
+      const schema = ValidateLogin()
+
+      await schema.validate(data, { abortEarly: false })
 
       await signIn(data)
 
