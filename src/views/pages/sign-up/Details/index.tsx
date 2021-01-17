@@ -2,11 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import { UserDetails } from 'main/entities/User'
-import ValidateSignUpDetails from 'main/validators/sign-up/Details'
+import validateUserDetailsData from 'main/use-cases/create-user/validation/UserDetails'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -14,7 +13,7 @@ import SubjectsPicker from 'views/components/molecules/SignUpSubjectsPicker'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 import Styled from './styles'
 
@@ -34,21 +33,17 @@ const Details: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateSignUpDetails()
-
-      await schema.validate(data, {
-        abortEarly: false,
-      })
+      await validateUserDetailsData(data)
 
       setDetails(data)
 
       handleNavigateToImages()
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        return setValidationErrors(err, formRef)
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        return formRef.current?.setErrors(error.validationErrors)
       }
 
-      return alert(err)
+      return alert(error)
     }
   }
 

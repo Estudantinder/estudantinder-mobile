@@ -2,11 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import { UserSchool } from 'main/entities/User'
-import ValidateSignUpSchool from 'main/validators/sign-up/School'
+import validateUserSchoolData from 'main/use-cases/create-user/validation/UserSchool'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -17,7 +16,7 @@ import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
 import { SHIFTS } from 'shared/Constants'
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 const School: React.FC = () => {
   const router = useNavigation()
@@ -35,21 +34,17 @@ const School: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateSignUpSchool()
-
-      await schema.validate(data, {
-        abortEarly: false,
-      })
+      await validateUserSchoolData(data)
 
       setSchool(data)
 
       handleNavigateToContacts()
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        return setValidationErrors(err, formRef)
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        return formRef.current?.setErrors(error.validationErrors)
       }
 
-      return alert(err)
+      return alert(error)
     }
 
     handleNavigateToContacts()

@@ -2,10 +2,9 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { ISecrets, useSignUpContext } from 'main/context/sign-up'
-import ValidateSignUpSecret from 'main/validators/sign-up/Secret'
+import validateUserSecretsData from 'main/use-cases/create-user/validation/UserSecrets'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -14,7 +13,7 @@ import PasswordInput from 'views/components/atoms/PasswordInput'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 const Secrets: React.FC = () => {
   const router = useNavigation()
@@ -36,21 +35,17 @@ const Secrets: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateSignUpSecret(data)
-
-      await schema.validate(data, {
-        abortEarly: false,
-      })
+      await validateUserSecretsData(data)
 
       setSecrets(data)
 
       handleNavigateToPerson()
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        return setValidationErrors(err, formRef)
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        return formRef.current?.setErrors(error.validationErrors)
       }
 
-      return alert(err)
+      return alert(error)
     }
   }
 

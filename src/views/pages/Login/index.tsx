@@ -2,11 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { useAuthContext } from 'main/context/auth'
 import { CreateAuthTokenData } from 'main/use-cases/create-auth-token/interfaces'
-import ValidateLogin from 'main/validators/Login'
+import validateAuthTokenData from 'main/use-cases/create-auth-token/validation/AuthTokenData'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -16,7 +15,7 @@ import SwitchInput from 'views/components/atoms/SwitchInput'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 import triggerCorrectAlert from 'shared/triggerCorrectAlert'
 
 const Login: React.FC = () => {
@@ -31,19 +30,17 @@ const Login: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateLogin()
-
-      await schema.validate(data, { abortEarly: false })
+      await validateAuthTokenData(data)
 
       await signIn(data)
 
       return router.navigate('Home')
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        return setValidationErrors(err, formRef)
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        return formRef.current?.setErrors(error.validationErrors)
       }
 
-      return triggerCorrectAlert(err)
+      return triggerCorrectAlert(error)
     }
   }
 

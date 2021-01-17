@@ -3,11 +3,10 @@ import React, { useRef, useState } from 'react'
 import { Platform } from 'react-native'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import ContactsEntity from 'main/entities/Contacts'
-import ValidateSignUpContacts from 'main/validators/sign-up/Contacts'
+import validateContactsData from 'main/use-cases/create-user/validation/Contacts'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -15,7 +14,7 @@ import InputBottom from 'views/components/atoms/InputBottom'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 import Styled from './styles'
 
@@ -42,21 +41,17 @@ const Contacts: React.FC = () => {
 
       setIsEmpty(false)
 
-      const schema = ValidateSignUpContacts()
-
-      await schema.validate(data, {
-        abortEarly: false,
-      })
+      await validateContactsData(data)
 
       setContacts(data)
 
       handleNavigateToDetails()
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        return setValidationErrors(err, formRef)
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        return formRef.current?.setErrors(error.validationErrors)
       }
 
-      return alert(err)
+      return alert(error)
     }
 
     handleNavigateToDetails()

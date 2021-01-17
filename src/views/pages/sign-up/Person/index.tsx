@@ -2,11 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import { UserAbout } from 'main/entities/User'
-import ValidateSignUpPerson from 'main/validators/sign-up/Person'
+import validateUserAboutData from 'main/use-cases/create-user/validation/UserAbout'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -16,7 +15,7 @@ import PersonGenderPicker from 'views/components/molecules/SignUpGenderPicker'
 import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 const Person: React.FC = () => {
   const router = useNavigation()
@@ -38,18 +37,14 @@ const Person: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateSignUpPerson()
-
-      await schema.validate(data, {
-        abortEarly: false,
-      })
+      await validateUserAboutData(data)
 
       setPerson(data)
 
       handleNavigateToSchool()
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        setValidationErrors(err, formRef)
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        formRef.current?.setErrors(error)
 
         const genderError = formRef.current?.getFieldError('gender')
 
@@ -60,7 +55,7 @@ const Person: React.FC = () => {
         return
       }
 
-      return alert(err)
+      return alert(error)
     }
   }
 
