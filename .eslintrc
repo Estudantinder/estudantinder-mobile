@@ -21,8 +21,11 @@
         "groups": [
           "/react/",
           "module",
-          "/src/",
-          ["parent", "sibling", "index"]
+          "/main/",
+          "/views/",
+          "/shared/",
+          ["parent", "sibling", "index"],
+          "/./styles/"
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }

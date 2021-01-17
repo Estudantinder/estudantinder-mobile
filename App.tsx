@@ -1,12 +1,31 @@
 import React from 'react'
 
+import {
+  Archivo_600SemiBold,
+  Archivo_500Medium,
+} from '@expo-google-fonts/archivo'
+import { Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins'
+import { AppLoading } from 'expo'
+import { useFonts } from 'expo-font'
 import { ThemeProvider } from 'styled-components'
 
-import Router from './src/routes'
-import theme from './src/styles/theme'
-import AppProvider from 'src/context'
+import AppProvider from 'main/context'
+
+import Router from 'views/routes'
+import theme from 'views/styles/theme'
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Poppins_500Medium,
+    Poppins_700Bold,
+    Archivo_600SemiBold,
+    Archivo_500Medium,
+  })
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <AppProvider>
