@@ -1,12 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
-import { Alert } from 'react-native'
 
 import { FormHandles } from '@unform/core'
 import { ValidationError } from 'yup'
 
-import createUserToken from 'main/use-cases/create-user-token'
-import { CreateUserTokenData } from 'main/use-cases/create-user-token/interfaces'
+import { useAuthContext } from 'main/context/auth'
+import { CreateAuthTokenData } from 'main/use-cases/create-auth-token/interfaces'
 
 import FormButton from 'views/components/atoms/FormButton'
 import GoBackButton from 'views/components/atoms/GoBackButton'
@@ -17,30 +16,29 @@ import SignUpContainer from 'views/components/templates/SignUpContainer'
 import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
 
 import setValidationErrors from 'shared/setValidationErrors'
+import triggerCorrectAlert from 'shared/triggerCorrectAlert'
 
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
   const router = useNavigation()
 
-  async function handleSubmit(data: CreateUserTokenData) {
+  const { signIn } = useAuthContext()
+
+  async function handleSubmit(data: CreateAuthTokenData) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const { jwt, error } = await createUserToken(data)
+      await signIn(data)
 
-      if (error) return Alert.alert(error.title, error.message)
-
-      if (jwt) return router.navigate('Home')
-
-      return alert('Algo deu errado')
+      return router.navigate('Home')
     } catch (err) {
       if (err instanceof ValidationError) {
         return setValidationErrors(err, formRef)
       }
 
-      return alert(err)
+      return triggerCorrectAlert(err)
     }
   }
 

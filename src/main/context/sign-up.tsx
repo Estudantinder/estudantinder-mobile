@@ -8,6 +8,7 @@ import User, {
   UserSchool,
   UserSecrets,
 } from 'main/entities/User'
+import CreateUserController from 'main/use-cases/create-user'
 
 import { SHIFTS } from 'shared/Constants'
 
@@ -30,6 +31,7 @@ interface Actions {
   setContacts(contacts: Contacts): void
   setDetails(details: UserDetails): void
 
+  createUser(): Promise<void>
   getUser(): User
 }
 
@@ -75,6 +77,14 @@ export const SignUpContextProvider: FC = ({ children }) => {
     return new User({ ...secrets, ...person, ...school, contacts, ...details })
   }, [contacts, details, person, secrets, school])
 
+  const createUser = useCallback<() => Promise<void>>(async () => {
+    const user = getUser()
+
+    const { error } = await CreateUserController(user)
+
+    if (error) throw error
+  }, [getUser])
+
   const value = useMemo<Ctx>(
     () => ({
       secrets,
@@ -87,9 +97,10 @@ export const SignUpContextProvider: FC = ({ children }) => {
       setContacts,
       details,
       setDetails,
+      createUser,
       getUser,
     }),
-    [secrets, person, school, contacts, details, getUser]
+    [secrets, person, school, contacts, details, createUser, getUser]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
