@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar'
 
 import LandingImage from 'views/assets/landing.png'
 import Logo from 'views/assets/logo.png'
-import FormButton from 'views/components/atoms/FormButton'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import { Container } from 'views/styles/globalStyles'
 
 import Styled from './styles'
@@ -35,10 +35,9 @@ const Landing: React.FC = () => {
       </Styled.ImageContainer>
 
       <Styled.ButtonsContainer>
-        <FormButton
-          onPress={handleNavigationToSignUp}
-          title="Quero fazer parte!"
-        />
+        <PrimaryButton onPress={handleNavigationToSignUp}>
+          Quero fazer parte!
+        </PrimaryButton>
 
         <Styled.SignInButton
           onPress={handleNavigationToLogin}

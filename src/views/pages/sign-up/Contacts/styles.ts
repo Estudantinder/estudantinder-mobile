@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import Input from 'views/components/atoms/Input'
+import Input from 'views/components/molecules/Input'
 
 const FacebookInput = styled(Input)`
   background-color: #dfe5f2;

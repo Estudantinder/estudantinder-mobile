@@ -7,11 +7,10 @@ import { useSignUpContext } from 'main/context/sign-up'
 import { UserDetails } from 'main/entities/User'
 import validateUserDetailsData from 'main/use-cases/create-user/validation/UserDetails'
 
-import FormButton from 'views/components/atoms/FormButton'
-import GoBackButton from 'views/components/atoms/GoBackButton'
-import SubjectsPicker from 'views/components/molecules/SignUpSubjectsPicker'
-import SignUpContainer from 'views/components/templates/SignUpContainer'
-import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import SubjectsPicker from 'views/components/organisms/SubjectsPicker'
+import FormPageTemplate from 'views/components/templates/FormPageTemplate'
+import { SignUpForm } from 'views/styles/globalStyles'
 
 import FormattedValidationError from 'shared/FormattedValidationError'
 
@@ -47,33 +46,27 @@ const Details: React.FC = () => {
     }
   }
 
-  function handleButtonPress() {
+  function handlePressSubmit() {
     formRef.current?.submitForm()
   }
 
   return (
-    <SignUpContainer>
-      <GoBackButton />
+    <FormPageTemplate title="Um pouco sobre você">
+      <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={details}>
+        <Styled.TextAreaInput
+          name="bio"
+          label="Biografia"
+          info="Máximo de 256 caracteres"
+          maxLength={256}
+          textAlignVertical="top"
+          multiline
+        />
 
-      <FormMain>
-        <FormTitle>Um pouco sobre você</FormTitle>
+        <SubjectsPicker />
+      </SignUpForm>
 
-        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={details}>
-          <Styled.TextAreaInput
-            name="bio"
-            label="Biografia"
-            info="Máximo de 256 caracteres"
-            maxLength={256}
-            textAlignVertical="top"
-            multiline
-          />
-
-          <SubjectsPicker />
-        </SignUpForm>
-
-        <FormButton onPress={handleButtonPress} title="CONTINUAR" />
-      </FormMain>
-    </SignUpContainer>
+      <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
+    </FormPageTemplate>
   )
 }
 

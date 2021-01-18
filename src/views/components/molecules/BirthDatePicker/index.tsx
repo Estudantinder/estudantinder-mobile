@@ -5,14 +5,13 @@ import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { useField } from '@unform/core'
 
+import InputInfo from 'views/components/atoms/InputInfo'
 import {
   InputContainer,
   InputLabel,
   InputSuffix,
   Row,
 } from 'views/styles/globalStyles'
-
-import InputBottom from '../InputBottom'
 
 import Styled from './styles'
 
@@ -105,10 +104,9 @@ const SignUpDatePicker: React.FC = () => {
         </Row>
       )}
 
-      <InputBottom
-        text={error || 'Você precisa ter entre 14 e 21 anos'}
-        informative={!error}
-      />
+      <InputInfo informative={!error}>
+        {error || 'Você precisa ter entre 14 e 21 anos'}
+      </InputInfo>
 
       {show && (
         <DateTimePicker

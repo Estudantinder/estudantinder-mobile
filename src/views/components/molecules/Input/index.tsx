@@ -5,14 +5,13 @@ import { TextInput } from 'react-native-gesture-handler'
 import { useField } from '@unform/core'
 import { useTheme } from 'styled-components'
 
+import InputInfo from 'views/components/atoms/InputInfo'
 import {
   InputLabel,
   InputContainer,
   InputSuffix,
   Row,
 } from 'views/styles/globalStyles'
-
-import InputBottom from '../InputBottom'
 
 import Styled from './styles'
 
@@ -28,13 +27,7 @@ export interface TextInputRef extends TextInput {
   value: string
 }
 
-const Input: React.FC<InputProps> = ({
-  name,
-  label,
-  children,
-  info,
-  ...rest
-}) => {
+const Input: React.FC<InputProps> = (props) => {
   const inputRef = useRef<TextInputRef>(null)
 
   const [isActive, setIsActive] = useState(false)
@@ -47,7 +40,7 @@ const Input: React.FC<InputProps> = ({
     registerField,
     error,
     clearError,
-  } = useField(name)
+  } = useField(props.name)
 
   useEffect(() => {
     registerField({
@@ -61,7 +54,8 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <InputContainer>
-      {label && <InputLabel>{label}</InputLabel>}
+      {props.label && <InputLabel>{props.label}</InputLabel>}
+
       <Row>
         <Styled.TextInput
           ref={inputRef as never}
@@ -77,22 +71,22 @@ const Input: React.FC<InputProps> = ({
           selectionColor={theme.colors.primary.purple}
           returnKeyType="next"
           blurOnSubmit={false}
-          {...rest}
+          {...props}
           onFocus={(e) => {
             clearError()
             setIsActive(true)
-            rest.onFocus?.(e)
+            props.onFocus?.(e)
           }}
           onEndEditing={(e) => {
             setIsActive(false)
-            rest.onEndEditing?.(e)
+            props.onEndEditing?.(e)
           }}
         />
 
-        {children && <InputSuffix>{children}</InputSuffix>}
+        {props.children && <InputSuffix>{props.children}</InputSuffix>}
       </Row>
 
-      <InputBottom text={error || info} informative={!error} />
+      <InputInfo informative={!error}>{error || props.info}</InputInfo>
     </InputContainer>
   )
 }

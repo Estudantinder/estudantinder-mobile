@@ -5,10 +5,10 @@ import { useField } from '@unform/core'
 
 import useSubjectsData from 'main/api/swr-hooks/useSubjectsData'
 
-import InputBottom from 'views/components/atoms/InputBottom'
+import InputInfo from 'views/components/atoms/InputInfo'
 import OptionButton from 'views/components/atoms/OptionButton'
 import {
-  Divider,
+  HorizontalDivider,
   InputContainer,
   InputLabel,
   Row,
@@ -70,7 +70,7 @@ const SignUpSubjectsPicker: React.FC = () => {
     return setFavoriteSubjects(newSubjects)
   }
 
-  if (swrError) return <InputBottom>{String(swrError)}</InputBottom>
+  if (swrError) return <InputInfo>{String(swrError)}</InputInfo>
 
   if (!subjects || subjects?.length < 0 || loading)
     return <InputLabel>Carregando...</InputLabel>
@@ -92,24 +92,28 @@ const SignUpSubjectsPicker: React.FC = () => {
           >
             <OptionButton
               onPress={() => handleSubjectsChange(subject.id)}
-              label={subject.name}
               isActive={favoriteSubjects.includes(subject.id)}
-            />
+            >
+              {subject.name}
+            </OptionButton>
+
             {subjects[index + 1] && (
               <Fragment>
-                <Divider />
+                <HorizontalDivider />
+
                 <OptionButton
                   onPress={() => handleSubjectsChange(subjects[index + 1].id)}
-                  label={subjects[index + 1].name}
                   isActive={favoriteSubjects.includes(subjects[index + 1].id)}
-                />
+                >
+                  {subjects[index + 1].name}
+                </OptionButton>
               </Fragment>
             )}
           </Row>
         )
       })}
 
-      <InputBottom text={error} />
+      <InputInfo>{error}</InputInfo>
     </InputContainer>
   )
 }

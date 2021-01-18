@@ -7,13 +7,12 @@ import { useSignUpContext } from 'main/context/sign-up'
 import { UserAbout } from 'main/entities/User'
 import validateUserAboutData from 'main/use-cases/create-user/validation/UserAbout'
 
-import FormButton from 'views/components/atoms/FormButton'
-import GoBackButton from 'views/components/atoms/GoBackButton'
-import Input from 'views/components/atoms/Input'
-import PersonDatePicker from 'views/components/atoms/SignUpDatePicker'
-import PersonGenderPicker from 'views/components/molecules/SignUpGenderPicker'
-import SignUpContainer from 'views/components/templates/SignUpContainer'
-import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import PersonDatePicker from 'views/components/molecules/BirthDatePicker'
+import Input from 'views/components/molecules/Input'
+import PersonGenderPicker from 'views/components/organisms/GenderPicker'
+import FormPageTemplate from 'views/components/templates/FormPageTemplate'
+import { SignUpForm } from 'views/styles/globalStyles'
 
 import FormattedValidationError from 'shared/FormattedValidationError'
 
@@ -24,7 +23,7 @@ const Person: React.FC = () => {
 
   const { person, setPerson } = useSignUpContext()
 
-  function onFormButtonPress() {
+  function handlePressSubmit() {
     formRef.current?.submitForm()
   }
 
@@ -60,28 +59,24 @@ const Person: React.FC = () => {
   }
 
   return (
-    <SignUpContainer>
-      <GoBackButton />
+    <FormPageTemplate title="Suas Informações">
+      <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={person}>
+        <Input
+          name="name"
+          label="Nome Completo"
+          blurOnSubmit
+          onSubmitEditing={() =>
+            formRef.current?.getFieldRef('birth_date').focus()
+          }
+        />
 
-      <FormMain>
-        <FormTitle>Suas Informações</FormTitle>
+        <PersonDatePicker />
 
-        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={person}>
-          <Input
-            name="name"
-            label="Nome Completo"
-            blurOnSubmit
-            onSubmitEditing={() =>
-              formRef.current?.getFieldRef('birth_date').focus()
-            }
-          />
-          <PersonDatePicker />
-          <PersonGenderPicker />
-        </SignUpForm>
-      </FormMain>
+        <PersonGenderPicker />
+      </SignUpForm>
 
-      <FormButton onPress={onFormButtonPress} title="CONTINUAR" />
-    </SignUpContainer>
+      <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
+    </FormPageTemplate>
   )
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Platform, TextInputProps } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
-import Input from 'views/components/atoms/Input'
+import Input from 'views/components/molecules/Input'
 
 import Styled from './styles'
 

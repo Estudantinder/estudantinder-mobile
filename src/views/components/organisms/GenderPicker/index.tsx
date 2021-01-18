@@ -3,10 +3,10 @@ import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
-import Input from 'views/components/atoms/Input'
 import OptionButton from 'views/components/atoms/OptionButton'
+import Input from 'views/components/molecules/Input'
 import {
-  Divider,
+  HorizontalDivider,
   InputContainer,
   InputLabel,
   Row,
@@ -20,7 +20,7 @@ interface ViewRef extends View {
   value: Gender
 }
 
-const SignUpGenderPicker: React.FC = () => {
+const GenderPicker: React.FC = () => {
   const ref = useRef<ViewRef>(null)
 
   const { fieldName, defaultValue, registerField } = useField('gender')
@@ -83,16 +83,20 @@ const SignUpGenderPicker: React.FC = () => {
 
       <Row>
         <OptionButton
-          label="Feminino"
           isActive={gender.toUpperCase() === 'FEMININO'}
           onPress={handleSelectFem}
-        />
-        <Divider />
+        >
+          Feminino
+        </OptionButton>
+
+        <HorizontalDivider />
+
         <OptionButton
-          label="Masculino"
           isActive={gender.toUpperCase() === 'MASCULINO'}
           onPress={handleSelectMasc}
-        />
+        >
+          Masculino
+        </OptionButton>
       </Row>
 
       <Styled.OrText>ou</Styled.OrText>
@@ -109,4 +113,4 @@ const SignUpGenderPicker: React.FC = () => {
   )
 }
 
-export default SignUpGenderPicker
+export default GenderPicker

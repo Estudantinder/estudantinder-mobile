@@ -7,13 +7,12 @@ import { useAuthContext } from 'main/context/auth'
 import { CreateAuthTokenData } from 'main/use-cases/create-auth-token/interfaces'
 import validateAuthTokenData from 'main/use-cases/create-auth-token/validation/AuthTokenData'
 
-import FormButton from 'views/components/atoms/FormButton'
-import GoBackButton from 'views/components/atoms/GoBackButton'
-import Input from 'views/components/atoms/Input'
-import PasswordInput from 'views/components/atoms/PasswordInput'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import SwitchInput from 'views/components/atoms/SwitchInput'
-import SignUpContainer from 'views/components/templates/SignUpContainer'
-import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
+import Input from 'views/components/molecules/Input'
+import PasswordInput from 'views/components/molecules/PasswordInput'
+import FormPageTemplate from 'views/components/templates/FormPageTemplate'
+import { SignUpForm } from 'views/styles/globalStyles'
 
 import FormattedValidationError from 'shared/FormattedValidationError'
 import triggerCorrectAlert from 'shared/triggerCorrectAlert'
@@ -49,35 +48,30 @@ const Login: React.FC = () => {
   }
 
   return (
-    <SignUpContainer>
-      <GoBackButton />
+    <FormPageTemplate title="Informações da Conta">
+      <SignUpForm ref={formRef} onSubmit={handleSubmit}>
+        <Input
+          name="email"
+          label="E-mail"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          onSubmitEditing={() =>
+            formRef.current?.getFieldRef('password').focus()
+          }
+        />
 
-      <FormMain>
-        <FormTitle>Informações da Conta</FormTitle>
+        <PasswordInput
+          name="password"
+          label="Senha"
+          returnKeyType="done"
+          blurOnSubmit
+        />
 
-        <SignUpForm ref={formRef} onSubmit={handleSubmit}>
-          <Input
-            name="email"
-            label="E-mail"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            onSubmitEditing={() =>
-              formRef.current?.getFieldRef('password').focus()
-            }
-          />
-          <PasswordInput
-            name="password"
-            label="Senha"
-            returnKeyType="done"
-            blurOnSubmit
-          />
+        <SwitchInput name="stay_logged" label="Desejo permanecer logado." />
+      </SignUpForm>
 
-          <SwitchInput name="stay_logged" label="Desejo permanecer logado." />
-        </SignUpForm>
-
-        <FormButton onPress={handleButtonPress} title="CONTINUAR" />
-      </FormMain>
-    </SignUpContainer>
+      <PrimaryButton onPress={handleButtonPress}>CONTINUAR</PrimaryButton>
+    </FormPageTemplate>
   )
 }
 

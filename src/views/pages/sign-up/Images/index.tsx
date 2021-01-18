@@ -4,10 +4,9 @@ import React from 'react'
 import { useAuthContext } from 'main/context/auth'
 import { useSignUpContext } from 'main/context/sign-up'
 
-import FormButton from 'views/components/atoms/FormButton'
-import GoBackButton from 'views/components/atoms/GoBackButton'
-import SignUpContainer from 'views/components/templates/SignUpContainer'
-import { FormMain, FormTitle, InputLabel } from 'views/styles/globalStyles'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import FormPageTemplate from 'views/components/templates/FormPageTemplate'
+import { InputLabel } from 'views/styles/globalStyles'
 
 import triggerCorrectAlert from 'shared/triggerCorrectAlert'
 
@@ -17,7 +16,7 @@ const SignUpImages: React.FC = () => {
 
   const router = useNavigation()
 
-  async function handleButtonPress() {
+  async function handlePressSubmit() {
     try {
       await createUser()
     } catch (error) {
@@ -42,17 +41,11 @@ const SignUpImages: React.FC = () => {
   }
 
   return (
-    <SignUpContainer>
-      <GoBackButton />
+    <FormPageTemplate title="Imagens">
+      <InputLabel>{String(JSON.stringify(getUser()))}</InputLabel>
 
-      <FormMain>
-        <FormTitle>Imagens</FormTitle>
-
-        <InputLabel>{String(JSON.stringify(getUser()))}</InputLabel>
-      </FormMain>
-
-      <FormButton onPress={handleButtonPress} title="CADASTRAR" />
-    </SignUpContainer>
+      <PrimaryButton onPress={handlePressSubmit}>CADASTRAR</PrimaryButton>
+    </FormPageTemplate>
   )
 }
 

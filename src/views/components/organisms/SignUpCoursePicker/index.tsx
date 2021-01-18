@@ -7,7 +7,7 @@ import { useField } from '@unform/core'
 import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
 import School from 'main/entities/School'
 
-import InputBottom from 'views/components/atoms/InputBottom'
+import InputBottom from 'views/components/atoms/InputInfo'
 import Select from 'views/components/atoms/Select'
 
 interface ViewRef extends View {
@@ -106,7 +106,7 @@ const SignUpCoursePicker: React.FC = () => {
         value={selectedCourse}
       />
 
-      <InputBottom text={error} />
+      <InputBottom>{error}</InputBottom>
     </View>
   )
 }

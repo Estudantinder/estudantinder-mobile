@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
-import InputBottom from 'views/components/atoms/InputBottom'
+import InputInfo from 'views/components/atoms/InputInfo'
 import OptionButton from 'views/components/atoms/OptionButton'
 import {
   Divider,
@@ -51,20 +51,22 @@ const RowOptionsPicker: React.FC<RowOptionsPickerProps> = (props) => {
   return (
     <InputContainer ref={ref}>
       <InputLabel>{props.label}</InputLabel>
+
       <Row>
         {props.options.map((opt, index) => (
           <Fragment key={opt.value}>
             <OptionButton
-              label={opt.label}
               isActive={value === opt.value}
               onPress={() => handleChangeValue(opt.value)}
-            />
+            >
+              {opt.label}
+            </OptionButton>
             {props.options[index + 1] ? <Divider /> : null}
           </Fragment>
         ))}
       </Row>
 
-      <InputBottom text={error}></InputBottom>
+      <InputInfo>{error}</InputInfo>
     </InputContainer>
   )
 }
