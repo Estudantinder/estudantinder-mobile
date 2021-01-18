@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 
+import fetcher from 'main/api/config/fetcher'
 import School from 'main/entities/School'
-import fetcher from 'main/services/fetcher'
 
 export default function useSchoolsData() {
   const { data, error } = useSWR<School[]>('/school', fetcher)

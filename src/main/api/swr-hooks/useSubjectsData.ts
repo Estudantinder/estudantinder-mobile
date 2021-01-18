@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 
+import fetcher from 'main/api/config/fetcher'
 import Subject from 'main/entities/Subject'
-import fetcher from 'main/services/fetcher'
 
 export default function useSubjectsData() {
   const { data, error } = useSWR<Subject[]>('/subject', fetcher)

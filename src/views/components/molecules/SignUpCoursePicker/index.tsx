@@ -4,7 +4,7 @@ import { Item } from 'react-native-picker-select'
 
 import { useField } from '@unform/core'
 
-import useSchoolsData from 'main/api/useSchoolsData'
+import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
 import School from 'main/entities/School'
 
 import InputBottom from 'views/components/atoms/InputBottom'

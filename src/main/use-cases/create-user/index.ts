@@ -1,5 +1,5 @@
+import api from 'main/api'
 import User from 'main/entities/User'
-import api from 'main/services/api'
 
 import { ApiError } from 'shared/interfaces'
 

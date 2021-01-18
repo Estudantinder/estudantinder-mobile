@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
-import useSubjectsData from 'main/api/useSubjectsData'
+import useSubjectsData from 'main/api/swr-hooks/useSubjectsData'
 
 import InputBottom from 'views/components/atoms/InputBottom'
 import OptionButton from 'views/components/atoms/OptionButton'
