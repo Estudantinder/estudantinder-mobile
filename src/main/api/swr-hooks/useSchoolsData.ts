@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import fetcher from 'main/api/config/fetcher'
+import fetcher from 'main/api/fetcher'
 import School from 'main/entities/School'
 
 export default function useSchoolsData() {

@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import fetcher from 'main/api/config/fetcher'
+import fetcher from 'main/api/fetcher'
 import Subject from 'main/entities/Subject'
 
 export default function useSubjectsData() {
