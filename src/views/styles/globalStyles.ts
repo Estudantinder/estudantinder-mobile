@@ -27,6 +27,13 @@ export const InputLabel = styled.Text`
   margin-bottom: 10px;
 `
 
+export const Title = styled.Text`
+  font-family: ${(props) => props.theme.fonts.title};
+  font-size: 20px;
+
+  margin-bottom: 12px;
+`
+
 export const InputContainer = styled.View`
   width: 100%;
 

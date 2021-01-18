@@ -2,6 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 
 import GoBackButton from 'views/components/atoms/GoBackButton'
+import { Title } from 'views/styles/globalStyles'
 
 import Styled from './styles'
 
@@ -26,7 +27,7 @@ const FormPageTemplate: React.FC<FormTemplateProps> = (props) => {
         <GoBackButton />
 
         <Styled.Main>
-          <Styled.Title>{props.title}</Styled.Title>
+          <Title>{props.title}</Title>
 
           {props.children}
         </Styled.Main>

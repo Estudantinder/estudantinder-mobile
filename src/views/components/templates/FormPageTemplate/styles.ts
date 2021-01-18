@@ -20,13 +20,6 @@ const Scroll = styled.ScrollView`
   width: 100%;
 `
 
-const Title = styled.Text`
-  font-family: ${(props) => props.theme.fonts.title};
-  font-size: 20px;
-
-  margin-bottom: 12px;
-`
-
 const Main = styled.View`
   min-height: 60%;
   width: 100%;
@@ -35,4 +28,4 @@ const Main = styled.View`
   align-items: center;
 `
 
-export default { Container, Scroll, Title, Main }
+export default { Container, Scroll, Main }
