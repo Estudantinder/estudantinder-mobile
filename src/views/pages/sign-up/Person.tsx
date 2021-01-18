@@ -4,8 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 
 import { useSignUpContext } from 'main/context/sign-up'
-import { UserAbout } from 'main/entities/User'
-import validateUserAboutData from 'main/use-cases/create-user/validation/UserAbout'
+import { StudentAbout } from 'main/entities/Student'
+import validateStudentAboutData from 'main/use-cases/create-user/validation/StudentAbout'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import PersonDatePicker from 'views/components/molecules/BirthDatePicker'
@@ -31,12 +31,12 @@ const Person: React.FC = () => {
     router.navigate('sign-up/School')
   }
 
-  async function handleSubmit(data: UserAbout) {
+  async function handleSubmit(data: StudentAbout) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      await validateUserAboutData(data)
+      await validateStudentAboutData(data)
 
       setPerson(data)
 

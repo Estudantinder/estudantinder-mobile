@@ -1,13 +1,13 @@
 import * as Yup from 'yup'
 
-import { UserDetails } from 'main/entities/User'
+import { StudentDetails } from 'main/entities/Student'
 
 import { DEFAULT_VALIDATION_OPTIONS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
-type DetailsKeys = Record<keyof UserDetails, unknown>
+type DetailsKeys = Record<keyof StudentDetails, unknown>
 
-export default async function validateUserDetailsData(data: UserDetails) {
+export default async function validateStudentDetailsData(data: StudentDetails) {
   try {
     const schema = Yup.object().shape<DetailsKeys>({
       bio: Yup.string().max(256).required(),

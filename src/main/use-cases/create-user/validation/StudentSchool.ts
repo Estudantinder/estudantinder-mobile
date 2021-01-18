@@ -1,13 +1,13 @@
 import * as Yup from 'yup'
 
-import { UserSchool } from 'main/entities/User'
+import { StudentSchool } from 'main/entities/Student'
 
 import { DEFAULT_VALIDATION_OPTIONS, SHIFTS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
-type SchoolKeys = Record<keyof UserSchool, unknown>
+type SchoolKeys = Record<keyof StudentSchool, unknown>
 
-export default async function validateUserSchoolData(data: UserSchool) {
+export default async function validateStudentSchoolData(data: StudentSchool) {
   try {
     const schema = Yup.object().shape<SchoolKeys>({
       course_id: Yup.number().required(),

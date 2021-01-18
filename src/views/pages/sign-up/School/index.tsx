@@ -4,8 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 
 import { useSignUpContext } from 'main/context/sign-up'
-import { UserSchool } from 'main/entities/User'
-import validateUserSchoolData from 'main/use-cases/create-user/validation/UserSchool'
+import { StudentSchool } from 'main/entities/Student'
+import validateStudentSchoolData from 'main/use-cases/create-user/validation/StudentSchool'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import Input from 'views/components/molecules/Input'
@@ -28,12 +28,12 @@ const School: React.FC = () => {
     return router.navigate('sign-up/Contacts')
   }
 
-  async function handleSubmit(data: UserSchool) {
+  async function handleSubmit(data: StudentSchool) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      await validateUserSchoolData(data)
+      await validateStudentSchoolData(data)
 
       setSchool(data)
 
