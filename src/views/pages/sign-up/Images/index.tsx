@@ -7,8 +7,7 @@ import { useSignUpContext } from 'main/context/sign-up'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { InputLabel } from 'views/styles/globalStyles'
-
-import triggerCorrectAlert from 'shared/triggerCorrectAlert'
+import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 const SignUpImages: React.FC = () => {
   const { createUser, getUser } = useSignUpContext()

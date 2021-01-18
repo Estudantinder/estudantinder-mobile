@@ -12,7 +12,8 @@ import {
   Row,
 } from 'views/styles/globalStyles'
 
-import { Gender, GENDERS_ENUM } from 'shared/Constants'
+import { GENDERS_ENUM } from 'shared/constants'
+import { Gender } from 'shared/interfaces'
 
 import Styled from './styles'
 

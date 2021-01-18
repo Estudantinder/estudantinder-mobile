@@ -14,7 +14,7 @@ import SignUpCoursePicker from 'views/components/organisms/SignUpCoursePicker'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { SignUpForm } from 'views/styles/globalStyles'
 
-import { SHIFTS } from 'shared/Constants'
+import { SHIFTS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
 const School: React.FC = () => {

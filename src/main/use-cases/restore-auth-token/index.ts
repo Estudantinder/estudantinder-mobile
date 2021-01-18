@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { STORAGE_AUTH_TOKEN } from 'shared/Constants'
+import { STORAGE_AUTH_TOKEN } from 'shared/constants'
 
 import { RestoreAuthTokenReturn } from './interfaces'
 

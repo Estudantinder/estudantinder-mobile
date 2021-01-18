@@ -1,6 +1,5 @@
 import User from 'main/entities/User'
-
-import { ControllerError } from 'shared/interfaces'
+import { ControllerError } from 'main/utils/interfaces'
 
 export interface CreateUserApiResponse {
   id: string

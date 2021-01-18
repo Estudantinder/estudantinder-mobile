@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { STORAGE_AUTH_TOKEN } from 'shared/Constants'
+import { STORAGE_AUTH_TOKEN } from 'shared/constants'
 
 export default async function deleteAuthToken() {
   AsyncStorage.removeItem(STORAGE_AUTH_TOKEN.EXPIRATION_KEY)

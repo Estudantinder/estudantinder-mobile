@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 import { UserSchool } from 'main/entities/User'
 
-import { DEFAULT_VALIDATION_OPTIONS, SHIFTS } from 'shared/Constants'
+import { DEFAULT_VALIDATION_OPTIONS, SHIFTS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
 type SchoolKeys = Record<keyof UserSchool, unknown>

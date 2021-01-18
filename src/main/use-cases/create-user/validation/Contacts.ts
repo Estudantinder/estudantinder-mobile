@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 import Contacts from 'main/entities/Contacts'
 
-import { DEFAULT_VALIDATION_OPTIONS } from 'shared/Constants'
+import { DEFAULT_VALIDATION_OPTIONS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
 type ContactsKeys = Record<keyof Contacts, unknown>

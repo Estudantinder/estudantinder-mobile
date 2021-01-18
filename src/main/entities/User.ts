@@ -1,4 +1,4 @@
-import { Gender, SHIFTS } from 'shared/Constants'
+import { Gender, SHIFTS } from 'shared/constants'
 
 import Contacts from './Contacts'
 

@@ -10,7 +10,7 @@ import User, {
 } from 'main/entities/User'
 import CreateUserController from 'main/use-cases/create-user'
 
-import { SHIFTS } from 'shared/Constants'
+import { SHIFTS } from 'shared/constants'
 
 export interface ISecrets extends UserSecrets {
   confirm_password: string

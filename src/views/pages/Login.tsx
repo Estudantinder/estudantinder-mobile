@@ -13,9 +13,9 @@ import Input from 'views/components/molecules/Input'
 import PasswordInput from 'views/components/molecules/PasswordInput'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { SignUpForm } from 'views/styles/globalStyles'
+import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 import FormattedValidationError from 'shared/FormattedValidationError'
-import triggerCorrectAlert from 'shared/triggerCorrectAlert'
 
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null)

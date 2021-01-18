@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 import { UserDetails } from 'main/entities/User'
 
-import { DEFAULT_VALIDATION_OPTIONS } from 'shared/Constants'
+import { DEFAULT_VALIDATION_OPTIONS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
 type DetailsKeys = Record<keyof UserDetails, unknown>
