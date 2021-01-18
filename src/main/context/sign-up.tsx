@@ -2,12 +2,12 @@ import React, { useCallback } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import Contacts from 'main/entities/Contacts'
-import User, {
-  UserAbout,
-  UserDetails,
-  UserSchool,
-  UserSecrets,
-} from 'main/entities/User'
+import {
+  StudentAbout,
+  StudentDetails,
+  StudentSchool,
+} from 'main/entities/Student'
+import User, { UserSecrets } from 'main/entities/User'
 import CreateUserController from 'main/use-cases/create-user'
 
 import { SHIFTS } from 'shared/constants'
@@ -18,18 +18,18 @@ export interface ISecrets extends UserSecrets {
 
 interface State {
   secrets: ISecrets
-  person: UserAbout
-  school: UserSchool
+  person: StudentAbout
+  school: StudentSchool
   contacts: Contacts
-  details: UserDetails
+  details: StudentDetails
 }
 
 interface Actions {
   setSecrets(secrets: ISecrets): void
-  setPerson(person: UserAbout): void
-  setSchool(school: UserSchool): void
+  setPerson(person: StudentAbout): void
+  setSchool(school: StudentSchool): void
   setContacts(contacts: Contacts): void
-  setDetails(details: UserDetails): void
+  setDetails(details: StudentDetails): void
 
   createUser(): Promise<void>
   getUser(): User
@@ -65,13 +65,13 @@ export function useSignUpContext(): SignUpContext {
 export const SignUpContextProvider: FC = ({ children }) => {
   const [secrets, setSecrets] = useState<ISecrets>(INITIAL_STATE.secrets)
 
-  const [person, setPerson] = useState<UserAbout>(INITIAL_STATE.person)
+  const [person, setPerson] = useState<StudentAbout>(INITIAL_STATE.person)
 
-  const [school, setSchool] = useState<UserSchool>(INITIAL_STATE.school)
+  const [school, setSchool] = useState<StudentSchool>(INITIAL_STATE.school)
 
   const [contacts, setContacts] = useState<Contacts>(INITIAL_STATE.contacts)
 
-  const [details, setDetails] = useState<UserDetails>(INITIAL_STATE.details)
+  const [details, setDetails] = useState<StudentDetails>(INITIAL_STATE.details)
 
   const getUser = useCallback<() => User>(() => {
     return new User({ ...secrets, ...person, ...school, contacts, ...details })

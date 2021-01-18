@@ -26,8 +26,11 @@ export default async function createAuthToken(
     if (!response.data.jwt || !response.data.expireDate)
       throw new Error('JTW OR EXPIRE DATE NOT FOUND FROM SUCCESS RETURN')
 
+    api.defaults.headers.authorization = `Bearer ${response.data.jwt}`
+
     if (data.stay_logged) {
       AsyncStorage.setItem(STORAGE_AUTH_TOKEN.TOKEN_KEY, response.data.jwt)
+
       AsyncStorage.setItem(
         STORAGE_AUTH_TOKEN.EXPIRATION_KEY,
         response.data.expireDate

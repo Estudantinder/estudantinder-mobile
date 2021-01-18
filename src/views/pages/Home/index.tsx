@@ -1,22 +1,27 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Button } from 'react-native'
 
-import { StatusBar } from 'expo-status-bar'
+import { useStudentsContext } from 'main/context/students'
+
+import Card from 'views/components/organisms/Card'
+import { Container, Title } from 'views/styles/globalStyles'
 
 export default function Home() {
+  const { students, reloadStudents } = useStudentsContext()
+
+  async function a() {
+    await reloadStudents()
+
+    console.log(students)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container>
+      <Title>ESTUDANTINDER</Title>
+
+      <Card />
+
+      <Button onPress={a} title="Atualizar estudantes" />
+    </Container>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
