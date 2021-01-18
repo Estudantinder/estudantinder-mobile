@@ -1,8 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
-import Home from 'views/pages/Home'
-
+import MainTabNavigation from './MainTabNavigation'
 import Navigation from './Navigation'
 
 const { Screen } = createStackNavigator()
@@ -10,7 +9,7 @@ const { Screen } = createStackNavigator()
 const LoggedNavigation: React.FC = () => {
   return (
     <Navigation>
-      <Screen name="Home" component={Home} />
+      <Screen name="Main" component={MainTabNavigation} />
     </Navigation>
   )
 }

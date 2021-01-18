@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
@@ -20,8 +19,6 @@ import FormattedValidationError from 'shared/FormattedValidationError'
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
-  const router = useNavigation()
-
   const { signIn } = useAuthContext()
 
   async function handleSubmit(data: CreateAuthTokenData) {
@@ -32,8 +29,6 @@ const Login: React.FC = () => {
       await validateAuthTokenData(data)
 
       await signIn(data)
-
-      return router.navigate('Home')
     } catch (error) {
       if (error instanceof FormattedValidationError) {
         return formRef.current?.setErrors(error.validationErrors)
