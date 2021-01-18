@@ -6,7 +6,7 @@ import { useField } from '@unform/core'
 import InputInfo from 'views/components/atoms/InputInfo'
 import OptionButton from 'views/components/atoms/OptionButton'
 import {
-  Divider,
+  HorizontalDivider,
   InputContainer,
   InputLabel,
   Row,
@@ -61,7 +61,7 @@ const RowOptionsPicker: React.FC<RowOptionsPickerProps> = (props) => {
             >
               {opt.label}
             </OptionButton>
-            {props.options[index + 1] ? <Divider /> : null}
+            {props.options[index + 1] ? <HorizontalDivider /> : null}
           </Fragment>
         ))}
       </Row>

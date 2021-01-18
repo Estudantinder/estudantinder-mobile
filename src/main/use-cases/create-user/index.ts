@@ -1,7 +1,6 @@
 import api from 'main/api'
 import User from 'main/entities/User'
-
-import { ApiError } from 'shared/interfaces'
+import { ApiError } from 'main/utils/interfaces'
 
 import createUserSerializer from './createUserSerializer'
 import { CreateUserApiResponse, CreateUserReturn } from './interfaces'

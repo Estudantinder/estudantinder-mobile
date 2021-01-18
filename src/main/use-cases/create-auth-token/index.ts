@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import api from 'main/api'
+import { ApiError } from 'main/utils/interfaces'
 
 import { STORAGE_AUTH_TOKEN } from 'shared/constants'
-import { ApiError } from 'shared/interfaces'
 
 import {
   CreateAuthTokenData,

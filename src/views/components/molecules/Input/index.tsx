@@ -27,7 +27,7 @@ export interface TextInputRef extends TextInput {
   value: string
 }
 
-const Input: React.FC<InputProps> = (props) => {
+const Input: React.FC<InputProps> = ({ children, ...props }) => {
   const inputRef = useRef<TextInputRef>(null)
 
   const [isActive, setIsActive] = useState(false)
@@ -83,7 +83,7 @@ const Input: React.FC<InputProps> = (props) => {
           }}
         />
 
-        {props.children && <InputSuffix>{props.children}</InputSuffix>}
+        {children && <InputSuffix>{children}</InputSuffix>}
       </Row>
 
       <InputInfo informative={!error}>{error || props.info}</InputInfo>
