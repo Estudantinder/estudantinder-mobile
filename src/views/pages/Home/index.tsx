@@ -1,27 +1,24 @@
-import React from 'react'
-import { Button } from 'react-native'
+import React, { useEffect } from 'react'
+import { Image } from 'react-native'
 
 import { useStudentsContext } from 'main/context/students'
 
+import TopImage from 'views/assets/logo.png'
 import Card from 'views/components/organisms/Card'
-import { Container, Title } from 'views/styles/globalStyles'
+import { Container } from 'views/styles/globalStyles'
 
 export default function Home() {
   const { students, reloadStudents } = useStudentsContext()
 
-  async function a() {
-    await reloadStudents()
-
-    console.log(students)
-  }
+  useEffect(() => {
+    reloadStudents()
+  }, [reloadStudents])
 
   return (
     <Container>
-      <Title>ESTUDANTINDER</Title>
+      <Image source={TopImage} />
 
-      <Card />
-
-      <Button onPress={a} title="Atualizar estudantes" />
+      {students[0] && <Card student={students[0]} />}
     </Container>
   )
 }
