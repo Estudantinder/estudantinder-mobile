@@ -1,15 +1,15 @@
 import api from 'main/api'
-import Student from 'main/entities/Student'
 import { ApiError } from 'main/utils/interfaces'
 
-import { GetStudentsReturn } from './interfaces'
+import getStudentSerializer from './getStudentSerializer'
+import { GetStudentsApiData, GetStudentsReturn } from './interfaces'
 
 export default async function getStudents(): Promise<GetStudentsReturn> {
   try {
-    const response = await api.get<Student[]>('/users')
+    const response = await api.get<GetStudentsApiData[]>('/users')
 
     return {
-      students: response.data,
+      students: response.data.map((value) => getStudentSerializer(value)),
     }
   } catch (error) {
     if (error.response) {

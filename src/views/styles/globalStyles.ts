@@ -62,6 +62,10 @@ export const InputSuffix = styled.View`
   align-items: center;
 `
 
-export const HorizontalDivider = styled.View`
-  width: 10px;
+export interface HorizontalDividerProps {
+  width?: number
+}
+
+export const HorizontalDivider = styled.View<HorizontalDividerProps>`
+  width: ${(props) => props.width || 10}px;
 `

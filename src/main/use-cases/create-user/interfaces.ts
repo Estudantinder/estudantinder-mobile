@@ -13,7 +13,7 @@ export interface CreateUserReturn {
 type Modify<T, R> = Omit<T, keyof R> & R
 
 export type CreateUserData = Modify<
-  Omit<User, 'subjects'>,
+  Omit<User, 'subjects' | 'course'>,
   {
     school_year: number
     shift: number

@@ -1,12 +1,13 @@
 import styled from 'styled-components/native'
 
 const Container = styled.View`
-  flex: 1;
+  height: 20px;
 
   align-items: center;
   justify-content: center;
 
-  padding: 4px;
+  padding: 4px 0px;
+  flex-grow: 1;
 
   border-radius: 3px;
   background-color: ${(props) => props.theme.colors.primary.purple};

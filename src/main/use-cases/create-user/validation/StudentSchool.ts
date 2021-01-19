@@ -5,7 +5,7 @@ import { StudentSchool } from 'main/entities/Student'
 import { DEFAULT_VALIDATION_OPTIONS, SHIFTS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
-type SchoolKeys = Record<keyof StudentSchool, unknown>
+type SchoolKeys = Record<keyof Omit<StudentSchool, 'course'>, unknown>
 
 export default async function validateStudentSchoolData(data: StudentSchool) {
   try {
