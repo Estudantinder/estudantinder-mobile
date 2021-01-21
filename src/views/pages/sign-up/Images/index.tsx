@@ -4,6 +4,8 @@ import { Dimensions, Text } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
+import { Feather } from '@expo/vector-icons'
+
 import { useAuthContext } from 'main/context/auth'
 import { useSignUpContext } from 'main/context/sign-up'
 
@@ -14,6 +16,22 @@ import theme from 'views/styles/theme'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 const items = ['1', '2', '3', '4', '5']
+
+const PaginationDot: React.FC<{ active: boolean }> = (props) => {
+  let color
+
+  if (props.active) color = theme.colors.primary.purple
+  else color = theme.colors.input.placeholder
+
+  return (
+    <Feather
+      name="camera"
+      color={color}
+      size={16}
+      style={{ marginHorizontal: 12 }}
+    />
+  )
+}
 
 const SignUpImages: React.FC = () => {
   const { createUser, getUser } = useSignUpContext()
@@ -61,6 +79,7 @@ const SignUpImages: React.FC = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: theme.colors.background.light_purple,
+                height: 240,
               }}
             >
               <Text>{item}</Text>
@@ -74,6 +93,8 @@ const SignUpImages: React.FC = () => {
       <Pagination
         dotsLength={items.length}
         activeDotIndex={activeIndex}
+        dotElement={<PaginationDot active={true} />}
+        inactiveDotElement={<PaginationDot active={false} />}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
       />
