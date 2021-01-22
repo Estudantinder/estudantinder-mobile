@@ -5,7 +5,8 @@ import { FormHandles } from '@unform/core'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import { StudentAbout } from 'main/entities/Student'
-import validateStudentAboutData from 'main/use-cases/create-user/validation/StudentAbout'
+import validateSchema from 'main/validation'
+import { StudentAboutSchema } from 'main/validation/schemas/StudentSchemas'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import PersonDatePicker from 'views/components/molecules/BirthDatePicker'
@@ -36,9 +37,9 @@ const Person: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      await validateStudentAboutData(data)
+      const validatedData = await validateSchema(StudentAboutSchema, data)
 
-      setPerson(data)
+      setPerson(validatedData)
 
       handleNavigateToSchool()
     } catch (error) {

@@ -4,7 +4,8 @@ import { FormHandles } from '@unform/core'
 
 import { useAuthContext } from 'main/context/auth'
 import { CreateAuthTokenData } from 'main/use-cases/create-auth-token/interfaces'
-import validateAuthTokenData from 'main/use-cases/create-auth-token/validation/AuthTokenData'
+import validateSchema from 'main/validation'
+import AuthTokenDataSchema from 'main/validation/schemas/AuthTokenDataSchema'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import SwitchInput from 'views/components/atoms/SwitchInput'
@@ -26,9 +27,9 @@ const Login: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      await validateAuthTokenData(data)
+      const validatedData = await validateSchema(AuthTokenDataSchema, data)
 
-      await signIn(data)
+      await signIn(validatedData)
     } catch (error) {
       if (error instanceof FormattedValidationError) {
         return formRef.current?.setErrors(error.validationErrors)

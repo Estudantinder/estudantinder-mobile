@@ -4,7 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 
 import { ISecrets, useSignUpContext } from 'main/context/sign-up'
-import validateUserSecretsData from 'main/use-cases/create-user/validation/UserSecrets'
+import validateSchema from 'main/validation'
+import UserSecretsSchema from 'main/validation/schemas/UserSecretsSchema'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import Input from 'views/components/molecules/Input'
@@ -34,9 +35,9 @@ const Secrets: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      await validateUserSecretsData(data)
+      const validatedData = await validateSchema(UserSecretsSchema, data)
 
-      setSecrets(data)
+      setSecrets(validatedData)
 
       handleNavigateToPerson()
     } catch (error) {

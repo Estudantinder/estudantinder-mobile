@@ -6,7 +6,8 @@ import { FormHandles } from '@unform/core'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import ContactsEntity from 'main/entities/Contacts'
-import validateContactsData from 'main/use-cases/create-user/validation/Contacts'
+import validateSchema from 'main/validation'
+import ContactsSchema from 'main/validation/schemas/ContactsSchema'
 
 import InputInfo from 'views/components/atoms/InputInfo'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
@@ -41,9 +42,9 @@ const Contacts: React.FC = () => {
 
       setIsEmpty(false)
 
-      await validateContactsData(data)
+      const validatedData = await validateSchema(ContactsSchema, data)
 
-      setContacts(data)
+      setContacts(validatedData)
 
       handleNavigateToDetails()
     } catch (error) {
@@ -108,6 +109,7 @@ const Contacts: React.FC = () => {
         </InputInfo>
       </SignUpForm>
 
+      <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
       <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
     </FormPageTemplate>
   )

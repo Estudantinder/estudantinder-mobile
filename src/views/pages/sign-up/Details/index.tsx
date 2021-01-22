@@ -5,7 +5,8 @@ import { FormHandles } from '@unform/core'
 
 import { useSignUpContext } from 'main/context/sign-up'
 import { StudentDetails } from 'main/entities/Student'
-import validateStudentDetailsData from 'main/use-cases/create-user/validation/StudentDetails'
+import validateSchema from 'main/validation'
+import { StudentDetailsSchema } from 'main/validation/schemas/StudentSchemas'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import SubjectsPicker from 'views/components/organisms/SubjectsPicker'
@@ -32,9 +33,9 @@ const Details: React.FC = () => {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      await validateStudentDetailsData(data)
+      const validatedData = await validateSchema(StudentDetailsSchema, data)
 
-      setDetails(data)
+      setDetails(validatedData)
 
       handleNavigateToImages()
     } catch (error) {
