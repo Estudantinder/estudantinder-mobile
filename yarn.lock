@@ -2311,6 +2311,11 @@ braces@^3.0.1:
   dependencies:
     fill-range "^7.0.1"
 
+brazilian-values@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/brazilian-values/-/brazilian-values-0.10.1.tgz#057736f2136342a2eb224af8175b2e7db213eecf"
+  integrity sha512-HruDLDug8oD2lydSEP/L7JJTNcgwTH2uIdXUQKRKjwqHDMbSsJ0Hxi5GOJwxPYBrAx2a6RZXnUbG8krjbw4GGw==
+
 browserslist@^4.14.5, browserslist@^4.14.6:
   version "4.14.7"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.14.7.tgz#c071c1b3622c1c2e790799a37bb09473a4351cb6"

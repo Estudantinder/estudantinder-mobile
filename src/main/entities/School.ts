@@ -9,7 +9,7 @@ export default class School {
 
   constructor(props: School) {
     this.courses = props.courses.map((value) => new Course(value))
-    this.id = props.id
+    this.id = String(props.id)
     this.name = props.name
     this.address = props.address
   }

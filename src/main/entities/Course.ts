@@ -3,7 +3,7 @@ export default class Course {
   public name: string
 
   constructor(props: Course) {
-    this.id = props.id
+    this.id = String(props.id)
     this.name = props.name
   }
 }

@@ -110,7 +110,6 @@ const Contacts: React.FC = () => {
       </SignUpForm>
 
       <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
-      <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
     </FormPageTemplate>
   )
 }

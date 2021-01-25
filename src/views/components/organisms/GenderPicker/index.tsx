@@ -29,11 +29,13 @@ const GenderPicker: React.FC = () => {
   function getDefaultValue() {
     if (!defaultValue) return ''
 
-    if (isNaN(defaultValue)) return defaultValue
+    if (isNaN(defaultValue)) return String(defaultValue)
 
-    if (defaultValue === GENDERS_ENUM.FEMALE) return 'Feminino'
+    if (Number(defaultValue) === GENDERS_ENUM.FEMALE) return 'Feminino'
 
-    if (defaultValue === GENDERS_ENUM.MALE) return 'Masculino'
+    if (Number(defaultValue) === GENDERS_ENUM.MALE) return 'Masculino'
+
+    return ''
   }
 
   const [gender, setGender] = useState<string>(getDefaultValue())

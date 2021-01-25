@@ -4,6 +4,7 @@ import { View, Platform } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { useField } from '@unform/core'
+import { formatToDate } from 'brazilian-values'
 
 import InputInfo from 'views/components/atoms/InputInfo'
 import {
@@ -71,19 +72,7 @@ const SignUpDatePicker: React.FC = () => {
   function getPlaceholder() {
     if (!wasSelected || !date) return '00/00/0000'
 
-    const day = date.getDate()
-    const month = date.getMonth()
-    const year = date.getFullYear()
-
-    let placeholder
-
-    placeholder = `${day < 10 ? '0' : ''}${day}/`
-
-    placeholder += `${month < 10 ? '0' : ''}${month + 1}/`
-
-    placeholder += year
-
-    return placeholder
+    return formatToDate(date)
   }
 
   return (

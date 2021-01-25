@@ -2,6 +2,8 @@ import React, { useCallback } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import Contacts from 'main/entities/Contacts'
+import Course from 'main/entities/Course'
+import School from 'main/entities/School'
 import {
   StudentAbout,
   StudentDetails,
@@ -48,9 +50,10 @@ const INITIAL_STATE: State = {
   person: { birth_date: '', name: '' },
   school: {
     classroom: '',
-    course_id: '',
+    school: (undefined as unknown) as School,
+    course: (undefined as unknown) as Course,
     school_year: 0,
-    shift: SHIFTS.MORNING,
+    shift: (undefined as unknown) as SHIFTS,
   },
 }
 

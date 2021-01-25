@@ -8,7 +8,7 @@ import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
 import School from 'main/entities/School'
 
 import InputBottom from 'views/components/atoms/InputInfo'
-import Select from 'views/components/atoms/Select'
+import Select from 'views/components/molecules/Select'
 
 interface ViewRef extends View {
   value: string
