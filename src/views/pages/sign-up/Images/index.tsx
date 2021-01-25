@@ -1,45 +1,69 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Dimensions, Text } from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
+import { Dimensions } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
-import { Feather } from '@expo/vector-icons'
+import * as ExpoImagePicker from 'expo-image-picker'
 
 import { useAuthContext } from 'main/context/auth'
 import { useSignUpContext } from 'main/context/sign-up'
+import validateSchema from 'main/validation'
+import { StudentPhotosSchema } from 'main/validation/schemas/StudentSchemas'
 
+import InputInfo from 'views/components/atoms/InputInfo'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import ImagePickerCard from 'views/components/molecules/ImagePickerCard'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { InputLabel } from 'views/styles/globalStyles'
-import theme from 'views/styles/theme'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
-const items = ['1', '2', '3', '4', '5']
-
-const PaginationDot: React.FC<{ active: boolean }> = (props) => {
-  let color
-
-  if (props.active) color = theme.colors.primary.purple
-  else color = theme.colors.input.placeholder
-
-  return (
-    <Feather
-      name="camera"
-      color={color}
-      size={16}
-      style={{ marginHorizontal: 12 }}
-    />
-  )
-}
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 const SignUpImages: React.FC = () => {
-  const { createUser, getUser } = useSignUpContext()
+  const { photos, setPhotos, createUser, getUser } = useSignUpContext()
   const { signIn } = useAuthContext()
 
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const [images, setImages] = useState(photos?.photos || [''])
+
   const router = useNavigation()
+
+  const [error, setError] = useState<string>()
+
+  async function handleSelectPicker(index: number) {
+    const status = await ExpoImagePicker.requestCameraRollPermissionsAsync()
+
+    if (!status.granted) {
+      alert('Precisamos das suas fotos')
+      return
+    }
+
+    const result = await ExpoImagePicker.launchImageLibraryAsync({
+      quality: 1,
+      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
+    })
+
+    if (result.cancelled) return
+
+    const { uri } = result
+
+    if (images.length >= 5) {
+      const newImages = images.map((value, i) => {
+        if (i === index) return uri
+
+        return value
+      })
+
+      return setImages(newImages)
+    }
+
+    const newImages = images
+
+    newImages.pop()
+
+    setImages([...newImages, uri, ''])
+  }
 
   async function handlePressSubmit() {
     try {
@@ -50,6 +74,8 @@ const SignUpImages: React.FC = () => {
 
     try {
       const user = getUser()
+
+      if (!user) return router.navigate('Login')
 
       await signIn({
         email: user.email,
@@ -65,41 +91,73 @@ const SignUpImages: React.FC = () => {
     }
   }
 
+  async function handleSetPhotos() {
+    try {
+      setError(undefined)
+
+      const validatedData = await validateSchema(StudentPhotosSchema, {
+        photos: images,
+      })
+
+      const formattedPhotos = validatedData.photos.filter(
+        (value) => value !== ''
+      )
+
+      setPhotos({ ...validatedData, photos: formattedPhotos })
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        console.log(error.validationErrors)
+
+        return setError('Selecione ao menos uma foto')
+      }
+
+      return alert(error)
+    }
+  }
+
   return (
     <FormPageTemplate title="Imagens">
-      <InputLabel>{String(JSON.stringify(getUser()))}</InputLabel>
+      <InputLabel>{String(JSON.stringify(getUser(), undefined, 1))}</InputLabel>
 
       <Carousel
-        data={items}
-        renderItem={({ item }: { item: string }) => {
+        data={images}
+        renderItem={({ item, index }: { item: string; index: number }) => {
           return (
-            <RectButton
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: theme.colors.background.light_purple,
-                height: 240,
-              }}
-            >
-              <Text>{item}</Text>
-            </RectButton>
+            <ImagePickerCard
+              imageUri={item}
+              onPress={() => handleSelectPicker(index)}
+            />
           )
         }}
-        sliderWidth={Dimensions.get('screen').width}
+        sliderWidth={Dimensions.get('window').width}
         itemWidth={210}
         onSnapToItem={(index) => setActiveIndex(index)}
       />
+
       <Pagination
-        dotsLength={items.length}
+        dotsLength={images.length}
         activeDotIndex={activeIndex}
-        dotElement={<PaginationDot active={true} />}
-        inactiveDotElement={<PaginationDot active={false} />}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
+        dotStyle={{ width: 30, height: 4, marginHorizontal: -6 }}
+        inactiveDotColor="#B3B3B3"
+        dotColor="#666"
+        animatedDuration={150}
+        animatedFriction={10}
+        animatedTension={10}
+        inactiveDotScale={0.8}
       />
 
-      <PrimaryButton onPress={handlePressSubmit}>CADASTRAR</PrimaryButton>
+      <InputInfo>{error}</InputInfo>
+
+      <PrimaryButton
+        style={{ marginTop: images.length > 1 ? 0 : 40 }}
+        onPress={handleSetPhotos}
+      >
+        SET PHOTOS
+      </PrimaryButton>
+
+      <PrimaryButton style={{ marginTop: 12 }} onPress={handlePressSubmit}>
+        CADASTRAR
+      </PrimaryButton>
     </FormPageTemplate>
   )
 }

@@ -2,28 +2,26 @@ import React, { useCallback } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import Contacts from 'main/entities/Contacts'
-import Course from 'main/entities/Course'
-import School from 'main/entities/School'
 import {
   StudentAbout,
   StudentDetails,
+  StudentPhotos,
   StudentSchool,
 } from 'main/entities/Student'
 import User, { UserSecrets } from 'main/entities/User'
 import CreateUserController from 'main/use-cases/create-user'
-
-import { SHIFTS } from 'shared/constants'
 
 export interface ISecrets extends UserSecrets {
   confirm_password: string
 }
 
 interface State {
-  secrets: ISecrets
-  person: StudentAbout
-  school: StudentSchool
-  contacts: Contacts
-  details: StudentDetails
+  secrets: ISecrets | undefined
+  person: StudentAbout | undefined
+  school: StudentSchool | undefined
+  contacts: Contacts | undefined
+  details: StudentDetails | undefined
+  photos: StudentPhotos | undefined
 }
 
 interface Actions {
@@ -32,9 +30,10 @@ interface Actions {
   setSchool(school: StudentSchool): void
   setContacts(contacts: Contacts): void
   setDetails(details: StudentDetails): void
+  setPhotos(photos: StudentPhotos): void
 
   createUser(): Promise<void>
-  getUser(): User
+  getUser(): User | null
 }
 
 export type SignUpContext = State & Actions
@@ -42,20 +41,6 @@ export type SignUpContext = State & Actions
 type Ctx = SignUpContext
 
 const Context = createContext<SignUpContext | null>(null)
-
-const INITIAL_STATE: State = {
-  secrets: { confirm_password: '', email: '', password: '' },
-  contacts: { facebook: '', instagram: '', twitter: '', whatsapp: '' },
-  details: { bio: '', subjects: [] },
-  person: { birth_date: '', name: '' },
-  school: {
-    classroom: '',
-    school: (undefined as unknown) as School,
-    course: (undefined as unknown) as Course,
-    school_year: 0,
-    shift: (undefined as unknown) as SHIFTS,
-  },
-}
 
 export function useSignUpContext(): SignUpContext {
   const value = useContext(Context)
@@ -66,22 +51,37 @@ export function useSignUpContext(): SignUpContext {
 }
 
 export const SignUpContextProvider: FC = ({ children }) => {
-  const [secrets, setSecrets] = useState<ISecrets>(INITIAL_STATE.secrets)
+  const [secrets, setSecrets] = useState<ISecrets>()
 
-  const [person, setPerson] = useState<StudentAbout>(INITIAL_STATE.person)
+  const [person, setPerson] = useState<StudentAbout>()
 
-  const [school, setSchool] = useState<StudentSchool>(INITIAL_STATE.school)
+  const [school, setSchool] = useState<StudentSchool>()
 
-  const [contacts, setContacts] = useState<Contacts>(INITIAL_STATE.contacts)
+  const [contacts, setContacts] = useState<Contacts>()
 
-  const [details, setDetails] = useState<StudentDetails>(INITIAL_STATE.details)
+  const [details, setDetails] = useState<StudentDetails>()
 
-  const getUser = useCallback<() => User>(() => {
-    return new User({ ...secrets, ...person, ...school, contacts, ...details })
-  }, [contacts, details, person, secrets, school])
+  const [photos, setPhotos] = useState<StudentPhotos>()
+
+  const getUser = useCallback<() => User | null>(() => {
+    if (!school || !secrets || !person || !contacts || !details || !photos) {
+      return null
+    }
+
+    return new User({
+      ...secrets,
+      ...person,
+      ...school,
+      contacts,
+      ...details,
+      ...photos,
+    })
+  }, [school, secrets, person, contacts, details, photos])
 
   const createUser = useCallback<() => Promise<void>>(async () => {
     const user = getUser()
+
+    if (!user) throw new Error('USER NOT CREATED')
 
     const { error } = await CreateUserController(user)
 
@@ -102,8 +102,10 @@ export const SignUpContextProvider: FC = ({ children }) => {
       setDetails,
       createUser,
       getUser,
+      photos,
+      setPhotos,
     }),
-    [secrets, person, school, contacts, details, createUser, getUser]
+    [secrets, person, school, contacts, details, createUser, getUser, photos]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>

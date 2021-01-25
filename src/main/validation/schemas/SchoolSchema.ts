@@ -6,11 +6,9 @@ import CourseSchema from './CourseSchema'
 
 export type SchoolKeys = Record<keyof School, unknown>
 
-export default Yup.object()
-  .shape<SchoolKeys>({
-    address: Yup.string().required(),
-    courses: Yup.array(CourseSchema).min(1).required(),
-    id: Yup.string().required(),
-    name: Yup.string().required(),
-  })
-  .required()
+export default Yup.object().shape<SchoolKeys>({
+  address: Yup.string(),
+  courses: Yup.array(CourseSchema).min(1),
+  id: Yup.string(),
+  name: Yup.string(),
+})

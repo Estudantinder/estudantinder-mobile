@@ -41,7 +41,7 @@ const School: React.FC = () => {
   }
 
   const [currentSchool, setCurrentSchool] = useState<SchoolEntity | undefined>(
-    context.school.school
+    context.school?.school
   )
 
   async function handleSubmit(data: SchoolFormData) {
@@ -102,11 +102,11 @@ const School: React.FC = () => {
 
   function getDefaultValues() {
     return {
-      classroom: context.school.classroom,
-      course: String(context.school.course?.id),
-      school: String(context.school.school?.id),
-      school_year: String(context.school.school_year),
-      shift: String(context.school.shift),
+      classroom: context.school?.classroom,
+      course: String(context.school?.course?.id),
+      school: String(context.school?.school?.id),
+      school_year: String(context.school?.school_year),
+      shift: String(context.school?.shift),
     }
   }
 
@@ -125,7 +125,7 @@ const School: React.FC = () => {
             value: null,
             color: '#ccc',
           }}
-          info={schoolsApi.error}
+          info={schoolsApi.error?.name}
           items={
             schoolsApi.schools
               ? arrayToItems(schoolsApi.schools, {

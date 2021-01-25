@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import { useField } from '@unform/core'
 
 import useSubjectsData from 'main/api/swr-hooks/useSubjectsData'
+import Subject from 'main/entities/Subject'
 
 import InputInfo from 'views/components/atoms/InputInfo'
 import OptionButton from 'views/components/atoms/OptionButton'
@@ -15,7 +16,7 @@ import {
 } from 'views/styles/globalStyles'
 
 interface ViewRef extends View {
-  value: string[]
+  value: Subject[]
 }
 
 const SignUpSubjectsPicker: React.FC = () => {
@@ -23,9 +24,9 @@ const SignUpSubjectsPicker: React.FC = () => {
 
   const { fieldName, defaultValue, registerField, error } = useField('subjects')
 
-  const { error: swrError, loading, subjects } = useSubjectsData()
+  const { subjects } = useSubjectsData()
 
-  const [favoriteSubjects, setFavoriteSubjects] = useState<string[]>(
+  const [favoriteSubjects, setFavoriteSubjects] = useState<Subject[]>(
     defaultValue || []
   )
 
@@ -39,47 +40,38 @@ const SignUpSubjectsPicker: React.FC = () => {
     ref?.current && (ref.current.value = defaultValue || [])
   }, [defaultValue, fieldName, registerField])
 
-  function handleSubjectsChange(newSubjectId: string) {
+  function handleSubjectsChange(newSubject: Subject) {
     if (!ref.current)
       return setFavoriteSubjects([
-        newSubjectId,
+        newSubject,
         favoriteSubjects[0],
         favoriteSubjects[1],
       ])
 
-    if (favoriteSubjects.includes(newSubjectId)) {
+    if (favoriteSubjects.find((subject) => subject.id === newSubject.id)) {
       return
     }
 
-    if (favoriteSubjects.length > 2) {
-      const newSubjects = [
-        newSubjectId,
-        favoriteSubjects[0],
-        favoriteSubjects[1],
-      ]
+    let newSubjects = favoriteSubjects
 
-      ref.current.value = newSubjects
+    if (favoriteSubjects.length > 2) newSubjects.pop()
 
-      return setFavoriteSubjects(newSubjects)
-    }
-
-    const newSubjects = [newSubjectId, ...favoriteSubjects]
+    newSubjects = [newSubject, ...newSubjects]
 
     ref.current.value = newSubjects
 
     return setFavoriteSubjects(newSubjects)
   }
 
-  if (swrError) return <InputInfo>{String(swrError)}</InputInfo>
-
-  if (!subjects || subjects?.length < 0 || loading)
-    return <InputLabel>Carregando...</InputLabel>
-
   return (
     <InputContainer ref={ref}>
-      <InputLabel>Escolha 03 matérias que você tem afinidade</InputLabel>
+      <InputLabel>
+        {!subjects || !subjects.length
+          ? 'Carregando'
+          : `Escolha 03 matérias que você tem afinidade`}
+      </InputLabel>
 
-      {subjects.map((subject, index) => {
+      {subjects?.map((subject, index) => {
         if (index % 2 !== 0) return
 
         return (
@@ -91,8 +83,10 @@ const SignUpSubjectsPicker: React.FC = () => {
             key={subject.id}
           >
             <OptionButton
-              onPress={() => handleSubjectsChange(subject.id)}
-              isActive={favoriteSubjects.includes(subject.id)}
+              onPress={() => handleSubjectsChange(subject)}
+              isActive={
+                !!favoriteSubjects.find((value) => value.id === subject.id)
+              }
             >
               {subject.name}
             </OptionButton>
@@ -102,8 +96,12 @@ const SignUpSubjectsPicker: React.FC = () => {
                 <HorizontalDivider />
 
                 <OptionButton
-                  onPress={() => handleSubjectsChange(subjects[index + 1].id)}
-                  isActive={favoriteSubjects.includes(subjects[index + 1].id)}
+                  onPress={() => handleSubjectsChange(subjects[index + 1])}
+                  isActive={
+                    !!favoriteSubjects.find(
+                      (value) => value.id === subjects[index + 1].id
+                    )
+                  }
                 >
                   {subjects[index + 1].name}
                 </OptionButton>

@@ -1,15 +1,21 @@
 import React from 'react'
+import { StyleProp, ViewStyle } from 'react-native'
 
 import Styled from './styles'
 
 export interface PrimaryButtonProps {
   onPress(): void
   children: string
+  style?: StyleProp<ViewStyle>
 }
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
   return (
-    <Styled.Button activeOpacity={0.8} onPress={props.onPress}>
+    <Styled.Button
+      style={props.style}
+      activeOpacity={0.8}
+      onPress={props.onPress}
+    >
       <Styled.ButtonText>{props.children}</Styled.ButtonText>
     </Styled.Button>
   )
