@@ -16,7 +16,7 @@ export default async function createAuthToken(
 ): Promise<CreateAuthTokenReturn> {
   try {
     const response = await api.post<CreateAuthTokenApiResponse>(
-      '/students/login',
+      '/users/login',
       {
         email: data.email,
         password: data.password,

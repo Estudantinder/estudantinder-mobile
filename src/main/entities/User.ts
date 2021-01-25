@@ -13,7 +13,7 @@ export default class User extends Student implements UserSecrets {
   public contacts: Contacts
 
   constructor(props: User) {
-    super(props)
+    super({ ...props, id: props.id || '' })
 
     this.email = props.email
     this.password = props.password

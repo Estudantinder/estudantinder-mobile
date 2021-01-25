@@ -12,7 +12,7 @@ export default async function createUser(
     const serializedUser = createUserSerializer(user)
 
     const { data } = await api.post<CreateUserApiResponse>(
-      '/students',
+      '/users',
       serializedUser
     )
 

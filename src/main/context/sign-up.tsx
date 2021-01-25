@@ -81,7 +81,7 @@ export const SignUpContextProvider: FC = ({ children }) => {
   const createUser = useCallback<() => Promise<void>>(async () => {
     const user = getUser()
 
-    if (!user) throw new Error('USER NOT CREATED')
+    if (!user) throw new Error('USER UNDEFINED')
 
     const { error } = await CreateUserController(user)
 

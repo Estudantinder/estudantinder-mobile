@@ -68,11 +68,11 @@ const SignUpPhotos: React.FC = () => {
       }
 
       context.setPhotos({ photos: formattedPhotos })
+
+      await handleSignUp()
     } catch (error) {
       return alert(error)
     }
-
-    await handleSignUp()
   }
 
   async function handleSignUp() {

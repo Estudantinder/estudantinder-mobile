@@ -6,7 +6,7 @@ import { GetStudentsApiData, GetStudentsReturn } from './interfaces'
 
 export default async function getStudents(): Promise<GetStudentsReturn> {
   try {
-    const response = await api.get<GetStudentsApiData[]>('/users')
+    const response = await api.get<GetStudentsApiData[]>('/students')
 
     return {
       students: response.data.map((value) => getStudentSerializer(value)),

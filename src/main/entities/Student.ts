@@ -45,6 +45,8 @@ export default class Student
 
   public photos: Array<string>
 
+  public id: string
+
   constructor(props: Student) {
     this.name = props.name
     this.bio = props.bio
@@ -57,5 +59,6 @@ export default class Student
     this.shift = props.shift
     this.subjects = props.subjects.map((value) => new Subject(value))
     this.photos = props.photos
+    this.id = props.id
   }
 }
