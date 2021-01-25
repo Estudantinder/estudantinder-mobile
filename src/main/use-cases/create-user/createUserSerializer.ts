@@ -1,39 +1,29 @@
 import User from 'main/entities/User'
 
-import { CreateUserData } from './interfaces'
+import { CreateUserApiData } from './interfaces'
 
-export default function createUserSerializer(user: User): CreateUserData {
-  function transformToUTCDate(date: string) {
-    const newDate = new Date(date)
+export default function createUserSerializer(user: User): CreateUserApiData {
+  const getUtcDate = () => {
+    const newDate = new Date(user.birth_date).toISOString()
 
-    const day = newDate.getDate()
-    const month = newDate.getMonth()
-    const year = newDate.getFullYear()
+    const tIndex = newDate.indexOf('T')
 
-    let utcDate
-
-    utcDate = `${year}-`
-
-    utcDate += `${month < 10 ? '0' : ''}${month + 1}-`
-
-    utcDate += `${day < 10 ? '0' : ''}${day}`
-
-    return utcDate
+    return newDate.substring(0, tIndex)
   }
 
   return {
     bio: user.bio,
-    birth_date: transformToUTCDate(user.birth_date),
+    birth_date: getUtcDate(),
     classroom: user.classroom,
     contacts: user.contacts,
-    course_id: Number(user.course_id),
+    course_id: Number(user.course.id),
     email: user.email,
     name: user.name,
     password: user.password,
     school_year: Number(user.school_year),
     shift: Number(user.shift),
-    photos: ['imagem.jpg'],
-    subjects_id: user.subjects.map((value) => Number(value)),
+    photos: user.photos,
+    subjects_id: user.subjects.map((value) => Number(value.id)),
     gender: user.gender,
   }
 }

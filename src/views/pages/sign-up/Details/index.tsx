@@ -24,8 +24,8 @@ const Details: React.FC = () => {
 
   const { details, setDetails } = useSignUpContext()
 
-  function handleNavigateToImages() {
-    return router.navigate('sign-up/Images')
+  function handleNavigateToPhotos() {
+    return router.navigate('sign-up/Photos')
   }
 
   async function handleSubmit(data: StudentDetails) {
@@ -37,7 +37,7 @@ const Details: React.FC = () => {
 
       setDetails(validatedData)
 
-      handleNavigateToImages()
+      handleNavigateToPhotos()
     } catch (error) {
       if (error instanceof FormattedValidationError) {
         return formRef.current?.setErrors(error.validationErrors)

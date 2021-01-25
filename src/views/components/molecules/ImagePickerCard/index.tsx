@@ -2,7 +2,7 @@ import React from 'react'
 import { Image } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
-import { Feather } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 import theme from 'views/styles/theme'
 
@@ -27,11 +27,20 @@ const ImagePickerCard: React.FC<ImagePickerCardProps> = (props) => {
     >
       {props.imageUri ? (
         <Image
-          style={{ width: '100%', height: '100%', resizeMode: 'contain' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            resizeMode: 'cover',
+            borderRadius: 6,
+          }}
           source={{ uri: props.imageUri }}
         />
       ) : (
-        <Feather name="camera" size={32} color={theme.colors.primary.purple} />
+        <Ionicons
+          name="ios-camera"
+          size={36}
+          color={theme.colors.primary.purple}
+        />
       )}
     </RectButton>
   )

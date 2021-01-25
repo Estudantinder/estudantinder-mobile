@@ -7,6 +7,7 @@ export interface InputStyleProps {
 
 const TextInput = styled.TextInput<InputStyleProps>`
   min-width: 100%;
+  min-height: 40px;
 
   padding: 4px 15px;
 

@@ -3,7 +3,6 @@ import * as Yup from 'yup'
 import {
   StudentAbout,
   StudentDetails,
-  StudentPhotos,
   StudentSchool,
 } from 'main/entities/Student'
 
@@ -17,8 +16,6 @@ type PersonKeys = Record<keyof StudentAbout, unknown>
 type DetailsKeys = Record<keyof StudentDetails, unknown>
 
 type SchoolKeys = Record<keyof StudentSchool, unknown>
-
-type PhotosKeys = Record<keyof StudentPhotos, unknown>
 
 export const StudentAboutSchema = Yup.object().shape<PersonKeys>({
   name: Yup.string().required(),
@@ -37,8 +34,4 @@ export const StudentSchoolSchema = Yup.object().shape<SchoolKeys>({
   classroom: Yup.string().max(1).required(),
   course: CourseSchema,
   school: SchoolSchema,
-})
-
-export const StudentPhotosSchema = Yup.object().shape<PhotosKeys>({
-  photos: Yup.array().of(Yup.string().required()).min(1).required(),
 })
