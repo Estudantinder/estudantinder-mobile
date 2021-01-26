@@ -6,13 +6,17 @@ export interface UserSecrets {
   password: string
 }
 
+type Modify<T, R> = Omit<T, keyof R> & R
+
+type Props = Modify<User, { id?: string }>
+
 export default class User extends Student implements UserSecrets {
   public email: string
   public password: string
 
   public contacts: Contacts
 
-  constructor(props: User) {
+  constructor(props: Props) {
     super({ ...props, id: props.id || '' })
 
     this.email = props.email

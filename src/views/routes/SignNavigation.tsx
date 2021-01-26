@@ -3,6 +3,7 @@ import React from 'react'
 
 import Landing from 'views/pages/Landing'
 import Login from 'views/pages/Login'
+import Profile from 'views/pages/Profile'
 import Contacts from 'views/pages/sign-up/Contacts'
 import Details from 'views/pages/sign-up/Details'
 import Person from 'views/pages/sign-up/Person'
@@ -26,6 +27,8 @@ const SignNavigation: React.FC = () => {
       <Screen name="sign-up/Contacts" component={Contacts} />
       <Screen name="sign-up/Details" component={Details} />
       <Screen name="sign-up/Photos" component={Photos} />
+
+      <Screen name="Profile" component={Profile} />
     </Navigation>
   )
 }

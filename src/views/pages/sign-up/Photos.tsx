@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 
 import * as ExpoImagePicker from 'expo-image-picker'
 
-import { useAuthContext } from 'main/context/auth'
 import { useSignUpContext } from 'main/context/sign-up'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
@@ -11,15 +10,19 @@ import PhotosCarrousel from 'views/components/organisms/PhotosCarrousel'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { InputLabel } from 'views/styles/globalStyles'
 import theme from 'views/styles/theme'
-import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 const SignUpPhotos: React.FC = () => {
   const context = useSignUpContext()
-  const { signIn } = useAuthContext()
 
-  const [items, setItems] = useState(
-    context.photos?.photos ? [...context.photos?.photos, ''] : ['']
-  )
+  const getInitialState = () => {
+    if (!context.photos?.photos) return ['']
+
+    if (context.photos.photos.length < 6) return [...context.photos.photos, '']
+
+    return context.photos.photos
+  }
+
+  const [items, setItems] = useState(getInitialState())
 
   const router = useNavigation()
 
@@ -69,39 +72,9 @@ const SignUpPhotos: React.FC = () => {
 
       context.setPhotos({ photos: formattedPhotos })
 
-      await handleSignUp()
+      router.navigate('Profile')
     } catch (error) {
       return alert(error)
-    }
-  }
-
-  async function handleSignUp() {
-    try {
-      await context.createUser()
-    } catch (error) {
-      return triggerCorrectAlert(error)
-    }
-
-    await handleSignIn()
-  }
-
-  async function handleSignIn() {
-    try {
-      const user = context.getUser()
-
-      if (!user) return router.navigate('Login')
-
-      await signIn({
-        email: user.email,
-        password: user.password,
-        stay_logged: false,
-      })
-
-      return router.navigate('Home')
-    } catch (error) {
-      triggerCorrectAlert(error)
-
-      return router.navigate('Login')
     }
   }
 
@@ -115,7 +88,7 @@ const SignUpPhotos: React.FC = () => {
 
       <PhotosCarrousel onSelect={handleSelectPicker} photos={items} />
 
-      <PrimaryButton onPress={handleSubmit}>CADASTRAR</PrimaryButton>
+      <PrimaryButton onPress={handleSubmit}>CONTINUAR</PrimaryButton>
     </FormPageTemplate>
   )
 }
