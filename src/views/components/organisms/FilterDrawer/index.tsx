@@ -5,19 +5,15 @@ import Animated, { Easing } from 'react-native-reanimated'
 import { Feather } from '@expo/vector-icons'
 import { FormHandles } from '@unform/core'
 
-import OptionButton from 'views/components/atoms/OptionButton'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
-import {
-  HorizontalDivider,
-  InputContainer,
-  InputLabel,
-  Row,
-  SignUpForm,
-  Title,
-} from 'views/styles/globalStyles'
+import { SignUpForm, Title } from 'views/styles/globalStyles'
 
-import { SCHOOL_YEARS_ITEMS, SHIFTS_ITEMS } from 'shared/constants'
+import {
+  GENDERS_ENUM,
+  SCHOOL_YEARS_ITEMS,
+  SHIFTS_ITEMS,
+} from 'shared/constants'
 
 import SchoolCoursePicker from '../SchoolCoursePicker'
 import SubjectsPicker from '../SubjectsPicker'
@@ -29,9 +25,9 @@ export interface FilterDrawerProps {
   setOpen(value: boolean): void
 }
 
-const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
-  const INITIAL_VALUE = -Dimensions.get('window').width - 24
+const INITIAL_VALUE = -Dimensions.get('window').width - 24
 
+const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
   const fadeAnim = useRef(new Animated.Value(INITIAL_VALUE)).current
 
   const formRef = useRef<FormHandles>(null)
@@ -58,7 +54,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
     } else {
       fadeOut()
     }
-  }, [INITIAL_VALUE, fadeAnim, props])
+  }, [fadeAnim, props])
 
   BackHandler.addEventListener('hardwareBackPress', () => {
     if (props.open) {
@@ -109,27 +105,15 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
             canDeselect
           />
 
-          <InputContainer>
-            <InputLabel>Gênero</InputLabel>
-
-            <Row>
-              <OptionButton onPress={() => 0} isActive>
-                Feminino
-              </OptionButton>
-
-              <HorizontalDivider />
-
-              <OptionButton onPress={() => 0} isActive={false}>
-                Masculino
-              </OptionButton>
-            </Row>
-
-            <Row style={{ marginVertical: 12 }}>
-              <OptionButton onPress={() => 0} isActive={false}>
-                Outros
-              </OptionButton>
-            </Row>
-          </InputContainer>
+          <RowOptionsPicker
+            label="Gênero"
+            name="gender"
+            canDeselect
+            options={[
+              { label: 'Feminino', value: String(GENDERS_ENUM.FEMALE) },
+              { label: 'Masculino', value: String(GENDERS_ENUM.MALE) },
+            ]}
+          />
         </SignUpForm>
 
         <PrimaryButton onPress={() => 0}>APLICAR</PrimaryButton>
