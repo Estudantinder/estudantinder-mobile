@@ -1,6 +1,8 @@
-import User from 'main/entities/User'
+import Contacts from 'main/entities/Contacts'
+import { ControllerError } from 'main/utils/interfaces'
 
-import { ControllerError } from 'shared/interfaces'
+import { SHIFTS } from 'shared/constants'
+import { Gender } from 'shared/interfaces'
 
 export interface CreateUserApiResponse {
   id: string
@@ -11,15 +13,18 @@ export interface CreateUserReturn {
   error?: ControllerError
 }
 
-type Modify<T, R> = Omit<T, keyof R> & R
-
-export type CreateUserData = Modify<
-  Omit<User, 'subjects'>,
-  {
-    school_year: number
-    shift: number
-    course_id: number
-    subjects_id: Array<number>
-    photos: Array<string>
-  }
->
+export interface CreateUserApiData {
+  name: string
+  email: string
+  password: string
+  school_year: number
+  birth_date: string
+  bio: string
+  gender?: Gender
+  shift: SHIFTS
+  photos: Array<string>
+  subjects_id: Array<number>
+  course_id: number
+  classroom: string
+  contacts: Contacts
+}

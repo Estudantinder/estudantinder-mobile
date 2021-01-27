@@ -2,19 +2,18 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { ValidationError } from 'yup'
 
 import { useSignUpContext } from 'main/context/sign-up'
-import { UserDetails } from 'main/entities/User'
-import ValidateSignUpDetails from 'main/validators/sign-up/Details'
+import { StudentDetails } from 'main/entities/Student'
+import validateSchema from 'main/validation'
+import { StudentDetailsSchema } from 'main/validation/schemas/StudentSchemas'
 
-import FormButton from 'views/components/atoms/FormButton'
-import GoBackButton from 'views/components/atoms/GoBackButton'
-import SubjectsPicker from 'views/components/molecules/SignUpSubjectsPicker'
-import SignUpContainer from 'views/components/templates/SignUpContainer'
-import { FormMain, FormTitle, SignUpForm } from 'views/styles/globalStyles'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import SubjectsPicker from 'views/components/organisms/SubjectsPicker'
+import FormPageTemplate from 'views/components/templates/FormPageTemplate'
+import { SignUpForm } from 'views/styles/globalStyles'
 
-import setValidationErrors from 'shared/setValidationErrors'
+import FormattedValidationError from 'shared/FormattedValidationError'
 
 import Styled from './styles'
 
@@ -25,60 +24,50 @@ const Details: React.FC = () => {
 
   const { details, setDetails } = useSignUpContext()
 
-  function handleNavigateToImages() {
-    return router.navigate('sign-up/Images')
+  function handleNavigateToPhotos() {
+    return router.navigate('sign-up/Photos')
   }
 
-  async function handleSubmit(data: UserDetails) {
+  async function handleSubmit(data: StudentDetails) {
     try {
       // Remove all previous errors
       formRef?.current?.setErrors({})
 
-      const schema = ValidateSignUpDetails()
+      const validatedData = await validateSchema(StudentDetailsSchema, data)
 
-      await schema.validate(data, {
-        abortEarly: false,
-      })
+      setDetails(validatedData)
 
-      setDetails(data)
-
-      handleNavigateToImages()
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        return setValidationErrors(err, formRef)
+      handleNavigateToPhotos()
+    } catch (error) {
+      if (error instanceof FormattedValidationError) {
+        return formRef.current?.setErrors(error.validationErrors)
       }
 
-      return alert(err)
+      return alert(error)
     }
   }
 
-  function handleButtonPress() {
+  function handlePressSubmit() {
     formRef.current?.submitForm()
   }
 
   return (
-    <SignUpContainer>
-      <GoBackButton />
+    <FormPageTemplate title="Um pouco sobre você">
+      <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={details}>
+        <Styled.TextAreaInput
+          name="bio"
+          label="Biografia"
+          info="Máximo de 256 caracteres"
+          maxLength={256}
+          textAlignVertical="top"
+          multiline
+        />
 
-      <FormMain>
-        <FormTitle>Um pouco sobre você</FormTitle>
+        <SubjectsPicker />
+      </SignUpForm>
 
-        <SignUpForm ref={formRef} onSubmit={handleSubmit} initialData={details}>
-          <Styled.TextAreaInput
-            name="bio"
-            label="Biografia"
-            info="Máximo de 256 caracteres"
-            maxLength={256}
-            textAlignVertical="top"
-            multiline
-          />
-
-          <SubjectsPicker />
-        </SignUpForm>
-
-        <FormButton onPress={handleButtonPress} title="CONTINUAR" />
-      </FormMain>
-    </SignUpContainer>
+      <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
+    </FormPageTemplate>
   )
 }
 

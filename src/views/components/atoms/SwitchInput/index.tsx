@@ -4,9 +4,8 @@ import { Switch } from 'react-native'
 import { useField } from '@unform/core'
 import { useTheme } from 'styled-components'
 
+import InputInfo from 'views/components/atoms/InputInfo'
 import { InputContainer, Row } from 'views/styles/globalStyles'
-
-import InputBottom from '../InputBottom'
 
 import Styled from './styles'
 
@@ -63,7 +62,8 @@ const SwitchInput: React.FC<SwitchInputProps> = (props) => {
 
         <Styled.InputText>{props.label}</Styled.InputText>
       </Row>
-      <InputBottom text={error} />
+
+      <InputInfo>{error}</InputInfo>
     </InputContainer>
   )
 }

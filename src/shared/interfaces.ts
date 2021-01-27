@@ -1,9 +1,3 @@
-export interface ApiError {
-  error: string
-  message: string
-}
+import { GENDERS_ENUM } from './constants'
 
-export interface ControllerError {
-  title: string
-  message: string
-}
+export type Gender = GENDERS_ENUM | string

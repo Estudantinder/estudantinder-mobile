@@ -1,59 +1,26 @@
-import { Gender, SHIFTS } from 'shared/Constants'
-
 import Contacts from './Contacts'
+import Student from './Student'
 
 export interface UserSecrets {
   email: string
   password: string
 }
-export interface UserAbout {
-  name: string
-  birth_date: string
-  gender?: Gender
-}
 
-export interface UserSchool {
-  school_year: number
-  shift: SHIFTS
-  course_id: string
-  classroom: string
-}
+type Modify<T, R> = Omit<T, keyof R> & R
 
-export interface UserDetails {
-  bio: string
-  subjects: Array<string>
-}
+type Props = Modify<User, { id?: string }>
 
-export default class User
-  implements UserSecrets, UserAbout, UserSchool, UserDetails {
-  public name: string
+export default class User extends Student implements UserSecrets {
   public email: string
   public password: string
 
-  public birth_date: string
-  public bio: string
-  public gender?: Gender
-
-  public school_year: number
-  public shift: SHIFTS
-  public subjects: Array<string>
-  public course_id: string
-  public classroom: string
-
   public contacts: Contacts
 
-  constructor(props: User) {
-    this.name = props.name
+  constructor(props: Props) {
+    super({ ...props, id: props.id || '' })
+
     this.email = props.email
     this.password = props.password
-    this.birth_date = props.birth_date
-    this.bio = props.bio
-    this.gender = props.gender
-    this.school_year = props.school_year
-    this.shift = props.shift
-    this.subjects = props.subjects
-    this.course_id = props.course_id
-    this.classroom = props.classroom
 
     this.contacts = new Contacts(props.contacts)
   }

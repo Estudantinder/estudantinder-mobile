@@ -1,4 +1,4 @@
-import { ControllerError } from 'shared/interfaces'
+import { ControllerError } from 'main/utils/interfaces'
 
 export interface CreateAuthTokenData {
   email: string

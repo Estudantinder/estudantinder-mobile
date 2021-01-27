@@ -1,22 +1,29 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { Button, Image } from 'react-native'
 
-import { StatusBar } from 'expo-status-bar'
+import { useAuthContext } from 'main/context/auth'
+import { useStudentsContext } from 'main/context/students'
+
+import TopImage from 'views/assets/logo.png'
+import Card from 'views/components/organisms/Card'
+import { Container } from 'views/styles/globalStyles'
 
 export default function Home() {
+  const { students, reloadStudents } = useStudentsContext()
+
+  const { signOut } = useAuthContext()
+
+  useEffect(() => {
+    reloadStudents()
+  }, [reloadStudents])
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container>
+      <Image source={TopImage} />
+
+      {students[0] && <Card student={students[0]} />}
+
+      <Button onPress={signOut} title="Sair" />
+    </Container>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})

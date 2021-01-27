@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import api from 'main/services/api'
+import api from 'main/api'
+import { ApiError } from 'main/utils/interfaces'
 
-import { STORAGE_AUTH_TOKEN } from 'shared/Constants'
-import { ApiError } from 'shared/interfaces'
+import { STORAGE_AUTH_TOKEN } from 'shared/constants'
 
 import {
   CreateAuthTokenData,
@@ -16,7 +16,7 @@ export default async function createAuthToken(
 ): Promise<CreateAuthTokenReturn> {
   try {
     const response = await api.post<CreateAuthTokenApiResponse>(
-      '/student/login',
+      '/users/login',
       {
         email: data.email,
         password: data.password,
@@ -26,8 +26,11 @@ export default async function createAuthToken(
     if (!response.data.jwt || !response.data.expireDate)
       throw new Error('JTW OR EXPIRE DATE NOT FOUND FROM SUCCESS RETURN')
 
+    api.defaults.headers.authorization = `Bearer ${response.data.jwt}`
+
     if (data.stay_logged) {
       AsyncStorage.setItem(STORAGE_AUTH_TOKEN.TOKEN_KEY, response.data.jwt)
+
       AsyncStorage.setItem(
         STORAGE_AUTH_TOKEN.EXPIRATION_KEY,
         response.data.expireDate

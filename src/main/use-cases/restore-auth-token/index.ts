@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { STORAGE_AUTH_TOKEN } from 'shared/Constants'
+import api from 'main/api'
+
+import { STORAGE_AUTH_TOKEN } from 'shared/constants'
 
 import { RestoreAuthTokenReturn } from './interfaces'
 
@@ -29,6 +31,8 @@ export default async function restoreAuthToken(): Promise<RestoreAuthTokenReturn
   if (Date.now() - HOUR_IN_MILLISECONDS >= expirationDate.getTime()) {
     return { token: null }
   }
+
+  api.defaults.headers.authorization = `Bearer ${storageToken}`
 
   return { token: storageToken }
 }

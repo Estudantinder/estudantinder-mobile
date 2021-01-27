@@ -4,7 +4,11 @@ import {
   Archivo_600SemiBold,
   Archivo_500Medium,
 } from '@expo-google-fonts/archivo'
-import { Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins'
+import {
+  Poppins_500Medium,
+  Poppins_700Bold,
+  Poppins_800ExtraBold,
+} from '@expo-google-fonts/poppins'
 import { AppLoading } from 'expo'
 import { useFonts } from 'expo-font'
 import { ThemeProvider } from 'styled-components'
@@ -18,6 +22,7 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_500Medium,
     Poppins_700Bold,
+    Poppins_800ExtraBold,
     Archivo_600SemiBold,
     Archivo_500Medium,
   })

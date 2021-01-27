@@ -1,7 +1,6 @@
+import api from 'main/api'
 import User from 'main/entities/User'
-import api from 'main/services/api'
-
-import { ApiError } from 'shared/interfaces'
+import { ApiError } from 'main/utils/interfaces'
 
 import createUserSerializer from './createUserSerializer'
 import { CreateUserApiResponse, CreateUserReturn } from './interfaces'
@@ -13,7 +12,7 @@ export default async function createUser(
     const serializedUser = createUserSerializer(user)
 
     const { data } = await api.post<CreateUserApiResponse>(
-      '/student',
+      '/users',
       serializedUser
     )
 
