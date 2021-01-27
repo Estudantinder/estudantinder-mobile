@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { BackHandler, Dimensions, ScrollView } from 'react-native'
-import { BorderlessButton } from 'react-native-gesture-handler'
+import { BackHandler, Dimensions } from 'react-native'
 import Animated, { Easing } from 'react-native-reanimated'
 
 import { Feather } from '@expo/vector-icons'
@@ -8,7 +7,6 @@ import { FormHandles } from '@unform/core'
 
 import OptionButton from 'views/components/atoms/OptionButton'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
-import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
 import {
   HorizontalDivider,
   InputLabel,
@@ -16,11 +14,8 @@ import {
   SignUpForm,
   Title,
 } from 'views/styles/globalStyles'
-import theme from 'views/styles/theme'
 
-import { SHIFTS } from 'shared/constants'
-
-import SignUpSubjectsPicker from '../SubjectsPicker'
+import Styled from './styles'
 
 export interface FilterDrawerProps {
   open: boolean
@@ -28,7 +23,9 @@ export interface FilterDrawerProps {
 }
 
 const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
-  const fadeAnim = useRef(new Animated.Value(-280)).current
+  const INITIAL_VALUE = -Dimensions.get('window').width - 24
+
+  const fadeAnim = useRef(new Animated.Value(INITIAL_VALUE)).current
 
   const formRef = useRef<FormHandles>(null)
 
@@ -43,7 +40,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
 
     const fadeOut = () => {
       Animated.timing(fadeAnim, {
-        toValue: -Dimensions.get('window').width - 24,
+        toValue: INITIAL_VALUE,
         duration: 500,
         easing: Easing.in(Easing.ease),
       }).start()
@@ -54,7 +51,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
     } else {
       fadeOut()
     }
-  }, [fadeAnim, props])
+  }, [INITIAL_VALUE, fadeAnim, props])
 
   BackHandler.addEventListener('hardwareBackPress', () => {
     if (props.open) {
@@ -68,40 +65,15 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
   })
 
   return (
-    <Animated.View
-      style={{
-        position: 'absolute',
-        top: 0,
-        right: fadeAnim,
-        height: Dimensions.get('window').height - 44,
-        width: Dimensions.get('window').width - 24,
-        backgroundColor: theme.colors.background.light_purple,
-        paddingTop: 50,
-        paddingHorizontal: 20,
-      }}
-    >
+    <Styled.Container style={{ right: fadeAnim }}>
       <Title style={{ textAlign: 'center' }}>Filtrar Alunos</Title>
 
-      <BorderlessButton
-        onPress={() => props.setOpen(false)}
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'absolute',
-          top: 52,
-          right: 20,
-        }}
-      >
+      <Styled.BackContainer onPress={() => props.setOpen(false)}>
         <Feather name="x" color="#2d2d2d" size={28} />
-      </BorderlessButton>
+      </Styled.BackContainer>
 
-      <ScrollView
-        style={{
-          flex: 1,
-          width: '100%',
-        }}
+      <Styled.ScrollView
         contentContainerStyle={{
-          minHeight: '100%',
           width: '100%',
           position: 'relative',
           justifyContent: 'center',
@@ -109,45 +81,6 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
         }}
       >
         <SignUpForm ref={formRef} onSubmit={() => 0}>
-          <RowOptionsPicker
-            label="Série"
-            name="school_year"
-            options={[
-              { label: '1º ano', value: '1' },
-              { label: '2º ano', value: '2' },
-              { label: '3º ano', value: '3' },
-            ]}
-          />
-          <RowOptionsPicker
-            label="Série"
-            name="school_year"
-            options={[
-              { label: '1º ano', value: '1' },
-              { label: '2º ano', value: '2' },
-              { label: '3º ano', value: '3' },
-            ]}
-          />
-          <RowOptionsPicker
-            label="Série"
-            name="school_year"
-            options={[
-              { label: '1º ano', value: '1' },
-              { label: '2º ano', value: '2' },
-              { label: '3º ano', value: '3' },
-            ]}
-          />
-
-          <SignUpSubjectsPicker />
-
-          <RowOptionsPicker
-            label="Turno"
-            name="shift"
-            options={[
-              { label: 'Manhã', value: String(SHIFTS.MORNING) },
-              { label: 'Tarde', value: String(SHIFTS.AFTERNOON) },
-            ]}
-          />
-
           <InputLabel>Gênero</InputLabel>
 
           <Row>
@@ -170,8 +103,8 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
         </SignUpForm>
 
         <PrimaryButton onPress={() => 0}>APLICAR</PrimaryButton>
-      </ScrollView>
-    </Animated.View>
+      </Styled.ScrollView>
+    </Styled.Container>
   )
 }
 
