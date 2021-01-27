@@ -32,6 +32,6 @@ export const StudentSchoolSchema = Yup.object().shape<SchoolKeys>({
   school_year: Yup.number().oneOf([1, 2, 3]).required(),
   shift: Yup.number().oneOf([SHIFTS.MORNING, SHIFTS.AFTERNOON]).required(),
   classroom: Yup.string().max(1).required(),
-  course: CourseSchema,
-  school: SchoolSchema,
+  course: CourseSchema.required(),
+  school: SchoolSchema.required(),
 })
