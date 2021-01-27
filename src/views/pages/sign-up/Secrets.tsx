@@ -4,6 +4,8 @@ import React, { useRef } from 'react'
 import { FormHandles } from '@unform/core'
 
 import { ISecrets, useSignUpContext } from 'main/context/sign-up'
+import checkEmailUnique from 'main/use-cases/check-email-unique'
+import EmailExistsError from 'main/use-cases/check-email-unique/EmailExistsError'
 import validateSchema from 'main/validation'
 import UserSecretsSchema from 'main/validation/schemas/UserSecretsSchema'
 
@@ -37,12 +39,18 @@ const Secrets: React.FC = () => {
 
       const validatedData = await validateSchema(UserSecretsSchema, data)
 
+      await checkEmailUnique(validatedData.email)
+
       setSecrets(validatedData)
 
       handleNavigateToPerson()
     } catch (error) {
       if (error instanceof FormattedValidationError) {
         return formRef.current?.setErrors(error.validationErrors)
+      }
+
+      if (error instanceof EmailExistsError) {
+        return formRef.current?.setFieldError('email', 'EMAIL JÁ EXISTE')
       }
 
       return alert(error)
