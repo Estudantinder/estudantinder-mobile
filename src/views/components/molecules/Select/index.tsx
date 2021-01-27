@@ -13,7 +13,9 @@ type PickerProps = Omit<PickerSelectProps, 'onValueChange'> & {
   onValueChange?: (value: string, index: number) => void
 }
 
-export interface SelectProps extends PickerProps, InputComponentProps {}
+export interface SelectProps extends PickerProps, InputComponentProps {
+  backgroundColor?: string
+}
 
 interface PickerRef extends Picker {
   value: string
@@ -53,7 +55,7 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
   return (
     <Styled.Container>
       <InputLabel>{props.label}</InputLabel>
-      <Styled.PickerBackground>
+      <Styled.PickerBackground backgroundColor={props.backgroundColor}>
         <Picker
           {...props}
           ref={inputRef}

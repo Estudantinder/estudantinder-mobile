@@ -9,11 +9,14 @@ import OptionButton from 'views/components/atoms/OptionButton'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import {
   HorizontalDivider,
+  InputContainer,
   InputLabel,
   Row,
   SignUpForm,
   Title,
 } from 'views/styles/globalStyles'
+
+import SchoolCoursePicker from '../SchoolCoursePicker'
 
 import Styled from './styles'
 
@@ -81,25 +84,29 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
         }}
       >
         <SignUpForm ref={formRef} onSubmit={() => 0}>
-          <InputLabel>Gênero</InputLabel>
+          <SchoolCoursePicker formRef={formRef} backgroundColor="#fff" />
 
-          <Row>
-            <OptionButton onPress={() => 0} isActive>
-              Feminino
-            </OptionButton>
+          <InputContainer>
+            <InputLabel>Gênero</InputLabel>
 
-            <HorizontalDivider />
+            <Row>
+              <OptionButton onPress={() => 0} isActive>
+                Feminino
+              </OptionButton>
 
-            <OptionButton onPress={() => 0} isActive={false}>
-              Masculino
-            </OptionButton>
-          </Row>
+              <HorizontalDivider />
 
-          <Row style={{ marginVertical: 12 }}>
-            <OptionButton onPress={() => 0} isActive={false}>
-              Outros
-            </OptionButton>
-          </Row>
+              <OptionButton onPress={() => 0} isActive={false}>
+                Masculino
+              </OptionButton>
+            </Row>
+
+            <Row style={{ marginVertical: 12 }}>
+              <OptionButton onPress={() => 0} isActive={false}>
+                Outros
+              </OptionButton>
+            </Row>
+          </InputContainer>
         </SignUpForm>
 
         <PrimaryButton onPress={() => 0}>APLICAR</PrimaryButton>

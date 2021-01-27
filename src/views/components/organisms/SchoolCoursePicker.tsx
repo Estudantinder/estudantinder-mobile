@@ -13,6 +13,7 @@ import Select from '../molecules/Select'
 
 export interface SchoolCoursePickerProps {
   formRef: React.RefObject<FormHandles>
+  backgroundColor?: string
 }
 
 const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
@@ -55,6 +56,7 @@ const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
         }
         disabled={!schools || !schools.length}
         onValueChange={getCurrentSchool}
+        backgroundColor={props.backgroundColor}
       />
 
       <Select
@@ -75,6 +77,7 @@ const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
             : []
         }
         disabled={!currentSchool}
+        backgroundColor={props.backgroundColor}
       />
     </View>
   )
