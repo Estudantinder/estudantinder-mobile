@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
@@ -17,7 +16,7 @@ import SchoolCoursePicker from 'views/components/organisms/SchoolCoursePicker'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { SignUpForm } from 'views/styles/globalStyles'
 
-import { SHIFTS } from 'shared/constants'
+import { SCHOOL_YEARS_ITEMS, SHIFTS_ITEMS } from 'shared/constants'
 import FormattedValidationError from 'shared/FormattedValidationError'
 
 type SchoolFormData = Omit<StudentSchool, 'school' | 'course'> & {
@@ -105,21 +104,10 @@ const School: React.FC = () => {
         <RowOptionsPicker
           name="school_year"
           label="Série"
-          options={[
-            { label: '1º ano', value: '1' },
-            { label: '2º ano', value: '2' },
-            { label: '3º ano', value: '3' },
-          ]}
+          options={SCHOOL_YEARS_ITEMS}
         />
 
-        <RowOptionsPicker
-          name="shift"
-          label="Turno"
-          options={[
-            { label: 'Manhã', value: String(SHIFTS.MORNING) },
-            { label: 'Tarde', value: String(SHIFTS.AFTERNOON) },
-          ]}
-        />
+        <RowOptionsPicker name="shift" label="Turno" options={SHIFTS_ITEMS} />
 
         <Input
           name="classroom"

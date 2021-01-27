@@ -7,6 +7,7 @@ import { FormHandles } from '@unform/core'
 
 import OptionButton from 'views/components/atoms/OptionButton'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
 import {
   HorizontalDivider,
   InputContainer,
@@ -16,7 +17,10 @@ import {
   Title,
 } from 'views/styles/globalStyles'
 
+import { SCHOOL_YEARS_ITEMS, SHIFTS_ITEMS } from 'shared/constants'
+
 import SchoolCoursePicker from '../SchoolCoursePicker'
+import SubjectsPicker from '../SubjectsPicker'
 
 import Styled from './styles'
 
@@ -85,6 +89,25 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
       >
         <SignUpForm ref={formRef} onSubmit={() => 0}>
           <SchoolCoursePicker formRef={formRef} backgroundColor="#fff" />
+
+          <RowOptionsPicker
+            name="school_year"
+            label="Série"
+            canDeselect
+            options={SCHOOL_YEARS_ITEMS}
+          />
+
+          <RowOptionsPicker
+            name="shift"
+            label="Turno"
+            canDeselect
+            options={SHIFTS_ITEMS}
+          />
+
+          <SubjectsPicker
+            label="Até 3 matérias que você deseja aprender"
+            canDeselect
+          />
 
           <InputContainer>
             <InputLabel>Gênero</InputLabel>

@@ -12,6 +12,8 @@ import {
   Row,
 } from 'views/styles/globalStyles'
 
+import { OptionsItem } from 'shared/interfaces'
+
 interface ViewRef extends View {
   value: string
 }
@@ -19,10 +21,8 @@ interface ViewRef extends View {
 export interface RowOptionsPickerProps {
   name: string
   label: string
-  options: Array<{
-    label: string
-    value: string
-  }>
+  options: Array<OptionsItem>
+  canDeselect?: boolean
 }
 
 const RowOptionsPicker: React.FC<RowOptionsPickerProps> = (props) => {
@@ -42,7 +42,15 @@ const RowOptionsPicker: React.FC<RowOptionsPickerProps> = (props) => {
     ref?.current && (ref.current.value = defaultValue)
   }, [defaultValue, fieldName, registerField])
 
-  function handleChangeValue(newValue: string) {
+  function handleChangeValue(selectedValue: string) {
+    let newValue = selectedValue
+
+    if (newValue === value) {
+      if (!props.canDeselect) return
+
+      newValue = ''
+    }
+
     ref?.current && (ref.current.value = newValue)
 
     setValue(newValue)

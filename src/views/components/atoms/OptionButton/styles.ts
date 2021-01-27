@@ -8,7 +8,6 @@ const Button = styled.TouchableOpacity<ButtonStyleProps>`
   flex: 1;
   height: 40px;
 
-  display: flex;
   justify-content: center;
   align-items: center;
 

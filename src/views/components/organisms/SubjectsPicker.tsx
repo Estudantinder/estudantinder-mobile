@@ -19,7 +19,12 @@ interface ViewRef extends View {
   value: Subject[]
 }
 
-const SignUpSubjectsPicker: React.FC = () => {
+export interface SubjectsPickerProps {
+  label: string
+  canDeselect?: boolean
+}
+
+const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
   const ref = useRef<ViewRef>(null)
 
   const { fieldName, defaultValue, registerField, error } = useField('subjects')
@@ -48,15 +53,23 @@ const SignUpSubjectsPicker: React.FC = () => {
         favoriteSubjects[1],
       ])
 
-    if (favoriteSubjects.find((subject) => subject.id === newSubject.id)) {
-      return
-    }
-
     let newSubjects = favoriteSubjects
 
-    if (favoriteSubjects.length > 2) newSubjects.pop()
+    const favoriteSubjectIndex = favoriteSubjects.findIndex(
+      (subject) => subject.id === newSubject.id
+    )
 
-    newSubjects = [newSubject, ...newSubjects]
+    if (favoriteSubjectIndex + 1) {
+      if (!props.canDeselect) return
+
+      const newSubjects = favoriteSubjects
+
+      newSubjects.splice(favoriteSubjectIndex, 1)
+    } else {
+      if (favoriteSubjects.length > 2) newSubjects.pop()
+
+      newSubjects = [newSubject, ...newSubjects]
+    }
 
     ref.current.value = newSubjects
 
@@ -66,9 +79,7 @@ const SignUpSubjectsPicker: React.FC = () => {
   return (
     <InputContainer ref={ref}>
       <InputLabel>
-        {!subjects || !subjects.length
-          ? 'Carregando'
-          : `Escolha 03 matérias que você tem afinidade`}
+        {!subjects || !subjects.length ? 'Carregando' : props.label}
       </InputLabel>
 
       {subjects?.map((subject, index) => {
@@ -116,4 +127,4 @@ const SignUpSubjectsPicker: React.FC = () => {
   )
 }
 
-export default SignUpSubjectsPicker
+export default SubjectsPicker
