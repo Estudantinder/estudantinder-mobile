@@ -5,6 +5,9 @@ import Animated, { Easing } from 'react-native-reanimated'
 import { Feather } from '@expo/vector-icons'
 import { FormHandles } from '@unform/core'
 
+import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
+import Subject from 'main/entities/Subject'
+
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
 import { SignUpForm, Title } from 'views/styles/globalStyles'
@@ -12,6 +15,7 @@ import { SignUpForm, Title } from 'views/styles/globalStyles'
 import {
   GENDERS_ENUM,
   SCHOOL_YEARS_ITEMS,
+  SHIFTS,
   SHIFTS_ITEMS,
 } from 'shared/constants'
 
@@ -19,6 +23,15 @@ import SchoolCoursePicker from '../SchoolCoursePicker'
 import SubjectsPicker from '../SubjectsPicker'
 
 import Styled from './styles'
+
+interface PrefsData {
+  course?: string
+  gender?: GENDERS_ENUM
+  school?: string
+  school_year?: number
+  shift?: SHIFTS
+  subjects: Array<Subject>
+}
 
 export interface FilterDrawerProps {
   open: boolean
@@ -29,6 +42,8 @@ const INITIAL_VALUE = -Dimensions.get('window').width - 24
 
 const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
   const fadeAnim = useRef(new Animated.Value(INITIAL_VALUE)).current
+
+  const { schools } = useSchoolsData()
 
   const formRef = useRef<FormHandles>(null)
 
@@ -67,6 +82,20 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
     return true
   })
 
+  function handlePressSubmit() {
+    formRef.current?.submitForm()
+  }
+
+  function handleSubmit(data: PrefsData) {
+    const school = schools?.find((value) => String(value.id) === data.school)
+
+    const course = school?.courses.find(
+      (value) => String(value.id) === data.course
+    )
+
+    console.log({ ...data, course, school })
+  }
+
   return (
     <Styled.Container style={{ right: fadeAnim }}>
       <Title style={{ textAlign: 'center' }}>Filtrar Alunos</Title>
@@ -83,7 +112,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
           alignItems: 'center',
         }}
       >
-        <SignUpForm ref={formRef} onSubmit={() => 0}>
+        <SignUpForm ref={formRef} onSubmit={handleSubmit}>
           <SchoolCoursePicker formRef={formRef} backgroundColor="#fff" />
 
           <RowOptionsPicker
@@ -116,7 +145,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
           />
         </SignUpForm>
 
-        <PrimaryButton onPress={() => 0}>APLICAR</PrimaryButton>
+        <PrimaryButton onPress={handlePressSubmit}>APLICAR</PrimaryButton>
       </Styled.ScrollView>
     </Styled.Container>
   )
