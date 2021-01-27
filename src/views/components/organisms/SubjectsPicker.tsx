@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import { View } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { FlatList, View } from 'react-native'
 
 import { useField } from '@unform/core'
 
@@ -7,13 +7,9 @@ import useSubjectsData from 'main/api/swr-hooks/useSubjectsData'
 import Subject from 'main/entities/Subject'
 
 import InputInfo from 'views/components/atoms/InputInfo'
-import OptionButton from 'views/components/atoms/OptionButton'
-import {
-  HorizontalDivider,
-  InputContainer,
-  InputLabel,
-  Row,
-} from 'views/styles/globalStyles'
+import { InputContainer, InputLabel } from 'views/styles/globalStyles'
+
+import OptionButton from '../atoms/OptionButton'
 
 interface ViewRef extends View {
   value: Subject[]
@@ -59,7 +55,7 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
       (subject) => subject.id === newSubject.id
     )
 
-    if (favoriteSubjectIndex + 1) {
+    if (favoriteSubjectIndex >= 0) {
       if (!props.canDeselect) return
 
       const newSubjects = favoriteSubjects
@@ -73,7 +69,7 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
 
     ref.current.value = newSubjects
 
-    return setFavoriteSubjects(newSubjects)
+    return setFavoriteSubjects([...newSubjects])
   }
 
   return (
@@ -82,45 +78,41 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
         {!subjects || !subjects.length ? 'Carregando' : props.label}
       </InputLabel>
 
-      {subjects?.map((subject, index) => {
-        if (index % 2 !== 0) return
+      <View
+        style={{
+          width: '100%',
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <FlatList
+          data={subjects}
+          renderItem={({ item, index }) => {
+            const isActive = favoriteSubjects
+              .map((value) => String(value.id))
+              .includes(String(item.id))
 
-        return (
-          <Row
-            style={{
-              marginBottom: subjects[index + 1] ? 12 : 0,
-              width: subjects[index + 1] ? '100%' : '48%',
-            }}
-            key={subject.id}
-          >
-            <OptionButton
-              onPress={() => handleSubjectsChange(subject)}
-              isActive={
-                !!favoriteSubjects.find((value) => value.id === subject.id)
-              }
-            >
-              {subject.name}
-            </OptionButton>
-
-            {subjects[index + 1] && (
-              <Fragment>
-                <HorizontalDivider />
-
+            return (
+              <View
+                style={{
+                  marginRight: index % 2 === 0 ? 10 : 0,
+                  marginTop: 12,
+                  flex: 1,
+                }}
+              >
                 <OptionButton
-                  onPress={() => handleSubjectsChange(subjects[index + 1])}
-                  isActive={
-                    !!favoriteSubjects.find(
-                      (value) => value.id === subjects[index + 1].id
-                    )
-                  }
+                  isActive={isActive}
+                  onPress={() => handleSubjectsChange(item)}
                 >
-                  {subjects[index + 1].name}
+                  {item.name}
                 </OptionButton>
-              </Fragment>
-            )}
-          </Row>
-        )
-      })}
+              </View>
+            )
+          }}
+          numColumns={2}
+          scrollEnabled={false}
+        />
+      </View>
 
       <InputInfo>{error}</InputInfo>
     </InputContainer>
