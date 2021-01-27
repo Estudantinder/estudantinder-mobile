@@ -10,8 +10,8 @@ import { StudentAboutSchema } from 'main/validation/schemas/StudentSchemas'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import PersonDatePicker from 'views/components/molecules/BirthDatePicker'
+import GenderPicker from 'views/components/molecules/GenderPicker'
 import Input from 'views/components/molecules/Input'
-import PersonGenderPicker from 'views/components/organisms/GenderPicker'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import { SignUpForm } from 'views/styles/globalStyles'
 
@@ -73,7 +73,7 @@ const Person: React.FC = () => {
 
         <PersonDatePicker />
 
-        <PersonGenderPicker />
+        <GenderPicker />
       </SignUpForm>
 
       <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>
