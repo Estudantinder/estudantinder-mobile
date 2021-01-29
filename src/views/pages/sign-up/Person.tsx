@@ -44,7 +44,7 @@ const Person: React.FC = () => {
       handleNavigateToSchool()
     } catch (error) {
       if (error instanceof FormattedValidationError) {
-        formRef.current?.setErrors(error)
+        formRef.current?.setErrors(error.validationErrors)
 
         const genderError = formRef.current?.getFieldError('gender')
 

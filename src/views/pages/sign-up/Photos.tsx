@@ -67,7 +67,7 @@ const SignUpPhotos: React.FC = () => {
       const formattedPhotos = items.filter((value) => value !== '')
 
       if (!formattedPhotos.length) {
-        return setError('Selecione ao menos uma foto! ')
+        return setError('Selecione ao menos uma foto')
       }
 
       context.setPhotos({ photos: formattedPhotos })

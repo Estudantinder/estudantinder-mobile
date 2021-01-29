@@ -61,13 +61,15 @@ const School: React.FC = () => {
       if (error instanceof FormattedValidationError) {
         formRef.current?.setErrors(error.validationErrors)
 
-        if (error.validationErrors['school.id']) {
-          formRef.current?.setFieldError('school', 'A escola é obrigatória')
-        }
+        formRef.current?.setFieldError(
+          'school',
+          error.validationErrors['school.id']
+        )
 
-        if (error.validationErrors['course.id']) {
-          formRef.current?.setFieldError('course', 'O curso é obrigatório')
-        }
+        formRef.current?.setFieldError(
+          'course',
+          error.validationErrors['course.id']
+        )
 
         return
       }
