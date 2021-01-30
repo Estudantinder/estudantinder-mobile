@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "estudantinder-mobile",
+    "name": "Estudantinder",
     "slug": "estudantinder-mobile",
     "version": "0.1.0",
     "orientation": "portrait",
@@ -22,6 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
+    },
+    "primaryColor": "#6D36DA",
+    "androidNavigationBar": {
+      "backgroundColor": "#6D36DA"
     },
     "web": {
       "favicon": "./assets/favicon.png"

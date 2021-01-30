@@ -1,6 +1,6 @@
 import api from 'main/api'
 import User from 'main/entities/User'
-import { ApiError } from 'main/utils/interfaces'
+import { IApiReturnError } from 'main/utils/interfaces'
 
 import createUserSerializer from './createUserSerializer'
 import { CreateUserApiResponse, CreateUserReturn } from './interfaces'
@@ -19,7 +19,7 @@ export default async function createUser(
     return { id: data.id }
   } catch (err) {
     if (err.response) {
-      const { error: title, message } = err.response.data as ApiError
+      const { error: title, message } = err.response.data as IApiReturnError
 
       return {
         id: '',

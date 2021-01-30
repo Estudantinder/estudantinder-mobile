@@ -8,6 +8,7 @@ import React, {
 
 import Student from 'main/entities/Student'
 import getStudents from 'main/use-cases/get-students'
+import likeTargetStudent from 'main/use-cases/like-target-student'
 
 interface State {
   students: Student[]
@@ -15,6 +16,7 @@ interface State {
 
 interface Actions {
   reloadStudents(): Promise<void>
+  likeStudent(id: string): Promise<void>
 }
 
 export type StudentsContext = State & Actions
@@ -44,10 +46,23 @@ export const StudentsContextProvider: React.FC = ({ children }) => {
     setStudents(newStudents)
   }, [])
 
-  const value = useMemo<StudentsContext>(() => ({ students, reloadStudents }), [
-    reloadStudents,
-    students,
-  ])
+  const likeStudent = useCallback(
+    async (id: string) => {
+      await likeTargetStudent(id)
+
+      const newStudents = students
+
+      newStudents.shift()
+
+      setStudents([...newStudents])
+    },
+    [students]
+  )
+
+  const value = useMemo<StudentsContext>(
+    () => ({ students, reloadStudents, likeStudent }),
+    [likeStudent, reloadStudents, students]
+  )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
