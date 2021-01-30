@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { BackHandler, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
 import Animated, { Easing } from 'react-native-reanimated'
 
 import { Feather } from '@expo/vector-icons'
@@ -70,17 +70,6 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
       fadeOut()
     }
   }, [fadeAnim, props])
-
-  BackHandler.addEventListener('hardwareBackPress', () => {
-    if (props.open) {
-      props.setOpen(false)
-      return true
-    }
-
-    BackHandler.exitApp()
-
-    return true
-  })
 
   function handlePressSubmit() {
     formRef.current?.submitForm()
