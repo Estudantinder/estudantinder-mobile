@@ -1,13 +1,11 @@
 import styled from 'styled-components/native'
 
 const Container = styled.View`
-  width: 100%;
+  flex: 1;
 `
 
 const Image = styled.View`
-  min-height: 300px;
-  max-height: 600px;
-  width: 100%;
+  flex: 1;
   background-color: #c0c0c0;
 
   border-top-end-radius: 8px;

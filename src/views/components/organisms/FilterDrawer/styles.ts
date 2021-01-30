@@ -13,6 +13,7 @@ const Container = styled(Animated.View)`
   padding-top: 50px;
   padding-left: 20px;
   padding-right: 20px;
+  elevation: 12;
 `
 
 const BackContainer = styled(BorderlessButton)`

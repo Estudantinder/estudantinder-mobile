@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-import { Feather } from '@expo/vector-icons'
+import { Feather, AntDesign } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 
 import { useAuthContext } from 'main/context/auth'
 import { useStudentsContext } from 'main/context/students'
 
-import TopImage from 'views/assets/logo.png'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import Card from 'views/components/organisms/Card'
 import FilterDrawer from 'views/components/organisms/FilterDrawer'
-import { Container, Row } from 'views/styles/globalStyles'
+
+import Styled from './styles'
 
 export default function Home() {
   const { students, reloadStudents } = useStudentsContext()
@@ -25,20 +24,32 @@ export default function Home() {
   }, [reloadStudents])
 
   return (
-    <Container>
-      <Row>
-        <Image source={TopImage} />
+    <Styled.Container>
+      <StatusBar style="light" />
+
+      <Styled.TopBar>
         <TouchableOpacity onPress={() => setDrawerOpen(true)}>
-          <Feather name="filter" color="#4F4F4F" size={24} />
+          <Feather name="filter" color="#fff" size={24} />
         </TouchableOpacity>
-      </Row>
+      </Styled.TopBar>
 
-      {students[0] && <Card student={students[0]} />}
+      <Styled.Main>
+        {students[0] && <Card student={students[0]} />}
 
-      <PrimaryButton onPress={signOut}>Sair</PrimaryButton>
+        <Styled.ButtonsContainer>
+          <Styled.Button>
+            <AntDesign name="like1" color="#37C77F" size={32} />
+          </Styled.Button>
+
+          <Styled.Button>
+            <AntDesign name="dislike1" color="#ff3b83" size={32} />
+          </Styled.Button>
+        </Styled.ButtonsContainer>
+
+        <PrimaryButton onPress={signOut}>Sair</PrimaryButton>
+      </Styled.Main>
+
       <FilterDrawer open={drawerOpen} setOpen={setDrawerOpen} />
-
-      <StatusBar translucent style="dark" />
-    </Container>
+    </Styled.Container>
   )
 }
