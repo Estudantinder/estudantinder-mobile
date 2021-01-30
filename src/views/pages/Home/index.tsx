@@ -1,15 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Image, Text, View } from 'react-native'
+import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { Feather, AntDesign } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 
-import { useAuthContext } from 'main/context/auth'
 import { useStudentsContext } from 'main/context/students'
 import Student from 'main/entities/Student'
 
-import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import LogoWhite from 'views/assets/logo_white.png'
 import Card from 'views/components/organisms/Card'
 import FilterDrawer from 'views/components/organisms/FilterDrawer'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
@@ -19,10 +19,11 @@ import Styled from './styles'
 export default function Home() {
   const { students, likeStudent, reloadStudents } = useStudentsContext()
 
-  const { signOut } = useAuthContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const [student, setStudent] = useState<Student>()
+
+  const router = useNavigation()
 
   useEffect(() => {
     setStudent(students[0])
@@ -40,6 +41,10 @@ export default function Home() {
     )
   }
 
+  const handleNavigateToSettings = () => {
+    router.navigate('Settings')
+  }
+
   const handleLikeStudent = async () => {
     try {
       await likeStudent(student.id)
@@ -50,12 +55,18 @@ export default function Home() {
 
   return (
     <Styled.Container>
-      <StatusBar style="light" />
+      <StatusBar style="light" backgroundColor="rgba(0,0,0, .4)" />
 
       <Styled.TopBar>
-        <TouchableOpacity onPress={() => setDrawerOpen(true)}>
+        <BorderlessButton onPress={handleNavigateToSettings}>
+          <Feather name="settings" color="#fff" size={24} />
+        </BorderlessButton>
+
+        <Image source={LogoWhite} resizeMode="contain" />
+
+        <BorderlessButton onPress={() => setDrawerOpen(true)}>
           <Feather name="filter" color="#fff" size={24} />
-        </TouchableOpacity>
+        </BorderlessButton>
       </Styled.TopBar>
 
       <Styled.Main>
@@ -70,8 +81,6 @@ export default function Home() {
             <AntDesign name="dislike1" color="#ff3b83" size={32} />
           </Styled.Button>
         </Styled.ButtonsContainer>
-
-        <PrimaryButton onPress={signOut}>Sair</PrimaryButton>
       </Styled.Main>
 
       <FilterDrawer open={drawerOpen} setOpen={setDrawerOpen} />
