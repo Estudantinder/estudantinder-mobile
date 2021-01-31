@@ -63,7 +63,7 @@ const Details: React.FC = () => {
           multiline
         />
 
-        <SubjectsPicker />
+        <SubjectsPicker label="Escolha 03 matérias que você tem afinidade" />
       </SignUpForm>
 
       <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>

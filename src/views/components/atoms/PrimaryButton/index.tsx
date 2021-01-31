@@ -11,11 +11,7 @@ export interface PrimaryButtonProps {
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
   return (
-    <Styled.Button
-      style={props.style}
-      activeOpacity={0.8}
-      onPress={props.onPress}
-    >
+    <Styled.Button style={props.style} onPress={props.onPress}>
       <Styled.ButtonText>{props.children}</Styled.ButtonText>
     </Styled.Button>
   )

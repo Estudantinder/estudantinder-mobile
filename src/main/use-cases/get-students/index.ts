@@ -1,5 +1,5 @@
 import api from 'main/api'
-import { ApiError } from 'main/utils/interfaces'
+import { IApiReturnError } from 'main/utils/interfaces'
 
 import getStudentSerializer from './getStudentSerializer'
 import { GetStudentsApiData, GetStudentsReturn } from './interfaces'
@@ -13,7 +13,7 @@ export default async function getStudents(): Promise<GetStudentsReturn> {
     }
   } catch (error) {
     if (error.response) {
-      const { error: title, message } = error.response.data as ApiError
+      const { error: title, message } = error.response.data as IApiReturnError
 
       return {
         students: [],

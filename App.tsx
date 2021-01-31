@@ -1,13 +1,16 @@
 import React from 'react'
 
 import {
+  Archivo_400Regular,
   Archivo_600SemiBold,
-  Archivo_500Medium,
 } from '@expo-google-fonts/archivo'
 import {
+  NotoSans_400Regular,
+  NotoSans_700Bold,
+} from '@expo-google-fonts/noto-sans'
+import {
   Poppins_500Medium,
-  Poppins_700Bold,
-  Poppins_800ExtraBold,
+  Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins'
 import { AppLoading } from 'expo'
 import { useFonts } from 'expo-font'
@@ -20,11 +23,12 @@ import theme from 'views/styles/theme'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Poppins_500Medium,
-    Poppins_700Bold,
-    Poppins_800ExtraBold,
+    Archivo_400Regular,
     Archivo_600SemiBold,
-    Archivo_500Medium,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    NotoSans_400Regular,
+    NotoSans_700Bold,
   })
 
   if (!fontsLoaded) {

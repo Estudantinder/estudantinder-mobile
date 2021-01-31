@@ -11,7 +11,7 @@ const ButtonsContainer = styled.View`
 `
 
 const Title = styled.Text`
-  font-family: ${(props) => props.theme.fonts.title};
+  font-family: ${(props) => props.theme.fonts.titles.primary};
   font-size: 18px;
   font-weight: 500;
   text-align: center;

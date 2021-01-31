@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import api from 'main/api'
-import { ApiError } from 'main/utils/interfaces'
+import { IApiReturnError } from 'main/utils/interfaces'
 
 import { STORAGE_AUTH_TOKEN } from 'shared/constants'
 
@@ -40,7 +40,7 @@ export default async function createAuthToken(
     return { token: response.data.jwt }
   } catch (err) {
     if (err.response) {
-      const { error: title, message } = err.response.data as ApiError
+      const { error: title, message } = err.response.data as IApiReturnError
 
       return {
         token: null,

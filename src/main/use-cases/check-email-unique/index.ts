@@ -6,8 +6,6 @@ export default async function checkEmailUnique(email: string): Promise<void> {
   try {
     await api.post('/users/emailValidation', { email })
   } catch (error) {
-    throw new EmailExistsError(
-      error.response.data.message || 'EMAIL ALREADY EXISTS'
-    )
+    throw new EmailExistsError(error.response.data.message)
   }
 }

@@ -20,7 +20,7 @@ const TextInput = styled.TextInput<InputStyleProps>`
     props.isActive
       ? props.theme.colors.input.active_border
       : props.isInvalid
-      ? props.theme.colors.input.invalid
+      ? props.theme.colors.input.error
       : props.theme.colors.input.background};
   border-radius: 4px;
 `

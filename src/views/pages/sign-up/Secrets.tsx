@@ -50,7 +50,7 @@ const Secrets: React.FC = () => {
       }
 
       if (error instanceof EmailExistsError) {
-        return formRef.current?.setFieldError('email', 'EMAIL JÁ EXISTE')
+        return formRef.current?.setFieldError('email', error.message)
       }
 
       return alert(error)
