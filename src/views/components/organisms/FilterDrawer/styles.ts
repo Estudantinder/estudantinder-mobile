@@ -1,8 +1,9 @@
 import { Dimensions } from 'react-native'
-import { BorderlessButton } from 'react-native-gesture-handler'
 import Animated from 'react-native-reanimated'
 
 import styled from 'styled-components/native'
+
+import { Title } from 'views/styles/globalStyles'
 
 const Container = styled(Animated.View)`
   position: absolute;
@@ -16,12 +17,10 @@ const Container = styled(Animated.View)`
   elevation: 12;
 `
 
-const BackContainer = styled(BorderlessButton)`
+const BackContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 52px;
-  right: 20px;
+  height: 40;
 `
 
 const ScrollView = styled.ScrollView`
@@ -29,4 +28,19 @@ const ScrollView = styled.ScrollView`
   width: 100%;
 `
 
-export default { Container, BackContainer, ScrollView }
+const TopBarTitle = styled(Title)`
+  text-align: center;
+  margin-bottom: 0;
+`
+
+const TooltipText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.input.text};
+`
+
+export default {
+  Container,
+  BackContainer,
+  ScrollView,
+  TopBarTitle,
+  TooltipText,
+}

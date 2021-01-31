@@ -21,7 +21,7 @@ const TopBar = styled(Row)`
   margin-bottom: 12px;
   background-color: ${(props) => props.theme.colors.primary.green};
 
-  padding: 0px 12px;
+  padding: 0px 16px;
 
   padding-bottom: 8px;
   padding-top: ${Constants.statusBarHeight + 8}px;

@@ -4,13 +4,14 @@ import Animated, { Easing } from 'react-native-reanimated'
 
 import { Feather } from '@expo/vector-icons'
 import { FormHandles } from '@unform/core'
+import Tooltip from 'rn-tooltip'
 
 import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
 import Subject from 'main/entities/Subject'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
-import { SignUpForm, Title } from 'views/styles/globalStyles'
+import { Row, SignUpForm } from 'views/styles/globalStyles'
 
 import {
   GENDERS_ENUM,
@@ -65,10 +66,10 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
     }
 
     if (props.open) {
-      fadeIn()
-    } else {
-      fadeOut()
+      return fadeIn()
     }
+
+    return fadeOut()
   }, [fadeAnim, props])
 
   function handlePressSubmit() {
@@ -87,11 +88,28 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
 
   return (
     <Styled.Container style={{ right: fadeAnim }}>
-      <Title style={{ textAlign: 'center' }}>Filtrar Alunos</Title>
+      <Row style={{ justifyContent: 'space-between' }}>
+        <Styled.BackContainer onPress={() => props.setOpen(false)}>
+          <Feather name="x" color="#2d2d2d" size={24} />
+        </Styled.BackContainer>
 
-      <Styled.BackContainer onPress={() => props.setOpen(false)}>
-        <Feather name="x" color="#2d2d2d" size={28} />
-      </Styled.BackContainer>
+        <Styled.TopBarTitle>Filtrar Alunos</Styled.TopBarTitle>
+
+        <Tooltip
+          backgroundColor="#fff"
+          height={84}
+          width={200}
+          actionType="press"
+          popover={
+            <Styled.TooltipText>
+              Todas as preferências são opcionais, se deixadas em branco serão
+              consideradas todas as opções.
+            </Styled.TooltipText>
+          }
+        >
+          <Feather name="help-circle" color="#2d2d2d" size={24} />
+        </Tooltip>
+      </Row>
 
       <Styled.ScrollView
         contentContainerStyle={{
