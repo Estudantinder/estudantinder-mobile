@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { Feather, AntDesign } from '@expo/vector-icons'
@@ -12,6 +12,7 @@ import Student from 'main/entities/Student'
 import LogoWhite from 'views/assets/logo_white.png'
 import Card from 'views/components/organisms/Card'
 import FilterDrawer from 'views/components/organisms/FilterDrawer'
+import { Container, Title } from 'views/styles/globalStyles'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 import Styled from './styles'
@@ -35,9 +36,9 @@ export default function Home() {
 
   if (!student) {
     return (
-      <View>
-        <Text>Sem estudante...</Text>
-      </View>
+      <Container>
+        <Title>Sem estudante...</Title>
+      </Container>
     )
   }
 
