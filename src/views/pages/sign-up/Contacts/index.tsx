@@ -42,9 +42,35 @@ const Contacts: React.FC = () => {
 
       setIsEmpty(false)
 
-      const validatedData = await validateSchema(ContactsSchema, data)
+      let twitter, instagram
 
-      setContacts(validatedData)
+      if (data.twitter) {
+        if (data.twitter[0] !== '@') twitter = '@' + data.twitter
+        else twitter = data.twitter
+      }
+
+      if (data.instagram) {
+        if (data.instagram[0] !== '@') instagram = '@' + data.instagram
+        else instagram = data.instagram
+      }
+
+      // eslint-disable-next-line prefer-const
+      let { whatsapp, ...validatedData } = await validateSchema(
+        ContactsSchema,
+        {
+          ...data,
+          twitter,
+          instagram,
+        }
+      )
+
+      if (whatsapp) {
+        if (whatsapp.substr(0, 2) !== '55') whatsapp = '55' + whatsapp
+      }
+
+      console.log({ ...validatedData, whatsapp })
+
+      setContacts({ ...validatedData, whatsapp })
 
       handleNavigateToDetails()
     } catch (error) {
@@ -68,31 +94,40 @@ const Contacts: React.FC = () => {
         <Styled.FacebookInput
           name="facebook"
           label="Facebook"
-          placeholder="Ex: Mariana Dias"
+          placeholder="Ex: estudantinder"
           style={{ borderColor: `#dfe5f2` }}
           onSubmitEditing={() =>
             formRef.current?.getFieldRef('instagram').focus()
           }
+          autoCapitalize="words"
         />
         <Styled.InstagramInput
           name="instagram"
           label="Instagram"
           placeholder="Ex: @estudantinder"
           style={{ borderColor: `#fde6ef` }}
+          keyboardType={Platform.OS === 'ios' ? 'twitter' : 'email-address'}
+          autoCompleteType="username"
+          autoCapitalize="none"
           onSubmitEditing={() =>
             formRef.current?.getFieldRef('whatsapp').focus()
           }
         />
         <Styled.WhatsappInput
+          type="cel-phone"
+          options={{ dddMask: '(11) ' }}
           name="whatsapp"
           label="Whatsapp"
           placeholder="Ex: (11) 00000-0000"
           style={{ borderColor: `#e0efdf` }}
           keyboardType="phone-pad"
+          autoCompleteType="tel"
           onSubmitEditing={() =>
             formRef.current?.getFieldRef('twitter').focus()
           }
+          maxLength={15}
         />
+
         <Styled.TwitterInput
           name="twitter"
           label="Twitter"
@@ -100,6 +135,8 @@ const Contacts: React.FC = () => {
           blurOnSubmit
           returnKeyType="done"
           onSubmitEditing={handlePressSubmit}
+          autoCompleteType="username"
+          autoCapitalize="none"
           keyboardType={Platform.OS === 'ios' ? 'twitter' : 'email-address'}
           style={{ borderColor: `#d2ecfc` }}
         />

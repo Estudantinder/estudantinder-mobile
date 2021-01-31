@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TextInputProps } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
@@ -21,16 +21,30 @@ export interface InputComponentProps {
   info?: string
 }
 
-export type InputProps = TextInputProps & InputComponentProps
+export type InputProps = TextInputProps &
+  InputComponentProps & { rawValue?: string }
 
 export interface TextInputRef extends TextInput {
   value: string
 }
 
-const Input: React.FC<InputProps> = ({ children, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  children,
+  onChangeText,
+  rawValue,
+  ...props
+}) => {
   const inputRef = useRef<TextInputRef>(null)
 
   const [isActive, setIsActive] = useState(false)
+
+  const handleOnChange = useCallback(
+    (text) => {
+      if (inputRef.current) inputRef.current.value = text
+      if (onChangeText) onChangeText(text)
+    },
+    [onChangeText]
+  )
 
   const theme = useTheme()
 
@@ -46,11 +60,16 @@ const Input: React.FC<InputProps> = ({ children, ...props }) => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value',
+      setValue(ref, value) {
+        handleOnChange(value)
+      },
+      getValue(ref) {
+        return rawValue || ref.value
+      },
     })
 
     inputRef.current && (inputRef.current.value = defaultValue)
-  }, [defaultValue, fieldName, registerField])
+  }, [defaultValue, fieldName, handleOnChange, rawValue, registerField])
 
   return (
     <InputContainer>
@@ -59,11 +78,7 @@ const Input: React.FC<InputProps> = ({ children, ...props }) => {
       <Row>
         <Styled.TextInput
           ref={inputRef as never}
-          onChangeText={(value) => {
-            if (inputRef.current) {
-              inputRef.current.value = value
-            }
-          }}
+          onChangeText={handleOnChange}
           isInvalid={!!error}
           isActive={isActive}
           defaultValue={defaultValue}
