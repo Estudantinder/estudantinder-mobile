@@ -27,8 +27,12 @@ export const InputLabel = styled.Text`
   margin-bottom: 10px;
 `
 
+export const Subtitle = styled.Text`
+  font-family: ${(props) => props.theme.fonts.subtitle};
+`
+
 export const Title = styled.Text`
-  font-family: ${(props) => props.theme.fonts.title};
+  font-family: ${(props) => props.theme.fonts.titles.primary};
   font-size: 20px;
 
   margin-bottom: 12px;

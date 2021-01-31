@@ -16,13 +16,13 @@ const Icon = styled(Feather).attrs({
   name: 'info',
   size: 14,
 })`
-  color: ${(props) => props.theme.colors.input.invalid};
+  color: ${(props) => props.theme.colors.input.error};
 `
 
 const Text = styled.Text`
   font-family: ${(props) => props.theme.fonts.input.label};
   font-size: 12px;
-  color: ${(props) => props.theme.colors.input.invalid};
+  color: ${(props) => props.theme.colors.input.error};
 
   margin-left: 4px;
 

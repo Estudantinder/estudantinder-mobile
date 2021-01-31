@@ -15,7 +15,7 @@ const Container = styled.View`
 
 const Text = styled.Text`
   color: #ffffff;
-  font-family: ${(props) => props.theme.fonts.button};
+  font-family: ${(props) => props.theme.fonts.primary};
   font-size: 12px;
   align-items: center;
   text-align: center;

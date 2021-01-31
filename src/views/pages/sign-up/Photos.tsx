@@ -8,7 +8,7 @@ import { useSignUpContext } from 'main/context/sign-up'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import PhotosCarrousel from 'views/components/organisms/PhotosCarrousel'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
-import { InputLabel } from 'views/styles/globalStyles'
+import { Subtitle } from 'views/styles/globalStyles'
 import theme from 'views/styles/theme'
 
 const SignUpPhotos: React.FC = () => {
@@ -80,11 +80,9 @@ const SignUpPhotos: React.FC = () => {
 
   return (
     <FormPageTemplate title="Suas Fotos">
-      <InputLabel
-        style={{ color: error ? theme.colors.input.invalid : '#000' }}
-      >
+      <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
         {error || 'Escolha até seis fotos para o seu perfil'}
-      </InputLabel>
+      </Subtitle>
 
       <PhotosCarrousel onSelect={handleSelectPicker} photos={items} />
 

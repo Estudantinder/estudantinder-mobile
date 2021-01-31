@@ -34,7 +34,7 @@ const TopBarTitle = styled(Title)`
 `
 
 const TooltipText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.input.text};
+  font-family: ${(props) => props.theme.fonts.subtitle};
 `
 
 export default {

@@ -23,13 +23,13 @@ const Footer = styled.View`
 `
 
 const NameText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.title};
+  font-family: ${(props) => props.theme.fonts.titles.primary};
   font-size: 18px;
   color: ${(props) => props.theme.colors.primary.green};
 `
 
 const FooterText = styled.Text`
-  font-family: Poppins_800ExtraBold;
+  font-family: ${(props) => props.theme.fonts.primary};
   color: #2d2d2d;
   line-height: 24px;
 `

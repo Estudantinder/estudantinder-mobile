@@ -14,15 +14,21 @@ const theme = {
       active_text: '#2D2D2D',
       placeholder: '#D2D2D2',
       label: '#000000',
-      invalid: '#E50302',
+      error: '#E50302',
     },
   },
   fonts: {
-    title: 'Poppins_500Medium',
-    button: 'Poppins_700Bold',
+    titles: {
+      primary: 'Poppins_500Medium',
+      secondary: 'Poppins_600SemiBold',
+    },
+    subtitle: 'Archivo_400Regular',
+    primary: 'NotoSans_700Bold',
+    button: 'NotoSans_700Bold',
     input: {
       label: 'Archivo_600SemiBold',
-      text: 'Archivo_500Medium',
+      text: 'NotoSans_400Regular',
+      error: 'Archivo_600SemiBold',
     },
   },
 } as const
