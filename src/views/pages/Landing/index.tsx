@@ -15,7 +15,7 @@ const Landing: React.FC = () => {
   const router = useNavigation()
 
   function handleNavigationToSignUp() {
-    router.navigate('sign-up/Secrets')
+    router.navigate('sign-up/Photos')
   }
 
   function handleNavigationToLogin() {

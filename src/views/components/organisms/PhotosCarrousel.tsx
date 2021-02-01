@@ -11,8 +11,8 @@ interface RenderItemProps {
 
 export interface PhotosCarrouselProps {
   photos: string[]
-
-  onSelect(index: number): void
+  onPress(index: number): void
+  onDeletePress(index: number): void
 }
 
 const PhotosCarrousel: React.FC<PhotosCarrouselProps> = (props) => {
@@ -26,7 +26,8 @@ const PhotosCarrousel: React.FC<PhotosCarrouselProps> = (props) => {
           return (
             <ImagePickerCard
               imageUri={item}
-              onPress={() => props.onSelect(index)}
+              onPress={() => props.onPress(index)}
+              onDeletePress={() => props.onDeletePress(index)}
             />
           )
         }}

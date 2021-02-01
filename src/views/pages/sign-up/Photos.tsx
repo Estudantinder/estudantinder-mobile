@@ -78,13 +78,23 @@ const SignUpPhotos: React.FC = () => {
     }
   }
 
+  const handleDeletePhoto = (index: number) => {
+    const newPhotos = items.filter((_, i) => i !== index)
+
+    setItems([...newPhotos])
+  }
+
   return (
     <FormPageTemplate title="Suas Fotos">
       <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
         {error || 'Escolha até seis fotos para o seu perfil'}
       </Subtitle>
 
-      <PhotosCarrousel onSelect={handleSelectPicker} photos={items} />
+      <PhotosCarrousel
+        photos={items}
+        onPress={handleSelectPicker}
+        onDeletePress={handleDeletePhoto}
+      />
 
       <PrimaryButton onPress={handleSubmit}>CONTINUAR</PrimaryButton>
     </FormPageTemplate>

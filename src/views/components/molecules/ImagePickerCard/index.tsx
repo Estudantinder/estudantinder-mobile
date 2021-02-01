@@ -1,40 +1,22 @@
 import React from 'react'
-import { Image } from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
 
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, Feather } from '@expo/vector-icons'
 
 import theme from 'views/styles/theme'
+
+import Styled from './styles'
 
 export interface ImagePickerCardProps {
   imageUri: string
   onPress(): void
+  onDeletePress(): void
 }
 
 const ImagePickerCard: React.FC<ImagePickerCardProps> = (props) => {
   return (
-    <RectButton
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.colors.background.light_purple,
-        height: 240,
-
-        borderRadius: 6,
-      }}
-      onPress={props.onPress}
-    >
+    <Styled.Container onPress={props.onPress}>
       {props.imageUri ? (
-        <Image
-          style={{
-            width: '100%',
-            height: '100%',
-            resizeMode: 'cover',
-            borderRadius: 6,
-          }}
-          source={{ uri: props.imageUri }}
-        />
+        <Styled.Image source={{ uri: props.imageUri }} />
       ) : (
         <Ionicons
           name="ios-camera"
@@ -42,7 +24,15 @@ const ImagePickerCard: React.FC<ImagePickerCardProps> = (props) => {
           color={theme.colors.primary.purple}
         />
       )}
-    </RectButton>
+
+      {props.imageUri ? (
+        <Styled.DeleteContainer>
+          <Styled.DeleteButton onPress={props.onDeletePress}>
+            <Feather name="trash-2" color="#fff" size={16} />
+          </Styled.DeleteButton>
+        </Styled.DeleteContainer>
+      ) : undefined}
+    </Styled.Container>
   )
 }
 
