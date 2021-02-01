@@ -1,15 +1,12 @@
 import React, { FC } from 'react'
 
 import { AuthContextProvider } from './auth'
-import { SignUpContextProvider } from './sign-up'
-import { StudentsContextProvider } from './students'
 
 const AppProvider: FC = ({ children }) => (
-  <AuthContextProvider>
-    <StudentsContextProvider>
-      <SignUpContextProvider>{children}</SignUpContextProvider>
-    </StudentsContextProvider>
-  </AuthContextProvider>
+  <AuthContextProvider>{children}</AuthContextProvider>
 )
+
+export { SignUpContextProvider } from './sign-up'
+export { StudentsContextProvider } from './students'
 
 export default AppProvider

@@ -1,6 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
+import { SignUpContextProvider } from 'main/context'
+
 import Landing from 'views/pages/Landing'
 import Login from 'views/pages/Login'
 import Profile from 'views/pages/Profile'
@@ -17,19 +19,21 @@ const { Screen } = createStackNavigator()
 
 const SignNavigation: React.FC = () => {
   return (
-    <Navigation>
-      <Screen name="Landing" component={Landing} />
-      <Screen name="Login" component={Login} />
+    <SignUpContextProvider>
+      <Navigation>
+        <Screen name="Landing" component={Landing} />
+        <Screen name="Login" component={Login} />
 
-      <Screen name="sign-up/Secrets" component={Secrets} />
-      <Screen name="sign-up/Person" component={Person} />
-      <Screen name="sign-up/School" component={School} />
-      <Screen name="sign-up/Contacts" component={Contacts} />
-      <Screen name="sign-up/Details" component={Details} />
-      <Screen name="sign-up/Photos" component={Photos} />
+        <Screen name="sign-up/Secrets" component={Secrets} />
+        <Screen name="sign-up/Person" component={Person} />
+        <Screen name="sign-up/School" component={School} />
+        <Screen name="sign-up/Contacts" component={Contacts} />
+        <Screen name="sign-up/Details" component={Details} />
+        <Screen name="sign-up/Photos" component={Photos} />
 
-      <Screen name="Profile" component={Profile} />
-    </Navigation>
+        <Screen name="Profile" component={Profile} />
+      </Navigation>
+    </SignUpContextProvider>
   )
 }
 

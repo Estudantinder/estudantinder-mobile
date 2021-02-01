@@ -1,6 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
+import { StudentsContextProvider } from 'main/context'
+
 import Settings from 'views/pages/Settings'
 
 import MainTabNavigation from './MainTabNavigation'
@@ -10,10 +12,12 @@ const { Screen } = createStackNavigator()
 
 const LoggedNavigation: React.FC = () => {
   return (
-    <Navigation>
-      <Screen name="Main" component={MainTabNavigation} />
-      <Screen name="Settings" component={Settings} />
-    </Navigation>
+    <StudentsContextProvider>
+      <Navigation>
+        <Screen name="Main" component={MainTabNavigation} />
+        <Screen name="Settings" component={Settings} />
+      </Navigation>
+    </StudentsContextProvider>
   )
 }
 

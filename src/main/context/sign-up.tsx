@@ -110,5 +110,3 @@ export const SignUpContextProvider: FC = ({ children }) => {
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
-
-export const SignUpContextConsumer = Context.Consumer
