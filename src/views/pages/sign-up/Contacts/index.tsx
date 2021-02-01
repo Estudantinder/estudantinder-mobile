@@ -9,10 +9,10 @@ import ContactsEntity from 'main/entities/Contacts'
 import validateSchema from 'main/validation'
 import ContactsSchema from 'main/validation/schemas/ContactsSchema'
 
-import InputInfo from 'views/components/atoms/InputInfo'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
-import { SignUpForm } from 'views/styles/globalStyles'
+import { SignUpForm, Subtitle } from 'views/styles/globalStyles'
+import theme from 'views/styles/theme'
 
 import FormattedValidationError from 'shared/FormattedValidationError'
 
@@ -68,8 +68,6 @@ const Contacts: React.FC = () => {
         if (whatsapp.substr(0, 2) !== '55') whatsapp = '55' + whatsapp
       }
 
-      console.log({ ...validatedData, whatsapp })
-
       setContacts({ ...validatedData, whatsapp })
 
       handleNavigateToDetails()
@@ -90,6 +88,10 @@ const Contacts: React.FC = () => {
 
   return (
     <FormPageTemplate title="Seus Contatos">
+      <Subtitle style={{ color: isEmpty ? theme.colors.input.error : '#000' }}>
+        Informe pelos menos um contato acima
+      </Subtitle>
+
       <SignUpForm ref={formRef} initialData={contacts} onSubmit={handleSubmit}>
         <Styled.FacebookInput
           name="facebook"
@@ -140,10 +142,6 @@ const Contacts: React.FC = () => {
           keyboardType={Platform.OS === 'ios' ? 'twitter' : 'email-address'}
           style={{ borderColor: `#d2ecfc` }}
         />
-
-        <InputInfo>
-          {isEmpty ? 'Informe pelos menos um contato acima' : undefined}
-        </InputInfo>
       </SignUpForm>
 
       <PrimaryButton onPress={handlePressSubmit}>CONTINUAR</PrimaryButton>

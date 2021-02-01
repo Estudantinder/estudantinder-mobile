@@ -87,7 +87,7 @@ const SignUpPhotos: React.FC = () => {
   return (
     <FormPageTemplate title="Suas Fotos">
       <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
-        {error || 'Escolha até seis fotos para o seu perfil'}
+        {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
 
       <PhotosCarrousel
