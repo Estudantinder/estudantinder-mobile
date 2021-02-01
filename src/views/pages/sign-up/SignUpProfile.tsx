@@ -8,7 +8,7 @@ import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
-const Profile: React.FC = () => {
+const SignUpProfile: React.FC = () => {
   const { createUser, getUser } = useSignUpContext()
 
   const { signIn } = useAuthContext()
@@ -50,4 +50,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default Profile
+export default SignUpProfile

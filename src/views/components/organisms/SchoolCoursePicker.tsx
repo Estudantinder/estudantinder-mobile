@@ -4,7 +4,6 @@ import { View } from 'react-native'
 import { FormHandles } from '@unform/core'
 
 import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
-import { useSignUpContext } from 'main/context/sign-up'
 import School from 'main/entities/School'
 
 import arrayToItems from 'views/utils/arrayToItems'
@@ -14,14 +13,14 @@ import Select from '../molecules/Select'
 export interface SchoolCoursePickerProps {
   formRef: React.RefObject<FormHandles>
   backgroundColor?: string
+  defaultSchool?: School
 }
 
 const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
   const { schools, error } = useSchoolsData()
-  const ctx = useSignUpContext()
 
   const [currentSchool, setCurrentSchool] = useState<School | undefined>(
-    ctx.school?.school
+    props.defaultSchool
   )
 
   const getCurrentSchool = useCallback(

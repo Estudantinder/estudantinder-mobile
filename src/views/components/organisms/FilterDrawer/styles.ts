@@ -20,7 +20,7 @@ const Container = styled(Animated.View)`
 const BackContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
-  height: 40;
+  height: 40px;
 `
 
 const ScrollView = styled.ScrollView`
