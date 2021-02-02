@@ -3,9 +3,11 @@ import React from 'react'
 
 import { useAuthContext } from 'main/context/auth'
 import { useSignUpContext } from 'main/context/sign-up'
+import User from 'main/entities/User'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
+import StudentInfo from 'views/components/templates/StudentInfo'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 const SignUpProfile: React.FC = () => {
@@ -45,6 +47,8 @@ const SignUpProfile: React.FC = () => {
 
   return (
     <FormPageTemplate title="Seu perfil ficará assim">
+      {getUser() ? <StudentInfo student={getUser() as User} /> : null}
+
       <PrimaryButton onPress={handleSignUp}>CADASTRAR</PrimaryButton>
     </FormPageTemplate>
   )
