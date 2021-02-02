@@ -35,7 +35,7 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
   }
 
   const getGender = () => {
-    if (!Number(student.gender)) return student.gender
+    if (isNaN(student.gender as number)) return student.gender
 
     if (GENDERS_ENUM.FEMALE === Number(student.gender)) return 'Feminino'
     if (GENDERS_ENUM.MALE === Number(student.gender)) return 'Masculino'
