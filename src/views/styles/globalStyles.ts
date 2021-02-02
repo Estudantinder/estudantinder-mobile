@@ -29,6 +29,7 @@ export const InputLabel = styled.Text`
 
 export const Subtitle = styled.Text`
   font-family: ${(props) => props.theme.fonts.subtitle};
+  text-align: center;
 `
 
 export const Title = styled.Text`
