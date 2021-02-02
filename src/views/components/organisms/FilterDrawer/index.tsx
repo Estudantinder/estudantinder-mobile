@@ -97,8 +97,8 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
 
         <Tooltip
           backgroundColor="#fff"
-          height={84}
-          width={200}
+          height={100}
+          width={220}
           actionType="press"
           popover={
             <Styled.TooltipText>
