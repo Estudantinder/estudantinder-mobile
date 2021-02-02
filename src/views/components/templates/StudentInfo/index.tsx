@@ -105,19 +105,21 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
         </Styled.InfoHeader>
 
         <Styled.SchoolRow>
-          <View style={{ width: '60%' }}>
+          <View style={{ maxWidth: '60%' }}>
             <Styled.SchoolLabel>
-              {student.school.address.toUpperCase()} -{' '}
+              {capitalize(student.school.address)} -{' '}
               {capitalize(student.course.name)}
             </Styled.SchoolLabel>
             <Styled.SchoolLabel>Turno: {getShift()}</Styled.SchoolLabel>
           </View>
 
-          <View style={{ width: '40%' }}>
+          <View>
             <Styled.SchoolLabel>
               Série: {student.school_year}º ano
             </Styled.SchoolLabel>
-            <Styled.SchoolLabel>Sala: {student.classroom}</Styled.SchoolLabel>
+            <Styled.SchoolLabel>
+              Sala: {student.classroom.toUpperCase()}
+            </Styled.SchoolLabel>
           </View>
         </Styled.SchoolRow>
       </Styled.InfoContainer>

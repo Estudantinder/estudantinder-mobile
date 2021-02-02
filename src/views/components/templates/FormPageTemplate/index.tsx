@@ -2,6 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 
 import GoBackButton from 'views/components/atoms/GoBackButton'
+import Scroll from 'views/components/atoms/Scroll'
 import { Title } from 'views/styles/globalStyles'
 
 import Styled from './styles'
@@ -16,14 +17,7 @@ const FormPageTemplate: React.FC<FormTemplateProps> = (props) => {
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={10}
     >
-      <Styled.Scroll
-        contentContainerStyle={{
-          minHeight: '100%',
-          width: '100%',
-          justifyContent: 'center',
-          position: 'relative',
-        }}
-      >
+      <Scroll>
         <GoBackButton />
 
         <Styled.Main>
@@ -31,7 +25,7 @@ const FormPageTemplate: React.FC<FormTemplateProps> = (props) => {
 
           {props.children}
         </Styled.Main>
-      </Styled.Scroll>
+      </Scroll>
     </Styled.Container>
   )
 }

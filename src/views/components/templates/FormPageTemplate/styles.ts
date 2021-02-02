@@ -15,11 +15,6 @@ const Container = styled.KeyboardAvoidingView`
   background-color: ${(props) => props.theme.colors.background.page};
 `
 
-const Scroll = styled.ScrollView`
-  flex: 1;
-  width: 100%;
-`
-
 const Main = styled.View`
   min-height: 60%;
   width: 100%;
@@ -28,4 +23,4 @@ const Main = styled.View`
   align-items: center;
 `
 
-export default { Container, Scroll, Main }
+export default { Container, Main }
