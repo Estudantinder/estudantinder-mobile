@@ -1,40 +1,108 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
+import { Text } from 'react-native'
 
-import { Feather } from '@expo/vector-icons'
+import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
 
-import Home from 'views/pages/Home'
+import Home from 'views/pages/main-tabs/Home'
+import UserProfile from 'views/pages/main-tabs/UserProfile'
+
 import theme from 'views/styles/theme'
+
 const { Navigator, Screen } = createBottomTabNavigator()
 
+interface TabBarIconProps {
+  color: string
+  size: number
+  focused: boolean
+}
+
 export default function MainTabNavigation() {
+  const handleGetHomeIcon = (props: TabBarIconProps) => {
+    let iconName
+
+    if (props.focused) iconName = 'home'
+    else iconName = 'home-outline'
+
+    return (
+      <MaterialCommunityIcons
+        name={iconName}
+        size={props.size}
+        color={props.color}
+      />
+    )
+  }
+
+  const handleGetProfileIcon = (props: TabBarIconProps) => {
+    let iconName
+
+    if (props.focused) iconName = 'account'
+    else iconName = 'account-outline'
+
+    return (
+      <MaterialCommunityIcons
+        name={iconName}
+        size={props.size}
+        color={props.color}
+      />
+    )
+  }
+
+  const handleGetDefaultIcon = (props: TabBarIconProps) => {
+    let iconName
+
+    if (props.focused) iconName = 'square-full'
+    else iconName = 'square'
+
+    return (
+      <FontAwesome5 name={iconName} size={props.size} color={props.color} />
+    )
+  }
+
   return (
     <Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: function TabBarIcon({ color, size }) {
-          let iconName
-
+        tabBarIcon: function TabBarIcon({ color, size, focused }) {
           if (route.name === 'Home') {
-            iconName = 'home'
-          } else {
-            iconName = 'square'
+            return handleGetHomeIcon({ color, size, focused })
           }
 
-          return <Feather name={iconName} size={size} color={color} />
+          if (route.name === 'UserProfile') {
+            return handleGetProfileIcon({ color, size, focused })
+          }
+
+          return handleGetDefaultIcon({ color, size, focused })
+        },
+        tabBarLabel: function TabBarLabel({ focused }) {
+          let labelTitle
+
+          if (route.name === 'UserProfile') labelTitle = 'Perfil'
+          else labelTitle = route.name
+
+          return (
+            <Text
+              style={{
+                fontSize: 12,
+                color: focused ? theme.colors.primary.purple : '#4f4f4f',
+                marginTop: -6,
+                marginBottom: 2,
+                fontFamily: focused
+                  ? theme.fonts.primary
+                  : theme.fonts.input.text,
+              }}
+            >
+              {labelTitle}
+            </Text>
+          )
         },
       })}
       tabBarOptions={{
         activeTintColor: theme.colors.primary.purple,
-        inactiveTintColor: theme.colors.background.light_purple,
-        labelStyle: {
-          fontSize: 12,
-          color: '#4f4f4f',
-          marginTop: -6,
-          marginBottom: 2,
-        },
+        inactiveTintColor: theme.colors.primary.purple,
       }}
     >
       <Screen name="Home" component={Home} />
+      <Screen name="UserProfile" component={UserProfile} />
     </Navigator>
   )
 }

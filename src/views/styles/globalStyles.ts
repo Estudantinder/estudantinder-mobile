@@ -9,6 +9,8 @@ export const Container = styled.View`
   justify-content: space-around;
   align-items: center;
 
+  position: relative;
+
   padding: 30px;
   padding-top: ${Constants.statusBarHeight + 10}px;
   padding-bottom: 12px;
@@ -29,6 +31,7 @@ export const InputLabel = styled.Text`
 
 export const Subtitle = styled.Text`
   font-family: ${(props) => props.theme.fonts.subtitle};
+  text-align: center;
 `
 
 export const Title = styled.Text`

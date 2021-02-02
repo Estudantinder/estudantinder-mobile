@@ -72,7 +72,7 @@ const SignUpPhotos: React.FC = () => {
 
       context.setPhotos({ photos: formattedPhotos })
 
-      router.navigate('Profile')
+      router.navigate('sign-up/Profile')
     } catch (error) {
       return alert(error)
     }

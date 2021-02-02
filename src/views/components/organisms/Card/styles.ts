@@ -1,3 +1,5 @@
+import { BorderlessButton } from 'react-native-gesture-handler'
+
 import styled from 'styled-components/native'
 
 const Container = styled.View`
@@ -18,8 +20,25 @@ const Footer = styled.View`
   padding: 16px;
   justify-content: space-between;
 
+  position: relative;
+
   border-bottom-end-radius: 8px;
   border-bottom-left-radius: 8px;
+`
+
+const ProfileButtonContainer = styled.View`
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding-right: 16px;
+  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+`
+
+const ProfileButton = styled(BorderlessButton)`
+  justify-content: center;
+  align-items: center;
 `
 
 const NameText = styled.Text`
@@ -34,4 +53,12 @@ const FooterText = styled.Text`
   line-height: 24px;
 `
 
-export default { Container, Image, Footer, NameText, FooterText }
+export default {
+  Container,
+  Image,
+  Footer,
+  NameText,
+  FooterText,
+  ProfileButtonContainer,
+  ProfileButton,
+}

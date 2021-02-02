@@ -4,6 +4,9 @@ const theme = {
       green: '#0FAD58',
       purple: '#6D36DA',
     },
+    secondary: {
+      dark_purple: '#3900BB',
+    },
     background: {
       light_purple: '#F3EDFF',
       page: '#fff',

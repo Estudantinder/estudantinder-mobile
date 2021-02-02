@@ -75,11 +75,11 @@ export default function Home() {
 
         <Styled.ButtonsContainer>
           <Styled.Button onPress={handleLikeStudent}>
-            <AntDesign name="like1" color="#37C77F" size={32} />
+            <AntDesign name="like1" color="#0FAD58" size={32} />
           </Styled.Button>
 
           <Styled.Button>
-            <AntDesign name="dislike1" color="#ff3b83" size={32} />
+            <AntDesign name="dislike1" color="#C61616" size={32} />
           </Styled.Button>
         </Styled.ButtonsContainer>
       </Styled.Main>

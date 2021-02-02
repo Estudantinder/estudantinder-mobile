@@ -1,4 +1,7 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
+
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import Student from 'main/entities/Student'
 
@@ -14,6 +17,8 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ student }) => {
+  const router = useNavigation()
+
   const getStudentName = () => {
     const nameArray = student.name.split(' ')
 
@@ -47,11 +52,25 @@ const Card: React.FC<CardProps> = ({ student }) => {
       .join(' ')
   }
 
+  const handleNavigateToTargetProfile = () => {
+    router.navigate('TargetProfile', { student })
+  }
+
   return (
     <Styled.Container>
       <Styled.Image />
 
       <Styled.Footer>
+        <Styled.ProfileButtonContainer>
+          <Styled.ProfileButton onPress={handleNavigateToTargetProfile}>
+            <MaterialCommunityIcons
+              name="account-box"
+              size={28}
+              color="#a8a8a8"
+            />
+          </Styled.ProfileButton>
+        </Styled.ProfileButtonContainer>
+
         <Row>
           <Styled.NameText>
             {getStudentName()}, {getAge()}
