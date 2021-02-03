@@ -61,8 +61,6 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
       .join(' ')
   }
 
-  console.log(student.photos)
-
   return (
     <Styled.Container>
       <Title style={{ textAlign: 'center' }}>

@@ -31,16 +31,7 @@ const SignUpProfile: React.FC = () => {
 
   const handleSignUp = async () => {
     try {
-      console.log(
-        '=================================================================='
-      )
-      console.log('HANDLE SIGN UP')
-
       await createUser()
-
-      console.log(
-        '=================================================================='
-      )
     } catch (error) {
       return triggerCorrectAlert(error)
     }
@@ -50,21 +41,11 @@ const SignUpProfile: React.FC = () => {
 
   const handleSignIn = async () => {
     try {
-      console.log(
-        '=================================================================='
-      )
-
-      console.log('HANDLE SIGN IN')
-
       await signIn({
         email: user.email,
         password: user.password,
         stay_logged: false,
       })
-
-      console.log(
-        '=================================================================='
-      )
 
       return handleUploadPhotos()
     } catch (error) {
@@ -76,16 +57,7 @@ const SignUpProfile: React.FC = () => {
 
   const handleUploadPhotos = async () => {
     try {
-      console.log(
-        '=================================================================='
-      )
-
-      console.log('HANDLE UPLOAD PHOTOS')
-
       await uploadPhotos(user.photos)
-      console.log(
-        '=================================================================='
-      )
     } catch (error) {
       return triggerCorrectAlert(error)
     }
