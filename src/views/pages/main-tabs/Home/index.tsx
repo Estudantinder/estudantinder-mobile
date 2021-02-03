@@ -18,7 +18,12 @@ import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 import Styled from './styles'
 
 export default function Home() {
-  const { students, likeStudent, reloadStudents } = useStudentsContext()
+  const {
+    students,
+    likeStudent,
+    dislikeStudent,
+    reloadStudents,
+  } = useStudentsContext()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -54,6 +59,14 @@ export default function Home() {
     }
   }
 
+  const handleDislikeStudent = async () => {
+    try {
+      await dislikeStudent(student.id)
+    } catch (error) {
+      triggerCorrectAlert(error)
+    }
+  }
+
   return (
     <Styled.Container>
       <StatusBar style="light" backgroundColor="rgba(0,0,0, .4)" />
@@ -78,7 +91,7 @@ export default function Home() {
             <AntDesign name="like1" color="#0FAD58" size={28} />
           </Styled.Button>
 
-          <Styled.Button>
+          <Styled.Button onPress={handleDislikeStudent}>
             <AntDesign name="dislike1" color="#C61616" size={28} />
           </Styled.Button>
         </Styled.ButtonsContainer>
