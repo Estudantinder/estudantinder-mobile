@@ -31,13 +31,13 @@ const TopBar = styled(Row)`
 
 const ButtonsContainer = styled(Row)`
   justify-content: space-around;
-  margin: 16px 0px;
+  margin: 12px 0px;
 `
 
 const Button = styled(RectButton)`
   border-radius: 999px;
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   background-color: #fff;
   display: flex;
   align-items: center;

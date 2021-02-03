@@ -11,7 +11,7 @@ const Container = styled.View`
 const InfoContainer = styled.View`
   width: 100%;
   justify-content: space-around;
-  padding: 20px 4px;
+  padding: 16px 4px;
 `
 
 const InfoLabel = styled.Text`
@@ -19,6 +19,20 @@ const InfoLabel = styled.Text`
   font-family: ${(props) => props.theme.fonts.primary};
   color: ${(props) => props.theme.colors.secondary.dark_purple};
   margin-left: 4px;
+`
+
+const ImageContainer = styled.View`
+  flex: 1;
+
+  padding: 4px;
+
+  align-self: center;
+`
+
+const Image = styled.Image`
+  width: 100%;
+  height: 240px;
+  border-radius: 6px;
 `
 
 const InfoHeader = styled(Row)`
@@ -54,6 +68,8 @@ const SchoolLabel = styled.Text`
 export default {
   Container,
   InfoContainer,
+  ImageContainer,
+  Image,
   InfoLabel,
   InfoHeader,
   BioContainer,

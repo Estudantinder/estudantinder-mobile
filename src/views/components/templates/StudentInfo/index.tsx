@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons'
 import Student from 'main/entities/Student'
 
 import PrimaryLabel from 'views/components/atoms/PrimaryLabel'
+import PhotosCarrousel from 'views/components/organisms/PhotosCarrousel'
 import { HorizontalDivider, Row, Title } from 'views/styles/globalStyles'
 import theme from 'views/styles/theme'
 
@@ -60,6 +61,8 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
       .join(' ')
   }
 
+  console.log(student.photos)
+
   return (
     <Styled.Container>
       <Title style={{ textAlign: 'center' }}>
@@ -79,6 +82,26 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
         <Styled.BioContainer>
           <Styled.BioText>{student.bio}</Styled.BioText>
         </Styled.BioContainer>
+      </Styled.InfoContainer>
+
+      <Styled.InfoContainer>
+        <Styled.InfoHeader>
+          <Feather
+            name="image"
+            color={theme.colors.secondary.dark_purple}
+            size={20}
+          />
+          <Styled.InfoLabel>Fotos</Styled.InfoLabel>
+        </Styled.InfoHeader>
+
+        <Styled.ImageContainer>
+          <PhotosCarrousel
+            photos={student.photos}
+            renderItem={({ item }) => {
+              return <Styled.Image resizeMode="cover" source={{ uri: item }} />
+            }}
+          />
+        </Styled.ImageContainer>
       </Styled.InfoContainer>
 
       {student.gender ? (

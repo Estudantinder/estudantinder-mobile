@@ -22,7 +22,7 @@ export default function createUserSerializer(user: User): CreateUserApiData {
     password: user.password,
     school_year: Number(user.school_year),
     shift: Number(user.shift),
-    subjects_ids: user.subjects.map((value) => Number(value.id)),
+    subjects_id: user.subjects.map((value) => Number(value.id)),
     gender: user.gender,
   }
 }

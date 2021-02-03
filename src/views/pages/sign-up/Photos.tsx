@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
+import { View } from 'react-native'
 
 import * as ExpoImagePicker from 'expo-image-picker'
 
@@ -90,11 +91,13 @@ const SignUpPhotos: React.FC = () => {
         {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
 
-      <PhotosCarrousel
-        photos={items}
-        onPress={handleSelectPicker}
-        onDeletePress={handleDeletePhoto}
-      />
+      <View style={{ marginVertical: 40, flex: 1 }}>
+        <PhotosCarrousel
+          photos={items}
+          onPress={handleSelectPicker}
+          onDeletePress={handleDeletePhoto}
+        />
+      </View>
 
       <PrimaryButton onPress={handleSubmit}>CONTINUAR</PrimaryButton>
     </FormPageTemplate>

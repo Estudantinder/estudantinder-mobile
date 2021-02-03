@@ -58,7 +58,7 @@ const Card: React.FC<CardProps> = ({ student }) => {
 
   return (
     <Styled.Container>
-      <Styled.Image />
+      <Styled.Image resizeMode="cover" source={{ uri: student.photos[0] }} />
 
       <Styled.Footer>
         <Styled.ProfileButtonContainer>
@@ -85,14 +85,14 @@ const Card: React.FC<CardProps> = ({ student }) => {
           {student.school_year}º ano {student.classroom} {getShift()}
         </Styled.FooterText>
 
-        <Row style={{ marginTop: 12 }}>
+        <Row style={{ marginTop: 6 }}>
           <PrimaryLabel>{student.subjects[0].name.toUpperCase()}</PrimaryLabel>
 
-          <HorizontalDivider width={6} />
+          <HorizontalDivider width={4} />
 
           <PrimaryLabel>{student.subjects[1].name.toUpperCase()}</PrimaryLabel>
 
-          <HorizontalDivider width={6} />
+          <HorizontalDivider width={4} />
 
           <PrimaryLabel>{student.subjects[2].name.toUpperCase()}</PrimaryLabel>
         </Row>

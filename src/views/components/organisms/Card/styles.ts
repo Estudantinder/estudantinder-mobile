@@ -6,7 +6,7 @@ const Container = styled.View`
   flex: 1;
 `
 
-const Image = styled.View`
+const Image = styled.Image`
   flex: 1;
   background-color: #c0c0c0;
 
@@ -17,7 +17,7 @@ const Image = styled.View`
 const Footer = styled.View`
   width: 100%;
   background-color: #f0f0f0;
-  padding: 16px;
+  padding: 12px;
   justify-content: space-between;
 
   position: relative;
@@ -31,7 +31,7 @@ const ProfileButtonContainer = styled.View`
   right: 0px;
   top: 0px;
   padding-right: 16px;
-  padding-top: 20px;
+  padding-top: 12px;
   justify-content: center;
   align-items: center;
 `
@@ -42,7 +42,7 @@ const ProfileButton = styled(BorderlessButton)`
 `
 
 const NameText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.titles.primary};
+  font-family: ${(props) => props.theme.fonts.titles.secondary};
   font-size: 18px;
   color: ${(props) => props.theme.colors.primary.green};
 `
@@ -50,7 +50,7 @@ const NameText = styled.Text`
 const FooterText = styled.Text`
   font-family: ${(props) => props.theme.fonts.primary};
   color: #2d2d2d;
-  line-height: 24px;
+  font-size: 13px;
 `
 
 export default {
