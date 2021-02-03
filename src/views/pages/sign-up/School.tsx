@@ -101,7 +101,12 @@ const School: React.FC = () => {
         onSubmit={handleSubmit}
         initialData={getDefaultValues()}
       >
-        <SchoolCoursePicker formRef={formRef} />
+        <SchoolCoursePicker
+          formRef={formRef}
+          defaultSchool={schools?.find(
+            (value) => String(value.id) === getDefaultValues().school
+          )}
+        />
 
         <RowOptionsPicker
           name="school_year"

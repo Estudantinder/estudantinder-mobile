@@ -22,8 +22,7 @@ export interface CreateUserApiData {
   bio: string
   gender?: Gender
   shift: SHIFTS
-  photos: Array<string>
-  subjects_id: Array<number>
+  subjects_ids: Array<number>
   course_id: number
   classroom: string
   contacts: Contacts

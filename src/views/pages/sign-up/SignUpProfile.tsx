@@ -3,11 +3,12 @@ import React from 'react'
 
 import { useAuthContext } from 'main/context/auth'
 import { useSignUpContext } from 'main/context/sign-up'
-import User from 'main/entities/User'
+import uploadPhotos from 'main/use-cases/upload-photos'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import FormPageTemplate from 'views/components/templates/FormPageTemplate'
 import StudentInfo from 'views/components/templates/StudentInfo'
+import { Subtitle } from 'views/styles/globalStyles'
 import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 const SignUpProfile: React.FC = () => {
@@ -17,9 +18,29 @@ const SignUpProfile: React.FC = () => {
 
   const router = useNavigation()
 
-  async function handleSignUp() {
+  const user = getUser()
+
+  if (!user)
+    return (
+      <FormPageTemplate title="Algo deu errado">
+        <Subtitle>
+          Confirme se você preencheu todas as informações no cadastro
+        </Subtitle>
+      </FormPageTemplate>
+    )
+
+  const handleSignUp = async () => {
     try {
+      console.log(
+        '=================================================================='
+      )
+      console.log('HANDLE SIGN UP')
+
       await createUser()
+
+      console.log(
+        '=================================================================='
+      )
     } catch (error) {
       return triggerCorrectAlert(error)
     }
@@ -27,17 +48,25 @@ const SignUpProfile: React.FC = () => {
     await handleSignIn()
   }
 
-  async function handleSignIn() {
+  const handleSignIn = async () => {
     try {
-      const user = getUser()
+      console.log(
+        '=================================================================='
+      )
 
-      if (!user) return router.navigate('Login')
+      console.log('HANDLE SIGN IN')
 
       await signIn({
         email: user.email,
         password: user.password,
         stay_logged: false,
       })
+
+      console.log(
+        '=================================================================='
+      )
+
+      return handleUploadPhotos()
     } catch (error) {
       triggerCorrectAlert(error)
 
@@ -45,9 +74,26 @@ const SignUpProfile: React.FC = () => {
     }
   }
 
+  const handleUploadPhotos = async () => {
+    try {
+      console.log(
+        '=================================================================='
+      )
+
+      console.log('HANDLE UPLOAD PHOTOS')
+
+      await uploadPhotos(user.photos)
+      console.log(
+        '=================================================================='
+      )
+    } catch (error) {
+      return triggerCorrectAlert(error)
+    }
+  }
+
   return (
     <FormPageTemplate title="Seu perfil ficará assim">
-      {getUser() ? <StudentInfo student={getUser() as User} /> : null}
+      <StudentInfo student={user} />
 
       <PrimaryButton onPress={handleSignUp}>CADASTRAR</PrimaryButton>
     </FormPageTemplate>
