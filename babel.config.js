@@ -12,7 +12,8 @@ module.exports = function (api) {
           alias: {
             main: './src/main',
             shared: './src/shared',
-            views: './src/views'
+            views: './src/views',
+            env: './env.ts'
           },
         },
       ],

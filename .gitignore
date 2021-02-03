@@ -13,3 +13,7 @@ web-build/
 .DS_Store
 
 .eslintcache
+
+# ENV 
+
+env.ts

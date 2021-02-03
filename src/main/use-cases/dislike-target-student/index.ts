@@ -1,10 +1,12 @@
+import env from 'env'
+
 import api from 'main/api'
 import ApiError from 'main/utils/ApiError'
 import { IApiReturnError } from 'main/utils/interfaces'
 
 export default async function dislikeTargetStudent(id: string) {
   try {
-    await api.post(`/students/dislikes/${id}`)
+    if (env().like_and_dislike) await api.post(`/students/dislikes/${id}`)
   } catch (error) {
     if (error.response) {
       const { error: title, message } = error.response.data as IApiReturnError
