@@ -10,7 +10,7 @@ const Image = styled.Image`
   flex: 1;
   background-color: #c0c0c0;
 
-  border-top-end-radius: 8px;
+  border-top-right-radius: 8px;
   border-top-left-radius: 8px;
 `
 
@@ -22,7 +22,7 @@ const Footer = styled.View`
 
   position: relative;
 
-  border-bottom-end-radius: 8px;
+  border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 `
 
