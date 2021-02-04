@@ -1,4 +1,5 @@
 import React from 'react'
+import { LogBox } from 'react-native'
 
 import {
   Archivo_400Regular,
@@ -20,6 +21,8 @@ import AppProvider from 'main/context'
 
 import Router from 'views/routes'
 import theme from 'views/styles/theme'
+
+LogBox.ignoreLogs(['nested'])
 
 export default function App() {
   const [fontsLoaded] = useFonts({
