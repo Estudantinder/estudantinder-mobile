@@ -94,7 +94,7 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
 
         <Styled.ImageContainer>
           <PhotosCarrousel
-            photos={student.photos}
+            photos={student.photos || []}
             renderItem={({ item }) => {
               return <Styled.Image resizeMode="cover" source={{ uri: item }} />
             }}
