@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
-import { Image } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Image, RefreshControl } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { Feather, AntDesign } from '@expo/vector-icons'
@@ -11,6 +11,7 @@ import Student from 'main/entities/Student'
 
 import LogoWhite from 'views/assets/logo_white.png'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
+import Scroll from 'views/components/atoms/Scroll'
 import Card from 'views/components/organisms/Card'
 import FilterDrawer from 'views/components/organisms/FilterDrawer'
 import { Container, Title } from 'views/styles/globalStyles'
@@ -38,6 +39,14 @@ export default function Home() {
 
   useEffect(() => {
     reloadStudents()
+  }, [reloadStudents])
+
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+
+    reloadStudents().then(() => setRefreshing(false))
   }, [reloadStudents])
 
   if (!student) {
@@ -72,33 +81,39 @@ export default function Home() {
 
   return (
     <Styled.Container>
-      <StatusBar style="light" backgroundColor="rgba(0,0,0, .4)" />
+      <Scroll
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <StatusBar style="light" backgroundColor="rgba(0,0,0, .4)" />
 
-      <Styled.TopBar>
-        <BorderlessButton onPress={handleNavigateToSettings}>
-          <Feather name="settings" color="#fff" size={24} />
-        </BorderlessButton>
+        <Styled.TopBar>
+          <BorderlessButton onPress={handleNavigateToSettings}>
+            <Feather name="settings" color="#fff" size={24} />
+          </BorderlessButton>
 
-        <Image source={LogoWhite} resizeMode="contain" />
+          <Image source={LogoWhite} resizeMode="contain" />
 
-        <BorderlessButton onPress={() => setDrawerOpen(true)}>
-          <Feather name="sliders" color="#fff" size={24} />
-        </BorderlessButton>
-      </Styled.TopBar>
+          <BorderlessButton onPress={() => setDrawerOpen(true)}>
+            <Feather name="sliders" color="#fff" size={24} />
+          </BorderlessButton>
+        </Styled.TopBar>
 
-      <Styled.Main>
-        <Card student={student} />
+        <Styled.Main>
+          <Card student={student} />
 
-        <Styled.ButtonsContainer>
-          <Styled.Button onPress={handleLikeStudent}>
-            <AntDesign name="like1" color="#0FAD58" size={28} />
-          </Styled.Button>
+          <Styled.ButtonsContainer>
+            <Styled.Button onPress={handleLikeStudent}>
+              <AntDesign name="like1" color="#0FAD58" size={28} />
+            </Styled.Button>
 
-          <Styled.Button onPress={handleDislikeStudent}>
-            <AntDesign name="dislike1" color="#C61616" size={28} />
-          </Styled.Button>
-        </Styled.ButtonsContainer>
-      </Styled.Main>
+            <Styled.Button onPress={handleDislikeStudent}>
+              <AntDesign name="dislike1" color="#C61616" size={28} />
+            </Styled.Button>
+          </Styled.ButtonsContainer>
+        </Styled.Main>
+      </Scroll>
 
       <FilterDrawer open={drawerOpen} setOpen={setDrawerOpen} />
     </Styled.Container>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ActivityIndicator, RefreshControl } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
@@ -29,7 +29,7 @@ const UserProfile: React.FC = () => {
     }
   }
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true)
 
     fn().then(() => setRefreshing(false))
