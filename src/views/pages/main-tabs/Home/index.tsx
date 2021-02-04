@@ -10,6 +10,7 @@ import { useStudentsContext } from 'main/context/students'
 import Student from 'main/entities/Student'
 
 import LogoWhite from 'views/assets/logo_white.png'
+import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import Card from 'views/components/organisms/Card'
 import FilterDrawer from 'views/components/organisms/FilterDrawer'
 import { Container, Title } from 'views/styles/globalStyles'
@@ -43,6 +44,8 @@ export default function Home() {
     return (
       <Container>
         <Title>Sem estudante...</Title>
+
+        <PrimaryButton onPress={reloadStudents}>RECARREGAR</PrimaryButton>
       </Container>
     )
   }
