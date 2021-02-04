@@ -82,7 +82,7 @@ export default function Home() {
         <Image source={LogoWhite} resizeMode="contain" />
 
         <BorderlessButton onPress={() => setDrawerOpen(true)}>
-          <Feather name="filter" color="#fff" size={24} />
+          <Feather name="sliders" color="#fff" size={24} />
         </BorderlessButton>
       </Styled.TopBar>
 
