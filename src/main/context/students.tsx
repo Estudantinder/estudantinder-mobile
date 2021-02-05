@@ -8,6 +8,8 @@ import React, {
 
 import Student from 'main/entities/Student'
 import dislikeTargetStudent from 'main/use-cases/dislike-target-student'
+import editFilters from 'main/use-cases/edit-filters'
+import { FiltersData } from 'main/use-cases/edit-filters/FiltersDataAdapter'
 import getStudents from 'main/use-cases/get-students'
 import likeTargetStudent from 'main/use-cases/like-target-student'
 
@@ -19,6 +21,7 @@ interface Actions {
   reloadStudents(): Promise<void>
   likeStudent(id: string): Promise<void>
   dislikeStudent(id: string): Promise<void>
+  updateFilters(filters: FiltersData): Promise<void>
 }
 
 export type StudentsContext = State & Actions
@@ -74,9 +77,24 @@ export const StudentsContextProvider: React.FC = ({ children }) => {
     [students]
   )
 
+  const updateFilters = useCallback(
+    async (data: FiltersData) => {
+      await editFilters(data)
+
+      reloadStudents()
+    },
+    [reloadStudents]
+  )
+
   const value = useMemo<StudentsContext>(
-    () => ({ students, reloadStudents, likeStudent, dislikeStudent }),
-    [dislikeStudent, likeStudent, reloadStudents, students]
+    () => ({
+      students,
+      reloadStudents,
+      likeStudent,
+      dislikeStudent,
+      updateFilters,
+    }),
+    [dislikeStudent, likeStudent, reloadStudents, students, updateFilters]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>

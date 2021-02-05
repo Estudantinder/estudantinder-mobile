@@ -7,6 +7,7 @@ import { FormHandles } from '@unform/core'
 import Tooltip from 'rn-tooltip'
 
 import useSchoolsData from 'main/api/swr-hooks/useSchoolsData'
+import { useStudentsContext } from 'main/context/students'
 import Subject from 'main/entities/Subject'
 
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
@@ -25,7 +26,7 @@ import SubjectsPicker from '../SubjectsPicker'
 
 import Styled from './styles'
 
-interface PrefsData {
+export interface FiltersFormData {
   course?: string
   gender?: GENDERS_ENUM
   school?: string
@@ -45,6 +46,8 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
   const fadeAnim = useRef(new Animated.Value(INITIAL_VALUE)).current
 
   const { schools } = useSchoolsData()
+
+  const { updateFilters } = useStudentsContext()
 
   const formRef = useRef<FormHandles>(null)
 
@@ -76,14 +79,16 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
     formRef.current?.submitForm()
   }
 
-  function handleSubmit(data: PrefsData) {
+  function handleSubmit(data: FiltersFormData) {
     const school = schools?.find((value) => String(value.id) === data.school)
 
     const course = school?.courses.find(
       (value) => String(value.id) === data.course
     )
 
-    console.log({ ...data, course, school })
+    updateFilters({ ...data, school, course })
+
+    props.setOpen(false)
   }
 
   return (
