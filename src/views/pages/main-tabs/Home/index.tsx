@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { Image, RefreshControl } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
@@ -49,21 +49,13 @@ export default function Home() {
     reloadStudents().then(() => setRefreshing(false))
   }, [reloadStudents])
 
-  if (!student) {
-    return (
-      <Container>
-        <Title>Sem estudante...</Title>
-
-        <PrimaryButton onPress={reloadStudents}>RECARREGAR</PrimaryButton>
-      </Container>
-    )
-  }
-
   const handleNavigateToSettings = () => {
     router.navigate('Settings')
   }
 
   const handleLikeStudent = async () => {
+    if (!student) return
+
     try {
       await likeStudent(student.id)
     } catch (error) {
@@ -72,6 +64,8 @@ export default function Home() {
   }
 
   const handleDislikeStudent = async () => {
+    if (!student) return
+
     try {
       await dislikeStudent(student.id)
     } catch (error) {
@@ -101,17 +95,27 @@ export default function Home() {
         </Styled.TopBar>
 
         <Styled.Main>
-          <Card student={student} />
+          {student ? (
+            <Fragment>
+              <Card student={student} />
 
-          <Styled.ButtonsContainer>
-            <Styled.Button onPress={handleLikeStudent}>
-              <AntDesign name="like1" color="#0FAD58" size={28} />
-            </Styled.Button>
+              <Styled.ButtonsContainer>
+                <Styled.Button onPress={handleLikeStudent}>
+                  <AntDesign name="like1" color="#0FAD58" size={28} />
+                </Styled.Button>
 
-            <Styled.Button onPress={handleDislikeStudent}>
-              <AntDesign name="dislike1" color="#C61616" size={28} />
-            </Styled.Button>
-          </Styled.ButtonsContainer>
+                <Styled.Button onPress={handleDislikeStudent}>
+                  <AntDesign name="dislike1" color="#C61616" size={28} />
+                </Styled.Button>
+              </Styled.ButtonsContainer>
+            </Fragment>
+          ) : (
+            <Container>
+              <Title>Sem estudante...</Title>
+
+              <PrimaryButton onPress={reloadStudents}>RECARREGAR</PrimaryButton>
+            </Container>
+          )}
         </Styled.Main>
       </Scroll>
 
