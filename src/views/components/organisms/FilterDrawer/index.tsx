@@ -13,6 +13,7 @@ import Subject from 'main/entities/Subject'
 import PrimaryButton from 'views/components/atoms/PrimaryButton'
 import RowOptionsPicker from 'views/components/molecules/RowOptionsPicker'
 import { Row, SignUpForm } from 'views/styles/globalStyles'
+import triggerCorrectAlert from 'views/utils/triggerCorrectAlert'
 
 import {
   GENDERS_ENUM,
@@ -79,14 +80,18 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
     formRef.current?.submitForm()
   }
 
-  function handleSubmit(data: FiltersFormData) {
+  async function handleSubmit(data: FiltersFormData) {
     const school = schools?.find((value) => String(value.id) === data.school)
 
     const course = school?.courses.find(
       (value) => String(value.id) === data.course
     )
 
-    updateFilters({ ...data, school, course })
+    try {
+      await updateFilters({ ...data, school, course })
+    } catch (error) {
+      triggerCorrectAlert(error)
+    }
 
     props.setOpen(false)
   }
