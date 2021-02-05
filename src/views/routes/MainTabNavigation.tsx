@@ -5,6 +5,7 @@ import { Text } from 'react-native'
 import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
 
 import Home from 'views/pages/main-tabs/Home'
+import Matches from 'views/pages/main-tabs/Matches'
 import UserProfile from 'views/pages/main-tabs/UserProfile'
 
 import theme from 'views/styles/theme'
@@ -48,6 +49,21 @@ export default function MainTabNavigation() {
     )
   }
 
+  const handleGetMatchesIcon = (props: TabBarIconProps) => {
+    let iconName
+
+    if (props.focused) iconName = 'message-text'
+    else iconName = 'message-text-outline'
+
+    return (
+      <MaterialCommunityIcons
+        name={iconName}
+        size={props.size - 2}
+        color={props.color}
+      />
+    )
+  }
+
   const handleGetDefaultIcon = (props: TabBarIconProps) => {
     let iconName
 
@@ -61,6 +77,7 @@ export default function MainTabNavigation() {
 
   return (
     <Navigator
+      initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarIcon: function TabBarIcon({ color, size, focused }) {
           if (route.name === 'Home') {
@@ -69,6 +86,10 @@ export default function MainTabNavigation() {
 
           if (route.name === 'UserProfile') {
             return handleGetProfileIcon({ color, size, focused })
+          }
+
+          if (route.name === 'Matches') {
+            return handleGetMatchesIcon({ color, size, focused })
           }
 
           return handleGetDefaultIcon({ color, size, focused })
@@ -101,6 +122,7 @@ export default function MainTabNavigation() {
         inactiveTintColor: theme.colors.primary.purple,
       }}
     >
+      <Screen name="Matches" component={Matches} />
       <Screen name="Home" component={Home} />
       <Screen name="UserProfile" component={UserProfile} />
     </Navigator>
