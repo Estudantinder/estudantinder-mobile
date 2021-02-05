@@ -13,7 +13,7 @@ export interface MatchCardProps {
 const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
   return (
     <Styled.Container>
-      <Styled.Image source={{ uri: match.photos[0] }} />
+      <Styled.Image source={{ uri: match.photos[0] }} resizeMode="cover" />
 
       <Styled.TopBar>
         <Styled.TopBarButton></Styled.TopBarButton>
