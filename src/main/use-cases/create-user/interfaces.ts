@@ -18,7 +18,7 @@ export interface CreateUserApiData {
   email: string
   password: string
   school_year: number
-  birth_date: string
+  birth_date: Array<number>
   bio: string
   gender?: Gender
   shift: SHIFTS

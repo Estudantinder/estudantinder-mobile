@@ -29,11 +29,14 @@ export default async function createAuthToken(
     api.defaults.headers.authorization = `Bearer ${response.data.jwt}`
 
     if (data.stay_logged) {
-      AsyncStorage.setItem(STORAGE_AUTH_TOKEN.TOKEN_KEY, response.data.jwt)
+      AsyncStorage.setItem(
+        STORAGE_AUTH_TOKEN.TOKEN_KEY,
+        String(response.data.jwt)
+      )
 
       AsyncStorage.setItem(
         STORAGE_AUTH_TOKEN.EXPIRATION_KEY,
-        response.data.expireDate
+        String(response.data.expireDate)
       )
     }
 

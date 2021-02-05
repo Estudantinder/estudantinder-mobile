@@ -16,7 +16,11 @@ export default function getStudentSerializer(
 
   const serializedStudent = new Student({
     bio: data.bio,
-    birth_date: data.birth_date,
+    birth_date: new Date(
+      data.birth_date[0],
+      data.birth_date[1],
+      data.birth_date[2]
+    ),
     classroom: data.classroom,
     name: data.name,
     school_year: data.school_year,

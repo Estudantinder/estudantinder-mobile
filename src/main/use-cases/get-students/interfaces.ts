@@ -13,7 +13,7 @@ export interface GetStudentsReturn {
 
 export interface GetStudentsApiData {
   bio: string
-  birth_date: string
+  birth_date: Array<number>
   classroom: string
   course: Course
   gender: Gender

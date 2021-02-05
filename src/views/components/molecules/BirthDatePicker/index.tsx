@@ -17,7 +17,7 @@ import {
 import Styled from './styles'
 
 interface ViewRef extends View {
-  value: string
+  value: Date
 }
 
 const ACTUAL_YEAR = new Date().getFullYear()
@@ -61,7 +61,7 @@ const SignUpDatePicker: React.FC = () => {
     if (!newDate) return
 
     if (ref?.current) {
-      ref.current.value = String(newDate)
+      ref.current.value = newDate
     }
 
     setDate(newDate)

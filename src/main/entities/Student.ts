@@ -7,7 +7,7 @@ import Subject from './Subject'
 
 export interface StudentAbout {
   name: string
-  birth_date: string
+  birth_date: Date
   gender?: Gender
 }
 
@@ -31,7 +31,7 @@ export interface StudentPhotos {
 export default class Student
   implements StudentAbout, StudentSchool, StudentDetails, StudentPhotos {
   public name: string
-  public birth_date: string
+  public birth_date: Date
   public bio: string
   public gender?: Gender
 

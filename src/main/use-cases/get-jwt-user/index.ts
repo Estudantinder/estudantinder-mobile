@@ -7,7 +7,15 @@ export default async function getJwtUser() {
   try {
     const response = await api.get(`/users`)
 
-    return new User(response.data)
+    const getApiDate = () => {
+      return new Date(
+        response.data.birth_date[0],
+        response.data.birth_date[1],
+        response.data.birth_date[2]
+      )
+    }
+
+    return new User({ ...response.data, birth_date: getApiDate() })
   } catch (error) {
     if (error.response) {
       const { error: title, message } = error.response.data as IApiReturnError
