@@ -30,8 +30,6 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
   }
 
   const getAge = () => {
-    console.log(student.birth_date)
-
     const ageDifMs = Date.now() - student.birth_date.getTime()
     const ageDate = new Date(ageDifMs)
     return Math.abs(ageDate.getUTCFullYear() - 1970)
