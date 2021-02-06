@@ -10,7 +10,7 @@ import PhotosCarrousel from 'views/components/organisms/PhotosCarrousel'
 import { HorizontalDivider, Row, Title } from 'views/styles/globalStyles'
 import theme from 'views/styles/theme'
 
-import { GENDERS_ENUM, SHIFTS } from 'shared/constants'
+import StudentDataAdapter from 'shared/StudentDataAdapter'
 
 import Styled from './styles'
 
@@ -19,52 +19,12 @@ export interface StudentInfoProps {
 }
 
 const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
-  const getStudentName = () => {
-    const nameArray = student.name.split(' ')
-
-    const firstName = nameArray[0]
-
-    const lastName = nameArray[nameArray.length - 1]
-
-    return `${firstName} ${lastName}`
-  }
-
-  const getAge = () => {
-    const ageDifMs = Date.now() - student.birth_date.getTime()
-    const ageDate = new Date(ageDifMs)
-    return Math.abs(ageDate.getUTCFullYear() - 1970)
-  }
-
-  const getGender = () => {
-    if (isNaN(student.gender as number)) return student.gender
-
-    if (GENDERS_ENUM.FEMALE === Number(student.gender)) return 'Feminino'
-    if (GENDERS_ENUM.MALE === Number(student.gender)) return 'Masculino'
-
-    return student.gender
-  }
-
-  const getShift = () => {
-    if (SHIFTS.MORNING === student.shift) return 'Manhã'
-    if (SHIFTS.AFTERNOON === student.shift) return 'Tarde'
-  }
-
-  const capitalize = (value: string, len?: number) => {
-    return value
-      .toLowerCase()
-      .split(' ')
-      .map((word) => {
-        if (word.length <= (len || 4)) return word
-
-        return word.charAt(0).toUpperCase() + word.substring(1)
-      })
-      .join(' ')
-  }
+  const studentAdapter = new StudentDataAdapter(student)
 
   return (
     <Styled.Container>
       <Title style={{ textAlign: 'center' }}>
-        {getStudentName()}, {getAge()}
+        {studentAdapter.getCompactedName()}, {studentAdapter.getAge()}
       </Title>
 
       <Styled.InfoContainer>
@@ -110,7 +70,9 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
               size={20}
               color={theme.colors.secondary.dark_purple}
             />
-            <Styled.InfoLabel>Gênero: {getGender()}</Styled.InfoLabel>
+            <Styled.InfoLabel>
+              Gênero: {studentAdapter.getGender()}
+            </Styled.InfoLabel>
           </Row>
         </Styled.InfoContainer>
       ) : null}
@@ -128,10 +90,12 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ student }) => {
         <Styled.SchoolRow>
           <View style={{ maxWidth: '60%' }}>
             <Styled.SchoolLabel>
-              {capitalize(student.school.address)} -{' '}
-              {capitalize(student.course.name)}
+              {studentAdapter.capitalize(student.school.address)} -{' '}
+              {studentAdapter.capitalize(student.course.name)}
             </Styled.SchoolLabel>
-            <Styled.SchoolLabel>Turno: {getShift()}</Styled.SchoolLabel>
+            <Styled.SchoolLabel>
+              Turno: {studentAdapter.getShift()}
+            </Styled.SchoolLabel>
           </View>
 
           <View>

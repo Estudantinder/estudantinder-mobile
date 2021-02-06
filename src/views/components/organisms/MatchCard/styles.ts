@@ -28,6 +28,9 @@ const TopBarButton = styled(RectButton)`
   height: 100%;
   width: 40px;
   background-color: rgba(255, 255, 255, 0.6);
+
+  justify-content: center;
+  align-items: center;
 `
 
 const TopBarTitle = styled.Text`

@@ -11,7 +11,15 @@ export default async () => {
 
     const matches = response.data.map(
       ({ matchedStudent, matchedId }) =>
-        new Match({ ...matchedStudent, match_id: String(matchedId) })
+        new Match({
+          ...matchedStudent,
+          birth_date: new Date(
+            matchedStudent.birth_date[0],
+            matchedStudent.birth_date[1],
+            matchedStudent.birth_date[2]
+          ),
+          match_id: String(matchedId),
+        })
     )
 
     matches.reverse()

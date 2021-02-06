@@ -6,8 +6,6 @@ export interface UserSecrets {
   password: string
 }
 
-type Modify<T, R> = Omit<T, keyof R> & R
-
 type Props = Modify<User, { id?: string }>
 
 export default class User extends Student implements UserSecrets {

@@ -50,7 +50,7 @@ export default class Student
   constructor(props: Student) {
     this.name = props.name
     this.bio = props.bio
-    this.birth_date = props.birth_date
+    this.birth_date = new Date(props.birth_date)
     this.gender = props.gender
     this.course = new Course(props.course)
     this.school = new School(props.school)
