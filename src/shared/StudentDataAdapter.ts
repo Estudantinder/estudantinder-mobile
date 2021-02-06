@@ -16,7 +16,7 @@ export default class StudentDataAdapter {
 
     const lastName = nameArray[nameArray.length - 1]
 
-    return this.capitalize(`${firstName} ${lastName}`)
+    return this.capitalize(`${firstName} ${lastName}`, 1)
   }
 
   getAge() {

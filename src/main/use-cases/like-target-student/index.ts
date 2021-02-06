@@ -6,7 +6,9 @@ import { IApiReturnError } from 'main/utils/interfaces'
 
 export default async function likeTargetStudent(id: string) {
   try {
-    if (env().like_and_dislike) await api.post(`/students/likes/${id}`)
+    if (!env().like_and_dislike) return
+
+    await api.post(`/students/likes/${id}`)
   } catch (error) {
     if (error.response) {
       const { error: title, message } = error.response.data as IApiReturnError

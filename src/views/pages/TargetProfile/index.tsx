@@ -15,8 +15,6 @@ const TargetProfile: React.FC = () => {
     params: { student },
   } = useRoute<Route<'TargetProfile', TargetProfileRouteProps>>()
 
-  console.log(student.birth_date)
-
   return (
     <FormPageTemplate title="Ver Perfil">
       <StudentInfo

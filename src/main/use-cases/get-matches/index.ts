@@ -10,7 +10,7 @@ export default async () => {
     const response = await api.get<GetMatchApiData[]>('/students/matchs')
 
     const matches = response.data.map(
-      ({ matchedStudent, matchedId }) =>
+      ({ matchedStudent, matchId }) =>
         new Match({
           ...matchedStudent,
           birth_date: new Date(
@@ -18,7 +18,7 @@ export default async () => {
             matchedStudent.birth_date[1],
             matchedStudent.birth_date[2]
           ),
-          match_id: String(matchedId),
+          match_id: String(matchId),
         })
     )
 
