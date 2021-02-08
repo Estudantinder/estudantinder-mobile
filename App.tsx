@@ -15,12 +15,11 @@ import {
 } from '@expo-google-fonts/poppins'
 import { AppLoading } from 'expo'
 import { useFonts } from 'expo-font'
+import { StatusBar } from 'expo-status-bar'
 import { ThemeProvider } from 'styled-components'
 
-import AppProvider from 'main/context'
-
-import Router from 'views/routes'
-import theme from 'views/styles/theme'
+import Router from 'packages/router'
+import theme from 'packages/styles/theme'
 
 LogBox.ignoreLogs(['nested'])
 
@@ -40,9 +39,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppProvider>
-        <Router />
-      </AppProvider>
+      <Router />
+
+      <StatusBar style="light" backgroundColor="rgba(0,0,0, .4)" />
     </ThemeProvider>
   )
 }
