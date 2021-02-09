@@ -1,5 +1,7 @@
 import styled from 'styled-components/native'
 
+import theme from 'packages/styles/theme'
+
 const LandingButtonsContainer = styled.View`
   width: 100%;
 
@@ -7,7 +9,7 @@ const LandingButtonsContainer = styled.View`
 `
 
 const LandingTitle = styled.Text`
-  font-family: ${(props) => props.theme.fonts.titles.primary};
+  font-family: ${theme.fonts.titles.primary};
   font-size: 18px;
   text-align: center;
   color: #4f4f4f;
@@ -19,7 +21,7 @@ const LandingFooter = styled.View`
 `
 
 const SignInButton = styled.TouchableOpacity`
-  border-color: ${(props) => props.theme.colors.primary.green};
+  border-color: ${theme.colors.primary.green};
   border-width: 2px;
 
   width: 100%;
@@ -32,11 +34,11 @@ const SignInButton = styled.TouchableOpacity`
 `
 
 const SignInText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.button};
+  font-family: ${theme.fonts.button};
   font-weight: 700;
   text-align: center;
 
-  color: ${(props) => props.theme.colors.primary.green};
+  color: ${theme.colors.primary.green};
 `
 
 export default {

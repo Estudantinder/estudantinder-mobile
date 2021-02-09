@@ -17,3 +17,8 @@ web-build/
 # ENV 
 
 env.ts
+
+
+# TESTS
+
+__snapshots__

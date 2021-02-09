@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "module": "esnext",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
@@ -18,9 +20,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "main/*": ["./src/main/*"],
-      "shared/*": ["./src/shared/*"],
-      "views/*": ["./src/views/*"]
+      "packages/*": ["./packages/*"],
+      "env": ["./env.ts"],
+      "App": ["./App.tsx"]
     }
   }
 }

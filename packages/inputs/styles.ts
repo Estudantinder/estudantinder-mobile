@@ -1,5 +1,7 @@
 import styled from 'styled-components/native'
 
+import theme from 'packages/styles/theme'
+
 export interface InputStylesProps {
   isActive: boolean
   isInvalid: boolean
@@ -21,7 +23,7 @@ export interface InputInfoStylesProps {
 }
 
 export const InputInfoText = styled.Text<InputInfoStylesProps>`
-  font-family: ${(props) => props.theme.fonts.input.label};
+  font-family: ${theme.fonts.input.label};
   font-size: 12px;
   color: ${(props) => props.color};
 
@@ -39,9 +41,9 @@ export const StyledInput = styled.TextInput<InputStylesProps>`
 
   padding: 4px 15px;
 
-  background-color: ${(props) => props.theme.colors.input.background};
-  color: ${(props) => props.theme.colors.input.active_text};
-  font-family: ${(props) => props.theme.fonts.input.text};
+  background-color: ${theme.colors.input.background};
+  color: ${theme.colors.input.active_text};
+  font-family: ${theme.fonts.input.text};
 
   border-width: 2px;
   border-color: ${(props) =>
@@ -66,7 +68,7 @@ export const InputSuffix = styled.View`
   width: 24px;
   height: 24px;
 
-  background-color: ${(props) => props.theme.colors.input.background};
+  background-color: ${theme.colors.input.background};
 
   display: flex;
   justify-content: center;
@@ -74,8 +76,8 @@ export const InputSuffix = styled.View`
 `
 
 export const InputLabel = styled.Text`
-  font-family: ${(props) => props.theme.fonts.input.label};
-  color: ${(props) => props.theme.colors.input.label};
+  font-family: ${theme.fonts.input.label};
+  color: ${theme.colors.input.label};
 
   margin-bottom: 10px;
 `

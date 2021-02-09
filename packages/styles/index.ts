@@ -2,6 +2,8 @@ import { Form } from '@unform/mobile'
 import Constants from 'expo-constants'
 import styled from 'styled-components/native'
 
+import theme from './theme'
+
 export const PageContainer = styled.KeyboardAvoidingView`
   flex: 1;
   width: 100%;
@@ -13,7 +15,7 @@ export const PageContainer = styled.KeyboardAvoidingView`
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
 
-  background-color: ${(props) => props.theme.colors.background.page};
+  background-color: ${theme.colors.background.page};
 `
 
 export const StyledForm = styled(Form)`
@@ -22,12 +24,12 @@ export const StyledForm = styled(Form)`
 `
 
 export const Subtitle = styled.Text`
-  font-family: ${(props) => props.theme.fonts.subtitle};
+  font-family: ${theme.fonts.subtitle};
   text-align: center;
 `
 
 export const Title = styled.Text`
-  font-family: ${(props) => props.theme.fonts.titles.primary};
+  font-family: ${theme.fonts.titles.primary};
   font-size: 20px;
 
   margin-bottom: 12px;
