@@ -14,13 +14,11 @@ describe('sign-up/pages/Secrets', () => {
     test('should have inputs for email, password and confirm_password', () => {
       const component = render(<Secrets />)
 
-      expect(component.getByTestId('email').type === 'TextInput').toBe(true)
+      expect(component.getByTestId('email')).toBeTruthy()
 
-      expect(component.getByTestId('password').type === 'TextInput').toBe(true)
+      expect(component.getByTestId('password')).toBeTruthy()
 
-      expect(
-        component.getByTestId('confirm-password').type === 'TextInput'
-      ).toBe(true)
+      expect(component.getByTestId('confirm-password')).toBeTruthy()
     })
 
     test('should have a submit button', () => {
