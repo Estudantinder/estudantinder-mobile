@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
+import env from 'env'
+
 import Contacts from 'packages/entities/Contacts'
 import {
   StudentAbout,
@@ -41,6 +43,10 @@ const Context = createContext<SignUpContext | null>(null)
 
 export function useSignUpContext(): SignUpContext {
   const value = useContext(Context)
+
+  if (!env().null_context && value === null) {
+    throw new Error('CONTEXT NOT PROVIDED')
+  }
 
   return value || ({} as SignUpContext)
 }
