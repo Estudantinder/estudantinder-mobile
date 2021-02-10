@@ -32,11 +32,15 @@ const Landing: React.FC = () => {
       </Styled.LandingTitle>
 
       <Styled.LandingButtonsContainer>
-        <PrimaryButton onPress={handleNavigationToSignUp}>
+        <PrimaryButton
+          testID="signup-button"
+          onPress={handleNavigationToSignUp}
+        >
           Quero fazer parte!
         </PrimaryButton>
 
         <Styled.SignInButton
+          testID="login-button"
           onPress={handleNavigationToLogin}
           activeOpacity={0.8}
         >
