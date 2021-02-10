@@ -48,10 +48,10 @@ export const StyledInput = styled.TextInput<InputStylesProps>`
   border-width: 2px;
   border-color: ${(props) =>
     props.isActive
-      ? props.theme.colors.input.active_border
+      ? theme.colors.input.active_border
       : props.isInvalid
-      ? props.theme.colors.input.error
-      : props.theme.colors.input.background};
+      ? theme.colors.input.error
+      : theme.colors.input.background};
   border-radius: 4px;
 `
 

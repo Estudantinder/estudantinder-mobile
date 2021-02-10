@@ -6,8 +6,9 @@ const { pathsToModuleNameMapper } = require('ts-jest/utils')
 
 module.exports = {
   testEnvironment: 'jsdom',
-  
   preset: 'jest-expo',
+  setupFiles: ['<rootDir>/jest/setupNavigation.js'],
+  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   globals: {
     'ts-jest': {
       tsconfig: {

@@ -8,10 +8,18 @@ import { SIGNUP_ROUTES } from '../constants'
 
 const { Screen, Navigator } = createStackNavigator()
 
-const SignUpScreens: React.FC = () => {
+export interface SignUpScreensProps {
+  initialRoute?: string
+  children?: undefined
+}
+
+const SignUpScreens: React.FC<SignUpScreensProps> = (props) => {
   return (
     <SignUpContextProvider>
-      <Navigator screenOptions={{ headerShown: false }}>
+      <Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={props.initialRoute}
+      >
         <Screen name={SIGNUP_ROUTES.SECRETS} component={Secrets} />
       </Navigator>
     </SignUpContextProvider>

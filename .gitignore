@@ -22,3 +22,5 @@ env.ts
 # TESTS
 
 __snapshots__
+__badges__
+coverage

@@ -16,8 +16,15 @@ import checkEmailUnique from '../use-cases/email-exists'
 import EmailExistsError from '../use-cases/EmailExistsError'
 import { SignUpSecretsValidationSchema } from '../validators'
 
-const Secrets: React.FC = () => {
-  const formRef = useRef<FormHandles>(null)
+export interface SecretsProps {
+  handleSubmit?: (data: ContextUserSecrets) => Promise<void>
+  formRef?: React.RefObject<FormHandles>
+}
+
+const Secrets: React.FC<SecretsProps> = (props) => {
+  const ref = useRef<FormHandles>(null)
+
+  const formRef = props.formRef || ref
 
   const context = useSignUpContext()
 
@@ -51,17 +58,19 @@ const Secrets: React.FC = () => {
   const focusOnInput = (inputName: string) => {
     const inputRef = formRef.current?.getFieldRef(inputName)
 
-    inputRef.focus()
+    inputRef.props.onFocus()
   }
 
   return (
     <StackPageTemplate title="Cadastre-se">
       <StyledForm
+        testID="form"
         ref={formRef}
-        onSubmit={handleSubmit}
+        onSubmit={props.handleSubmit || handleSubmit}
         initialData={context.secrets}
       >
         <Input
+          testID="email"
           label="E-mail"
           name="email"
           autoCapitalize="none"
@@ -71,12 +80,14 @@ const Secrets: React.FC = () => {
         />
 
         <PasswordInput
+          testID="password"
           label="Senha"
           name="password"
           onSubmitEditing={() => focusOnInput('confirm_password')}
         />
 
         <PasswordInput
+          testID="confirm-password"
           label="Confirme sua senha"
           name="confirm_password"
           onSubmitEditing={submitForm}
@@ -85,7 +96,9 @@ const Secrets: React.FC = () => {
         />
       </StyledForm>
 
-      <PrimaryButton onPress={submitForm}>CONTINUAR</PrimaryButton>
+      <PrimaryButton testID="submit-button" onPress={submitForm}>
+        CONTINUAR
+      </PrimaryButton>
     </StackPageTemplate>
   )
 }

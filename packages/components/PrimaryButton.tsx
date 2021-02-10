@@ -8,11 +8,13 @@ export interface PrimaryButtonProps {
   children: string
   containerStyle?: StyleProp<ViewStyle>
   textStyle?: StyleProp<TextStyle>
+  testID?: string
 }
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
   return (
     <PrimaryButtonContainer
+      testID={props.testID}
       style={props.containerStyle}
       onPress={props.onPress}
     >

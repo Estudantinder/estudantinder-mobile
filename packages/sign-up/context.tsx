@@ -42,9 +42,7 @@ const Context = createContext<SignUpContext | null>(null)
 export function useSignUpContext(): SignUpContext {
   const value = useContext(Context)
 
-  if (value === null) throw new Error('No context provided')
-
-  return value
+  return value || ({} as SignUpContext)
 }
 
 export const SignUpContextProvider: FC = ({ children }) => {
@@ -99,3 +97,5 @@ export const SignUpContextProvider: FC = ({ children }) => {
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
+
+export const SignUpContextConsumer = Context.Consumer
