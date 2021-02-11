@@ -6,7 +6,7 @@ export const UNAUTHENTICATED_ROUTES = {
 
 export const SIGNUP_ROUTES = {
   SECRETS: 'Secrets',
-  PERSON: 'Person',
+  ABOUT: 'About',
   SCHOOL: 'School',
   CONTACTS: 'Contacts',
   DETAILS: 'Details',

@@ -12,12 +12,10 @@ import Secrets from '../pages/Secrets'
 
 jest.mock('packages/api')
 
-jest.mock('@react-navigation/native')
-
 const mockedApi = mocked(api, true)
 
 describe('sign-up/Secrets', () => {
-  const email = faker.internet.email()
+  const email = 'example@gmail.com'
 
   const mockApiBasedOnEmail = async (data: string) => {
     if (data === email) {

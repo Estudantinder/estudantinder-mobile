@@ -4,11 +4,11 @@ import { ContextUserSecrets } from '../context'
 import { SignUpSecretsValidationSchema } from '../validators'
 
 describe('sign-up/validators', () => {
-  describe('secrets: ', () => {
+  describe('secrets:', () => {
     const randomPassword = faker.random.alphaNumeric(8)
 
     const data: ContextUserSecrets = {
-      email: faker.internet.email(),
+      email: 'example@gmail.com', //faker conflicts with yup
       confirm_password: randomPassword,
       password: randomPassword,
     }
@@ -17,7 +17,7 @@ describe('sign-up/validators', () => {
       expect(SignUpSecretsValidationSchema.isValidSync(data)).toBe(true)
     })
 
-    describe('email: ', () => {
+    describe('email:', () => {
       test('should be required', () => {
         expect(
           SignUpSecretsValidationSchema.isValidSync({
@@ -50,7 +50,7 @@ describe('sign-up/validators', () => {
         ).toBe(true)
       })
     })
-    describe('password: ', () => {
+    describe('password:', () => {
       test('should be required', () => {
         expect(
           SignUpSecretsValidationSchema.isValidSync({
@@ -77,7 +77,7 @@ describe('sign-up/validators', () => {
         ).toBe(false)
       })
     })
-    describe('confirm_password: ', () => {
+    describe('confirm_password:', () => {
       test('should be required', () => {
         expect(
           SignUpSecretsValidationSchema.isValidSync({

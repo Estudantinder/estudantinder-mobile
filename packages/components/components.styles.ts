@@ -39,3 +39,24 @@ export const PrimaryButtonText = styled.Text`
   text-align: center;
   color: #fff;
 `
+
+interface ButtonStyleProps {
+  isActive: boolean
+}
+
+export const OptionButtonContainer = styled.TouchableOpacity<ButtonStyleProps>`
+  flex: 1;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background-color: ${(props) =>
+    props.isActive ? theme.colors.primary.purple : '#fff'};
+  border-width: 1px;
+  border-color: ${theme.colors.primary.purple};
+`
+
+export const OptionButtonText = styled.Text<ButtonStyleProps>`
+  font-family: ${theme.fonts.button};
+  color: ${(props) => (props.isActive ? '#fff' : theme.colors.primary.purple)};
+`

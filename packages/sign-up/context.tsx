@@ -19,7 +19,7 @@ export interface ContextUserSecrets extends UserSecrets {
 interface State {
   user?: User
   secrets: ContextUserSecrets | undefined
-  person: StudentAbout | undefined
+  about: StudentAbout | undefined
   school: StudentSchool | undefined
   contacts: Contacts | undefined
   details: StudentDetails | undefined
@@ -28,7 +28,7 @@ interface State {
 
 interface Actions {
   setSecrets(secrets: ContextUserSecrets): void
-  setPerson(person: StudentAbout): void
+  setAbout(about: StudentAbout): void
   setSchool(school: StudentSchool): void
   setContacts(contacts: Contacts): void
   setDetails(details: StudentDetails): void
@@ -54,7 +54,7 @@ export function useSignUpContext(): SignUpContext {
 export const SignUpContextProvider: FC = ({ children }) => {
   const [secrets, setSecrets] = useState<ContextUserSecrets>()
 
-  const [person, setPerson] = useState<StudentAbout>()
+  const [about, setAbout] = useState<StudentAbout>()
 
   const [school, setSchool] = useState<StudentSchool>()
 
@@ -67,7 +67,7 @@ export const SignUpContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    if (!secrets || !person || !school || !contacts || !details || !photos)
+    if (!secrets || !about || !school || !contacts || !details || !photos)
       return
 
     const newUser = new User({
@@ -76,18 +76,18 @@ export const SignUpContextProvider: FC = ({ children }) => {
       contacts,
       ...details,
       ...photos,
-      ...person,
+      ...about,
     })
 
     setUser(newUser)
-  }, [contacts, details, person, photos, school, secrets])
+  }, [contacts, details, about, photos, school, secrets])
 
   const value = useMemo<Ctx>(
     () => ({
       secrets,
       setSecrets,
-      person,
-      setPerson,
+      about,
+      setAbout,
       school,
       setSchool,
       contacts,
@@ -98,7 +98,7 @@ export const SignUpContextProvider: FC = ({ children }) => {
       user,
       setPhotos,
     }),
-    [secrets, person, school, contacts, details, photos, user]
+    [secrets, about, school, contacts, details, photos, user]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>

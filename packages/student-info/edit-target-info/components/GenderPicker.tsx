@@ -1,0 +1,103 @@
+import React, { useEffect, useRef, useState } from 'react'
+import { View } from 'react-native'
+
+import { useField } from '@unform/core'
+
+import OptionButton from 'packages/components/OptionButton'
+import Gender, { GENDERS, IGender } from 'packages/entities/Gender'
+import Input from 'packages/inputs/components/Input'
+import { InputContainer, InputLabel } from 'packages/inputs/styles'
+import { HorizontalDivider, Row } from 'packages/styles'
+
+import { GenderPickerOrText } from '../edit-target-info.styles'
+
+const GenderPicker: React.FC = () => {
+  const ref = useRef<ValueRef<View, IGender>>(null)
+
+  const { fieldName, defaultValue, registerField } = useField('gender')
+
+  const getGenderName = () => {
+    if (!defaultValue) return ''
+
+    return new Gender(defaultValue).getGenderName()
+  }
+
+  const [gender, setGender] = useState<string>(getGenderName())
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: ref.current,
+      path: 'value',
+    })
+
+    ref?.current && (ref.current.value = defaultValue)
+  }, [defaultValue, fieldName, registerField])
+
+  const handleSelectMasc = () => {
+    if (gender.toUpperCase() === 'MASCULINO') {
+      return handleChangeGender('')
+    }
+
+    handleChangeGender('Masculino')
+  }
+
+  const handleSelectFem = () => {
+    if (gender.toUpperCase() === 'FEMININO') {
+      return handleChangeGender('')
+    }
+
+    handleChangeGender('Feminino')
+  }
+
+  const handleChangeGender = (newGender: string) => {
+    if (!ref.current) return setGender(newGender)
+
+    if (newGender.toUpperCase() === 'FEMININO') {
+      ref.current.value = GENDERS.FEMALE
+    } else if (newGender.toUpperCase() === 'MASCULINO') {
+      ref.current.value = GENDERS.MALE
+    } else {
+      ref.current.value = newGender
+    }
+
+    setGender(newGender)
+  }
+
+  return (
+    <InputContainer testID="gender" ref={ref}>
+      <InputLabel>Gênero (Opcional)</InputLabel>
+
+      <Row>
+        <OptionButton
+          isActive={gender.toUpperCase() === 'FEMININO'}
+          onPress={handleSelectFem}
+        >
+          Feminino
+        </OptionButton>
+
+        <HorizontalDivider />
+
+        <OptionButton
+          isActive={gender.toUpperCase() === 'MASCULINO'}
+          onPress={handleSelectMasc}
+        >
+          Masculino
+        </OptionButton>
+      </Row>
+
+      <GenderPickerOrText>ou</GenderPickerOrText>
+
+      <Input
+        label="Digite o seu gênero"
+        onChangeText={handleChangeGender}
+        value={gender}
+        name="custom_gender"
+        returnKeyType="done"
+        blurOnSubmit
+      />
+    </InputContainer>
+  )
+}
+
+export default GenderPicker

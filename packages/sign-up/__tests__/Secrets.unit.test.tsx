@@ -7,8 +7,6 @@ import faker from 'faker'
 
 import Secrets from '../pages/Secrets'
 
-jest.mock('@react-navigation/native')
-
 describe('sign-up/pages/Secrets', () => {
   describe('when rendered:', () => {
     test('should have inputs for email, password and confirm_password', () => {
