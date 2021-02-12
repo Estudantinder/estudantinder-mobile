@@ -24,6 +24,24 @@ describe('sign-up/pages/Secrets', () => {
 
       expect(component.getByTestId('submit-button')).toBeTruthy()
     })
+
+    test('should use the default values', () => {
+      const email = faker.internet.email()
+      const password = faker.random.alphaNumeric()
+
+      const formRef: RefObject<FormHandles> = { current: null }
+
+      render(
+        <Secrets
+          formRef={formRef}
+          initialData={{ confirm_password: password, password, email }}
+        />
+      )
+
+      expect(formRef.current?.getFieldValue('email')).toBe(email)
+      expect(formRef.current?.getFieldValue('password')).toBe(password)
+      expect(formRef.current?.getFieldValue('confirm_password')).toBe(password)
+    })
   })
 
   describe('form events:', () => {

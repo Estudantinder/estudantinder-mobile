@@ -34,6 +34,30 @@ describe('student-info/edit-target-info/About', () => {
 
       expect(component.getByTestId('gender')).toBeTruthy()
     })
+
+    test('should use the default values', () => {
+      const name = faker.internet.email()
+      const birthDate = faker.date.between(
+        STUDENT_ABOUT_SCHEMA_MIN_DATE,
+        STUDENT_ABOUT_SCHEMA_MIN_DATE
+      )
+      const gender = randomGender()
+
+      const formRef: RefObject<FormHandles> = { current: null }
+
+      render(
+        <EditStudentAbout
+          formRef={formRef}
+          initialData={{ name, birth_date: birthDate, gender }}
+        />
+      )
+
+      expect(formRef.current?.getFieldValue('name')).toBe(name)
+
+      expect(formRef.current?.getFieldValue('birth_date')).toBe(birthDate)
+
+      expect(formRef.current?.getFieldValue('gender')).toBe(gender)
+    })
   })
 
   describe('form events: ', () => {

@@ -22,6 +22,7 @@ import { SignUpSecretsValidationSchema } from '../validators'
 export interface SecretsProps {
   handleSubmit?: (data: ContextUserSecrets) => Promise<void>
   formRef?: React.RefObject<FormHandles>
+  initialData?: ContextUserSecrets
 }
 
 const SignUpSecrets: React.FC<SecretsProps> = (props) => {
@@ -68,7 +69,7 @@ const SignUpSecrets: React.FC<SecretsProps> = (props) => {
         testID="form"
         ref={formRef}
         onSubmit={props.handleSubmit || handleSubmit}
-        initialData={context.secrets}
+        initialData={props.initialData || context.secrets}
       >
         <Input
           testID="email"
