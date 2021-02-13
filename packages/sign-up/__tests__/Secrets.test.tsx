@@ -4,13 +4,21 @@ import { act } from 'react-test-renderer'
 
 import { FormHandles } from '@unform/core'
 import faker from 'faker'
+import { mocked } from 'ts-jest/utils'
 
-import Secrets from '../pages/Secrets'
+import formRefMock from 'packages/__mocks__/formRef.mock'
+import api from 'packages/api'
+
+import SignUpSecrets from '../pages/Secrets'
+
+jest.mock('packages/api')
+
+const mockedApi = mocked(api, true)
 
 describe('sign-up/pages/Secrets', () => {
   describe('when rendered:', () => {
     test('should have inputs for email, password and confirm_password', () => {
-      const component = render(<Secrets />)
+      const component = render(<SignUpSecrets />)
 
       expect(component.getByTestId('email')).toBeTruthy()
 
@@ -20,7 +28,7 @@ describe('sign-up/pages/Secrets', () => {
     })
 
     test('should have a submit button', () => {
-      const component = render(<Secrets />)
+      const component = render(<SignUpSecrets />)
 
       expect(component.getByTestId('submit-button')).toBeTruthy()
     })
@@ -32,7 +40,7 @@ describe('sign-up/pages/Secrets', () => {
       const formRef: RefObject<FormHandles> = { current: null }
 
       render(
-        <Secrets
+        <SignUpSecrets
           formRef={formRef}
           initialData={{ confirm_password: password, password, email }}
         />
@@ -45,8 +53,8 @@ describe('sign-up/pages/Secrets', () => {
   })
 
   describe('form events:', () => {
-    test('should go to next input when SubmitEditing', () => {
-      const component = render(<Secrets />)
+    test('should go to next input when keyboard submit pressed', () => {
+      const component = render(<SignUpSecrets />)
 
       const email = component.getByTestId('email')
 
@@ -63,10 +71,10 @@ describe('sign-up/pages/Secrets', () => {
       expect(confirmPassword.props.isActive).toBe(true)
     })
 
-    test('should submit when submit on last input', () => {
+    test('should submit when last input keyboard submit pressed', () => {
       const handleSubmit = jest.fn()
 
-      const component = render(<Secrets handleSubmit={handleSubmit} />)
+      const component = render(<SignUpSecrets handleSubmit={handleSubmit} />)
 
       const confirmPassword = component.getByTestId('confirm-password')
 
@@ -78,7 +86,7 @@ describe('sign-up/pages/Secrets', () => {
     test('should submit when submit button pressed', () => {
       const handleSubmit = jest.fn()
 
-      const component = render(<Secrets handleSubmit={handleSubmit} />)
+      const component = render(<SignUpSecrets handleSubmit={handleSubmit} />)
 
       const submitButton = component.getByTestId('submit-button')
 
@@ -89,18 +97,19 @@ describe('sign-up/pages/Secrets', () => {
 
     test('should get data from all fields when submitted', () => {
       const handleSubmit = jest.fn()
-      const formRef: RefObject<FormHandles> = { current: null }
 
       const email = faker.internet.email()
       const password = faker.random.alphaNumeric()
 
-      render(<Secrets handleSubmit={handleSubmit} formRef={formRef} />)
+      render(
+        <SignUpSecrets handleSubmit={handleSubmit} formRef={formRefMock} />
+      )
 
-      formRef.current?.setFieldValue('email', email)
-      formRef.current?.setFieldValue('password', password)
-      formRef.current?.setFieldValue('confirm_password', password)
+      formRefMock.current?.setFieldValue('email', email)
+      formRefMock.current?.setFieldValue('password', password)
+      formRefMock.current?.setFieldValue('confirm_password', password)
 
-      formRef.current?.submitForm()
+      formRefMock.current?.submitForm()
 
       expect(handleSubmit).toBeCalledWith(
         {
@@ -110,6 +119,51 @@ describe('sign-up/pages/Secrets', () => {
         },
         { reset: expect.any(Function) },
         undefined
+      )
+    })
+  })
+  const email = 'example@gmail.com'
+
+  const mockApiBasedOnEmail = async (data: string) => {
+    if (data === email) {
+      mockedApi.post.mockRejectedValue({
+        response: { data: { message: '[mock]: EMAIL ALREADY EXISTS' } },
+      })
+    } else {
+      mockedApi.post.mockResolvedValue({ status: 204, data: undefined })
+    }
+  }
+
+  describe('submit events:', () => {
+    test('should show validation error if field is invalid', async () => {
+      render(<SignUpSecrets formRef={formRefMock} />)
+
+      mockApiBasedOnEmail('')
+
+      await act(async () => formRefMock?.current?.submitForm())
+
+      expect(formRefMock.current?.getFieldError('email')).toBeTruthy()
+      expect(formRefMock.current?.getFieldError('password')).toBeTruthy()
+      expect(
+        formRefMock.current?.getFieldError('confirm_password')
+      ).toBeTruthy()
+    })
+
+    test('should show error on email input if email already exists', async () => {
+      const password = faker.random.alphaNumeric(8)
+
+      render(<SignUpSecrets formRef={formRefMock} />)
+
+      mockApiBasedOnEmail(email)
+
+      formRefMock.current?.setFieldValue('email', email)
+      formRefMock.current?.setFieldValue('password', password)
+      formRefMock.current?.setFieldValue('confirm_password', password)
+
+      await act(async () => formRefMock?.current?.submitForm())
+
+      expect(formRefMock.current?.getFieldError('email')).toBe(
+        '[mock]: EMAIL ALREADY EXISTS'
       )
     })
   })

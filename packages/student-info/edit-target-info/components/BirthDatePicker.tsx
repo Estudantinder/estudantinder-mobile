@@ -13,13 +13,13 @@ import { InputContainer, InputLabel, InputSuffix } from 'packages/inputs/styles'
 import { Row } from 'packages/styles'
 
 import {
+  STUDENT_ABOUT_SCHEMA_MAX_DATE,
+  STUDENT_ABOUT_SCHEMA_MIN_DATE,
+} from '../../validators/StudentAboutSchema'
+import {
   BirthDatePickerButton,
   BirthDatePickerText,
 } from '../edit-target-info.styles'
-import {
-  STUDENT_ABOUT_SCHEMA_MAX_DATE,
-  STUDENT_ABOUT_SCHEMA_MIN_DATE,
-} from '../validators'
 
 const BirthDatePicker: React.FC = () => {
   const { registerField, ...field } = useField('birth_date')

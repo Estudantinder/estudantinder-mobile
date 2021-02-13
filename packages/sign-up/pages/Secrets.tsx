@@ -15,9 +15,9 @@ import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
 
 import { ContextUserSecrets, useSignUpContext } from '../context'
+import SignUpSecretsValidationSchema from '../SignUpSecretsValidationSchema'
 import checkEmailUnique from '../use-cases/email-exists'
 import EmailExistsError from '../use-cases/EmailExistsError'
-import { SignUpSecretsValidationSchema } from '../validators'
 
 export interface SecretsProps {
   handleSubmit?: (data: ContextUserSecrets) => Promise<void>

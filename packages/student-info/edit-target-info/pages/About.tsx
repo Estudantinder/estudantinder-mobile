@@ -11,10 +11,10 @@ import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
 
+import StudentAboutSchema from '../../validators/StudentAboutSchema'
 import BirthDatePicker from '../components/BirthDatePicker'
 import GenderPicker from '../components/GenderPicker'
 import { EditTargetInfoProps } from '../EditTargetInfoProps'
-import { StudentAboutSchema } from '../validators'
 
 type EditStudentAboutProps = EditTargetInfoProps<StudentAbout>
 
@@ -30,6 +30,8 @@ const EditStudentAbout: React.FC<EditStudentAboutProps> = (props) => {
       const validatedData = await validateSchema(StudentAboutSchema, data)
 
       props.setData?.(validatedData)
+
+      props.onSubmitSuccess?.()
     } catch (error) {
       if (error instanceof UnformValidationError) {
         formRef.current?.setErrors(error.validationErrors)

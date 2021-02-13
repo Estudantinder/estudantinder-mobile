@@ -2,8 +2,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
 import { SignUpContextProvider } from 'packages/sign-up/context'
-import SignUpAbout from 'packages/sign-up/pages/About'
 import Secrets from 'packages/sign-up/pages/Secrets'
+import SignUpAbout from 'packages/sign-up/pages/SignUpAbout'
+import SignUpSchool from 'packages/sign-up/pages/SignUpSchool'
 
 import { SIGNUP_ROUTES } from '../constants'
 
@@ -23,6 +24,7 @@ const SignUpScreens: React.FC<SignUpScreensProps> = (props) => {
       >
         <Screen name={SIGNUP_ROUTES.SECRETS} component={Secrets} />
         <Screen name={SIGNUP_ROUTES.ABOUT} component={SignUpAbout} />
+        <Screen name={SIGNUP_ROUTES.SCHOOL} component={SignUpSchool} />
       </Navigator>
     </SignUpContextProvider>
   )

@@ -60,3 +60,20 @@ export const OptionButtonText = styled.Text<ButtonStyleProps>`
   font-family: ${theme.fonts.button};
   color: ${(props) => (props.isActive ? '#fff' : theme.colors.primary.purple)};
 `
+
+export interface SelectBackgroundStylesProps {
+  backgroundColor?: string
+}
+
+export const SelectContainer = styled.View`
+  margin-top: 20px;
+`
+
+export const SelectBackground = styled.View<SelectBackgroundStylesProps>`
+  background-color: ${(props) =>
+    props.backgroundColor || theme.colors.input.background};
+  border-radius: 4px;
+  min-height: 40px;
+  justify-content: center;
+  padding: 0px 8px;
+`

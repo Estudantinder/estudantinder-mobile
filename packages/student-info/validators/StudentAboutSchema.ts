@@ -12,7 +12,7 @@ export const STUDENT_ABOUT_SCHEMA_MAX_DATE = new Date(
 
 export const STUDENT_ABOUT_SCHEMA_MIN_DATE = new Date(`1/1/${ACTUAL_YEAR - 21}`)
 
-export const StudentAboutSchema = Yup.object().shape<AboutKeys>({
+export default Yup.object().shape<AboutKeys>({
   name: Yup.string().required('Digite seu nome completo'),
   birth_date: Yup.date()
     .min(STUDENT_ABOUT_SCHEMA_MIN_DATE)

@@ -4,7 +4,7 @@ import { ContextUserSecrets } from './context'
 
 type SecretsKeys = Record<keyof ContextUserSecrets, unknown>
 
-export const SignUpSecretsValidationSchema = Yup.object().shape<SecretsKeys>({
+export default Yup.object().shape<SecretsKeys>({
   email: Yup.string()
     .email('Digite um e-mail válido')
     .required('Digite um e-mail')
