@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 
 import useSchoolsData from 'packages/api/swr-hooks/useSchoolsData'
 import PrimaryButton from 'packages/components/PrimaryButton'
@@ -10,6 +9,7 @@ import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { SHIFTS } from 'packages/entities/Shift'
 import { StudentSchool } from 'packages/entities/Student'
 import Input from 'packages/inputs/components/Input'
+import { StyledForm } from 'packages/styles'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
 
@@ -89,7 +89,7 @@ const EditStudentSchool: React.FC<EditStudentSchoolProps> = (props) => {
 
   return (
     <StackPageTemplate title="Informações Escolares">
-      <Form
+      <StyledForm
         ref={formRef}
         onSubmit={props.handleSubmit || handleSubmit}
         initialData={getDefaultValues(props.initialData)}
@@ -128,7 +128,7 @@ const EditStudentSchool: React.FC<EditStudentSchoolProps> = (props) => {
           blurOnSubmit
           returnKeyType="done"
         />
-      </Form>
+      </StyledForm>
 
       <PrimaryButton testID="submit-button" onPress={submitForm}>
         CONTINUAR

@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 
+import Input from 'packages/inputs/components/Input'
 import { InputLabel } from 'packages/inputs/styles'
 
 export const BirthDatePickerButton = styled.TouchableOpacity`
@@ -24,4 +25,28 @@ export const GenderPickerOrText = styled(InputLabel)`
 
   margin-bottom: -10px;
   margin-top: 10px;
+`
+
+export const FacebookInput = styled(Input)`
+  padding-left: 24px;
+  background-color: #dfe5f2;
+  border-color: #dfe5f2;
+`
+
+export const InstagramInput = styled(Input)`
+  padding-left: 24px;
+  background-color: #fde6ef;
+  border-color: #fde6ef;
+`
+
+export const WhatsappInput = styled(Input)`
+  padding-left: 24px;
+  background-color: #e0efdf;
+  border-color: #e0efdf;
+`
+
+export const TwitterInput = styled(Input)`
+  padding-left: 24px;
+  background-color: #d2ecfc;
+  border-color: #d2ecfc;
 `

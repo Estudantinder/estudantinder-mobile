@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
-import { SignUpContextProvider } from 'packages/sign-up/context'
 import Secrets from 'packages/sign-up/pages/Secrets'
 import SignUpAbout from 'packages/sign-up/pages/SignUpAbout'
+import SignUpContacts from 'packages/sign-up/pages/SignUpContacts'
 import SignUpSchool from 'packages/sign-up/pages/SignUpSchool'
 
 import { SIGNUP_ROUTES } from '../constants'
@@ -17,16 +17,15 @@ export interface SignUpScreensProps {
 
 const SignUpScreens: React.FC<SignUpScreensProps> = (props) => {
   return (
-    <SignUpContextProvider>
-      <Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={props.initialRoute}
-      >
-        <Screen name={SIGNUP_ROUTES.SECRETS} component={Secrets} />
-        <Screen name={SIGNUP_ROUTES.ABOUT} component={SignUpAbout} />
-        <Screen name={SIGNUP_ROUTES.SCHOOL} component={SignUpSchool} />
-      </Navigator>
-    </SignUpContextProvider>
+    <Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={props.initialRoute}
+    >
+      <Screen name={SIGNUP_ROUTES.SECRETS} component={Secrets} />
+      <Screen name={SIGNUP_ROUTES.ABOUT} component={SignUpAbout} />
+      <Screen name={SIGNUP_ROUTES.SCHOOL} component={SignUpSchool} />
+      <Screen name={SIGNUP_ROUTES.CONTACTS} component={SignUpContacts} />
+    </Navigator>
   )
 }
 

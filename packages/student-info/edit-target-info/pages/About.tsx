@@ -1,12 +1,12 @@
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { StudentAbout } from 'packages/entities/Student'
 import Input from 'packages/inputs/components/Input'
+import { StyledForm } from 'packages/styles'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
@@ -53,7 +53,7 @@ const EditStudentAbout: React.FC<EditStudentAboutProps> = (props) => {
 
   return (
     <StackPageTemplate title="Suas informações">
-      <Form
+      <StyledForm
         ref={formRef}
         onSubmit={props.handleSubmit || handleSubmit}
         initialData={props.initialData}
@@ -71,7 +71,7 @@ const EditStudentAbout: React.FC<EditStudentAboutProps> = (props) => {
         <BirthDatePicker />
 
         <GenderPicker />
-      </Form>
+      </StyledForm>
 
       <PrimaryButton testID="submit-button" onPress={submitForm}>
         CONTINUAR

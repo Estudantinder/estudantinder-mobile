@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "prect": "cross-env NODE_ENV=test jest -o --verbose",
+    "prect": "cross-env NODE_ENV=test jest -o",
     "ct": "git-cz",
     "start": "expo start",
     "android": "expo start --android",
@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "verify": "tsc --noEmit",
-    "test": "cross-env NODE_ENV=test jest --runInBand --verbose --notify",
+    "test": "cross-env NODE_ENV=test jest --runInBand --verbose",
+    "test:quiet": "cross-env NODE_ENV=test jest --runInBand --notify",
     "test:ci": "cross-env NODE_ENV=test jest --coverage",
     "test:badges": "cross-env NODE_ENV=test jest --coverage && jest-coverage-badges --input coverage/coverage-summary.json --output __badges__"
   },

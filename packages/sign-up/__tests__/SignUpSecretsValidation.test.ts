@@ -7,69 +7,55 @@ describe('sign-up/SignUpSecretsValidationSchema', () => {
   const randomPassword = faker.random.alphaNumeric(8)
 
   const data: ContextUserSecrets = {
-    email: 'example@gmail.com', //faker conflicts with yup
+    email: faker.internet.email(),
     confirm_password: randomPassword,
     password: randomPassword,
   }
 
-  test('should pass if all value are valid', () => {
-    expect(SignUpSecretsValidationSchema.isValidSync(data)).toBe(true)
+  test('should pass if all value are valid', async () => {
+    expect(await SignUpSecretsValidationSchema.isValid(data)).toBe(true)
   })
 
   describe('email:', () => {
-    test('should be required', () => {
+    test('should be required', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           email: undefined,
         })
       ).toBe(false)
-
-      expect(
-        SignUpSecretsValidationSchema.isValidSync({
-          ...data,
-          email: data.email,
-        })
-      ).toBe(true)
     })
 
-    test('should be a valid email', () => {
+    test('should be a valid email', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           email: 'invalid',
         })
       ).toBe(false)
-
-      expect(
-        SignUpSecretsValidationSchema.isValidSync({
-          ...data,
-          email: data.email,
-        })
-      ).toBe(true)
     })
   })
   describe('password:', () => {
-    test('should be required', () => {
+    test('should be required', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           password: undefined,
         })
       ).toBe(false)
     })
 
-    test('should have at lest 8 chars', () => {
+    test('should have at lest 8 chars ', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           password: faker.random.alphaNumeric(7),
         })
       ).toBe(false)
     })
-    test('should have at lest 1 number', () => {
+    test('should have at lest 1 number ', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           password: faker.random.alpha({ count: 8 }),
         })
@@ -77,17 +63,17 @@ describe('sign-up/SignUpSecretsValidationSchema', () => {
     })
   })
   describe('confirm_password:', () => {
-    test('should be required', () => {
+    test('should be required', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           confirm_password: undefined,
         })
       ).toBe(false)
     })
-    test('should match password', () => {
+    test('should match password', async () => {
       expect(
-        SignUpSecretsValidationSchema.isValidSync({
+        await SignUpSecretsValidationSchema.isValid({
           ...data,
           confirm_password: data.password + 'abc',
         })

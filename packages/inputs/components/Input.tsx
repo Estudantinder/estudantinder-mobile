@@ -16,7 +16,10 @@ export interface InputCoreProps {
   info?: string
 }
 
-export type InputProps = TextInputProps & InputCoreProps
+export type InputProps = {
+  onChangeText?: (value: string) => string | undefined
+} & TextInputProps &
+  InputCoreProps
 
 const Input: React.FC<InputProps> = ({ children, ...props }) => {
   const inputRef = useRef<ValueRef<TextInput>>(null)
@@ -38,11 +41,11 @@ const Input: React.FC<InputProps> = ({ children, ...props }) => {
   }, [field.defaultValue])
 
   const onChangeText = (value: string) => {
-    if (inputRef.current) {
-      inputRef.current.value = value
-    }
+    const newValue = props.onChangeText?.(value)
 
-    props.onChangeText?.(value)
+    if (inputRef.current) {
+      inputRef.current.value = newValue || value
+    }
   }
 
   return (

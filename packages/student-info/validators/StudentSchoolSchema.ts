@@ -18,5 +18,6 @@ export default Yup.object().shape<StudentSchoolKeys>({
     .required('Informe seu turno'),
   classroom: Yup.string()
     .max(1, 'A sala precisa ter somente 1 carácter')
-    .required('Informe sua sala'),
+    .required('Informe sua sala')
+    .trim(),
 })
