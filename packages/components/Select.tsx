@@ -16,6 +16,7 @@ type PickerProps = Omit<PickerSelectProps, 'onValueChange'> & {
 export interface SelectProps extends PickerProps, InputCoreProps {
   backgroundColor?: string
   testID?: string
+  defaultValue?: string
 }
 
 const Select: React.FC<SelectProps> = ({ children, ...props }) => {
@@ -23,7 +24,7 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
 
   const { registerField, ...field } = useField(props.name)
 
-  const [value, setValue] = useState(field.defaultValue)
+  const [value, setValue] = useState(props.defaultValue || field.defaultValue)
 
   function handleChangeValue(value: ReactText) {
     const newValue = String(value)

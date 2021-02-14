@@ -5,6 +5,7 @@ import { FormHandles } from '@unform/core'
 
 import useSchoolsData from 'packages/api/swr-hooks/useSchoolsData'
 import Select from 'packages/components/Select'
+import Course from 'packages/entities/Course'
 import School from 'packages/entities/School'
 import arrayToItems from 'packages/utils/arrayToItems'
 
@@ -12,6 +13,7 @@ export interface SchoolCoursePickerProps {
   formRef: React.RefObject<FormHandles>
   backgroundColor?: string
   defaultSchool?: School
+  defaultCourse?: Course
 }
 
 const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
@@ -31,6 +33,17 @@ const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
     },
     [props.formRef, schools]
   )
+
+  const getDefaultCourse = useCallback(() => {
+    if (!props.defaultCourse) return ''
+
+    const courseIds = currentSchool?.courses.map((course) => course.id)
+
+    if (courseIds?.includes(String(props.defaultCourse.id)))
+      return props.defaultCourse.id
+
+    return ''
+  }, [currentSchool?.courses, props.defaultCourse])
 
   return (
     <View>
@@ -77,6 +90,7 @@ const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
         }
         disabled={!currentSchool}
         backgroundColor={props.backgroundColor}
+        defaultValue={getDefaultCourse()}
       />
     </View>
   )

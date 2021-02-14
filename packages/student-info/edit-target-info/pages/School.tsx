@@ -94,7 +94,11 @@ const EditStudentSchool: React.FC<EditStudentSchoolProps> = (props) => {
         onSubmit={props.handleSubmit || handleSubmit}
         initialData={getDefaultValues(props.initialData)}
       >
-        <SchoolCoursePicker formRef={formRef} />
+        <SchoolCoursePicker
+          formRef={formRef}
+          defaultSchool={props.initialData?.school}
+          defaultCourse={props.initialData?.course}
+        />
 
         <RowOptionsPicker
           testID="school_year"
