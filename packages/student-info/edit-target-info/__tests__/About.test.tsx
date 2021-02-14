@@ -11,19 +11,19 @@ import EditStudentAbout from '../pages/About'
 
 describe('student-info/edit-target-info/About', () => {
   describe('when rendered:', () => {
-    test('should have a input for name', () => {
+    test('should have an input for name', () => {
       const component = render(<EditStudentAbout />)
 
       expect(component.getByTestId('name')).toBeTruthy()
     })
 
-    test('should have a input for birth date', () => {
+    test('should have an input for birth date', () => {
       const component = render(<EditStudentAbout />)
 
       expect(component.getByTestId('birth_date')).toBeTruthy()
     })
 
-    test('should have a input for gender', () => {
+    test('should have an input for gender', () => {
       const component = render(<EditStudentAbout />)
 
       expect(component.getByTestId('gender')).toBeTruthy()

@@ -34,7 +34,7 @@ describe('student-info/edit-target-info/School', () => {
       expect(component.getByTestId('shift')).toBeTruthy()
     })
 
-    test('should have a input for classroom', () => {
+    test('should have an input for classroom', () => {
       const component = render(<EditStudentSchool />)
 
       expect(component.getByTestId('classroom')).toBeTruthy()

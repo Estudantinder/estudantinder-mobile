@@ -9,25 +9,25 @@ import EditStudentContacts from '../pages/Contacts'
 
 describe('student-info/edit-target-info/Contacts', () => {
   describe('when rendered:', () => {
-    test('should have a input for facebook', () => {
+    test('should have an input for facebook', () => {
       const component = render(<EditStudentContacts />)
 
       expect(component.getByTestId('facebook')).toBeTruthy()
     })
 
-    test('should have a input for instagram', () => {
+    test('should have an input for instagram', () => {
       const component = render(<EditStudentContacts />)
 
       expect(component.getByTestId('instagram')).toBeTruthy()
     })
 
-    test('should have a input for whatsapp', () => {
+    test('should have an input for whatsapp', () => {
       const component = render(<EditStudentContacts />)
 
       expect(component.getByTestId('whatsapp')).toBeTruthy()
     })
 
-    test('should have a input for twitter', () => {
+    test('should have an input for twitter', () => {
       const component = render(<EditStudentContacts />)
 
       expect(component.getByTestId('twitter')).toBeTruthy()
