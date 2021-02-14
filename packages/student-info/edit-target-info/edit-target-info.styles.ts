@@ -28,25 +28,21 @@ export const GenderPickerOrText = styled(InputLabel)`
 `
 
 export const FacebookInput = styled(Input)`
-  padding-left: 24px;
   background-color: #dfe5f2;
   border-color: #dfe5f2;
 `
 
 export const InstagramInput = styled(Input)`
-  padding-left: 24px;
   background-color: #fde6ef;
   border-color: #fde6ef;
 `
 
 export const WhatsappInput = styled(Input)`
-  padding-left: 24px;
   background-color: #e0efdf;
   border-color: #e0efdf;
 `
 
 export const TwitterInput = styled(Input)`
-  padding-left: 24px;
   background-color: #d2ecfc;
   border-color: #d2ecfc;
 `
