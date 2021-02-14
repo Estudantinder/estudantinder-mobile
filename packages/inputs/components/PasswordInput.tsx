@@ -1,11 +1,8 @@
 import React from 'react'
-import { TextInputProps } from 'react-native'
 
-import Input from './Input'
+import Input, { InputProps } from './Input'
 
-interface PasswordInputProps extends TextInputProps {
-  name: string
-  label: string
+interface PasswordInputProps extends InputProps {
   children?: undefined
 }
 

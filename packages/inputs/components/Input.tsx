@@ -16,10 +16,11 @@ export interface InputCoreProps {
   info?: string
 }
 
-export type InputProps = {
+interface ExtendedInputProps {
   onChangeText?: (value: string) => string | undefined
-} & TextInputProps &
-  InputCoreProps
+}
+
+export type InputProps = InputCoreProps & ExtendedInputProps & TextInputProps
 
 const Input: React.FC<InputProps> = ({ children, ...props }) => {
   const inputRef = useRef<ValueRef<TextInput>>(null)
