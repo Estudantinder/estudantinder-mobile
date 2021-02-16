@@ -1,7 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useRef } from 'react'
 
+import { FormHandles } from '@unform/core'
+
+import { StudentAbout } from 'packages/entities/Student'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
+import EditStudentAboutSubmit from 'packages/student-info/edit-target-info/controllers/AboutSubmit'
 import EditStudentAbout from 'packages/student-info/edit-target-info/pages/About'
 
 import { useSignUpContext } from '../context'
@@ -9,17 +13,26 @@ import { useSignUpContext } from '../context'
 const SignUpAbout: React.FC = () => {
   const context = useSignUpContext()
 
+  const formRef = useRef<FormHandles>(null)
+
   const router = useNavigation()
 
-  const navigateToSchool = () => {
+  const onSubmitSuccess = (data: StudentAbout) => {
+    context.setAbout(data)
+
     router.navigate(SIGNUP_ROUTES.SCHOOL)
   }
+
+  const editStudentAboutSubmit = new EditStudentAboutSubmit({
+    formRef,
+    onSubmitSuccess,
+  })
 
   return (
     <EditStudentAbout
       initialData={context.about}
-      setData={context.setAbout}
-      onSubmitSuccess={navigateToSchool}
+      handleSubmit={(data) => editStudentAboutSubmit.handle(data)}
+      formRef={formRef}
     />
   )
 }

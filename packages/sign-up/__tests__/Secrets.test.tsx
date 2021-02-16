@@ -6,7 +6,7 @@ import { FormHandles } from '@unform/core'
 import faker from 'faker'
 import { mocked } from 'ts-jest/utils'
 
-import formRefMock from 'packages/__mocks__/formRef.mock'
+import EditTargetInfoPropsMock from 'packages/__mocks__/EditTargetInfoProps.mock'
 import api from 'packages/api'
 
 import SignUpSecrets from '../pages/Secrets'
@@ -96,22 +96,25 @@ describe('sign-up/pages/Secrets', () => {
     })
 
     test('should get data from all fields when submitted', () => {
-      const handleSubmit = jest.fn()
-
       const email = faker.internet.email()
       const password = faker.random.alphaNumeric()
 
+      const mocks = EditTargetInfoPropsMock()
+
       render(
-        <SignUpSecrets handleSubmit={handleSubmit} formRef={formRefMock} />
+        <SignUpSecrets
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
       )
 
-      formRefMock.current?.setFieldValue('email', email)
-      formRefMock.current?.setFieldValue('password', password)
-      formRefMock.current?.setFieldValue('confirm_password', password)
+      mocks.formRef.current?.setFieldValue('email', email)
+      mocks.formRef.current?.setFieldValue('password', password)
+      mocks.formRef.current?.setFieldValue('confirm_password', password)
 
-      formRefMock.current?.submitForm()
+      mocks.formRef.current?.submitForm()
 
-      expect(handleSubmit).toBeCalledWith(
+      expect(mocks.handleSubmit).toBeCalledWith(
         {
           email,
           password,
@@ -122,6 +125,7 @@ describe('sign-up/pages/Secrets', () => {
       )
     })
   })
+
   const email = 'example@gmail.com'
 
   const mockApiBasedOnEmail = async (data: string) => {
@@ -136,33 +140,37 @@ describe('sign-up/pages/Secrets', () => {
 
   describe('submit events:', () => {
     test('should show validation error if field is invalid', async () => {
-      render(<SignUpSecrets formRef={formRefMock} />)
+      const mocks = EditTargetInfoPropsMock()
+
+      render(<SignUpSecrets formRef={mocks.formRef} />)
 
       mockApiBasedOnEmail('')
 
-      await act(async () => formRefMock?.current?.submitForm())
+      await act(async () => mocks.formRef?.current?.submitForm())
 
-      expect(formRefMock.current?.getFieldError('email')).toBeTruthy()
-      expect(formRefMock.current?.getFieldError('password')).toBeTruthy()
+      expect(mocks.formRef.current?.getFieldError('email')).toBeTruthy()
+      expect(mocks.formRef.current?.getFieldError('password')).toBeTruthy()
       expect(
-        formRefMock.current?.getFieldError('confirm_password')
+        mocks.formRef.current?.getFieldError('confirm_password')
       ).toBeTruthy()
     })
 
     test('should show error on email input if email already exists', async () => {
       const password = faker.random.alphaNumeric(8)
 
-      render(<SignUpSecrets formRef={formRefMock} />)
+      const mocks = EditTargetInfoPropsMock()
+
+      render(<SignUpSecrets formRef={mocks.formRef} />)
 
       mockApiBasedOnEmail(email)
 
-      formRefMock.current?.setFieldValue('email', email)
-      formRefMock.current?.setFieldValue('password', password)
-      formRefMock.current?.setFieldValue('confirm_password', password)
+      mocks.formRef.current?.setFieldValue('email', email)
+      mocks.formRef.current?.setFieldValue('password', password)
+      mocks.formRef.current?.setFieldValue('confirm_password', password)
 
-      await act(async () => formRefMock?.current?.submitForm())
+      await act(async () => mocks.formRef?.current?.submitForm())
 
-      expect(formRefMock.current?.getFieldError('email')).toBe(
+      expect(mocks.formRef.current?.getFieldError('email')).toBe(
         '[mock]: EMAIL ALREADY EXISTS'
       )
     })

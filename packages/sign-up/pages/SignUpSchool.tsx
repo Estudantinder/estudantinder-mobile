@@ -1,7 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useRef } from 'react'
 
+import { FormHandles } from '@unform/core'
+
+import { StudentSchool } from 'packages/entities/Student'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
+import EditStudentSchoolSubmit from 'packages/student-info/edit-target-info/controllers/SchoolSubmit'
 import EditStudentSchool from 'packages/student-info/edit-target-info/pages/School'
 
 import { useSignUpContext } from '../context'
@@ -11,15 +15,21 @@ const SignUpSchool: React.FC = () => {
 
   const router = useNavigation()
 
-  const navigateToContacts = () => {
+  const onSubmitSuccess = (data: StudentSchool) => {
+    context.setSchool(data)
+
     router.navigate(SIGNUP_ROUTES.CONTACTS)
   }
+
+  const formRef = useRef<FormHandles>(null)
+
+  const schoolSubmit = new EditStudentSchoolSubmit({ formRef, onSubmitSuccess })
 
   return (
     <EditStudentSchool
       initialData={context.school}
-      setData={context.setSchool}
-      onSubmitSuccess={navigateToContacts}
+      formRef={formRef}
+      handleSubmit={(data) => schoolSubmit.handle(data)}
     />
   )
 }

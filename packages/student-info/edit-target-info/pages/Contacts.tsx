@@ -1,18 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
-import { FormHandles } from '@unform/core'
 import { formatToGenericPhone } from 'brazilian-values'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import Contacts from 'packages/entities/Contacts'
-import StudentContactsSchema from 'packages/student-info/validators/StudentContactsSchema'
 import { StyledForm, Subtitle } from 'packages/styles'
 import theme from 'packages/styles/theme'
-import alertModal from 'packages/utils/alertModal'
 import focusOnInput from 'packages/utils/focusOnInput'
-import validateSchema from 'packages/validation'
-import UnformValidationError from 'packages/validation/UnformValidationError'
 
 import {
   FacebookInput,
@@ -25,34 +20,18 @@ import { EditTargetInfoProps } from '../EditTargetInfoProps'
 export type EditStudentContactsProps = EditTargetInfoProps<Contacts>
 
 const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
-  const ref = useRef<FormHandles>(null)
-
-  const formRef = props.formRef || ref
+  const formRef = props.formRef
 
   const [isEmpty, setIsEmpty] = useState(false)
 
   const handleSubmit = async (data: Contacts) => {
-    try {
-      formRef.current?.setErrors({})
-
-      if (!Object.entries(data).find(([, value]) => !!value)) {
-        return setIsEmpty(true)
-      }
-
-      setIsEmpty(false)
-
-      const validatedData = await validateSchema(StudentContactsSchema, data)
-
-      props.setData?.(validatedData)
-
-      props.onSubmitSuccess?.()
-    } catch (error) {
-      if (error instanceof UnformValidationError) {
-        return formRef.current?.setErrors(error.validationErrors)
-      }
-
-      return alertModal(error)
+    if (!Object.entries(data).find(([, value]) => !!value)) {
+      return setIsEmpty(true)
     }
+
+    setIsEmpty(false)
+
+    await props.handleSubmit(data)
   }
 
   const submitForm = () => {
@@ -77,7 +56,7 @@ const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
 
       <StyledForm
         ref={formRef}
-        onSubmit={props.handleSubmit || handleSubmit}
+        onSubmit={handleSubmit}
         initialData={props.initialData}
       >
         <FacebookInput

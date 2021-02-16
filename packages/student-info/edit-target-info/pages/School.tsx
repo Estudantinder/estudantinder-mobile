@@ -1,6 +1,4 @@
-import React, { useRef } from 'react'
-
-import { FormHandles } from '@unform/core'
+import React from 'react'
 
 import useSchoolsData from 'packages/api/swr-hooks/useSchoolsData'
 import PrimaryButton from 'packages/components/PrimaryButton'
@@ -10,16 +8,13 @@ import { SHIFTS } from 'packages/entities/Shift'
 import { StudentSchool } from 'packages/entities/Student'
 import Input from 'packages/inputs/components/Input'
 import { StyledForm } from 'packages/styles'
-import validateSchema from 'packages/validation'
-import UnformValidationError from 'packages/validation/UnformValidationError'
 
-import StudentSchoolSchema from '../../validators/StudentSchoolSchema'
 import SchoolCoursePicker from '../components/SchoolCoursePicker'
 import { EditTargetInfoProps } from '../EditTargetInfoProps'
 
 type EditStudentSchoolProps = EditTargetInfoProps<StudentSchool>
 
-type SchoolFormData = Modify<
+export type SchoolFormData = Modify<
   StudentSchool,
   {
     school: string
@@ -28,54 +23,21 @@ type SchoolFormData = Modify<
 >
 
 const EditStudentSchool: React.FC<EditStudentSchoolProps> = (props) => {
-  const ref = useRef<FormHandles>(null)
+  const formRef = props.formRef
 
   const { schools } = useSchoolsData()
 
-  const formRef = props.formRef || ref
-
-  const handleSubmit = async (data: SchoolFormData) => {
-    try {
-      // Remove all previous errors
-      formRef?.current?.setErrors({})
-
-      const school = schools?.find((value) => String(value.id) === data.school)
-
-      const course = school?.courses.find(
-        (value) => String(value.id) === data.course
-      )
-
-      const validatedData = await validateSchema(StudentSchoolSchema, {
-        ...data,
-        school,
-        course,
-      })
-
-      props.setData?.(validatedData as StudentSchool)
-
-      props.onSubmitSuccess?.()
-    } catch (error) {
-      if (error instanceof UnformValidationError) {
-        formRef.current?.setErrors(error.validationErrors)
-
-        formRef.current?.setFieldError(
-          'school',
-          error.validationErrors['school.id']
-        )
-
-        formRef.current?.setFieldError(
-          'course',
-          error.validationErrors['course.id']
-        )
-
-        return
-      }
-
-      return alert(error)
-    }
-  }
-
   const submitForm = () => formRef.current?.submitForm()
+
+  const handleSubmit = (data: SchoolFormData) => {
+    const school = schools?.find((value) => String(value.id) === data.school)
+
+    const course = school?.courses.find(
+      (value) => String(value.id) === data.course
+    )
+
+    props.handleSubmit({ ...data, school, course } as StudentSchool)
+  }
 
   function getDefaultValues(data?: StudentSchool) {
     return {
@@ -91,7 +53,7 @@ const EditStudentSchool: React.FC<EditStudentSchoolProps> = (props) => {
     <StackPageTemplate title="Informações Escolares">
       <StyledForm
         ref={formRef}
-        onSubmit={props.handleSubmit || handleSubmit}
+        onSubmit={handleSubmit}
         initialData={getDefaultValues(props.initialData)}
       >
         <SchoolCoursePicker

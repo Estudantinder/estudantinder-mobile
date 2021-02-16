@@ -3,46 +3,115 @@ import React from 'react'
 import { act } from 'react-test-renderer'
 
 import ContactsMock from 'packages/__mocks__/Contacts.mock'
-import formRefMock from 'packages/__mocks__/formRef.mock'
+import EditTargetInfoPropsMock from 'packages/__mocks__/EditTargetInfoProps.mock'
+import Contacts from 'packages/entities/Contacts'
 
+import EditStudentContactsSubmit from '../controllers/ContactsSubmit'
 import EditStudentContacts from '../pages/Contacts'
 
 describe('student-info/edit-target-info/Contacts', () => {
   describe('when rendered:', () => {
     test('should have an input for facebook', () => {
-      const component = render(<EditStudentContacts />)
+      const mocks = EditTargetInfoPropsMock<Contacts>()
+
+      const component = render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
+      )
 
       expect(component.getByTestId('facebook')).toBeTruthy()
     })
 
     test('should have an input for instagram', () => {
-      const component = render(<EditStudentContacts />)
+      const mocks = EditTargetInfoPropsMock<Contacts>()
+
+      const component = render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
+      )
 
       expect(component.getByTestId('instagram')).toBeTruthy()
     })
 
     test('should have an input for whatsapp', () => {
-      const component = render(<EditStudentContacts />)
+      const mocks = EditTargetInfoPropsMock<Contacts>()
+
+      const component = render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
+      )
 
       expect(component.getByTestId('whatsapp')).toBeTruthy()
     })
 
     test('should have an input for twitter', () => {
-      const component = render(<EditStudentContacts />)
+      const mocks = EditTargetInfoPropsMock<Contacts>()
+
+      const component = render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
+      )
 
       expect(component.getByTestId('twitter')).toBeTruthy()
     })
 
     test('should have a submit button', () => {
-      const component = render(<EditStudentContacts />)
+      const mocks = EditTargetInfoPropsMock<Contacts>()
+
+      const component = render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
+      )
 
       expect(component.getByTestId('submit-button')).toBeTruthy()
+    })
+
+    test('should set initial data if provided', () => {
+      const mocks = EditTargetInfoPropsMock()
+
+      render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+          initialData={ContactsMock}
+        />
+      )
+
+      expect(mocks.formRef.current?.getFieldValue('facebook')).toBe(
+        ContactsMock.facebook
+      )
+      expect(mocks.formRef.current?.getFieldValue('instagram')).toBe(
+        ContactsMock.instagram
+      )
+      expect(mocks.formRef.current?.getFieldValue('whatsapp')).toBe(
+        ContactsMock.whatsapp
+      )
+      expect(mocks.formRef.current?.getFieldValue('twitter')).toBe(
+        ContactsMock.twitter
+      )
     })
   })
 
   describe('form events:', () => {
     test('should go to next input when keyboard submit pressed', () => {
-      const component = render(<EditStudentContacts />)
+      const mocks = EditTargetInfoPropsMock<Contacts>()
+
+      const component = render(
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
+      )
 
       const facebook = component.getByTestId('facebook')
       const instagram = component.getByTestId('instagram')
@@ -63,90 +132,111 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should submit when last input keyboard submit pressed', () => {
-      const handleSubmit = jest.fn()
+      const mocks = EditTargetInfoPropsMock<Contacts>()
 
       const component = render(
-        <EditStudentContacts handleSubmit={handleSubmit} />
+        <EditStudentContacts
+          handleSubmit={mocks.handleSubmit}
+          formRef={mocks.formRef}
+        />
       )
+
+      mocks.formRef.current?.setFieldValue('twitter', ContactsMock.twitter)
 
       const twitter = component.getByTestId('twitter')
 
       act(twitter.props.onSubmitEditing)
 
-      expect(handleSubmit).toBeCalled()
+      expect(mocks.handleSubmit).toBeCalled()
     })
 
     test('should submit when submit button pressed', () => {
-      const handleSubmit = jest.fn()
+      const mocks = EditTargetInfoPropsMock<Contacts>()
 
       const component = render(
-        <EditStudentContacts handleSubmit={handleSubmit} />
+        <EditStudentContacts
+          handleSubmit={mocks.handleSubmit}
+          formRef={mocks.formRef}
+        />
       )
+
+      mocks.formRef.current?.setFieldValue('twitter', ContactsMock.twitter)
 
       const submitButton = component.getByTestId('submit-button')
 
       fireEvent.press(submitButton)
 
-      expect(handleSubmit).toBeCalled()
+      expect(mocks.handleSubmit).toBeCalled()
     })
   })
 
   describe('submit events:', () => {
     test('should get data from all fields when submitted', () => {
-      const handleSubmit = jest.fn()
+      const mocks = EditTargetInfoPropsMock<Contacts>()
 
       render(
         <EditStudentContacts
-          handleSubmit={handleSubmit}
-          formRef={formRefMock}
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
         />
       )
 
-      formRefMock.current?.setFieldValue('facebook', ContactsMock.facebook)
-      formRefMock.current?.setFieldValue('instagram', ContactsMock.instagram)
-      formRefMock.current?.setFieldValue('whatsapp', ContactsMock.whatsapp)
-      formRefMock.current?.setFieldValue('twitter', ContactsMock.twitter)
+      mocks.formRef.current?.setFieldValue('facebook', ContactsMock.facebook)
+      mocks.formRef.current?.setFieldValue('instagram', ContactsMock.instagram)
+      mocks.formRef.current?.setFieldValue('whatsapp', ContactsMock.whatsapp)
+      mocks.formRef.current?.setFieldValue('twitter', ContactsMock.twitter)
 
-      formRefMock.current?.submitForm()
+      mocks.formRef.current?.submitForm()
 
-      expect(handleSubmit).toBeCalledWith(
-        {
-          facebook: ContactsMock.facebook,
-          instagram: ContactsMock.instagram,
-          whatsapp: ContactsMock.whatsapp,
-          twitter: ContactsMock.twitter,
-        },
-        { reset: expect.any(Function) },
-        undefined
-      )
+      expect(mocks.handleSubmit).toBeCalledWith({
+        facebook: ContactsMock.facebook,
+        instagram: ContactsMock.instagram,
+        whatsapp: ContactsMock.whatsapp,
+        twitter: ContactsMock.twitter,
+      })
     })
 
     test('should not pass if no input has been filled', async () => {
-      const success = jest.fn()
+      const mocks = EditTargetInfoPropsMock()
 
       render(
-        <EditStudentContacts formRef={formRefMock} onSubmitSuccess={success} />
+        <EditStudentContacts
+          formRef={mocks.formRef}
+          handleSubmit={mocks.handleSubmit}
+        />
       )
 
-      await act(async () => formRefMock.current?.submitForm())
+      await act(async () => mocks.formRef.current?.submitForm())
 
-      expect(success).not.toBeCalled()
+      expect(mocks.handleSubmit).not.toBeCalled()
     })
 
-    test('should set respect field validations errors', async () => {
-      render(<EditStudentContacts formRef={formRefMock} />)
+    test('should set respective field validations errors', async () => {
+      const mocks = EditTargetInfoPropsMock<Contacts>()
 
-      formRefMock.current?.setFieldValue('facebook', 'invalid  username')
-      formRefMock.current?.setFieldValue('instagram', 'invalid  username')
-      formRefMock.current?.setFieldValue('whatsapp', 'invalid phone number')
-      formRefMock.current?.setFieldValue('twitter', 'invalid  username')
+      const handleSubmit = new EditStudentContactsSubmit({
+        formRef: mocks.formRef,
+        onSubmitSuccess: jest.fn(),
+      })
 
-      await act(async () => formRefMock.current?.submitForm())
+      render(
+        <EditStudentContacts
+          handleSubmit={(data) => handleSubmit.handle(data)}
+          formRef={mocks.formRef}
+        />
+      )
 
-      expect(formRefMock.current?.getFieldError('facebook')).toBeTruthy()
-      expect(formRefMock.current?.getFieldError('instagram')).toBeTruthy()
-      expect(formRefMock.current?.getFieldError('whatsapp')).toBeTruthy()
-      expect(formRefMock.current?.getFieldError('twitter')).toBeTruthy()
+      mocks.formRef.current?.setFieldValue('facebook', 'invalid  username')
+      mocks.formRef.current?.setFieldValue('instagram', 'invalid  username')
+      mocks.formRef.current?.setFieldValue('whatsapp', 'invalid phone number')
+      mocks.formRef.current?.setFieldValue('twitter', 'invalid  username')
+
+      await act(async () => mocks.formRef.current?.submitForm())
+
+      expect(mocks.formRef.current?.getFieldError('facebook')).toBeTruthy()
+      expect(mocks.formRef.current?.getFieldError('instagram')).toBeTruthy()
+      expect(mocks.formRef.current?.getFieldError('whatsapp')).toBeTruthy()
+      expect(mocks.formRef.current?.getFieldError('twitter')).toBeTruthy()
     })
   })
 })

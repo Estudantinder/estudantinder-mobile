@@ -46,3 +46,15 @@ export const TwitterInput = styled(Input)`
   background-color: #d2ecfc;
   border-color: #d2ecfc;
 `
+
+export const TextAreaInput = styled(Input)`
+  min-height: 80px;
+  max-height: 160px;
+  padding-top: 12px;
+`
+
+export const SubjectsPickerListContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+`

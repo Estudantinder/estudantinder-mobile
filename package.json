@@ -9,10 +9,12 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "verify": "tsc --noEmit",
-    "test": "cross-env NODE_ENV=test jest --runInBand --verbose",
-    "test:quiet": "cross-env NODE_ENV=test jest --runInBand --notify",
+    "test": "cross-env NODE_ENV=test jest --verbose",
+    "jest": "cross-env NODE_ENV=test jest",
+    "test:quiet": "cross-env NODE_ENV=test jest --notify",
     "test:ci": "cross-env NODE_ENV=test jest --coverage",
-    "test:badges": "cross-env NODE_ENV=test jest --coverage && jest-coverage-badges --input coverage/coverage-summary.json --output __badges__"
+    "test:badges": "cross-env NODE_ENV=test jest --coverage && jest-coverage-badges --input coverage/coverage-summary.json --output __badges__",
+    "repo": "start msedge https://github.com/Cauaspinheiro/estudantinder-mobile"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.1.0",
@@ -95,7 +97,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "tsc --noEmit && cross-env NODE_ENV=test jest"
     }
   },
   "lint-staged": {
