@@ -57,4 +57,5 @@ export const SubjectsPickerListContainer = styled.View`
   width: 100%;
   flex-direction: row;
   align-items: center;
+  margin-top: -8px;
 `
