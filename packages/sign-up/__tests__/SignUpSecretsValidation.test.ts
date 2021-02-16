@@ -7,7 +7,7 @@ describe('sign-up/SignUpSecretsValidationSchema', () => {
   const randomPassword = faker.random.alphaNumeric(8)
 
   const data: ContextUserSecrets = {
-    email: faker.internet.email(),
+    email: 'contact@example.com',
     confirm_password: randomPassword,
     password: randomPassword,
   }
