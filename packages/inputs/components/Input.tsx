@@ -17,7 +17,7 @@ export interface InputCoreProps {
 }
 
 interface ExtendedInputProps {
-  onChangeText?: (value: string) => string | undefined
+  onChangeText?: (value: string) => string | undefined | void
 }
 
 export type InputProps = InputCoreProps & ExtendedInputProps & TextInputProps
