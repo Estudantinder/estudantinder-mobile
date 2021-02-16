@@ -5,6 +5,7 @@ import Secrets from 'packages/sign-up/pages/Secrets'
 import SignUpAbout from 'packages/sign-up/pages/SignUpAbout'
 import SignUpContacts from 'packages/sign-up/pages/SignUpContacts'
 import SignUpDetails from 'packages/sign-up/pages/SignUpDetails'
+import SignUpPhotos from 'packages/sign-up/pages/SignUpPhotos'
 import SignUpSchool from 'packages/sign-up/pages/SignUpSchool'
 
 import { SIGNUP_ROUTES } from '../constants'
@@ -27,6 +28,7 @@ const SignUpScreens: React.FC<SignUpScreensProps> = (props) => {
       <Screen name={SIGNUP_ROUTES.SCHOOL} component={SignUpSchool} />
       <Screen name={SIGNUP_ROUTES.CONTACTS} component={SignUpContacts} />
       <Screen name={SIGNUP_ROUTES.DETAILS} component={SignUpDetails} />
+      <Screen name={SIGNUP_ROUTES.PHOTOS} component={SignUpPhotos} />
     </Navigator>
   )
 }
