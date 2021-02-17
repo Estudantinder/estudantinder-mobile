@@ -20,7 +20,7 @@ export interface ShowTargetStudentPhotos {
 const ShowTargetStudentPhotos: React.FC<ShowTargetStudentPhotos> = (props) => {
   return (
     <ShowTargetStudentInfoContainer>
-      <ShowTargetStudentInfoHeader>
+      <ShowTargetStudentInfoHeader style={{ paddingHorizontal: 16 }}>
         <Feather
           name="image"
           color={theme.colors.secondary.dark_purple}

@@ -4,14 +4,18 @@ import styled from 'styled-components/native'
 
 import theme from './theme'
 
-export const PageContainer = styled.KeyboardAvoidingView`
+export interface PageContainerStylesProps {
+  withoutPadding?: boolean
+}
+
+export const PageContainer = styled.KeyboardAvoidingView<PageContainerStylesProps>`
   flex: 1;
   width: 100%;
 
   justify-content: space-around;
   align-items: center;
 
-  padding: 20px;
+  padding: ${(props) => (props.withoutPadding ? 0 : 16)}px;
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
 

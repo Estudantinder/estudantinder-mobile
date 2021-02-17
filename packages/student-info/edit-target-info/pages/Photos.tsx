@@ -5,7 +5,7 @@ import * as ExpoImagePicker from 'expo-image-picker'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { StudentPhotos } from 'packages/entities/Student'
-import { Subtitle } from 'packages/styles'
+import { Row, Subtitle } from 'packages/styles'
 import theme from 'packages/styles/theme'
 import alertModal from 'packages/utils/alertModal'
 
@@ -86,7 +86,7 @@ const EditStudentPhotos: React.FC<EditStudentPhotosProps> = (props) => {
   }
 
   return (
-    <StackPageTemplate title="Suas Fotos">
+    <StackPageTemplate title="Suas Fotos" withoutPadding>
       <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
         {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
@@ -99,9 +99,11 @@ const EditStudentPhotos: React.FC<EditStudentPhotosProps> = (props) => {
         />
       </PhotosCarrouselContainer>
 
-      <PrimaryButton testID="submit-button" onPress={handleSubmit}>
-        CONTINUAR
-      </PrimaryButton>
+      <Row style={{ paddingHorizontal: 16 }}>
+        <PrimaryButton testID="submit-button" onPress={handleSubmit}>
+          CONTINUAR
+        </PrimaryButton>
+      </Row>
     </StackPageTemplate>
   )
 }

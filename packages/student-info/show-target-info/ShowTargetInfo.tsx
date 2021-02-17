@@ -13,6 +13,7 @@ import ShowTargetStudentSchool from './components/StudentSchool'
 import ShowTargetStudentSubjects from './components/StudentSubjects'
 import {
   ShowTargetStudentContainer,
+  ShowTargetStudentContent,
   ShowTargetStudentInfoContainer,
   ShowTargetStudentInfoLabel,
 } from './show-target-info.styles'
@@ -21,8 +22,8 @@ export interface ShowTargetStudentProps {
   student: Student
 }
 
-const ShowTargetStudent: React.FC<ShowTargetStudentProps> = ({ student }) => {
-  const studentAdapter = new StudentDataAdapter(student)
+const ShowTargetStudent: React.FC<ShowTargetStudentProps> = (props) => {
+  const studentAdapter = new StudentDataAdapter(props.student)
 
   return (
     <ShowTargetStudentContainer>
@@ -30,28 +31,34 @@ const ShowTargetStudent: React.FC<ShowTargetStudentProps> = ({ student }) => {
         {studentAdapter.getCompactedName()}, {studentAdapter.getAge()}
       </Title>
 
-      <ShowTargetStudentBio bio={student.bio} />
+      <ShowTargetStudentContent>
+        <ShowTargetStudentBio bio={props.student.bio} />
 
-      <ShowTargetStudentPhotos photos={student.photos} />
+        <ShowTargetStudentPhotos photos={props.student.photos} />
 
-      {student.gender ? (
-        <ShowTargetStudentInfoContainer>
-          <Row>
-            <Feather
-              name="flag"
-              size={20}
-              color={theme.colors.secondary.dark_purple}
-            />
-            <ShowTargetStudentInfoLabel>
-              Gênero: {studentAdapter.getGender()}
-            </ShowTargetStudentInfoLabel>
+        {props.student.gender ? (
+          <Row style={{ paddingHorizontal: 16 }}>
+            <ShowTargetStudentInfoContainer>
+              <Row>
+                <Feather
+                  name="flag"
+                  size={20}
+                  color={theme.colors.secondary.dark_purple}
+                />
+                <ShowTargetStudentInfoLabel>
+                  Gênero: {studentAdapter.getGender()}
+                </ShowTargetStudentInfoLabel>
+              </Row>
+            </ShowTargetStudentInfoContainer>
           </Row>
-        </ShowTargetStudentInfoContainer>
-      ) : null}
+        ) : null}
 
-      <ShowTargetStudentSchool studentAdapter={studentAdapter} />
+        <ShowTargetStudentSchool studentAdapter={studentAdapter} />
 
-      <ShowTargetStudentSubjects subjects={student.subjects} />
+        <ShowTargetStudentSubjects subjects={props.student.subjects} />
+
+        {props.children}
+      </ShowTargetStudentContent>
     </ShowTargetStudentContainer>
   )
 }

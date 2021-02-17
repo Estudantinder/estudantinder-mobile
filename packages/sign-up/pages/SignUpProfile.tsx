@@ -3,7 +3,7 @@ import React from 'react'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import ShowTargetStudent from 'packages/student-info/show-target-info/ShowTargetInfo'
-import { Subtitle } from 'packages/styles'
+import { Row, Subtitle } from 'packages/styles'
 
 import { useSignUpContext } from '../context'
 
@@ -20,10 +20,12 @@ const SignUpProfile: React.FC = () => {
     )
 
   return (
-    <StackPageTemplate title="Seu perfil ficará assim">
-      <ShowTargetStudent student={context.user} />
-
-      <PrimaryButton onPress={() => 0}>CADASTRAR</PrimaryButton>
+    <StackPageTemplate title="Seu perfil ficará assim" withoutPadding>
+      <ShowTargetStudent student={context.user}>
+        <Row style={{ padding: 16 }}>
+          <PrimaryButton onPress={() => 0}>CADASTRAR</PrimaryButton>
+        </Row>
+      </ShowTargetStudent>
     </StackPageTemplate>
   )
 }

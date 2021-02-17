@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
 import styled from 'styled-components/native'
@@ -65,6 +66,7 @@ export const SubjectsPickerListContainer = styled.View`
 
 export const PhotosCarrouselContainer = styled.View`
   margin: 40px 0px;
+  width: ${Dimensions.get('window').width}px;
   flex: 1;
 `
 

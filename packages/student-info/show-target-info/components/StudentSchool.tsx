@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 import StudentDataAdapter from 'packages/adapters/StudentAdapter'
+import { Row } from 'packages/styles'
 import theme from 'packages/styles/theme'
 import capitalize from 'packages/utils/capitalize'
 
@@ -24,39 +25,41 @@ const ShowTargetStudentSchool: React.FC<ShowTargetStudentSchoolProps> = (
   props
 ) => {
   return (
-    <ShowTargetStudentInfoContainer>
-      <ShowTargetStudentInfoHeader>
-        <Feather
-          name="award"
-          size={20}
-          color={theme.colors.secondary.dark_purple}
-        />
-        <ShowTargetStudentInfoLabel>
-          Informações escolares
-        </ShowTargetStudentInfoLabel>
-      </ShowTargetStudentInfoHeader>
+    <Row style={{ paddingHorizontal: 16 }}>
+      <ShowTargetStudentInfoContainer>
+        <ShowTargetStudentInfoHeader>
+          <Feather
+            name="award"
+            size={20}
+            color={theme.colors.secondary.dark_purple}
+          />
+          <ShowTargetStudentInfoLabel>
+            Informações escolares
+          </ShowTargetStudentInfoLabel>
+        </ShowTargetStudentInfoHeader>
 
-      <ShowTargetStudentSchoolRow>
-        <ShowTargetStudentSchoolContent>
-          <ShowTargetStudentSchoolLabel>
-            {capitalize(props.studentAdapter.student.school.address)} -{' '}
-            {capitalize(props.studentAdapter.student.course.name)}
-          </ShowTargetStudentSchoolLabel>
-          <ShowTargetStudentSchoolLabel>
-            Turno: {props.studentAdapter.getShift()}
-          </ShowTargetStudentSchoolLabel>
-        </ShowTargetStudentSchoolContent>
+        <ShowTargetStudentSchoolRow>
+          <ShowTargetStudentSchoolContent>
+            <ShowTargetStudentSchoolLabel>
+              {capitalize(props.studentAdapter.student.school.address)} -{' '}
+              {capitalize(props.studentAdapter.student.course.name)}
+            </ShowTargetStudentSchoolLabel>
+            <ShowTargetStudentSchoolLabel>
+              Turno: {props.studentAdapter.getShift()}
+            </ShowTargetStudentSchoolLabel>
+          </ShowTargetStudentSchoolContent>
 
-        <View>
-          <ShowTargetStudentSchoolLabel>
-            Série: {props.studentAdapter.student.school_year}º ano
-          </ShowTargetStudentSchoolLabel>
-          <ShowTargetStudentSchoolLabel>
-            Sala: {props.studentAdapter.student.classroom.toUpperCase()}
-          </ShowTargetStudentSchoolLabel>
-        </View>
-      </ShowTargetStudentSchoolRow>
-    </ShowTargetStudentInfoContainer>
+          <View>
+            <ShowTargetStudentSchoolLabel>
+              Série: {props.studentAdapter.student.school_year}º ano
+            </ShowTargetStudentSchoolLabel>
+            <ShowTargetStudentSchoolLabel>
+              Sala: {props.studentAdapter.student.classroom.toUpperCase()}
+            </ShowTargetStudentSchoolLabel>
+          </View>
+        </ShowTargetStudentSchoolRow>
+      </ShowTargetStudentInfoContainer>
+    </Row>
   )
 }
 

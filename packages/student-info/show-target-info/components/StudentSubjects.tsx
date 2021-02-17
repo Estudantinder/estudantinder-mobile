@@ -21,30 +21,32 @@ const ShowTargetStudentSubjects: React.FC<ShowTargetStudentSubjectsProps> = (
   props
 ) => {
   return (
-    <ShowTargetStudentInfoContainer>
-      <ShowTargetStudentInfoHeader>
-        <Feather
-          name="book-open"
-          size={20}
-          color={theme.colors.secondary.dark_purple}
-        />
-        <ShowTargetStudentInfoLabel>
-          Matérias com afinidade
-        </ShowTargetStudentInfoLabel>
-      </ShowTargetStudentInfoHeader>
+    <Row style={{ paddingHorizontal: 16 }}>
+      <ShowTargetStudentInfoContainer>
+        <ShowTargetStudentInfoHeader>
+          <Feather
+            name="book-open"
+            size={20}
+            color={theme.colors.secondary.dark_purple}
+          />
+          <ShowTargetStudentInfoLabel>
+            Matérias com afinidade
+          </ShowTargetStudentInfoLabel>
+        </ShowTargetStudentInfoHeader>
 
-      <Row>
-        <PrimaryLabel>{props.subjects[0].name.toUpperCase()}</PrimaryLabel>
+        <Row>
+          <PrimaryLabel>{props.subjects[0].name.toUpperCase()}</PrimaryLabel>
 
-        <HorizontalDivider width={6} />
+          <HorizontalDivider width={6} />
 
-        <PrimaryLabel>{props.subjects[1].name.toUpperCase()}</PrimaryLabel>
+          <PrimaryLabel>{props.subjects[1].name.toUpperCase()}</PrimaryLabel>
 
-        <HorizontalDivider width={6} />
+          <HorizontalDivider width={6} />
 
-        <PrimaryLabel>{props.subjects[2].name.toUpperCase()}</PrimaryLabel>
-      </Row>
-    </ShowTargetStudentInfoContainer>
+          <PrimaryLabel>{props.subjects[2].name.toUpperCase()}</PrimaryLabel>
+        </Row>
+      </ShowTargetStudentInfoContainer>
+    </Row>
   )
 }
 
