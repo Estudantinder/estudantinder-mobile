@@ -77,3 +77,26 @@ export const SelectBackground = styled.View<SelectBackgroundStylesProps>`
   justify-content: center;
   padding: 0px 8px;
 `
+
+export interface PrimaryLabelStylesProps {
+  size: 'large' | 'small'
+}
+
+export const PrimaryLabelContainer = styled.View<PrimaryLabelStylesProps>`
+  height: ${(props) => (props.size === 'large' ? 28 : 24)}px;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  border-radius: 3px;
+  background-color: ${theme.colors.primary.purple};
+`
+
+export const PrimaryLabelText = styled.Text<PrimaryLabelStylesProps>`
+  color: #ffffff;
+  font-family: ${theme.fonts.primary};
+  font-size: ${(props) => (props.size === 'large' ? 12 : 10)}px;
+  align-items: center;
+  text-align: center;
+
+  letter-spacing: 0.6px;
+`
