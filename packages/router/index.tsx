@@ -1,12 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React, { useEffect } from 'react'
-import { Text, View } from 'react-native'
 
 import { AppLoading } from 'expo'
 
 import { useAuthContext } from 'packages/auth/context'
 
-import StackNavigation from './components/StackNavigationContainer'
+import StackNavigation from './components/StackNavigation'
+import AuthenticatedNavigation from './stacks/authenticated'
 import UnauthenticatedNavigation from './stacks/unauthenticated'
 
 const { Screen } = createStackNavigator()
@@ -31,17 +31,7 @@ export default function Router() {
   }
 
   if (token) {
-    return (
-      <StackNavigation>
-        <Screen name="home">
-          {() => (
-            <View>
-              <Text>Home</Text>
-            </View>
-          )}
-        </Screen>
-      </StackNavigation>
-    )
+    return <AuthenticatedNavigation />
   }
 
   return <UnauthenticatedNavigation />

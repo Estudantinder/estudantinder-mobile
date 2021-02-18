@@ -22,7 +22,7 @@ const Landing: React.FC = () => {
   }
 
   return (
-    <PageContainer>
+    <PageContainer style={{ paddingBottom: 16 }}>
       <Image source={Logo} />
 
       <Image source={LandingImage} />
