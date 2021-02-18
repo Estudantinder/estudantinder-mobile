@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native'
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 
 import Constants from 'expo-constants'
@@ -17,9 +18,7 @@ export const TopBarContainer = styled(Row)`
 `
 
 export const StudentCardContainer = styled.View`
-  flex: 1;
-
-  padding: 10px 16px;
+  height: ${Dimensions.get('window').height - 210}px;
 `
 
 export const StudentCardImage = styled.Image`
@@ -37,6 +36,7 @@ export const StudentCardFooter = styled.View`
   position: relative;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+  elevation: 2;
 `
 
 export const StudentCardProfileButtonContainer = styled.View`
@@ -68,6 +68,7 @@ export const StudentCardFooterText = styled.Text`
 
 export const HomeButtonsContainer = styled(Row)`
   justify-content: space-around;
+  height: 100px;
   margin: 12px 0px;
 `
 
