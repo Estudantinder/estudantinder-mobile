@@ -1,7 +1,7 @@
 import faker from 'faker'
 
 import ContactsMock from 'packages/__mocks__/Contacts.mock'
-import StudentContactsSchema from 'packages/student-info/validators/StudentContactsSchema'
+import StudentContactsSchema from 'packages/student-info/edit-target-info/validators/StudentContactsSchema'
 
 describe('student-info/edit-target-info/StudentContactsSchema', () => {
   test('should pass is all values are valid', async () => {

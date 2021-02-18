@@ -2,7 +2,7 @@ import faker from 'faker'
 
 import StudentMock from 'packages/__mocks__/Student.mock'
 import { StudentSchool } from 'packages/entities/Student'
-import StudentSchoolSchema from 'packages/student-info/validators/StudentSchoolSchema'
+import StudentSchoolSchema from 'packages/student-info/edit-target-info/validators/StudentSchoolSchema'
 
 describe('student-info/edit-target-info/StudentSchoolSchema', () => {
   const data: StudentSchool = {

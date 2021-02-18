@@ -4,7 +4,7 @@ import { ContextUserSecrets } from '../context'
 import SignUpSecretsValidationSchema from '../SignUpSecretsValidationSchema'
 
 describe('sign-up/SignUpSecretsValidationSchema', () => {
-  const randomPassword = faker.random.alphaNumeric(8)
+  const randomPassword = faker.random.alphaNumeric(8) + '1'
 
   const data: ContextUserSecrets = {
     email: 'contact@example.com',

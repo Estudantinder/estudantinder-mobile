@@ -6,7 +6,7 @@ import { useField } from '@unform/core'
 import OptionButton from 'packages/components/OptionButton'
 import Gender, { GENDERS, IGender } from 'packages/entities/Gender'
 import Input from 'packages/inputs/components/Input'
-import { InputContainer, InputLabel } from 'packages/inputs/styles'
+import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
 import { HorizontalDivider, Row } from 'packages/styles'
 
 import { GenderPickerOrText } from '../edit-target-info.styles'

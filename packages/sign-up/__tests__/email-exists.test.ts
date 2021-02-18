@@ -3,8 +3,8 @@ import { mocked } from 'ts-jest/utils'
 
 import api from 'packages/api'
 
-import checkEmailUnique from '../use-cases/email-exists'
-import EmailExistsError from '../use-cases/EmailExistsError'
+import EmailExistsUseCase from '../use-cases/email-exists'
+import EmailExistsError from '../use-cases/email-exists/EmailExistsError'
 
 jest.mock('packages/api')
 
@@ -13,7 +13,7 @@ const mockedApi = mocked(api, true)
 describe('sign-up/email-exists', () => {
   const email = faker.internet.email()
 
-  const mockedCheckEmailUnique = async (data: string) => {
+  const EmailExistsUseCaseMock = async (data: string) => {
     if (data === email) {
       mockedApi.post.mockRejectedValue({
         response: { data: { message: '[mock]: EMAIL ALREADY EXISTS' } },
@@ -22,7 +22,7 @@ describe('sign-up/email-exists', () => {
       mockedApi.post.mockResolvedValue({ status: 204, data: undefined })
     }
 
-    await checkEmailUnique(data)
+    await EmailExistsUseCase(data)
   }
 
   describe('when checking for email', () => {
@@ -30,7 +30,7 @@ describe('sign-up/email-exists', () => {
       expect.assertions(1)
 
       try {
-        await mockedCheckEmailUnique(email)
+        await EmailExistsUseCaseMock(email)
       } catch (error) {
         expect(error).toBeInstanceOf(EmailExistsError)
       }
@@ -40,7 +40,7 @@ describe('sign-up/email-exists', () => {
       expect.assertions(0)
 
       try {
-        await mockedCheckEmailUnique(faker.internet.email())
+        await EmailExistsUseCaseMock(faker.internet.email())
       } catch (error) {
         expect(error).toBeInstanceOf(EmailExistsError)
       }

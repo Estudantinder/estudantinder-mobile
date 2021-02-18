@@ -4,7 +4,7 @@ import { View, ViewProps } from 'react-native'
 import { useField } from '@unform/core'
 
 import InputInfo from 'packages/inputs/components/InputInfo'
-import { InputContainer, InputLabel } from 'packages/inputs/styles'
+import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
 import { Row, HorizontalDivider } from 'packages/styles'
 
 import OptionButton from '../OptionButton'

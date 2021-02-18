@@ -4,7 +4,7 @@ import { RectButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
 import Input from 'packages/inputs/components/Input'
-import { InputLabel } from 'packages/inputs/styles'
+import { InputLabel } from 'packages/inputs/input.styles'
 import theme from 'packages/styles/theme'
 
 export const BirthDatePickerButton = styled.TouchableOpacity`

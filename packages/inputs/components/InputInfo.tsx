@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons'
 
 import theme from 'packages/styles/theme'
 
-import { InputInfoContainer, InputInfoText } from '../styles'
+import { InputInfoContainer, InputInfoText } from '../input.styles'
 
 export interface InputInfoProps {
   informative?: boolean

@@ -9,17 +9,21 @@ import { formatToDate } from 'brazilian-values'
 import env from 'env'
 
 import InputInfo from 'packages/inputs/components/InputInfo'
-import { InputContainer, InputLabel, InputSuffix } from 'packages/inputs/styles'
+import {
+  InputContainer,
+  InputLabel,
+  InputSuffix,
+} from 'packages/inputs/input.styles'
 import { Row } from 'packages/styles'
 
-import {
-  STUDENT_ABOUT_SCHEMA_MAX_DATE,
-  STUDENT_ABOUT_SCHEMA_MIN_DATE,
-} from '../../validators/StudentAboutSchema'
 import {
   BirthDatePickerButton,
   BirthDatePickerText,
 } from '../edit-target-info.styles'
+import {
+  STUDENT_ABOUT_SCHEMA_MAX_DATE,
+  STUDENT_ABOUT_SCHEMA_MIN_DATE,
+} from '../validators/StudentAboutSchema'
 
 const BirthDatePicker: React.FC = () => {
   const { registerField, ...field } = useField('birth_date')

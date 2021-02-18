@@ -7,7 +7,7 @@ import useSubjectsData from 'packages/api/swr-hooks/useSubjectsData'
 import OptionButton from 'packages/components/OptionButton'
 import Subject from 'packages/entities/Subject'
 import InputInfo from 'packages/inputs/components/InputInfo'
-import { InputContainer, InputLabel } from 'packages/inputs/styles'
+import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
 
 import { SubjectsPickerListContainer } from '../edit-target-info.styles'
 

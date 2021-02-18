@@ -5,7 +5,7 @@ import { useField } from '@unform/core'
 
 import { InputCoreProps } from 'packages/inputs/components/Input'
 import InputInfo from 'packages/inputs/components/InputInfo'
-import { InputLabel } from 'packages/inputs/styles'
+import { InputLabel } from 'packages/inputs/input.styles'
 
 import { SelectBackground, SelectContainer } from './components.styles'
 

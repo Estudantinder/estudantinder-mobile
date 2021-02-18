@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import env from 'env'
@@ -12,18 +12,21 @@ import {
 } from 'packages/entities/Student'
 import User, { UserSecrets } from 'packages/entities/User'
 
+import CreateUserUseCase from './use-cases/create-user'
+
 export interface ContextUserSecrets extends UserSecrets {
   confirm_password: string
 }
 
 interface State {
-  user?: User
   secrets: ContextUserSecrets | undefined
   about: StudentAbout | undefined
   school: StudentSchool | undefined
   contacts: Contacts | undefined
   details: StudentDetails | undefined
   photos: StudentPhotos | undefined
+  getUser(): User | null
+  createUser(): Promise<void>
 }
 
 interface Actions {
@@ -64,23 +67,28 @@ export const SignUpContextProvider: FC = ({ children }) => {
 
   const [photos, setPhotos] = useState<StudentPhotos>()
 
-  const [user, setUser] = useState<User>()
+  const getUser = useCallback<() => User | null>(() => {
+    if (!school || !secrets || !about || !contacts || !details || !photos) {
+      return null
+    }
 
-  useEffect(() => {
-    if (!secrets || !about || !school || !contacts || !details || !photos)
-      return
-
-    const newUser = new User({
+    return new User({
       ...secrets,
+      ...about,
       ...school,
       contacts,
       ...details,
       ...photos,
-      ...about,
     })
+  }, [school, secrets, about, contacts, details, photos])
 
-    setUser(newUser)
-  }, [contacts, details, about, photos, school, secrets])
+  const createUser = useCallback<() => Promise<void>>(async () => {
+    const user = getUser()
+
+    if (!user) throw new Error('USER UNDEFINED')
+
+    await CreateUserUseCase(user)
+  }, [getUser])
 
   const value = useMemo<Ctx>(
     () => ({
@@ -95,10 +103,11 @@ export const SignUpContextProvider: FC = ({ children }) => {
       details,
       setDetails,
       photos,
-      user,
       setPhotos,
+      getUser,
+      createUser,
     }),
-    [secrets, about, school, contacts, details, photos, user]
+    [secrets, about, school, contacts, details, photos, getUser, createUser]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>

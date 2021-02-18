@@ -81,3 +81,9 @@ export const InputLabel = styled.Text`
 
   margin-bottom: 10px;
 `
+
+export const SwitchInputText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.subtitle};
+  font-size: 12px;
+  margin-left: 4px;
+`

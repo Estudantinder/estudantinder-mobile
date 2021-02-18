@@ -7,7 +7,7 @@ import Student from 'packages/entities/Student'
 import {
   STUDENT_ABOUT_SCHEMA_MAX_DATE,
   STUDENT_ABOUT_SCHEMA_MIN_DATE,
-} from 'packages/student-info/validators/StudentAboutSchema'
+} from 'packages/student-info/edit-target-info/validators/StudentAboutSchema'
 
 const getRandomGender = (): IGender | undefined => {
   const randomNumber = Math.abs(faker.random.number(2))

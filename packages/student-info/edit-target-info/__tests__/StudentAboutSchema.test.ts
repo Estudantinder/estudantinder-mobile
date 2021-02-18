@@ -5,7 +5,7 @@ import { StudentAbout } from 'packages/entities/Student'
 
 import StudentAboutSchema, {
   STUDENT_ABOUT_SCHEMA_MIN_DATE,
-} from '../../validators/StudentAboutSchema'
+} from '../validators/StudentAboutSchema'
 
 describe('student-info/edit-target-info/StudentAboutSchema', () => {
   const data: StudentAbout = {

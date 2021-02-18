@@ -16,8 +16,8 @@ import UnformValidationError from 'packages/validation/UnformValidationError'
 
 import { ContextUserSecrets, useSignUpContext } from '../context'
 import SignUpSecretsValidationSchema from '../SignUpSecretsValidationSchema'
-import checkEmailUnique from '../use-cases/email-exists'
-import EmailExistsError from '../use-cases/EmailExistsError'
+import EmailExistsUseCase from '../use-cases/email-exists'
+import EmailExistsError from '../use-cases/email-exists/EmailExistsError'
 
 export interface SecretsProps {
   handleSubmit?: (data: ContextUserSecrets) => Promise<void>
@@ -43,7 +43,7 @@ const SignUpSecrets: React.FC<SecretsProps> = (props) => {
         data
       )
 
-      await checkEmailUnique(validatedData.email)
+      await EmailExistsUseCase(validatedData.email)
 
       context.setSecrets(validatedData)
 

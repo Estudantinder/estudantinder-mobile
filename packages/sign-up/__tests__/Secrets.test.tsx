@@ -162,7 +162,7 @@ describe('sign-up/pages/Secrets', () => {
 
       render(<SignUpSecrets formRef={mocks.formRef} />)
 
-      mockApiBasedOnEmail(email)
+      await mockApiBasedOnEmail(email)
 
       mocks.formRef.current?.setFieldValue('email', email)
       mocks.formRef.current?.setFieldValue('password', password)

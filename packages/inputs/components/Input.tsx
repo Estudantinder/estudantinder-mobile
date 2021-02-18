@@ -6,9 +6,13 @@ import { useField } from '@unform/core'
 import { Row } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
+import {
+  InputContainer,
+  InputLabel,
+  InputSuffix,
+  StyledInput,
+} from '../input.styles'
 import InputInfo from './InputInfo'
-
-import { InputContainer, InputLabel, InputSuffix, StyledInput } from '../styles'
 
 export interface InputCoreProps {
   name: string

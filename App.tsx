@@ -18,6 +18,7 @@ import { useFonts } from 'expo-font'
 import { StatusBar } from 'expo-status-bar'
 import { ThemeProvider } from 'styled-components'
 
+import { AuthContextProvider } from 'packages/auth/context'
 import Router from 'packages/router'
 import theme from 'packages/styles/theme'
 
@@ -39,7 +40,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router />
+      <AuthContextProvider>
+        <Router />
+      </AuthContextProvider>
 
       <StatusBar style="light" backgroundColor="rgba(0,0,0, .4)" />
     </ThemeProvider>
