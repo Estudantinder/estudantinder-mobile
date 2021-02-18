@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
+import { useAuthContext } from 'packages/auth/context'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
@@ -13,6 +14,7 @@ import UploadPhotosUseCase from '../use-cases/upload-photos'
 
 const SignUpProfile: React.FC = () => {
   const signUpContext = useSignUpContext()
+  const authContext = useAuthContext()
 
   const user = signUpContext.getUser()
 
@@ -40,7 +42,7 @@ const SignUpProfile: React.FC = () => {
 
   const handleSignIn = async () => {
     try {
-      await signIn({
+      await authContext.signIn({
         email: user.email,
         password: user.password,
         stay_logged: false,
