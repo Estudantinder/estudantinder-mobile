@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View } from 'react-native'
+import { ActivityIndicator, View } from 'react-native'
 import Swiper from 'react-native-deck-swiper'
 
 import { AntDesign } from '@expo/vector-icons'
@@ -7,6 +7,7 @@ import { AntDesign } from '@expo/vector-icons'
 import Scroll from 'packages/components/Scroll'
 import Student from 'packages/entities/Student'
 import { PageContainer, Title } from 'packages/styles'
+import theme from 'packages/styles/theme'
 
 import { useMainContext } from '../context'
 import StudentCard from './components/StudentCard'
@@ -14,23 +15,48 @@ import HomeTopBar from './components/Topbar'
 import { HomeButton, HomeButtonsContainer, HomeMain } from './home.styles'
 
 const Home: React.FC = () => {
-  const context = useMainContext()
+  const { resetStudents, ...context } = useMainContext()
 
   const useSwiper = useRef<Swiper<Student>>(null)
 
   const [isAnimationActive, setIsAnimationActive] = useState(false)
 
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
-    context.resetStudents()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    const fn = async () => {
+      await resetStudents()
+
+      setIsLoading(false)
+    }
+
+    fn()
+  }, [resetStudents])
+
+  if (isLoading) {
+    return (
+      <PageContainer withoutPadding style={{ paddingTop: 0 }}>
+        <HomeTopBar />
+
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ActivityIndicator size={44} color={theme.colors.primary.purple} />
+        </View>
+      </PageContainer>
+    )
+  }
 
   if (!context.students.length) {
     return (
-      <PageContainer withoutPadding>
+      <PageContainer withoutPadding style={{ paddingTop: 0 }}>
         <HomeTopBar />
 
-        <Title>Sem estudantes</Title>
+        <Title style={{ flex: 1 }}>Sem estudantes</Title>
       </PageContainer>
     )
   }
