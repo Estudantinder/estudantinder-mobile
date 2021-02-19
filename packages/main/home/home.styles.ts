@@ -17,6 +17,11 @@ export const TopBarContainer = styled(Row)`
   elevation: 8;
 `
 
+export const HomeMain = styled.View`
+  flex: 1;
+  height: ${Dimensions.get('window').height - 230}px;
+`
+
 export const StudentCardContainer = styled.View`
   height: ${Dimensions.get('window').height - 210}px;
 `
