@@ -4,7 +4,7 @@ import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 import Constants from 'expo-constants'
 import styled from 'styled-components/native'
 
-import { Row } from 'packages/styles'
+import { Row, Title } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
 export const TopBarContainer = styled(Row)`
@@ -19,7 +19,7 @@ export const TopBarContainer = styled(Row)`
 
 export const HomeMain = styled.View`
   flex: 1;
-  height: ${Dimensions.get('window').height - 230}px;
+  width: 100%;
 `
 
 export const StudentCardContainer = styled.View`
@@ -73,7 +73,6 @@ export const StudentCardFooterText = styled.Text`
 
 export const HomeButtonsContainer = styled(Row)`
   justify-content: space-around;
-  height: 100px;
   margin: 12px 0px;
 `
 
@@ -86,4 +85,23 @@ export const HomeButton = styled(RectButton)`
   align-items: center;
   justify-content: center;
   elevation: 5;
+`
+
+export const HomeNoStudentContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`
+
+export const HomeNoStudentTitle = styled(Title)`
+  font-size: 16px;
+  margin: 8px 0px;
+  text-align: center;
+`
+
+export const HomeNoStudentSubTitle = styled(Title)`
+  font-size: 14px;
+  text-align: center;
 `
