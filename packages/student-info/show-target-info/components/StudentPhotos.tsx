@@ -18,6 +18,8 @@ export interface ShowTargetStudentPhotos {
 }
 
 const ShowTargetStudentPhotos: React.FC<ShowTargetStudentPhotos> = (props) => {
+  const photos = props.photos ? props.photos.filter((value) => !!value) : []
+
   return (
     <ShowTargetStudentInfoContainer>
       <ShowTargetStudentInfoHeader style={{ paddingHorizontal: 16 }}>
@@ -31,7 +33,7 @@ const ShowTargetStudentPhotos: React.FC<ShowTargetStudentPhotos> = (props) => {
 
       <ShowTargetStudentImageContainer>
         <PhotosCarrousel
-          photos={props.photos || []}
+          photos={photos}
           renderItem={({ item }) => {
             return (
               <ShowTargetStudentImage

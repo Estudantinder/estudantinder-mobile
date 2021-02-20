@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { RefObject, useState } from 'react'
 import { useRef } from 'react'
 import { View } from 'react-native'
@@ -6,6 +7,7 @@ import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
 import Student from 'packages/entities/Student'
 import { useMainContext } from 'packages/main/context'
+import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import { PageContainer } from 'packages/styles'
 
 import HomeLikeAndDislike from '../components/LikeAndDislike'
@@ -19,6 +21,8 @@ export interface HomeStudentsPageProps {
 
 const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
   const swiperRef = useRef<Swiper<Student>>(null)
+
+  const router = useNavigation()
 
   const context = useMainContext()
 
@@ -50,6 +54,15 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
     swiperRef.current?.jumpToCardIndex(0)
   }
 
+  const handleNavigateToTargetProfile = () => {
+    router.navigate(AUTHENTICATED_ROUTES.TARGET_PROFILE, {
+      student: {
+        ...context.students[0],
+        birth_date: context.students[0].birth_date.getTime(),
+      },
+    })
+  }
+
   return (
     <PageContainer withoutPadding style={{ paddingTop: 0 }}>
       <HomeTopBar onFiltersPressed={openDrawer} />
@@ -71,6 +84,7 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
           horizontalSwipe={false}
           onSwipedLeft={handleLike}
           onSwipedRight={handleDislike}
+          onTapCard={handleNavigateToTargetProfile}
         />
       </HomeMain>
 

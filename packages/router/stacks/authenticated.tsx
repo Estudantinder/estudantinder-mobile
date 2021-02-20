@@ -3,6 +3,7 @@ import React from 'react'
 
 import { MainContextProvider } from 'packages/main/context'
 import Settings from 'packages/main/settings'
+import TargetProfile from 'packages/main/target-profile'
 
 import StackNavigation from '../components/StackNavigation'
 import { AUTHENTICATED_ROUTES } from '../constants'
@@ -19,6 +20,10 @@ const AuthenticatedNavigation: React.FC = () => {
           component={MainTabNavigation}
         />
         <Screen name={AUTHENTICATED_ROUTES.SETTINGS} component={Settings} />
+        <Screen
+          name={AUTHENTICATED_ROUTES.TARGET_PROFILE}
+          component={TargetProfile}
+        />
       </StackNavigation>
     </MainContextProvider>
   )
