@@ -4,7 +4,7 @@ import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 import Constants from 'expo-constants'
 import styled from 'styled-components/native'
 
-import { Row, Title } from 'packages/styles'
+import { Row } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
 export const TopBarContainer = styled(Row)`
@@ -63,34 +63,6 @@ export const StudentCardFooterText = styled.Text`
   font-family: ${(props) => props.theme.fonts.primary};
   color: #2d2d2d;
   font-size: 13px;
-`
-
-export const FilterDrawerContainer = styled.View`
-  width: 100%;
-  height: 100%;
-  padding-top: 36px;
-  padding-left: 16px;
-  padding-right: 16px;
-`
-
-export const FilterDrawerBackContainer = styled.TouchableOpacity`
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-`
-
-export const FilterDrawerScrollView = styled.ScrollView`
-  flex: 1;
-  width: 100%;
-`
-
-export const FilterDrawerTopBarTitle = styled(Title)`
-  text-align: center;
-  margin-bottom: 0;
-`
-
-export const FilterDrawerTooltipText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.subtitle};
 `
 
 export const HomeLikeAndDislikeContainer = styled(Row)`

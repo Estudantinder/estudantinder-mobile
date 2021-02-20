@@ -3,13 +3,13 @@ import React from 'react'
 import useSchoolsData from 'packages/api/swr-hooks/useSchoolsData'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import RowOptionsPicker from 'packages/components/RowOptions/Picker'
+import SchoolCoursePicker from 'packages/components/SchoolCoursePicker'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { SHIFTS } from 'packages/entities/Shift'
 import { StudentSchool } from 'packages/entities/Student'
 import Input from 'packages/inputs/components/Input'
 import { StyledForm } from 'packages/styles'
 
-import SchoolCoursePicker from '../components/SchoolCoursePicker'
 import { EditTargetInfoProps } from '../EditTargetInfoProps'
 
 type EditStudentSchoolProps = EditTargetInfoProps<StudentSchool>

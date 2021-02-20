@@ -1,4 +1,5 @@
 import React, { ReactText, useEffect, useRef, useState } from 'react'
+import { ViewStyle } from 'react-native'
 import Picker, { PickerSelectProps } from 'react-native-picker-select'
 
 import { useField } from '@unform/core'
@@ -14,9 +15,10 @@ type PickerProps = Omit<PickerSelectProps, 'onValueChange'> & {
 }
 
 export interface SelectProps extends PickerProps, InputCoreProps {
-  backgroundColor?: string
   testID?: string
   defaultValue?: string
+  containerStyle?: ViewStyle
+  backgroundStyle?: ViewStyle
 }
 
 const Select: React.FC<SelectProps> = ({ children, ...props }) => {
@@ -45,9 +47,9 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
   }, [registerField, field.defaultValue, field.fieldName])
 
   return (
-    <SelectContainer testID={props.testID}>
+    <SelectContainer testID={props.testID} style={props.containerStyle}>
       <InputLabel>{props.label}</InputLabel>
-      <SelectBackground backgroundColor={props.backgroundColor}>
+      <SelectBackground style={props.backgroundStyle}>
         <Picker
           {...props}
           ref={inputRef}
@@ -55,6 +57,16 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
           style={{
             inputAndroid: {
               color: '#000',
+              height:
+                props.backgroundStyle?.minHeight ||
+                props.backgroundStyle?.height ||
+                40,
+            },
+            inputIOS: {
+              height:
+                props.backgroundStyle?.minHeight ||
+                props.backgroundStyle?.height ||
+                40,
             },
           }}
           onValueChange={(value, index) => {

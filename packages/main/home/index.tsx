@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
 import { useMainContext } from '../context'
-import FilterDrawer from './components/FilterDrawer'
+import FilterDrawer from '../filters'
 import HomeLoadingPage from './pages/LoadingPage'
 import HomeNoStudentPage from './pages/NoStudentPage'
 import HomeStudentsPage from './pages/Students'
 
 const Home: React.FC = () => {
-  const { resetStudents, ...context } = useMainContext()
+  const { reloadAllStudents, ...context } = useMainContext()
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -16,14 +16,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const fn = async () => {
-      await resetStudents()
+      await reloadAllStudents()
 
       setIsLoading(false)
     }
 
     fn()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [reloadAllStudents])
 
   let children: JSX.Element | undefined = undefined
 

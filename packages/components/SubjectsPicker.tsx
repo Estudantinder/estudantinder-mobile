@@ -1,27 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList, View, ViewProps, ViewStyle } from 'react-native'
 
 import { useField } from '@unform/core'
 
 import useSubjectsData from 'packages/api/swr-hooks/useSubjectsData'
-import OptionButton from 'packages/components/OptionButton'
+import RowOptionsButton from 'packages/components/RowOptions/Button'
 import Subject from 'packages/entities/Subject'
 import InputInfo from 'packages/inputs/components/InputInfo'
 import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
 
-import { SubjectsPickerListContainer } from '../edit-target-info.styles'
+import { SubjectsPickerListContainer } from './components.styles'
 
-interface ViewRef extends View {
-  value: Subject[]
-}
-
-export interface SubjectsPickerProps {
+export interface SubjectsPickerProps extends ViewProps {
   label: string
   canDeselect?: boolean
+  buttonContainerStyle?: ViewStyle
 }
 
 const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
-  const ref = useRef<ViewRef>(null)
+  const ref = useRef<ValueRef<View, Subject[]>>(null)
 
   const { fieldName, defaultValue, registerField, error } = useField('subjects')
 
@@ -73,7 +70,7 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
   }
 
   return (
-    <InputContainer ref={ref} testID="subjects">
+    <InputContainer ref={ref} testID="subjects" {...props}>
       <InputLabel>
         {!subjects || !subjects.length ? 'Carregando...' : props.label}
       </InputLabel>
@@ -94,12 +91,13 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
                   flex: 1,
                 }}
               >
-                <OptionButton
+                <RowOptionsButton
                   isActive={isActive}
                   onPress={() => handleSubjectsChange(item)}
+                  containerStyle={props.buttonContainerStyle}
                 >
                   {item.name}
-                </OptionButton>
+                </RowOptionsButton>
               </View>
             )
           }}

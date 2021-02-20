@@ -40,38 +40,12 @@ export const PrimaryButtonText = styled.Text`
   color: #fff;
 `
 
-interface ButtonStyleProps {
-  isActive: boolean
-}
-
-export const OptionButtonContainer = styled.TouchableOpacity<ButtonStyleProps>`
-  flex: 1;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  background-color: ${(props) =>
-    props.isActive ? theme.colors.primary.purple : '#fff'};
-  border-width: 1px;
-  border-color: ${theme.colors.primary.purple};
-`
-
-export const OptionButtonText = styled.Text<ButtonStyleProps>`
-  font-family: ${theme.fonts.button};
-  color: ${(props) => (props.isActive ? '#fff' : theme.colors.primary.purple)};
-`
-
-export interface SelectBackgroundStylesProps {
-  backgroundColor?: string
-}
-
 export const SelectContainer = styled.View`
   margin-top: 20px;
 `
 
-export const SelectBackground = styled.View<SelectBackgroundStylesProps>`
-  background-color: ${(props) =>
-    props.backgroundColor || theme.colors.input.background};
+export const SelectBackground = styled.View`
+  background-color: ${theme.colors.input.background};
   border-radius: 4px;
   min-height: 40px;
   justify-content: center;
@@ -99,4 +73,11 @@ export const PrimaryLabelText = styled.Text<PrimaryLabelStylesProps>`
   text-align: center;
 
   letter-spacing: 0.6px;
+`
+
+export const SubjectsPickerListContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -8px;
 `

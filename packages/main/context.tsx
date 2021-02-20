@@ -19,9 +19,10 @@ interface State {
 }
 
 interface Actions {
-  resetStudents(): Promise<void>
+  addMoreStudents(): Promise<void>
   likeStudent(): Promise<void>
   dislikeStudent(): Promise<void>
+  reloadAllStudents(): Promise<void>
 }
 
 export type MainContext = State & Actions
@@ -41,7 +42,13 @@ export function useMainContext(): MainContext {
 export const MainContextProvider: React.FC = ({ children }) => {
   const [students, setStudents] = useState<Student[]>([])
 
-  const resetStudents = useCallback(
+  const reloadAllStudents = useCallback(async () => {
+    const apiStudents = await GetStudentsUseCase()
+
+    setStudents(apiStudents)
+  }, [])
+
+  const addMoreStudents = useCallback(
     async (removeStudentsIds?: string[]) => {
       const apiStudents = await GetStudentsUseCase()
 
@@ -65,27 +72,34 @@ export const MainContextProvider: React.FC = ({ children }) => {
   const likeStudent = useCallback(async () => {
     await LikeStudentUseCase(students[0].id)
 
-    if (students.length < 4) resetStudents([students[0].id])
+    if (students.length < 4) addMoreStudents([students[0].id])
 
     setStudents([...students.slice(1)])
-  }, [resetStudents, students])
+  }, [addMoreStudents, students])
 
   const dislikeStudent = useCallback(async () => {
     await DislikeStudentUseCase(students[0].id)
 
-    if (students.length < 4) resetStudents([students[0].id])
+    if (students.length < 4) addMoreStudents([students[0].id])
 
     setStudents([...students.slice(1)])
-  }, [resetStudents, students])
+  }, [addMoreStudents, students])
 
   const value = useMemo<MainContext>(() => {
     return {
       students,
-      resetStudents,
+      addMoreStudents,
       likeStudent,
       dislikeStudent,
+      reloadAllStudents,
     }
-  }, [dislikeStudent, likeStudent, resetStudents, students])
+  }, [
+    students,
+    addMoreStudents,
+    likeStudent,
+    dislikeStudent,
+    reloadAllStudents,
+  ])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }

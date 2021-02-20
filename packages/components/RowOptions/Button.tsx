@@ -1,4 +1,5 @@
 import React from 'react'
+import { ViewStyle } from 'react-native'
 
 import {
   RowOptionsButtonContainer,
@@ -9,6 +10,7 @@ export interface RowOptionsButtonProps {
   isActive: boolean
   onPress(): void
   children: string
+  containerStyle?: ViewStyle
 }
 
 const RowOptionsButton: React.FC<RowOptionsButtonProps> = (props) => {
@@ -16,6 +18,7 @@ const RowOptionsButton: React.FC<RowOptionsButtonProps> = (props) => {
     <RowOptionsButtonContainer
       onPress={props.onPress}
       isActive={props.isActive}
+      style={props.containerStyle}
     >
       <RowOptionsButtonText isActive={props.isActive}>
         {props.children}

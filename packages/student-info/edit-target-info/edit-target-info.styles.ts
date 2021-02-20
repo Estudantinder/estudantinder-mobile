@@ -57,13 +57,6 @@ export const TextAreaInput = styled(Input)`
   padding-top: 12px;
 `
 
-export const SubjectsPickerListContainer = styled.View`
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  margin-top: -8px;
-`
-
 export const PhotosCarrouselContainer = styled.View`
   margin: 40px 0px;
   width: ${Dimensions.get('window').width}px;

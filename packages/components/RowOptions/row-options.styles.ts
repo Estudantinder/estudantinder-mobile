@@ -9,9 +9,11 @@ interface RowOptionsButtonStyleProps {
 export const RowOptionsButtonContainer = styled.TouchableOpacity<RowOptionsButtonStyleProps>`
   flex: 1;
   height: 40px;
+
   justify-content: center;
   align-items: center;
   border-radius: 3px;
+
   background-color: ${(props) =>
     props.isActive ? theme.colors.primary.purple : '#fff'};
   border-width: 1px;

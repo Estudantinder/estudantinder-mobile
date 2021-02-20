@@ -23,14 +23,13 @@ export interface HomeNoStudentPageProps {
 const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
   const [refreshing, setRefreshing] = useState(false)
 
-  const { resetStudents } = useMainContext()
+  const { reloadAllStudents } = useMainContext()
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
 
-    resetStudents().then(() => setRefreshing(false))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    reloadAllStudents().then(() => setRefreshing(false))
+  }, [reloadAllStudents])
 
   const openDrawer = () => props.drawerRef.current?.openDrawer()
 

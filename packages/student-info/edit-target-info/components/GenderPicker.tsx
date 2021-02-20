@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import { useField } from '@unform/core'
 
-import OptionButton from 'packages/components/OptionButton'
+import RowOptionsButton from 'packages/components/RowOptions/Button'
 import Gender, { GENDERS, IGender } from 'packages/entities/Gender'
 import Input from 'packages/inputs/components/Input'
 import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
@@ -69,21 +69,21 @@ const GenderPicker: React.FC = () => {
       <InputLabel>Gênero (Opcional)</InputLabel>
 
       <Row>
-        <OptionButton
+        <RowOptionsButton
           isActive={gender.toUpperCase() === 'FEMININO'}
           onPress={handleSelectFem}
         >
           Feminino
-        </OptionButton>
+        </RowOptionsButton>
 
         <HorizontalDivider />
 
-        <OptionButton
+        <RowOptionsButton
           isActive={gender.toUpperCase() === 'MASCULINO'}
           onPress={handleSelectMasc}
         >
           Masculino
-        </OptionButton>
+        </RowOptionsButton>
       </Row>
 
       <GenderPickerOrText>ou</GenderPickerOrText>

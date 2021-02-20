@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { View } from 'react-native'
+import { View, ViewStyle } from 'react-native'
 
 import { FormHandles } from '@unform/core'
 
@@ -11,9 +11,10 @@ import arrayToItems from 'packages/utils/arrayToItems'
 
 export interface SchoolCoursePickerProps {
   formRef: React.RefObject<FormHandles>
-  backgroundColor?: string
   defaultSchool?: School
   defaultCourse?: Course
+  selectContainerStyle?: ViewStyle
+  selectBackgroundStyle?: ViewStyle
 }
 
 const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
@@ -67,7 +68,8 @@ const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
         }
         disabled={!schools || !schools.length}
         onValueChange={getCurrentSchool}
-        backgroundColor={props.backgroundColor}
+        backgroundStyle={props.selectBackgroundStyle}
+        containerStyle={props.selectContainerStyle}
       />
 
       <Select
@@ -89,8 +91,9 @@ const SchoolCoursePicker: React.FC<SchoolCoursePickerProps> = (props) => {
             : []
         }
         disabled={!currentSchool}
-        backgroundColor={props.backgroundColor}
         defaultValue={getDefaultCourse()}
+        containerStyle={props.selectContainerStyle}
+        backgroundStyle={props.selectBackgroundStyle}
       />
     </View>
   )
