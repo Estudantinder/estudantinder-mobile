@@ -17,11 +17,6 @@ export const TopBarContainer = styled(Row)`
   elevation: 8;
 `
 
-export const HomeMain = styled.View`
-  flex: 1;
-  width: 100%;
-`
-
 export const StudentCardContainer = styled.View`
   height: ${Dimensions.get('window').height - 210}px;
 `
@@ -41,7 +36,6 @@ export const StudentCardFooter = styled.View`
   position: relative;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  elevation: 2;
 `
 
 export const StudentCardProfileButtonContainer = styled.View`
@@ -71,12 +65,40 @@ export const StudentCardFooterText = styled.Text`
   font-size: 13px;
 `
 
-export const HomeButtonsContainer = styled(Row)`
+export const FilterDrawerContainer = styled.View`
+  width: 100%;
+  height: 100%;
+  padding-top: 36px;
+  padding-left: 16px;
+  padding-right: 16px;
+`
+
+export const FilterDrawerBackContainer = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+`
+
+export const FilterDrawerScrollView = styled.ScrollView`
+  flex: 1;
+  width: 100%;
+`
+
+export const FilterDrawerTopBarTitle = styled(Title)`
+  text-align: center;
+  margin-bottom: 0;
+`
+
+export const FilterDrawerTooltipText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.subtitle};
+`
+
+export const HomeLikeAndDislikeContainer = styled(Row)`
   justify-content: space-around;
   margin: 12px 0px;
 `
 
-export const HomeButton = styled(RectButton)`
+export const HomeLikeAndDislikeButton = styled(RectButton)`
   border-radius: 999px;
   width: 52px;
   height: 52px;
@@ -85,23 +107,4 @@ export const HomeButton = styled(RectButton)`
   align-items: center;
   justify-content: center;
   elevation: 5;
-`
-
-export const HomeNoStudentContainer = styled.View`
-  flex: 1;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-`
-
-export const HomeNoStudentTitle = styled(Title)`
-  font-size: 16px;
-  margin: 8px 0px;
-  text-align: center;
-`
-
-export const HomeNoStudentSubTitle = styled(Title)`
-  font-size: 14px;
-  text-align: center;
 `

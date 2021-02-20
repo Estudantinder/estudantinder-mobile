@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { RefObject, useCallback, useState } from 'react'
 import { Image, RefreshControl } from 'react-native'
+import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
 import Scroll from 'packages/components/Scroll'
@@ -8,14 +9,18 @@ import { PageContainer } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
 import NoStudents from '../assets/no_students.png'
+import HomeTopBar from '../components/Topbar'
 import {
   HomeNoStudentContainer,
   HomeNoStudentSubTitle,
   HomeNoStudentTitle,
-} from '../home.styles'
-import HomeTopBar from './Topbar'
+} from './home-pages.styles'
 
-const HomeNoStudentPage: React.FC = () => {
+export interface HomeNoStudentPageProps {
+  drawerRef: RefObject<DrawerLayout>
+}
+
+const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
   const [refreshing, setRefreshing] = useState(false)
 
   const { resetStudents } = useMainContext()
@@ -24,7 +29,10 @@ const HomeNoStudentPage: React.FC = () => {
     setRefreshing(true)
 
     resetStudents().then(() => setRefreshing(false))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const openDrawer = () => props.drawerRef.current?.openDrawer()
 
   return (
     <PageContainer withoutPadding style={{ paddingTop: 0 }}>
@@ -39,7 +47,7 @@ const HomeNoStudentPage: React.FC = () => {
           />
         }
       >
-        <HomeTopBar />
+        <HomeTopBar onFiltersPressed={openDrawer} />
 
         <HomeNoStudentContainer>
           <Image source={NoStudents} />

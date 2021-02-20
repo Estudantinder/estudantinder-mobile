@@ -18,7 +18,7 @@ import {
   StudentCardNameText,
   StudentCardProfileButton,
   StudentCardProfileButtonContainer,
-} from '../home.styles'
+} from './home-components.styles'
 
 export interface StudentCardProps {
   student: Student
