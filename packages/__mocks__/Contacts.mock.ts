@@ -6,5 +6,5 @@ export default new Contacts({
   facebook: faker.internet.userName(),
   instagram: faker.internet.userName(),
   twitter: faker.internet.userName(),
-  whatsapp: '11912345678',
+  whatsapp: '(11) 90000-0000',
 })

@@ -7,15 +7,15 @@ type ContactsKeys = Record<keyof Contacts, unknown>
 
 export default Yup.object().shape<ContactsKeys>({
   whatsapp: Yup.string()
-    .test(
-      'valid_tel',
-      'Digite um telefone válido (sem o código do país)',
-      (value) => {
-        if (!value) return true
+    .test('valid_tel', 'Digite um telefone válido (com DDD)', (value) => {
+      if (!value) return true
 
-        return isPhone(value)
-      }
-    )
+      if (!isPhone(value)) return false
+
+      if (value.startsWith('+55') || value.startsWith('(')) return true
+
+      return false
+    })
     .optional(),
   twitter: Yup.string()
     .test('valid_twitter', 'Digite um username do Twitter válido', (value) => {
