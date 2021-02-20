@@ -27,11 +27,9 @@ const Home: React.FC = () => {
   let children: JSX.Element | undefined = undefined
 
   if (isLoading) children = <HomeLoadingPage drawerRef={drawerRef} />
-
-  if (!context.students.length)
+  else if (!context.students.length)
     children = <HomeNoStudentPage drawerRef={drawerRef} />
-
-  if (!children) children = <HomeStudentsPage drawerRef={drawerRef} />
+  else children = <HomeStudentsPage drawerRef={drawerRef} />
 
   return <FilterDrawer drawerRef={drawerRef}>{children}</FilterDrawer>
 }

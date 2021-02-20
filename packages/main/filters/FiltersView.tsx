@@ -10,6 +10,7 @@ import PrimaryButton from 'packages/components/PrimaryButton'
 import RowOptionsPicker from 'packages/components/RowOptions/Picker'
 import SchoolCoursePicker from 'packages/components/SchoolCoursePicker'
 import SubjectsPicker from 'packages/components/SubjectsPicker'
+import { GENDERS } from 'packages/entities/Gender'
 import { SHIFTS } from 'packages/entities/Shift'
 import { Row } from 'packages/styles'
 import alertModal from 'packages/utils/alertModal'
@@ -36,7 +37,11 @@ const FiltersView = (props: FiltersViewProps): JSX.Element => {
 
   async function handleSubmit(data: FiltersFormData) {
     try {
-      await UpdateFiltersUseCase(data)
+      await UpdateFiltersUseCase({
+        ...data,
+        course: Number(data.course),
+        school: Number(data.school),
+      })
 
       await reloadAllStudents()
     } catch (error) {
@@ -125,6 +130,18 @@ const FiltersView = (props: FiltersViewProps): JSX.Element => {
             options={[
               { label: 'Manhã', value: String(SHIFTS.MORNING) },
               { label: 'Tarde', value: String(SHIFTS.AFTERNOON) },
+            ]}
+            style={{ marginTop: 4 }}
+            buttonsContainerStyle={{ height: 28 }}
+          />
+
+          <RowOptionsPicker
+            label="Gênero"
+            name="gender"
+            canDeselect
+            options={[
+              { label: 'Feminino', value: String(GENDERS.FEMALE) },
+              { label: 'Masculino', value: String(GENDERS.MALE) },
             ]}
             style={{ marginTop: 4 }}
             buttonsContainerStyle={{ height: 28 }}
