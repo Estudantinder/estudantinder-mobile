@@ -5,7 +5,10 @@ import { Text } from 'react-native'
 import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
 
 import Home from 'packages/main/home'
+import UserProfile from 'packages/main/user-profile'
 import theme from 'packages/styles/theme'
+
+import { MAIN_ROUTES } from '../constants'
 
 const { Navigator, Screen } = createBottomTabNavigator()
 
@@ -74,18 +77,18 @@ export default function MainTabNavigation() {
 
   return (
     <Navigator
-      initialRouteName="Home"
+      initialRouteName={MAIN_ROUTES.HOME}
       screenOptions={({ route }) => ({
         tabBarIcon: function TabBarIcon({ color, size, focused }) {
-          if (route.name === 'Home') {
+          if (route.name === MAIN_ROUTES.HOME) {
             return handleGetHomeIcon({ color, size, focused })
           }
 
-          if (route.name === 'UserProfile') {
+          if (route.name === MAIN_ROUTES.USER_PROFILE) {
             return handleGetProfileIcon({ color, size, focused })
           }
 
-          if (route.name === 'Matches') {
+          if (route.name === MAIN_ROUTES.MATCHES) {
             return handleGetMatchesIcon({ color, size, focused })
           }
 
@@ -94,7 +97,7 @@ export default function MainTabNavigation() {
         tabBarLabel: function TabBarLabel({ focused }) {
           let labelTitle
 
-          if (route.name === 'UserProfile') labelTitle = 'Perfil'
+          if (route.name === MAIN_ROUTES.USER_PROFILE) labelTitle = 'Perfil'
           else labelTitle = route.name
 
           return (
@@ -119,7 +122,8 @@ export default function MainTabNavigation() {
         inactiveTintColor: theme.colors.primary.purple,
       }}
     >
-      <Screen name="Home" component={Home} />
+      <Screen name={MAIN_ROUTES.HOME} component={Home} />
+      <Screen name={MAIN_ROUTES.USER_PROFILE} component={UserProfile} />
     </Navigator>
   )
 }
