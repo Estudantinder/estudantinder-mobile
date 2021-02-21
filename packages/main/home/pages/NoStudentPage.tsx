@@ -26,9 +26,15 @@ const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
   const { reloadAllStudents } = useMainContext()
 
   const onRefresh = useCallback(() => {
+    let isRendered = true
+
     setRefreshing(true)
 
-    reloadAllStudents().then(() => setRefreshing(false))
+    reloadAllStudents().then(() => {
+      if (isRendered) setRefreshing(false)
+    })
+
+    return () => (isRendered = false)
   }, [reloadAllStudents])
 
   const openDrawer = () => props.drawerRef.current?.openDrawer()
