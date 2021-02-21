@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
+import alertModal from 'packages/utils/alertModal'
+
 import { useMainContext } from '../context'
 import FilterDrawer from '../filters'
 import HomeLoadingPage from './pages/LoadingPage'
@@ -16,7 +18,11 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const fn = async () => {
-      await reloadAllStudents()
+      try {
+        await reloadAllStudents()
+      } catch (error) {
+        alertModal(error)
+      }
 
       setIsLoading(false)
     }

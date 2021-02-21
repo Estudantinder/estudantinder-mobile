@@ -2,12 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { RefreshControl } from 'react-native'
 
 import Scroll from 'packages/components/Scroll'
-import Match from 'packages/entities/Match'
 import { PageContainer, Title } from 'packages/styles'
 import alertModal from 'packages/utils/alertModal'
 
-import DeleteMatchUseCase from '../use-cases/delete-match'
-import GetMatchesUseCase from '../use-cases/get-matches'
+import { useMainContext } from '../context'
 import MatchCard from './components/MatchCard'
 import MatchesLoadingPage from './pages/LoadingPage'
 import MatchesNoMatchesPage from './pages/NoMatchesPage'
@@ -16,33 +14,23 @@ const Matches: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
-  const [matches, setMatches] = useState<Match[]>([])
-
-  const loadMatches = async () => {
-    const data = await GetMatchesUseCase()
-
-    setMatches(data)
-  }
+  const { getMatches, deleteMatch, matches } = useMainContext()
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
 
-    loadMatches().then(() => setRefreshing(false))
-  }, [])
+    getMatches().then(() => setRefreshing(false))
+  }, [getMatches])
 
   useEffect(() => {
-    loadMatches()
+    getMatches()
 
     setIsLoading(false)
-  }, [])
+  }, [getMatches])
 
   const handleDeleteMatch = async (id: string) => {
     try {
-      await DeleteMatchUseCase(id)
-
-      const newMatches = matches?.filter((value) => value.match_id !== id)
-
-      setMatches([...newMatches])
+      await deleteMatch(id)
     } catch (error) {
       alertModal(error)
     }
@@ -50,10 +38,8 @@ const Matches: React.FC = () => {
 
   if (isLoading) return <MatchesLoadingPage />
 
-  if (!matches || !matches.length) {
-    return (
-      <MatchesNoMatchesPage refreshing={refreshing} onRefresh={onRefresh} />
-    )
+  if (!matches.length) {
+    return <MatchesNoMatchesPage />
   }
 
   return (

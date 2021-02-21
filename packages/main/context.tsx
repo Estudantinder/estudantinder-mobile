@@ -8,14 +8,21 @@ import React, {
 
 import env from 'env'
 
+import Match from 'packages/entities/Match'
 import Student from 'packages/entities/Student'
+import User from 'packages/entities/User'
 
+import DeleteMatchUseCase from './use-cases/delete-match'
 import DislikeStudentUseCase from './use-cases/dislike-student'
+import GetMatchesUseCase from './use-cases/get-matches'
 import GetStudentsUseCase from './use-cases/get-students'
+import GetUserProfileUseCase from './use-cases/get-user-profile'
 import LikeStudentUseCase from './use-cases/like-student'
 
 interface State {
   students: Student[]
+  matches: Match[]
+  profile: User | null
 }
 
 interface Actions {
@@ -23,6 +30,11 @@ interface Actions {
   likeStudent(): Promise<void>
   dislikeStudent(): Promise<void>
   reloadAllStudents(): Promise<void>
+
+  getMatches(): Promise<void>
+  deleteMatch(id: string): Promise<void>
+
+  getProfile(): Promise<void>
 }
 
 export type MainContext = State & Actions
@@ -41,6 +53,8 @@ export function useMainContext(): MainContext {
 
 export const MainContextProvider: React.FC = ({ children }) => {
   const [students, setStudents] = useState<Student[]>([])
+  const [matches, setMatches] = useState<Match[]>([])
+  const [profile, setProfile] = useState<User | null>(null)
 
   const reloadAllStudents = useCallback(async () => {
     const apiStudents = await GetStudentsUseCase()
@@ -85,6 +99,29 @@ export const MainContextProvider: React.FC = ({ children }) => {
     setStudents([...students.slice(1)])
   }, [addMoreStudents, students])
 
+  const getMatches = useCallback(async () => {
+    const newMatches = await GetMatchesUseCase()
+
+    setMatches(newMatches)
+  }, [])
+
+  const deleteMatch = useCallback(
+    async (id: string) => {
+      await DeleteMatchUseCase(id)
+
+      const newMatches = matches.filter((value) => value.match_id !== id)
+
+      setMatches([...newMatches])
+    },
+    [matches]
+  )
+
+  const getProfile = useCallback(async () => {
+    const newProfile = await GetUserProfileUseCase()
+
+    setProfile(newProfile)
+  }, [])
+
   const value = useMemo<MainContext>(() => {
     return {
       students,
@@ -92,6 +129,11 @@ export const MainContextProvider: React.FC = ({ children }) => {
       likeStudent,
       dislikeStudent,
       reloadAllStudents,
+      getMatches,
+      deleteMatch,
+      getProfile,
+      matches,
+      profile,
     }
   }, [
     students,
@@ -99,6 +141,11 @@ export const MainContextProvider: React.FC = ({ children }) => {
     likeStudent,
     dislikeStudent,
     reloadAllStudents,
+    getMatches,
+    deleteMatch,
+    getProfile,
+    matches,
+    profile,
   ])
 
   return <Context.Provider value={value}>{children}</Context.Provider>

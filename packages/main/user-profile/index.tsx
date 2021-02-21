@@ -1,39 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
 
 import Scroll from 'packages/components/Scroll'
-import User from 'packages/entities/User'
 import ShowTargetStudent from 'packages/student-info/show-target-info/ShowTargetInfo'
 import { Title, PageContainer } from 'packages/styles'
 import theme from 'packages/styles/theme'
 import alertModal from 'packages/utils/alertModal'
 
-import GetUserProfileUseCase from '../use-cases/get-user-profile'
+import { useMainContext } from '../context'
 import {
   UserProfileEditButtonContainer,
   UserProfileEditButton,
 } from './user-profile.styles'
 
 const UserProfile: React.FC = () => {
-  const [user, setUser] = useState<User>()
+  const { getProfile, profile } = useMainContext()
 
   useEffect(() => {
     const fn = async () => {
       try {
-        const newUser = await GetUserProfileUseCase()
-
-        setUser(newUser)
+        await getProfile()
       } catch (error) {
         alertModal(error)
       }
     }
 
     fn()
-  }, [])
+  }, [getProfile])
 
-  if (!user)
+  if (!profile)
     return (
       <PageContainer>
         <Title>Carregando...</Title>
@@ -52,7 +49,7 @@ const UserProfile: React.FC = () => {
       </UserProfileEditButtonContainer>
 
       <Scroll>
-        <ShowTargetStudent student={user} />
+        <ShowTargetStudent student={profile} />
       </Scroll>
     </PageContainer>
   )
