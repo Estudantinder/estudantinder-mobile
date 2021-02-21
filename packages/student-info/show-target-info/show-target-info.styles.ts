@@ -8,11 +8,10 @@ export const ShowTargetStudentContainer = styled.View`
   width: 100%;
 `
 
-export const ShowTargetStudentContent = styled.View`
-  padding-top: 24px;
-  background-color: #f9f9f9;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+export const ShowTargetStudentProfileImage = styled.Image`
+  width: 175px;
+  height: 190px;
+  border-radius: 4px;
 `
 
 export const ShowTargetStudentInfoContainer = styled.View`
