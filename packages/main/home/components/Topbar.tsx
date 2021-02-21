@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 
-import LogoWhite from '../assets/logo_white.png'
+import LogoWhite from '../../assets/logo_white.png'
 import { TopBarContainer } from './home-components.styles'
 
 export interface HomeTopBarProps {

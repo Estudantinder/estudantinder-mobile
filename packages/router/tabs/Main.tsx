@@ -5,6 +5,7 @@ import { Text } from 'react-native'
 import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
 
 import Home from 'packages/main/home'
+import Matches from 'packages/main/matches'
 import UserProfile from 'packages/main/user-profile'
 import theme from 'packages/styles/theme'
 
@@ -122,6 +123,7 @@ export default function MainTabNavigation() {
         inactiveTintColor: theme.colors.primary.purple,
       }}
     >
+      <Screen name={MAIN_ROUTES.MATCHES} component={Matches} />
       <Screen name={MAIN_ROUTES.HOME} component={Home} />
       <Screen name={MAIN_ROUTES.USER_PROFILE} component={UserProfile} />
     </Navigator>

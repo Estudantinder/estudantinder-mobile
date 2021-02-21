@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { RefObject, useCallback, useState } from 'react'
 import { Image, RefreshControl } from 'react-native'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
@@ -5,16 +6,17 @@ import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import Scroll from 'packages/components/Scroll'
 import { useMainContext } from 'packages/main/context'
+import {
+  NotFoundContainer,
+  NotFoundSubTitle,
+  NotFoundTitle,
+} from 'packages/main/main.styles'
+import { MAIN_ROUTES } from 'packages/router/constants'
 import { PageContainer } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
-import NoStudents from '../assets/no_students.png'
+import NoStudents from '../../assets/not_found.png'
 import HomeTopBar from '../components/Topbar'
-import {
-  HomeNoStudentContainer,
-  HomeNoStudentSubTitle,
-  HomeNoStudentTitle,
-} from './home-pages.styles'
 
 export interface HomeNoStudentPageProps {
   drawerRef: RefObject<DrawerLayout>
@@ -22,6 +24,8 @@ export interface HomeNoStudentPageProps {
 
 const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
   const [refreshing, setRefreshing] = useState(false)
+
+  const router = useNavigation()
 
   const { reloadAllStudents } = useMainContext()
 
@@ -39,6 +43,8 @@ const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
 
   const openDrawer = () => props.drawerRef.current?.openDrawer()
 
+  const navigateToMatches = () => router.navigate(MAIN_ROUTES.MATCHES)
+
   return (
     <PageContainer withoutPadding style={{ paddingTop: 0 }}>
       <Scroll
@@ -54,24 +60,22 @@ const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
       >
         <HomeTopBar onFiltersPressed={openDrawer} />
 
-        <HomeNoStudentContainer>
+        <NotFoundContainer>
           <Image source={NoStudents} />
 
-          <HomeNoStudentTitle>
-            Você viu todo mundo por enquanto!
-          </HomeNoStudentTitle>
-          <HomeNoStudentSubTitle>
+          <NotFoundTitle>Você viu todo mundo por enquanto!</NotFoundTitle>
+          <NotFoundSubTitle>
             Acesse os Matches para ver sua lista de curtidas ou altere os seus
             filtros para ver mais estudantes.
-          </HomeNoStudentSubTitle>
+          </NotFoundSubTitle>
 
           <PrimaryButton
             containerStyle={{ width: '50%', height: 36, marginTop: 8 }}
-            onPress={() => 0}
+            onPress={navigateToMatches}
           >
             VER MATCHES
           </PrimaryButton>
-        </HomeNoStudentContainer>
+        </NotFoundContainer>
       </Scroll>
     </PageContainer>
   )

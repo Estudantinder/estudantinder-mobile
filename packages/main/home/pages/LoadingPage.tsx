@@ -2,11 +2,11 @@ import React, { RefObject } from 'react'
 import { ActivityIndicator } from 'react-native'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
+import { NotFoundContainer } from 'packages/main/main.styles'
 import { PageContainer } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
 import HomeTopBar from '../components/Topbar'
-import { HomeNoStudentContainer } from './home-pages.styles'
 
 export interface HomeLoadingPageProps {
   drawerRef: RefObject<DrawerLayout>
@@ -19,9 +19,9 @@ const HomeLoadingPage: React.FC<HomeLoadingPageProps> = (props) => {
     <PageContainer withoutPadding style={{ paddingTop: 0 }}>
       <HomeTopBar onFiltersPressed={openDrawer} />
 
-      <HomeNoStudentContainer>
+      <NotFoundContainer>
         <ActivityIndicator size={44} color={theme.colors.primary.purple} />
-      </HomeNoStudentContainer>
+      </NotFoundContainer>
     </PageContainer>
   )
 }
