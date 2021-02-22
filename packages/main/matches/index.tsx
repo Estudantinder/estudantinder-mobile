@@ -23,9 +23,7 @@ const Matches: React.FC = () => {
   }, [getMatches])
 
   useEffect(() => {
-    getMatches()
-
-    setIsLoading(false)
+    getMatches().then(() => setIsLoading(false))
   }, [getMatches])
 
   const handleDeleteMatch = async (id: string) => {
