@@ -1,15 +1,15 @@
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 
-import UpdateFiltersSerializer, {
-  FiltersFormData,
-} from './UpdateFiltersSerializer'
+import GetFiltersSerializer, {
+  GetFiltersApiResponse,
+} from './GetFiltersSerializer'
 
-export default async function UpdateFiltersUseCase(data: FiltersFormData) {
+export default async function GetFiltersUseCase() {
   try {
-    const serializedFilters = UpdateFiltersSerializer(data)
+    const response = await api.get<GetFiltersApiResponse>('/users/filters')
 
-    await api.put('/users/filters', serializedFilters)
+    return GetFiltersSerializer(response.data)
   } catch (error) {
     if (error.response) {
       throw new ApiError({

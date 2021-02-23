@@ -35,9 +35,12 @@ const RowOptionsPicker: React.FC<RowOptionsPickerProps> = (props) => {
       ref: ref.current,
       path: 'value',
     })
-
-    ref?.current && (ref.current.value = field.defaultValue)
   }, [field.defaultValue, field.fieldName, registerField])
+
+  useEffect(() => {
+    ref?.current && (ref.current.value = field.defaultValue)
+    setValue(field.defaultValue)
+  }, [field.defaultValue])
 
   function handleChangeValue(selectedValue: string) {
     let newValue = selectedValue

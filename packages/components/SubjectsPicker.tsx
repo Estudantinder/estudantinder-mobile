@@ -34,9 +34,12 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
       ref: ref.current,
       path: 'value',
     })
+  }, [fieldName, registerField])
 
+  useEffect(() => {
     ref?.current && (ref.current.value = defaultValue || [])
-  }, [defaultValue, fieldName, registerField])
+    setFavoriteSubjects(defaultValue || [])
+  }, [defaultValue])
 
   function handleSubjectsChange(newSubject: Subject) {
     if (!ref.current)

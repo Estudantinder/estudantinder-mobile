@@ -42,9 +42,14 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
       ref: inputRef.current,
       path: 'value',
     })
+  }, [registerField, field.fieldName])
 
-    inputRef.current && (inputRef.current.value = field.defaultValue)
-  }, [registerField, field.defaultValue, field.fieldName])
+  useEffect(() => {
+    inputRef.current &&
+      (inputRef.current.value = props.defaultValue || field.defaultValue)
+
+    setValue(props.defaultValue || field.defaultValue)
+  }, [field.defaultValue, props.defaultValue])
 
   return (
     <SelectContainer testID={props.testID} style={props.containerStyle}>

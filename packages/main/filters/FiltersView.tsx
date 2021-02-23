@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 
 import { Feather } from '@expo/vector-icons'
@@ -10,6 +10,7 @@ import PrimaryButton from 'packages/components/PrimaryButton'
 import RowOptionsPicker from 'packages/components/RowOptions/Picker'
 import SchoolCoursePicker from 'packages/components/SchoolCoursePicker'
 import SubjectsPicker from 'packages/components/SubjectsPicker'
+import Filter from 'packages/entities/Filter'
 import { GENDERS } from 'packages/entities/Gender'
 import { SHIFTS } from 'packages/entities/Shift'
 import { Row } from 'packages/styles'
@@ -23,6 +24,7 @@ import {
   FiltersTooltipText,
   FiltersScrollView,
 } from './filters.styles'
+import GetFiltersUseCase from './use-cases/get-filters'
 import UpdateFiltersUseCase from './use-cases/update-filters'
 import { FiltersFormData } from './use-cases/update-filters/UpdateFiltersSerializer'
 
@@ -33,7 +35,13 @@ export interface FiltersViewProps {
 const FiltersView = (props: FiltersViewProps): JSX.Element => {
   const formRef = useRef<FormHandles>(null)
 
+  const [filters, setFilters] = useState<Filter>()
+
   const { reloadAllStudents } = useMainContext()
+
+  useEffect(() => {
+    GetFiltersUseCase().then(setFilters).catch(alertModal)
+  }, [])
 
   async function handleSubmit(data: FiltersFormData) {
     try {
@@ -94,6 +102,11 @@ const FiltersView = (props: FiltersViewProps): JSX.Element => {
           }}
           ref={formRef}
           onSubmit={handleSubmit}
+          initialData={{
+            ...filters,
+            school: filters?.school?.id,
+            course: filters?.course?.id,
+          }}
         >
           <SchoolCoursePicker
             formRef={formRef}
@@ -108,6 +121,8 @@ const FiltersView = (props: FiltersViewProps): JSX.Element => {
               marginTop: 0,
               marginBottom: 8,
             }}
+            defaultCourse={filters?.course}
+            defaultSchool={filters?.school}
           />
 
           <RowOptionsPicker
