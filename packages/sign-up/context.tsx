@@ -3,6 +3,7 @@ import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import env from 'env'
 
+import { ContextUserSecrets } from 'packages/edit-target-info/pages/Secrets'
 import Contacts from 'packages/entities/Contacts'
 import {
   StudentAbout,
@@ -10,13 +11,9 @@ import {
   StudentPhotos,
   StudentSchool,
 } from 'packages/entities/Student'
-import User, { UserSecrets } from 'packages/entities/User'
+import User from 'packages/entities/User'
 
 import CreateUserUseCase from './use-cases/create-user'
-
-export interface ContextUserSecrets extends UserSecrets {
-  confirm_password: string
-}
 
 interface State {
   secrets: ContextUserSecrets | undefined
