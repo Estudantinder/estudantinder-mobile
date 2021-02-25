@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo, useState, FC } from 'react'
 
 import env from 'env'
 
-import { ContextUserSecrets } from 'packages/edit-target-info/pages/Secrets'
+import { ContextUserSecrets } from 'packages/edit-student-info/pages/Secrets'
 import Contacts from 'packages/entities/Contacts'
 import {
   StudentAbout,

@@ -5,7 +5,7 @@ import StudentMock from 'packages/__mocks__/Student.mock'
 
 import EditStudentPhotos from '../pages/Photos'
 
-describe('student-info/edit-target-info/Photos', () => {
+describe('student-info/edit-student-info/Photos', () => {
   describe('when rendered:', () => {
     test('should have an input for photos', () => {
       const onSubmitSuccess = jest.fn()

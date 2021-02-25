@@ -3,7 +3,7 @@ import faker from 'faker'
 import {
   STUDENT_ABOUT_SCHEMA_MAX_DATE,
   STUDENT_ABOUT_SCHEMA_MIN_DATE,
-} from 'packages/edit-target-info/validators/StudentAboutSchema'
+} from 'packages/edit-student-info/validators/StudentAboutSchema'
 import { GENDERS, IGender } from 'packages/entities/Gender'
 import School from 'packages/entities/School'
 import { SHIFTS } from 'packages/entities/Shift'

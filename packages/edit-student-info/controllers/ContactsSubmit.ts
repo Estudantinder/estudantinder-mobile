@@ -2,7 +2,7 @@ import { RefObject } from 'react'
 
 import { FormHandles } from '@unform/core'
 
-import StudentContactsSchema from 'packages/edit-target-info/validators/StudentContactsSchema'
+import StudentContactsSchema from 'packages/edit-student-info/validators/StudentContactsSchema'
 import Contacts from 'packages/entities/Contacts'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'

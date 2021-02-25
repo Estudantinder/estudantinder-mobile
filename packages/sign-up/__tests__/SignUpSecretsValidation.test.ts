@@ -1,6 +1,7 @@
 import faker from 'faker'
 
-import { ContextUserSecrets } from '../context'
+import { ContextUserSecrets } from 'packages/edit-student-info/pages/Secrets'
+
 import SignUpSecretsValidationSchema from '../SignUpSecretsValidationSchema'
 
 describe('sign-up/SignUpSecretsValidationSchema', () => {

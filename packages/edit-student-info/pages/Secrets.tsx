@@ -8,13 +8,13 @@ import PasswordInput from 'packages/inputs/components/PasswordInput'
 import { StyledForm } from 'packages/styles'
 import focusOnInput from 'packages/utils/focusOnInput'
 
-import { EditTargetInfoProps } from '../EditTargetInfoProps'
+import { EditStudentInfoProps } from '../EditStudentInfoProps'
 
 export interface ContextUserSecrets extends UserSecrets {
   confirm_password: string
 }
 
-type EditStudentSecrets = EditTargetInfoProps<ContextUserSecrets> & {
+type EditStudentSecrets = EditStudentInfoProps<ContextUserSecrets> & {
   title?: string
   fixedEmail?: boolean
 }

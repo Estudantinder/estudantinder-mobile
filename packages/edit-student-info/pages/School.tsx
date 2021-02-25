@@ -10,9 +10,9 @@ import { StudentSchool } from 'packages/entities/Student'
 import Input from 'packages/inputs/components/Input'
 import { StyledForm } from 'packages/styles'
 
-import { EditTargetInfoProps } from '../EditTargetInfoProps'
+import { EditStudentInfoProps } from '../EditStudentInfoProps'
 
-type EditStudentSchoolProps = EditTargetInfoProps<StudentSchool>
+type EditStudentSchoolProps = EditStudentInfoProps<StudentSchool>
 
 export type SchoolFormData = Modify<
   StudentSchool,

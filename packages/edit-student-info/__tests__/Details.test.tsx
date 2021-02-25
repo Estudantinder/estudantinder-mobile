@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react-native'
 import React from 'react'
 import { act } from 'react-test-renderer'
 
-import EditTargetInfoPropsMock from 'packages/__mocks__/EditTargetInfoProps.mock'
+import EditStudentInfoPropsMock from 'packages/__mocks__/EditStudentInfoProps.mock'
 import StudentMock from 'packages/__mocks__/Student.mock'
 import { mockedSubjectsData } from 'packages/__mocks__/subjectsData.mock'
 import { StudentDetails } from 'packages/entities/Student'
@@ -10,10 +10,10 @@ import { StudentDetails } from 'packages/entities/Student'
 import EditStudentDetailsSubmit from '../controllers/DetailsSubmit'
 import EditStudentDetails from '../pages/Details'
 
-describe('student-info/edit-target-info/Details', () => {
+describe('student-info/edit-student-info/Details', () => {
   describe('when rendered:', () => {
     test('should have an input for bio', () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       const component = render(
         <EditStudentDetails
@@ -26,7 +26,7 @@ describe('student-info/edit-target-info/Details', () => {
     })
 
     test('should get subjects data from API', () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       render(
         <EditStudentDetails
@@ -39,7 +39,7 @@ describe('student-info/edit-target-info/Details', () => {
     })
 
     test('should have an input for favorites subjects', () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       const component = render(
         <EditStudentDetails
@@ -52,7 +52,7 @@ describe('student-info/edit-target-info/Details', () => {
     })
 
     test('should have a submit button', () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       const component = render(
         <EditStudentDetails
@@ -65,7 +65,7 @@ describe('student-info/edit-target-info/Details', () => {
     })
 
     test('should set initial data if provided', () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       render(
         <EditStudentDetails
@@ -85,7 +85,7 @@ describe('student-info/edit-target-info/Details', () => {
 
   describe('form events:', () => {
     test('should submit on submit button pressed', () => {
-      const mocks = EditTargetInfoPropsMock()
+      const mocks = EditStudentInfoPropsMock()
 
       const component = render(
         <EditStudentDetails
@@ -104,7 +104,7 @@ describe('student-info/edit-target-info/Details', () => {
 
   describe('submit events:', () => {
     test('should get all data from inputs', () => {
-      const mocks = EditTargetInfoPropsMock()
+      const mocks = EditStudentInfoPropsMock()
 
       render(
         <EditStudentDetails
@@ -127,7 +127,7 @@ describe('student-info/edit-target-info/Details', () => {
     })
 
     test('should set respective field validations errors', async () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       const handleSubmit = new EditStudentDetailsSubmit({
         formRef: mocks.formRef,
@@ -149,7 +149,7 @@ describe('student-info/edit-target-info/Details', () => {
     })
 
     test('should pass if all values are valid', async () => {
-      const mocks = EditTargetInfoPropsMock<StudentDetails>()
+      const mocks = EditStudentInfoPropsMock<StudentDetails>()
 
       const handleSubmit = new EditStudentDetailsSubmit({
         formRef: mocks.formRef,

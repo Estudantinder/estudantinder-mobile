@@ -8,9 +8,9 @@ import { StyledForm } from 'packages/styles'
 
 import BirthDatePicker from '../components/BirthDatePicker'
 import GenderPicker from '../components/GenderPicker'
-import { EditTargetInfoProps } from '../EditTargetInfoProps'
+import { EditStudentInfoProps } from '../EditStudentInfoProps'
 
-type EditStudentAboutProps = EditTargetInfoProps<StudentAbout>
+type EditStudentAboutProps = EditStudentInfoProps<StudentAbout>
 
 const EditStudentAbout: React.FC<EditStudentAboutProps> = (props) => {
   const submitForm = () => props.formRef.current?.submitForm()

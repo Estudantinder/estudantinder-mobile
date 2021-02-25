@@ -6,10 +6,10 @@ import { StudentDetails } from 'packages/entities/Student'
 import { StyledForm } from 'packages/styles'
 
 import SubjectsPicker from '../../components/SubjectsPicker'
-import { TextAreaInput } from '../edit-target-info.styles'
-import { EditTargetInfoProps } from '../EditTargetInfoProps'
+import { TextAreaInput } from '../edit-student-info.styles'
+import { EditStudentInfoProps } from '../EditStudentInfoProps'
 
-export type EditStudentDetailsProps = EditTargetInfoProps<StudentDetails>
+export type EditStudentDetailsProps = EditStudentInfoProps<StudentDetails>
 
 const EditStudentDetails: React.FC<EditStudentDetailsProps> = (props) => {
   const submitForm = () => props.formRef.current?.submitForm()

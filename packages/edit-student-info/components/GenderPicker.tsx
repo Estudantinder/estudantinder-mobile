@@ -9,7 +9,7 @@ import Input from 'packages/inputs/components/Input'
 import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
 import { HorizontalDivider, Row } from 'packages/styles'
 
-import { GenderPickerOrText } from '../edit-target-info.styles'
+import { GenderPickerOrText } from '../edit-student-info.styles'
 
 const GenderPicker: React.FC = () => {
   const ref = useRef<ValueRef<View, IGender>>(null)

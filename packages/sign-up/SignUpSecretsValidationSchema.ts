@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-import { ContextUserSecrets } from './context'
+import { ContextUserSecrets } from 'packages/edit-student-info/pages/Secrets'
 
 type SecretsKeys = Record<keyof ContextUserSecrets, unknown>
 

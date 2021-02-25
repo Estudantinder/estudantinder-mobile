@@ -3,8 +3,8 @@ import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
 
-import EditStudentAboutSubmit from 'packages/edit-target-info/controllers/AboutSubmit'
-import EditStudentAbout from 'packages/edit-target-info/pages/About'
+import EditStudentAboutSubmit from 'packages/edit-student-info/controllers/AboutSubmit'
+import EditStudentAbout from 'packages/edit-student-info/pages/About'
 import { StudentAbout } from 'packages/entities/Student'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
 

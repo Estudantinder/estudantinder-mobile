@@ -14,10 +14,10 @@ import {
   InstagramInput,
   TwitterInput,
   WhatsappInput,
-} from '../edit-target-info.styles'
-import { EditTargetInfoProps } from '../EditTargetInfoProps'
+} from '../edit-student-info.styles'
+import { EditStudentInfoProps } from '../EditStudentInfoProps'
 
-export type EditStudentContactsProps = EditTargetInfoProps<Contacts>
+export type EditStudentContactsProps = EditStudentInfoProps<Contacts>
 
 const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
   const formRef = props.formRef

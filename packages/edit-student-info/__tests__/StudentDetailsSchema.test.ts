@@ -1,10 +1,10 @@
 import faker from 'faker'
 
 import StudentMock from 'packages/__mocks__/Student.mock'
-import StudentDetailsSchema from 'packages/edit-target-info/validators/StudentDetailsSchema'
+import StudentDetailsSchema from 'packages/edit-student-info/validators/StudentDetailsSchema'
 import { StudentDetails } from 'packages/entities/Student'
 
-describe('student-info/edit-target-info/StudentDetailsSchema', () => {
+describe('student-info/edit-student-info/StudentDetailsSchema', () => {
   const data: StudentDetails = {
     bio: StudentMock.bio,
     subjects: StudentMock.subjects,

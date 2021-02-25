@@ -3,16 +3,16 @@ import React from 'react'
 import { act } from 'react-test-renderer'
 
 import ContactsMock from 'packages/__mocks__/Contacts.mock'
-import EditTargetInfoPropsMock from 'packages/__mocks__/EditTargetInfoProps.mock'
+import EditStudentInfoPropsMock from 'packages/__mocks__/EditStudentInfoProps.mock'
 import Contacts from 'packages/entities/Contacts'
 
 import EditStudentContactsSubmit from '../controllers/ContactsSubmit'
 import EditStudentContacts from '../pages/Contacts'
 
-describe('student-info/edit-target-info/Contacts', () => {
+describe('student-info/edit-student-info/Contacts', () => {
   describe('when rendered:', () => {
     test('should have an input for facebook', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -25,7 +25,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should have an input for instagram', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -38,7 +38,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should have an input for whatsapp', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -51,7 +51,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should have an input for twitter', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -64,7 +64,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should have a submit button', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -77,7 +77,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should set initial data if provided', () => {
-      const mocks = EditTargetInfoPropsMock()
+      const mocks = EditStudentInfoPropsMock()
 
       render(
         <EditStudentContacts
@@ -104,7 +104,7 @@ describe('student-info/edit-target-info/Contacts', () => {
 
   describe('form events:', () => {
     test('should go to next input when keyboard submit pressed', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -132,7 +132,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should submit when last input keyboard submit pressed', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -151,7 +151,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should submit when submit button pressed', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const component = render(
         <EditStudentContacts
@@ -172,7 +172,7 @@ describe('student-info/edit-target-info/Contacts', () => {
 
   describe('submit events:', () => {
     test('should get data from all fields when submitted', () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       render(
         <EditStudentContacts
@@ -197,7 +197,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should not pass if no input has been filled', async () => {
-      const mocks = EditTargetInfoPropsMock()
+      const mocks = EditStudentInfoPropsMock()
 
       render(
         <EditStudentContacts
@@ -212,7 +212,7 @@ describe('student-info/edit-target-info/Contacts', () => {
     })
 
     test('should set respective field validations errors', async () => {
-      const mocks = EditTargetInfoPropsMock<Contacts>()
+      const mocks = EditStudentInfoPropsMock<Contacts>()
 
       const handleSubmit = new EditStudentContactsSubmit({
         formRef: mocks.formRef,

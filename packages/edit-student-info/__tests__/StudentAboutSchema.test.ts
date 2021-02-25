@@ -7,7 +7,7 @@ import StudentAboutSchema, {
   STUDENT_ABOUT_SCHEMA_MIN_DATE,
 } from '../validators/StudentAboutSchema'
 
-describe('student-info/edit-target-info/StudentAboutSchema', () => {
+describe('student-info/edit-student-info/StudentAboutSchema', () => {
   const data: StudentAbout = {
     birth_date: StudentMock.birth_date,
     name: StudentMock.name,

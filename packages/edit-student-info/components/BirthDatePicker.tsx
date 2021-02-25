@@ -19,7 +19,7 @@ import { Row } from 'packages/styles'
 import {
   BirthDatePickerButton,
   BirthDatePickerText,
-} from '../edit-target-info.styles'
+} from '../edit-student-info.styles'
 import {
   STUDENT_ABOUT_SCHEMA_MAX_DATE,
   STUDENT_ABOUT_SCHEMA_MIN_DATE,

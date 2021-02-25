@@ -5,7 +5,7 @@ import { FormHandles } from '@unform/core'
 
 import EditStudentSecrets, {
   ContextUserSecrets,
-} from 'packages/edit-target-info/pages/Secrets'
+} from 'packages/edit-student-info/pages/Secrets'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'

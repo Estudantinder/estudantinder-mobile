@@ -10,7 +10,7 @@ import theme from 'packages/styles/theme'
 import alertModal from 'packages/utils/alertModal'
 
 import PhotosCarrousel from '../../components/PhotosCarousel'
-import { PhotosCarrouselContainer } from '../edit-target-info.styles'
+import { PhotosCarrouselContainer } from '../edit-student-info.styles'
 
 export interface EditStudentPhotosProps {
   onSubmitSuccess(photos: StudentPhotos): void
