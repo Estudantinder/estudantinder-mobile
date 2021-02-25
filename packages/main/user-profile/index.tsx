@@ -4,7 +4,7 @@ import { ActivityIndicator } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 import Scroll from 'packages/components/Scroll'
-import ShowTargetStudent from 'packages/student-info/show-target-info/ShowTargetInfo'
+import ShowStudent from 'packages/show-student-info'
 import { Title, PageContainer } from 'packages/styles'
 import theme from 'packages/styles/theme'
 import alertModal from 'packages/utils/alertModal'
@@ -49,7 +49,7 @@ const UserProfile: React.FC = () => {
       </UserProfileEditButtonContainer>
 
       <Scroll>
-        <ShowTargetStudent student={profile} />
+        <ShowStudent student={profile} />
       </Scroll>
     </PageContainer>
   )

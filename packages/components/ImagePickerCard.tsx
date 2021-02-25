@@ -6,10 +6,10 @@ import theme from 'packages/styles/theme'
 
 import {
   ImagePickerCardContainer,
-  ImagePickerCardDeleteButton,
-  ImagePickerCardDeleteContainer,
   ImagePickerCardImage,
-} from '../edit-target-info.styles'
+  ImagePickerCardDeleteContainer,
+  ImagePickerCardDeleteButton,
+} from './components.styles'
 
 export interface ImagePickerCardProps {
   imageUri: string

@@ -1,11 +1,9 @@
 import { Dimensions } from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
 
 import styled from 'styled-components/native'
 
 import Input from 'packages/inputs/components/Input'
 import { InputLabel } from 'packages/inputs/input.styles'
-import theme from 'packages/styles/theme'
 
 export const BirthDatePickerButton = styled.TouchableOpacity`
   min-width: 100%;
@@ -61,41 +59,4 @@ export const PhotosCarrouselContainer = styled.View`
   margin: 40px 0px;
   width: ${Dimensions.get('window').width}px;
   flex: 1;
-`
-
-export const ImagePickerCardContainer = styled(RectButton)`
-  flex: 1;
-  height: 240px;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  background-color: ${theme.colors.background.light_purple};
-  border-radius: 6px;
-`
-
-export const ImagePickerCardImage = styled.Image`
-  width: 100%;
-  height: 100%;
-  resize-mode: cover;
-  border-radius: 6px;
-`
-
-export const ImagePickerCardDeleteContainer = styled.View`
-  border-top-right-radius: 6px;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 28px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-`
-
-export const ImagePickerCardDeleteButton = styled(RectButton)`
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 28px;
-  border-top-right-radius: 6px;
 `

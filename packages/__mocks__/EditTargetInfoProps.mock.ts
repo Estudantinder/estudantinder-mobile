@@ -1,6 +1,6 @@
 import { FormHandles } from '@unform/core'
 
-import { EditTargetInfoProps } from 'packages/student-info/edit-target-info/EditTargetInfoProps'
+import { EditTargetInfoProps } from 'packages/edit-target-info/EditTargetInfoProps'
 
 import useRefMock from './useRef.mock'
 

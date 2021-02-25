@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
+import EditStudentPhotos from 'packages/edit-target-info/pages/Photos'
 import { StudentPhotos } from 'packages/entities/Student'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
-import EditStudentPhotos from 'packages/student-info/edit-target-info/pages/Photos'
 
 import { useSignUpContext } from '../context'
 

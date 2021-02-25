@@ -8,31 +8,27 @@ import { Row, HorizontalDivider } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
 import {
-  ShowTargetStudentInfoContainer,
-  ShowTargetStudentInfoHeader,
-  ShowTargetStudentInfoLabel,
-} from '../show-target-info.styles'
+  ShowStudentInfoContainer,
+  ShowStudentInfoHeader,
+  ShowStudentInfoLabel,
+} from '../show-student-info.styles'
 
-export interface ShowTargetStudentSubjectsProps {
+export interface ShowStudentSubjectsProps {
   subjects: Subject[]
 }
 
-const ShowTargetStudentSubjects: React.FC<ShowTargetStudentSubjectsProps> = (
-  props
-) => {
+const ShowStudentSubjects: React.FC<ShowStudentSubjectsProps> = (props) => {
   return (
     <Row style={{ paddingHorizontal: 16 }}>
-      <ShowTargetStudentInfoContainer>
-        <ShowTargetStudentInfoHeader>
+      <ShowStudentInfoContainer>
+        <ShowStudentInfoHeader>
           <Feather
             name="book-open"
             size={20}
             color={theme.colors.secondary.dark_purple}
           />
-          <ShowTargetStudentInfoLabel>
-            Matérias com afinidade
-          </ShowTargetStudentInfoLabel>
-        </ShowTargetStudentInfoHeader>
+          <ShowStudentInfoLabel>Matérias com afinidade</ShowStudentInfoLabel>
+        </ShowStudentInfoHeader>
 
         <Row>
           <PrimaryLabel>{props.subjects[0].name.toUpperCase()}</PrimaryLabel>
@@ -45,9 +41,9 @@ const ShowTargetStudentSubjects: React.FC<ShowTargetStudentSubjectsProps> = (
 
           <PrimaryLabel>{props.subjects[2].name.toUpperCase()}</PrimaryLabel>
         </Row>
-      </ShowTargetStudentInfoContainer>
+      </ShowStudentInfoContainer>
     </Row>
   )
 }
 
-export default ShowTargetStudentSubjects
+export default ShowStudentSubjects

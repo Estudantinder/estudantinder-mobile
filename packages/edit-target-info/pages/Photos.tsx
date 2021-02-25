@@ -9,7 +9,7 @@ import { Row, Subtitle } from 'packages/styles'
 import theme from 'packages/styles/theme'
 import alertModal from 'packages/utils/alertModal'
 
-import PhotosCarrousel from '../components/PhotosCarousel'
+import PhotosCarrousel from '../../components/PhotosCarousel'
 import { PhotosCarrouselContainer } from '../edit-target-info.styles'
 
 export interface EditStudentPhotosProps {

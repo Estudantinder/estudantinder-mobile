@@ -3,7 +3,7 @@ import React from 'react'
 
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import Student from 'packages/entities/Student'
-import ShowTargetStudent from 'packages/student-info/show-target-info/ShowTargetInfo'
+import ShowStudent from 'packages/show-student-info'
 
 export interface TargetProfileRouteProps {
   student: Modify<Student, { birth_date: number }>
@@ -16,7 +16,7 @@ const TargetProfile: React.FC = () => {
 
   return (
     <StackPageTemplate title="Ver Perfil" withoutPadding>
-      <ShowTargetStudent
+      <ShowStudent
         student={{ ...student, birth_date: new Date(student.birth_date) }}
       />
     </StackPageTemplate>

@@ -5,7 +5,7 @@ import { useAuthContext } from 'packages/auth/context'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
-import ShowTargetStudent from 'packages/student-info/show-target-info/ShowTargetInfo'
+import ShowStudent from 'packages/show-student-info'
 import { Row, Subtitle } from 'packages/styles'
 import alertModal from 'packages/utils/alertModal'
 
@@ -69,11 +69,11 @@ const SignUpProfile: React.FC = () => {
 
   return (
     <StackPageTemplate title="Seu perfil ficará assim" withoutPadding>
-      <ShowTargetStudent student={user}>
+      <ShowStudent student={user}>
         <Row style={{ padding: 16 }}>
           <PrimaryButton onPress={handleSignUp}>CADASTRAR</PrimaryButton>
         </Row>
-      </ShowTargetStudent>
+      </ShowStudent>
     </StackPageTemplate>
   )
 }

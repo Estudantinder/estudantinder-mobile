@@ -2,32 +2,31 @@ import { RefObject } from 'react'
 
 import { FormHandles } from '@unform/core'
 
-import { StudentDetails } from 'packages/entities/Student'
-import StudentDetailsSchema from 'packages/student-info/edit-target-info/validators/StudentDetailsSchema'
+import StudentContactsSchema from 'packages/edit-target-info/validators/StudentContactsSchema'
+import Contacts from 'packages/entities/Contacts'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
 
-export interface EditStudentDetailsSubmitProps {
+export interface EditStudentContactsSubmitProps {
   formRef: RefObject<FormHandles>
-  onSubmitSuccess(data: StudentDetails): void
+  onSubmitSuccess(data: Contacts): void
 }
 
-export default class EditStudentDetailsSubmit {
+export default class EditStudentContactsSubmit {
   public formRef
   public onSubmitSuccess
 
-  constructor(props: EditStudentDetailsSubmitProps) {
+  constructor(props: EditStudentContactsSubmitProps) {
     this.formRef = props.formRef
     this.onSubmitSuccess = props.onSubmitSuccess
   }
 
-  async handle(data: StudentDetails) {
+  async handle(data: Contacts) {
     try {
-      // Remove all previous errors
-      this.formRef?.current?.setErrors({})
+      this.formRef.current?.setErrors({})
 
-      const validatedData = await validateSchema(StudentDetailsSchema, data)
+      const validatedData = await validateSchema(StudentContactsSchema, data)
 
       this.onSubmitSuccess(validatedData)
     } catch (error) {

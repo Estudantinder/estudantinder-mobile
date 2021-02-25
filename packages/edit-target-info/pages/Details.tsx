@@ -5,7 +5,7 @@ import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { StudentDetails } from 'packages/entities/Student'
 import { StyledForm } from 'packages/styles'
 
-import SubjectsPicker from '../../../components/SubjectsPicker'
+import SubjectsPicker from '../../components/SubjectsPicker'
 import { TextAreaInput } from '../edit-target-info.styles'
 import { EditTargetInfoProps } from '../EditTargetInfoProps'
 
