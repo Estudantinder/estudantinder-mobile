@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
 
@@ -9,9 +9,31 @@ import theme from 'packages/styles/theme'
 
 import SettingsCard from './components/SettingsCard'
 import { SettingsVerticalDivider } from './settings.styles'
+import DeleteUserUseCase from './use-cases/delete-user'
 
 const Settings: React.FC = () => {
   const { signOut } = useAuthContext()
+
+  const handleDeleteUser = async () => {
+    await DeleteUserUseCase()
+
+    await signOut()
+  }
+
+  const confirmDeleteUser = () => {
+    Alert.alert(
+      'Deseja deletar perfil?',
+      'Você não poderá desfazer essa ação!',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          style: 'default',
+          text: 'Confirmar',
+          onPress: handleDeleteUser,
+        },
+      ]
+    )
+  }
 
   return (
     <StackPageTemplate title="Configurações" withoutPadding>
@@ -24,9 +46,24 @@ const Settings: React.FC = () => {
               size={28}
             />
           }
-          title="Sair"
           onPress={signOut}
-        />
+        >
+          Sair
+        </SettingsCard>
+        <SettingsVerticalDivider />
+
+        <SettingsCard
+          icon={
+            <Feather
+              name="alert-triangle"
+              color={theme.colors.secondary.dark_purple}
+              size={28}
+            />
+          }
+          onPress={confirmDeleteUser}
+        >
+          Deletar Perfil
+        </SettingsCard>
         <SettingsVerticalDivider />
       </View>
     </StackPageTemplate>

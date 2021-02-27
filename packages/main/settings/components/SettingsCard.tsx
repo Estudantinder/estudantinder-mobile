@@ -7,7 +7,7 @@ import {
 } from '../settings.styles'
 
 export interface SettingsCardProps {
-  title: string
+  children: string
   icon: JSX.Element
   onPress(): void
 }
@@ -17,7 +17,7 @@ const SettingsCard: React.FC<SettingsCardProps> = (props) => {
     <SettingsCardContainer onPress={props.onPress}>
       <SettingsCardIcon>{props.icon}</SettingsCardIcon>
 
-      <SettingsCardTitle>{props.title}</SettingsCardTitle>
+      <SettingsCardTitle>{props.children}</SettingsCardTitle>
     </SettingsCardContainer>
   )
 }
