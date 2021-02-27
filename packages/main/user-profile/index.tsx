@@ -1,9 +1,11 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
 
 import Scroll from 'packages/components/Scroll'
+import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import ShowStudent from 'packages/show-student-info'
 import { Title, PageContainer } from 'packages/styles'
 import theme from 'packages/styles/theme'
@@ -18,6 +20,8 @@ import {
 const UserProfile: React.FC = () => {
   const { getProfile, profile } = useMainContext()
 
+  const router = useNavigation()
+
   useEffect(() => {
     const fn = async () => {
       try {
@@ -29,6 +33,10 @@ const UserProfile: React.FC = () => {
 
     fn()
   }, [getProfile])
+
+  const navigateToEditAuthUser = () => {
+    router.navigate(AUTHENTICATED_ROUTES.EDIT_AUTH_USER)
+  }
 
   if (!profile)
     return (
@@ -43,7 +51,7 @@ const UserProfile: React.FC = () => {
       <Title>Meu Perfil</Title>
 
       <UserProfileEditButtonContainer>
-        <UserProfileEditButton>
+        <UserProfileEditButton onPress={navigateToEditAuthUser}>
           <Feather name="edit" color={theme.colors.primary.purple} size={24} />
         </UserProfileEditButton>
       </UserProfileEditButtonContainer>

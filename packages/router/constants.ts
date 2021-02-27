@@ -18,6 +18,11 @@ export const AUTHENTICATED_ROUTES = {
   MAIN: 'Main',
   SETTINGS: 'Settings',
   TARGET_PROFILE: 'TargetProfile',
+  EDIT_AUTH_USER: 'EditAuthUser',
+} as const
+
+export const EDIT_AUTH_USER_ROUTES = {
+  SECRETS: 'auth/Secrets',
 } as const
 
 export const MAIN_ROUTES = {

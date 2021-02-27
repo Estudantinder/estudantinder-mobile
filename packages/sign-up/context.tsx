@@ -22,8 +22,6 @@ interface State {
   contacts: Contacts | undefined
   details: StudentDetails | undefined
   photos: StudentPhotos | undefined
-  getUser(): User | null
-  createUser(): Promise<void>
 }
 
 interface Actions {
@@ -33,6 +31,9 @@ interface Actions {
   setContacts(contacts: Contacts): void
   setDetails(details: StudentDetails): void
   setPhotos(photos: StudentPhotos): void
+
+  getUser(): User | null
+  createUser(): Promise<void>
 }
 
 export type SignUpContext = State & Actions

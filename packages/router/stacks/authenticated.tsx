@@ -8,6 +8,7 @@ import TargetProfile from 'packages/main/target-profile'
 import StackNavigation from '../components/StackNavigation'
 import { AUTHENTICATED_ROUTES } from '../constants'
 import MainTabNavigation from '../tabs/Main'
+import EditAuthUserScreens from './edit-auth-user'
 
 const { Screen } = createStackNavigator()
 
@@ -23,6 +24,10 @@ const AuthenticatedNavigation: React.FC = () => {
         <Screen
           name={AUTHENTICATED_ROUTES.TARGET_PROFILE}
           component={TargetProfile}
+        />
+        <Screen
+          name={AUTHENTICATED_ROUTES.EDIT_AUTH_USER}
+          component={EditAuthUserScreens}
         />
       </StackNavigation>
     </MainContextProvider>
