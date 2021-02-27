@@ -18,7 +18,7 @@ export interface CreateUserApiData {
   contacts: Contacts
 }
 
-export default function CreateUserSerializer(user: User): CreateUserApiData {
+export default function UserToApiSerializer(user: User): CreateUserApiData {
   const getApiDate = () => {
     const year = user.birth_date.getFullYear()
 

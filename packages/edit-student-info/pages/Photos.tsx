@@ -15,6 +15,7 @@ import { PhotosCarrouselContainer } from '../edit-student-info.styles'
 export interface EditStudentPhotosProps {
   onSubmitSuccess(photos: StudentPhotos): void
   initialData?: StudentPhotos
+  onDeletePhoto?: (index: number) => boolean
 }
 
 const EditStudentPhotos: React.FC<EditStudentPhotosProps> = (props) => {
@@ -80,6 +81,14 @@ const EditStudentPhotos: React.FC<EditStudentPhotosProps> = (props) => {
   }
 
   const handleDeletePhoto = (index: number) => {
+    if (photos.length === 2) {
+      return setError('Você precisa ter ao menos uma foto!')
+    }
+
+    const success = props.onDeletePhoto?.(index)
+
+    if (!success) return
+
     const newPhotos = photos.filter((_, i) => i !== index)
 
     setPhotos([...newPhotos])

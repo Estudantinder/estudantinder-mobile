@@ -19,9 +19,16 @@ import {
 import User from 'packages/entities/User'
 import { useMainContext } from 'packages/main/context'
 
+import { EditPhotosUseCasePhotos } from './use-cases/edit-photos'
+import EditAuthUserUseCase from './use-cases/edit-user'
+
 export type EditAuthUserContextSecrets = {
   email: string
 } & Partial<ContextUserSecrets>
+
+type EditAuthUserContextPhotos = {
+  newPhotos?: EditPhotosUseCasePhotos
+} & StudentPhotos
 
 interface State {
   secrets: EditAuthUserContextSecrets
@@ -29,7 +36,7 @@ interface State {
   school: StudentSchool
   contacts: Contacts
   details: StudentDetails
-  photos: StudentPhotos
+  photos: EditAuthUserContextPhotos
 
   initialUser: User
 }
@@ -40,7 +47,7 @@ interface Actions {
   setSchool(school: StudentSchool): void
   setContacts(contacts: Contacts): void
   setDetails(details: StudentDetails): void
-  setPhotos(photos: StudentPhotos): void
+  setPhotos(photos: EditAuthUserContextPhotos): void
 
   getUser(): User | null
   editUser(): Promise<void>
@@ -90,7 +97,7 @@ export const EditAuthUserContextProvider: React.FC = ({ children }) => {
     subjects: profile.subjects,
   })
 
-  const [photos, setPhotos] = useState<StudentPhotos>({
+  const [photos, setPhotos] = useState<EditAuthUserContextPhotos>({
     photos: profile.photos,
   })
 
@@ -113,6 +120,8 @@ export const EditAuthUserContextProvider: React.FC = ({ children }) => {
     const user = getUser()
 
     if (!user) throw new Error('USER UNDEFINED')
+
+    await EditAuthUserUseCase(user)
   }, [getUser])
 
   const value = useMemo<EditAuthUserContext>(

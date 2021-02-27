@@ -35,6 +35,7 @@ interface Actions {
   deleteMatch(id: string): Promise<void>
 
   getProfile(): Promise<void>
+  setProfile(user: User): void
 }
 
 export type MainContext = State & Actions
@@ -134,6 +135,7 @@ export const MainContextProvider: React.FC = ({ children }) => {
       getProfile,
       matches,
       profile,
+      setProfile,
     }
   }, [
     students,

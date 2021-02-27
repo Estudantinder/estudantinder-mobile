@@ -20,14 +20,14 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#0FAD58"
+        "backgroundColor": "#ffffff"
       },
       "package": "com.estudantinder.estudantinder",
       "versionCode": 1
     },
-    "primaryColor": "#6D36DA",
+    "primaryColor": "#0FAD58",
     "androidNavigationBar": {
-      "backgroundColor": "#6D36DA"
+      "backgroundColor": "#0FAD58"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -24,3 +24,7 @@ env.ts
 __snapshots__
 __badges__
 coverage
+
+# BUILDS
+
+build

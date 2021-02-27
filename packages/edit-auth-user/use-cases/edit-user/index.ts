@@ -7,16 +7,11 @@ export interface CreateUserApiResponse {
   id: string
 }
 
-export default async function CreateUserUseCase(user: User): Promise<string> {
+export default async function EditAuthUserUseCase(user: User): Promise<void> {
   try {
     const serializedUser = UserToApiSerializer(user)
 
-    const { data } = await api.post<CreateUserApiResponse>(
-      '/users',
-      serializedUser
-    )
-
-    return data.id
+    await api.put('/users', serializedUser)
   } catch (error) {
     if (error.response) {
       throw new ApiError({
