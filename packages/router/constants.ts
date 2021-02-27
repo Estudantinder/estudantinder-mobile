@@ -23,6 +23,12 @@ export const AUTHENTICATED_ROUTES = {
 
 export const EDIT_AUTH_USER_ROUTES = {
   SECRETS: 'auth/Secrets',
+  ABOUT: 'auth/About',
+  SCHOOL: 'auth/School',
+  CONTACTS: 'auth/Contacts',
+  DETAILS: 'auth/Details',
+  PHOTOS: 'auth/Photos',
+  PROFILE: 'auth/Profile',
 } as const
 
 export const MAIN_ROUTES = {

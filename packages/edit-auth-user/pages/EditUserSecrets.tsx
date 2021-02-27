@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
@@ -5,6 +6,7 @@ import { FormHandles } from '@unform/core'
 import EditStudentSecrets, {
   ContextUserSecrets,
 } from 'packages/edit-student-info/pages/Secrets'
+import { EDIT_AUTH_USER_ROUTES } from 'packages/router/constants'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
@@ -14,6 +16,7 @@ import EditAuthUserSecretsSchema from '../EditAuthUserSecretsSchema'
 
 const EditAuthUserSecrets: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
+  const router = useNavigation()
 
   const context = useEditAuthUserContext()
 
@@ -27,6 +30,8 @@ const EditAuthUserSecrets: React.FC = () => {
       )
 
       context.setSecrets(getFormattedData(validatedData))
+
+      router.navigate(EDIT_AUTH_USER_ROUTES.ABOUT)
     } catch (error) {
       if (error instanceof UnformValidationError) {
         return formRef.current?.setErrors(error.validationErrors)
