@@ -6,6 +6,7 @@ import { StudentPhotos } from 'packages/entities/Student'
 import { EDIT_AUTH_USER_ROUTES } from 'packages/router/constants'
 
 import { useEditAuthUserContext } from '../context'
+import DeletePhotoUseCase from '../use-cases/delete-photo'
 import { EditPhotosUseCasePhotos } from '../use-cases/edit-photos'
 
 const EditAuthUserPhotos: React.FC = () => {
@@ -29,8 +30,10 @@ const EditAuthUserPhotos: React.FC = () => {
     router.navigate(EDIT_AUTH_USER_ROUTES.PROFILE)
   }
 
-  const deletePhoto = (index: number) => {
+  const deletePhoto = async (index: number) => {
     const newPhotos = context.photos.photos.filter((_, i) => i !== index)
+
+    await DeletePhotoUseCase(index)
 
     context.setPhotos({ photos: newPhotos })
 
