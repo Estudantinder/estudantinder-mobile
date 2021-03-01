@@ -20,8 +20,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#f5f5f5"
       },
+      "icon": "./assets/android-icon.png",
       "package": "com.estudantinder.estudantinder",
       "versionCode": 1
     },
