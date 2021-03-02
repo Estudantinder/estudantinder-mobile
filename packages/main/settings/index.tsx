@@ -48,7 +48,7 @@ const Settings: React.FC = () => {
           }
           onPress={signOut}
         >
-          Sair
+          Sair do App
         </SettingsCard>
         <SettingsVerticalDivider />
 
