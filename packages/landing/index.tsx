@@ -28,7 +28,7 @@ const Landing: React.FC = () => {
       <Image source={LandingImage} />
 
       <Styled.LandingTitle>
-        Crie novas conexões enquanto aprende!
+        Crie novas conexões enquanto aprende!!
       </Styled.LandingTitle>
 
       <Styled.LandingButtonsContainer>
