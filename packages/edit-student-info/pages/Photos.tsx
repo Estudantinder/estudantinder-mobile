@@ -55,6 +55,8 @@ const EditStudentPhotos: React.FC<EditStudentPhotosProps> = (props) => {
       return value
     })
 
+    setError(undefined)
+
     if (newPhotos.length >= 6) {
       return setPhotos(newPhotos)
     }
@@ -81,13 +83,13 @@ const EditStudentPhotos: React.FC<EditStudentPhotosProps> = (props) => {
   }
 
   const handleDeletePhoto = async (index: number) => {
-    if (photos.length === 2) {
+    if (props.initialData?.photos && photos.length === 2) {
       return setError('Você precisa ter ao menos uma foto!')
     }
 
     const success = await props.onDeletePhoto?.(index)
 
-    if (!success) return
+    if (success === false) return
 
     const newPhotos = photos.filter((_, i) => i !== index)
 
