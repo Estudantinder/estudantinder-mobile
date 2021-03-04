@@ -57,7 +57,7 @@ const EditAuthUserProfile: React.FC = () => {
     <StackPageTemplate title="Seu perfil ficará assim" withoutPadding>
       <ShowStudent student={user}>
         <Row style={{ padding: 16 }}>
-          <PrimaryButton onPress={handleEditUser}>CADASTRAR</PrimaryButton>
+          <PrimaryButton onPress={handleEditUser}>EDITAR PERFIL</PrimaryButton>
         </Row>
       </ShowStudent>
     </StackPageTemplate>
