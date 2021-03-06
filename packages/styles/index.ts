@@ -64,3 +64,9 @@ export interface HorizontalDividerProps {
 export const HorizontalDivider = styled.View<HorizontalDividerProps>`
   width: ${(props) => props.width || 10}px;
 `
+
+export const VerticalDivider = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: #e8e6e6;
+`

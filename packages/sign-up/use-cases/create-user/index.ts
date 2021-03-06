@@ -1,7 +1,8 @@
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
-import UserToApiSerializer from 'packages/api/utils/UserToApiSerializer'
 import User from 'packages/entities/User'
+
+import CreateUserApiSerializer from './CreateUserApiSerializer'
 
 export interface CreateUserApiResponse {
   id: string
@@ -9,7 +10,7 @@ export interface CreateUserApiResponse {
 
 export default async function CreateUserUseCase(user: User): Promise<string> {
   try {
-    const serializedUser = UserToApiSerializer(user)
+    const serializedUser = CreateUserApiSerializer(user)
 
     const { data } = await api.post<CreateUserApiResponse>(
       '/users',

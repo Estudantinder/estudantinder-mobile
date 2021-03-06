@@ -6,12 +6,11 @@ import { FormHandles } from '@unform/core'
 import EditStudentSecrets, {
   ContextUserSecrets,
 } from 'packages/edit-student-info/pages/Secrets'
-import { EDIT_AUTH_USER_ROUTES } from 'packages/router/constants'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
 
-import { useEditAuthUserContext, EditAuthUserContextSecrets } from '../context'
+import { useEditAuthUserContext } from '../context'
 import EditAuthUserSecretsSchema from '../EditAuthUserSecretsSchema'
 
 const EditAuthUserSecrets: React.FC = () => {
@@ -29,9 +28,9 @@ const EditAuthUserSecrets: React.FC = () => {
         data
       )
 
-      context.setSecrets(getFormattedData(validatedData))
+      await context.updateUser(validatedData)
 
-      router.navigate(EDIT_AUTH_USER_ROUTES.ABOUT)
+      router.goBack()
     } catch (error) {
       if (error instanceof UnformValidationError) {
         return formRef.current?.setErrors(error.validationErrors)
@@ -46,18 +45,6 @@ const EditAuthUserSecrets: React.FC = () => {
       email: context.secrets.email || '',
       password: context.secrets.password || '',
       confirm_password: context.secrets.confirm_password || '',
-    }
-  }
-
-  const getFormattedData = (
-    data: ContextUserSecrets
-  ): EditAuthUserContextSecrets => {
-    return {
-      confirm_password: data.confirm_password
-        ? data.confirm_password
-        : undefined,
-      password: data.password ? data.password : undefined,
-      email: data.email || context.initialUser.email,
     }
   }
 

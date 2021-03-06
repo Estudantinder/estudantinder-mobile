@@ -6,7 +6,6 @@ import { FormHandles } from '@unform/core'
 import EditStudentDetailsSubmit from 'packages/edit-student-info/controllers/DetailsSubmit'
 import EditStudentDetails from 'packages/edit-student-info/pages/Details'
 import { StudentDetails } from 'packages/entities/Student'
-import { EDIT_AUTH_USER_ROUTES } from 'packages/router/constants'
 
 import { useEditAuthUserContext } from '../context'
 
@@ -18,9 +17,7 @@ const EditAuthUserDetails: React.FC = () => {
   const context = useEditAuthUserContext()
 
   const onSubmitSuccess = (data: StudentDetails) => {
-    context.setDetails(data)
-
-    router.navigate(EDIT_AUTH_USER_ROUTES.PHOTOS)
+    context.updateUser(data).then(router.goBack)
   }
 
   const detailsSubmit = new EditStudentDetailsSubmit({

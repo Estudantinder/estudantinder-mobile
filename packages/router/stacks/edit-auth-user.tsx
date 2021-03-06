@@ -5,8 +5,8 @@ import { EditAuthUserContextProvider } from 'packages/edit-auth-user/context'
 import EditAuthUserAbout from 'packages/edit-auth-user/pages/EditUserAbout'
 import EditAuthUserContacts from 'packages/edit-auth-user/pages/EditUserContacts'
 import EditAuthUserDetails from 'packages/edit-auth-user/pages/EditUserDetails'
+import EditAuthUserMenu from 'packages/edit-auth-user/pages/EditUserMenu'
 import EditAuthUserPhotos from 'packages/edit-auth-user/pages/EditUserPhotos'
-import EditAuthUserProfile from 'packages/edit-auth-user/pages/EditUserProfile'
 import EditAuthUserSchool from 'packages/edit-auth-user/pages/EditUserSchool'
 import EditAuthUserSecrets from 'packages/edit-auth-user/pages/EditUserSecrets'
 
@@ -18,6 +18,10 @@ const EditAuthUserScreens: React.FC = () => {
   return (
     <EditAuthUserContextProvider>
       <Navigator screenOptions={{ headerShown: false }}>
+        <Screen
+          name={EDIT_AUTH_USER_ROUTES.MENU}
+          component={EditAuthUserMenu}
+        />
         <Screen
           name={EDIT_AUTH_USER_ROUTES.SECRETS}
           component={EditAuthUserSecrets}
@@ -41,10 +45,6 @@ const EditAuthUserScreens: React.FC = () => {
         <Screen
           name={EDIT_AUTH_USER_ROUTES.PHOTOS}
           component={EditAuthUserPhotos}
-        />
-        <Screen
-          name={EDIT_AUTH_USER_ROUTES.PROFILE}
-          component={EditAuthUserProfile}
         />
       </Navigator>
     </EditAuthUserContextProvider>

@@ -1,15 +1,14 @@
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
-import UserToApiSerializer from 'packages/api/utils/UserToApiSerializer'
 import User from 'packages/entities/User'
 
-export interface CreateUserApiResponse {
-  id: string
-}
+import EditAuthUserApiSerializer from './EditAuthUserApiSerializer'
 
-export default async function EditAuthUserUseCase(user: User): Promise<void> {
+export default async function EditAuthUserUseCase(
+  user: Partial<User>
+): Promise<void> {
   try {
-    const serializedUser = UserToApiSerializer(user)
+    const serializedUser = EditAuthUserApiSerializer(user)
 
     await api.put('/users', serializedUser)
   } catch (error) {
