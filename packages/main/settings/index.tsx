@@ -4,11 +4,11 @@ import { Alert, View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 import { useAuthContext } from 'packages/auth/context'
+import MenuCard from 'packages/components/MenuCard'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
+import { VerticalDivider } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
-import SettingsCard from './components/SettingsCard'
-import { SettingsVerticalDivider } from './settings.styles'
 import DeleteUserUseCase from './use-cases/delete-user'
 
 const Settings: React.FC = () => {
@@ -38,7 +38,7 @@ const Settings: React.FC = () => {
   return (
     <StackPageTemplate title="Configurações" withoutPadding>
       <View style={{ width: '100%' }}>
-        <SettingsCard
+        <MenuCard
           icon={
             <Feather
               name="log-out"
@@ -49,10 +49,10 @@ const Settings: React.FC = () => {
           onPress={signOut}
         >
           Sair do App
-        </SettingsCard>
-        <SettingsVerticalDivider />
+        </MenuCard>
+        <VerticalDivider />
 
-        <SettingsCard
+        <MenuCard
           icon={
             <Feather
               name="alert-triangle"
@@ -63,8 +63,8 @@ const Settings: React.FC = () => {
           onPress={confirmDeleteUser}
         >
           Deletar Perfil
-        </SettingsCard>
-        <SettingsVerticalDivider />
+        </MenuCard>
+        <VerticalDivider />
       </View>
     </StackPageTemplate>
   )

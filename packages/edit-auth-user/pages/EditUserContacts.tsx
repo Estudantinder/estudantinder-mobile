@@ -7,7 +7,6 @@ import { formatToGenericPhone } from 'brazilian-values'
 import EditStudentContactsSubmit from 'packages/edit-student-info/controllers/ContactsSubmit'
 import EditStudentContacts from 'packages/edit-student-info/pages/Contacts'
 import Contacts from 'packages/entities/Contacts'
-import { EDIT_AUTH_USER_ROUTES } from 'packages/router/constants'
 
 import { useEditAuthUserContext } from '../context'
 
@@ -17,9 +16,7 @@ const EditAuthUserContacts: React.FC = () => {
   const router = useNavigation()
 
   const onSubmitSuccess = (data: Contacts) => {
-    context.setContacts(data)
-
-    router.navigate(EDIT_AUTH_USER_ROUTES.DETAILS)
+    context.updateUser({ contacts: data }).then(router.goBack)
   }
 
   const formRef = useRef<FormHandles>(null)

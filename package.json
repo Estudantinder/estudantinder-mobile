@@ -1,11 +1,13 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "version": "1.0.0",
   "scripts": {
     "prect": "cross-env NODE_ENV=test jest -o",
     "ct": "git-cz",
     "start": "expo start",
     "android": "expo start --android",
+    "deploy": "expo publish --release-channel",
+    "build:android": "expo build:android --release-channel",
+    "build:ios": "expo build:ios --release-channel",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",

@@ -29,6 +29,7 @@ export const EDIT_AUTH_USER_ROUTES = {
   DETAILS: 'auth/Details',
   PHOTOS: 'auth/Photos',
   PROFILE: 'auth/Profile',
+  MENU: 'auth/Menu',
 } as const
 
 export const MAIN_ROUTES = {

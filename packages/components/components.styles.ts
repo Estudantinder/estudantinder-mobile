@@ -118,3 +118,26 @@ export const ImagePickerCardDeleteButton = styled(RectButton)`
   height: 28px;
   border-top-right-radius: 6px;
 `
+
+export const MenuCardContainer = styled(RectButton)`
+  height: 64px;
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+`
+export const MenuCardIcon = styled.View`
+  width: 32px;
+  height: 32px;
+
+  justify-content: center;
+  align-items: center;
+
+  margin: 0px 20px;
+`
+
+export const MenuCardTitle = styled.Text`
+  font-family: ${theme.fonts.subtitle};
+  font-size: 16px;
+  line-height: 16px;
+`
