@@ -1,6 +1,5 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "version": "1.0.0",
   "scripts": {
     "prect": "cross-env NODE_ENV=test jest -o",
     "ct": "git-cz",
