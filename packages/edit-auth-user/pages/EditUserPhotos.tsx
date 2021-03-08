@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { View } from 'react-native'
 
 import * as ExpoImagePicker from 'expo-image-picker'
@@ -17,7 +17,7 @@ import EditUserPhotosDeleteStack from '../utils/EditUserPhotosDeleteStack'
 const EditAuthUserPhotos: React.FC = () => {
   const context = useEditAuthUserContext()
 
-  const stack = new EditUserPhotosDeleteStack()
+  const stack = useMemo(() => new EditUserPhotosDeleteStack(), [])
 
   const getInitialState = () => {
     if (!context.photos?.photos) return ['']
@@ -36,6 +36,7 @@ const EditAuthUserPhotos: React.FC = () => {
       const oldPhoto = context.photos.photos[index]
 
       if (oldPhoto === value) return
+      if (value.startsWith('http')) return
 
       newPhotos.push({ index, uri: value })
     })
@@ -99,6 +100,8 @@ const EditAuthUserPhotos: React.FC = () => {
 
       const justNewPhotos = getNewPhotos(formattedPhotos)
 
+      if (!justNewPhotos) return
+
       await EditPhotosUseCase(justNewPhotos)
 
       context.updateUser({ photos: formattedPhotos })
@@ -114,22 +117,14 @@ const EditAuthUserPhotos: React.FC = () => {
 
     setItems([...newPhotos])
 
-    stack.addDeletePhoto(index)
+    if (items[index].startsWith('http')) stack.addDeletePhoto(index)
   }
 
   return (
-    <StackPageTemplate title="Suas Fotos">
+    <StackPageTemplate title="Suas Fotos" withoutPadding>
       <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
         {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
-
-      <View style={{ flex: 1, marginVertical: 32 }}>
-        <PhotosCarrousel
-          photos={items}
-          onPress={handleSelectPicker}
-          onDeletePress={handleDeletePhoto}
-        />
-      </View>
 
       <View style={{ flex: 1, marginVertical: 32 }}>
         <PhotosCarrousel

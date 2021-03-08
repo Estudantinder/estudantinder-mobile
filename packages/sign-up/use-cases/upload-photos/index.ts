@@ -8,7 +8,7 @@ export default async function UploadPhotosUseCase(photos: Array<string>) {
     data.append(`photo${index}`, {
       type: 'image/jpeg',
       uri: value,
-      name: `image_${index}.png`,
+      name: `image_${index}.jpg`,
     } as never)
   })
 

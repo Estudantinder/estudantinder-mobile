@@ -15,7 +15,7 @@ export default async function EditPhotosUseCase(
     data.append(`photo${value.index}`, {
       type: 'image/jpeg',
       uri: value.uri,
-      name: `image_${value.index}.png`,
+      name: `image_${value.index}.jpg`,
     } as never)
   })
 
