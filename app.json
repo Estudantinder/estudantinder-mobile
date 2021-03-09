@@ -2,7 +2,7 @@
   "expo": {
     "name": "Estudantinder",
     "slug": "estudantinder-mobile",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +24,7 @@
       },
       "icon": "./assets/android-icon.png",
       "package": "com.estudantinder.estudantinder",
-      "versionCode": 2
+      "versionCode": 3
     },
     "primaryColor": "#0FAD58",
     "androidNavigationBar": {
