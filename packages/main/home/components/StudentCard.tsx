@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment, useMemo } from 'react'
 
 import StudentDataAdapter from 'packages/adapters/StudentAdapter'
 import PrimaryLabel from 'packages/components/PrimaryLabel'
@@ -19,13 +19,17 @@ export interface StudentCardProps {
 }
 
 const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
-  const studentAdapter = new StudentDataAdapter(student)
+  const studentAdapter = useMemo(() => new StudentDataAdapter(student), [
+    student,
+  ])
 
   return (
     <StudentCardContainer>
       <StudentCardImage
         resizeMode="cover"
-        source={{ uri: student.photos[0] }}
+        source={{
+          uri: student.photos[0],
+        }}
       />
 
       <StudentCardFooter>
@@ -45,15 +49,22 @@ const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
         </StudentCardFooterText>
 
         <Row style={{ marginTop: 6 }}>
-          <PrimaryLabel>{student.subjects[0].name.toUpperCase()}</PrimaryLabel>
+          {student.subjects.map((value, index) => {
+            if (student.subjects[index + 1]) {
+              return (
+                <Fragment key={value.id}>
+                  <PrimaryLabel>{value.name.toUpperCase()}</PrimaryLabel>
+                  <HorizontalDivider width={4} />
+                </Fragment>
+              )
+            }
 
-          <HorizontalDivider width={4} />
-
-          <PrimaryLabel>{student.subjects[1].name.toUpperCase()}</PrimaryLabel>
-
-          <HorizontalDivider width={4} />
-
-          <PrimaryLabel>{student.subjects[2].name.toUpperCase()}</PrimaryLabel>
+            return (
+              <PrimaryLabel key={value.id}>
+                {value.name.toUpperCase()}
+              </PrimaryLabel>
+            )
+          })}
         </Row>
       </StudentCardFooter>
     </StudentCardContainer>

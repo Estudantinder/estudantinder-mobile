@@ -30,6 +30,12 @@ export default function GetStudentSerializer(
     return undefined
   }
 
+  const getArray = <T>(array: Array<T>) => {
+    if (!array?.length) return []
+
+    return array.filter((value) => !!value)
+  }
+
   const serializedStudent = new Student({
     bio: data.bio,
     birth_date: new Date(
@@ -41,14 +47,14 @@ export default function GetStudentSerializer(
     name: data.name,
     school_year: data.school_year,
     shift: data.shift,
-    subjects: data.subjects,
+    subjects: getArray(data.subjects),
     course: {
       id: String(data.course.id),
       name: data.course.name,
     },
     school: data.school,
     gender: getGender(),
-    photos: data.photos,
+    photos: getArray(data.photos),
     id: String(data.id),
   })
 

@@ -1,20 +1,15 @@
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
-import User from 'packages/entities/User'
+
+import GetStudentSerializer from '../get-students/GetStudentSerializer'
 
 export default async function GetUserProfileUseCase() {
   try {
     const response = await api.get(`/users`)
 
-    const getApiDate = () => {
-      return new Date(
-        response.data.birth_date[0],
-        response.data.birth_date[1],
-        response.data.birth_date[2]
-      )
-    }
+    const student = GetStudentSerializer(response.data)
 
-    return new User({ ...response.data, birth_date: getApiDate() })
+    return { ...student, email: response.data.email }
   } catch (error) {
     if (error.response) {
       if (error.response) {

@@ -22,7 +22,9 @@ export default class StudentDataAdapter {
 
   getAge() {
     const ageDifMs = Date.now() - this.student.birth_date.getTime()
+
     const ageDate = new Date(ageDifMs)
+
     return Math.abs(ageDate.getUTCFullYear() - 1970)
   }
 

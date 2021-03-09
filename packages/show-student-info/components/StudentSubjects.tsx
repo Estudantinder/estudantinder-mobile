@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import { Feather } from '@expo/vector-icons'
 
@@ -31,15 +31,22 @@ const ShowStudentSubjects: React.FC<ShowStudentSubjectsProps> = (props) => {
         </ShowStudentInfoHeader>
 
         <Row>
-          <PrimaryLabel>{props.subjects[0].name.toUpperCase()}</PrimaryLabel>
+          {props.subjects.map((value, index) => {
+            if (props.subjects[index + 1]) {
+              return (
+                <Fragment key={value.id}>
+                  <PrimaryLabel>{value.name.toUpperCase()}</PrimaryLabel>
+                  <HorizontalDivider width={4} />
+                </Fragment>
+              )
+            }
 
-          <HorizontalDivider width={6} />
-
-          <PrimaryLabel>{props.subjects[1].name.toUpperCase()}</PrimaryLabel>
-
-          <HorizontalDivider width={6} />
-
-          <PrimaryLabel>{props.subjects[2].name.toUpperCase()}</PrimaryLabel>
+            return (
+              <PrimaryLabel key={value.id}>
+                {value.name.toUpperCase()}
+              </PrimaryLabel>
+            )
+          })}
         </Row>
       </ShowStudentInfoContainer>
     </Row>
