@@ -137,23 +137,74 @@ Verifica se o Typescript (não o Expo) consegue compilar o projeto normalmente, 
 yarn test
 ```
 
-Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) no modo verboso, opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) no modo verboso.
 
-### TODO
+Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
 
-jest:
+### jest
 
-test:quiet
+```shell script
+yarn jest
+```
 
-test:ci
+Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) sem nenhum tipo de configuração adicional.
 
-test:badges
+Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
 
-repo:
+### test:quiet
+
+```shell script
+yarn test:quiet
+```
+
+Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) notificando assim que todos os testes forem concluídos.
+
+Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+
+### test:ci
+
+```shell script
+yarn test:ci
+```
+
+Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) gerando reports sobre o test coverage.
+
+Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+
+### test:badges
+
+```shell script
+yarn test:ci
+```
+
+Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) gerando reports sobre o test coverage e logo após gera as badges para serem usadas pelo github.
+
+Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+
+### repo
+
+```shell script
+yarn repo
+```
+
+Abre o repositório do projeto usando o navegador padrão da máquina
 
 ### Husky
 
+O husky é uma ferramenta para rodar scripts com base nos [git-hooks](https://githooks.com/).
+
+Aqui está cada comando usado pelo husky nesse projeto:
+
+- `pre-commit`
+  - Roda o linter do projeto nos arquivos staged usando o [lint-staged](https://github.com/okonet/lint-staged)
+- `commit-msg`
+  - Roda o linter da mensagem de commit usando o [commitlint](https://commitlint.js.org/)
+- `pre-push`
+  - roda o script [verify](#verify) e roda todos os testes.
+
 ## Ferramentas utilizadas
+
+Você pode ver todas as dependências do projeto no seguinte link: https://github.com/Cauaspinheiro/estudantinder-mobile/network/dependencies
 
 ## License
 
