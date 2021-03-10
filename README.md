@@ -57,13 +57,103 @@ Siga todas as instruções do [site oficial do Expo](https://docs.expo.io/get-st
 
 ---
 
-**Pronto!** Você já pode começar a testar o aplicativo, vá para a aba Scripts para ver quais scripts estão disponíveis para uso
+**Pronto!** Você já pode começar a testar o aplicativo, vá para a aba [Scripts](#scripts) para ver quais scripts estão disponíveis para uso
 
 ## Scripts
 
-## Ferramentas utilizadas
+Todos esses scripts pode ser rodados na sua máquina usando o yarn
 
-## Linguagem de programação
+Os parâmetros dos scripts serão representados com um prefixo `$`
+
+### ct
+
+```shell script
+yarn ct
+```
+
+Faz commits mais rápidos e eficientes usando o [Commitizen](https://github.com/commitizen/cz-cli)
+
+**Antes de rodar o script:** Roda os testes automatizados dos arquivos em stage pelo git
+
+### start
+
+```shell script
+yarn start
+```
+
+Roda o aplicativo localmente usando expo, para mais detalhes, veja a [documentação oficial do Expo](https://docs.expo.io/get-started/create-a-new-app/#starting-the-development-server)
+
+### deploy
+
+```shell script
+yarn deploy
+```
+
+Faz o [publish](https://docs.expo.io/workflow/publishing/) do projeto para o release channel especificado por `$branch`. Também faz push dos arquivos para o github
+
+**Parâmetros necessários:**
+
+- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o deploy
+
+### build:android
+
+```shell script
+yarn build:android $branch
+```
+
+Faz o [build](https://docs.expo.io/distribution/building-standalone-apps/) **android** do projeto para o release channel especificado por `$branch`. Também faz push dos arquivos para o github
+
+Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja, os antigos aplicativos serão atualizados automaticamente para essa nova versão quando abertos.
+
+**Parâmetros necessários:**
+
+- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o build
+
+### build:ios
+
+```shell script
+yarn build:ios $branch
+```
+
+Faz o [build](https://docs.expo.io/distribution/building-standalone-apps/) **ios** do projeto para o release channel especificado por `$branch`. Também faz push dos arquivos para o github
+
+Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja, os antigos aplicativos serão atualizados automaticamente para essa nova versão quando abertos.
+
+**Parâmetros necessários:**
+
+- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o build
+
+### verify
+
+```shell script
+yarn verify
+```
+
+Verifica se o Typescript (não o Expo) consegue compilar o projeto normalmente, use esse comando somente para verificar se não existe nenhum erro do Typescript no código
+
+### test
+
+```shell script
+yarn test
+```
+
+Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) no modo verboso, opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+
+### TODO
+
+jest:
+
+test:quiet
+
+test:ci
+
+test:badges
+
+repo:
+
+### Husky
+
+## Ferramentas utilizadas
 
 ## License
 
