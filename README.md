@@ -86,7 +86,7 @@ Roda o aplicativo localmente usando expo, para mais detalhes, veja a [documenta√
 ### deploy
 
 ```shell script
-yarn deploy
+yarn deploy $branch
 ```
 
 Faz o [publish](https://docs.expo.io/workflow/publishing/) do projeto para o release channel especificado por `$branch`. Tamb√©m faz push dos arquivos para o github
