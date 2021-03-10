@@ -1,4 +1,4 @@
-![ESTUDANTINDER](https://github.com/Cauaspinheiro/estudantinder-mobile/.github/README.png)
+![ESTUDANTINDER](https://raw.githubusercontent.com/Cauaspinheiro/estudantinder-mobile/main/.github/README.png)
 
 # Estudantinder Mobile App
 
