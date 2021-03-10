@@ -53,7 +53,11 @@ Dentro da pasta do projeto, você verá um arquivo chamado `.env.example.ts`, de
 
 ### Expo
 
-**Pronto!** você já pode começar a testar o aplicativo, vá para a aba Scripts para ver quais scripts estão disponiveis para uso
+Siga todas as instruções do [site oficial do Expo](https://docs.expo.io/get-started/installation/)
+
+---
+
+**Pronto!** Você já pode começar a testar o aplicativo, vá para a aba Scripts para ver quais scripts estão disponíveis para uso
 
 ## Scripts
 
