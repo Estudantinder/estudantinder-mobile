@@ -1,4 +1,7 @@
-# Estudantinder Mobile App <img src="https://img.shields.io/badge/Code-Expo-informational?style=flat&logo=expo&logoColor=white&color=4630eb" />
+# Estudantinder Mobile App
+
+[![Expo](https://img.shields.io/badge/Code-Expo-informational?style=flat&logo=expo&logoColor=white&color=4630eb)](https://expo.io/@cauaspinheiro/projects/estudantinder-mobile)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6b36bb6107777d0c951d/maintainability)](https://codeclimate.com/github/Cauaspinheiro/estudantinder-mobile/maintainability)
 
 O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.vercel.app) para mais informações
 
@@ -8,13 +11,13 @@ O Estudantinder lida com a procura e encontro de outros alunos, de forma a desen
 
 A forma mais fácil de usar o aplicativo é baixando o apk pelo [site oficial do Estudantinder](https://estudantinder.vercel.app)
 
-Caso você tenha o aplicativo do Expo Go instalado no seu celular, você pode abrir ele pelo seguinte link:
+Caso você tenha o aplicativo do [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) instalado no seu celular, você pode abrir ele pelo seguinte link:
 
 **https://expo.io/@cauaspinheiro/projects/estudantinder-mobile**
 
 ### IOS
 
-Por conta das politicas de desenvolimento da Apple, não há como usar o aplicativo do Estudantinder como um aplicativo sozinho no Iphone, ao invés disso, você pode baixar o aplicativo do Expo Go e rodar o projeto através desse link:
+Por conta das politicas de desenvolimento da Apple, não há como usar o aplicativo do Estudantinder como um aplicativo sozinho no Iphone, ao invés disso, você pode baixar o aplicativo do [Expo Go](https://apps.apple.com/br/app/expo-go/id982107779) e rodar o projeto através desse link:
 
 **https://expo.io/@cauaspinheiro/projects/estudantinder-mobile**
 
@@ -47,7 +50,7 @@ Siga todos os tópicos necessários para instalar a API no [repositório oficial
 
 **Dica!** Guarde o host que a API usa (ex: `http://localhost:3000`), pois você vai precisar delas no próximo tópico
 
-### Env
+### Variáveis do Ambiente
 
 Dentro da pasta do projeto, você verá um arquivo chamado `.env.example.ts`, dentro dele, você deverá seguir todas as instruções que forem pedidas.
 
@@ -94,6 +97,7 @@ Faz o [publish](https://docs.expo.io/workflow/publishing/) do projeto para o rel
 **Parâmetros necessários:**
 
 - $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o deploy
+  - Exemplo: `yarn deploy main`
 
 ### build:android
 
@@ -108,6 +112,7 @@ Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja
 **Parâmetros necessários:**
 
 - $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o build
+  - Exemplo: `yarn build:android main`
 
 ### build:ios
 
@@ -122,6 +127,7 @@ Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja
 **Parâmetros necessários:**
 
 - $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o build
+  - Exemplo: `yarn build:ios main`
 
 ### verify
 
@@ -206,6 +212,6 @@ Aqui está cada comando usado pelo husky nesse projeto:
 
 Você pode ver todas as dependências do projeto no seguinte link: https://github.com/Cauaspinheiro/estudantinder-mobile/network/dependencies
 
-## License
+## Rest API (Backend)
 
-## API
+Você pode ver o backend da aplicação no seguinte repositório: https://github.com/AdamAugustinsky/estudantinder-api
