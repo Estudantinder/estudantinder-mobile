@@ -1,3 +1,5 @@
+![ESTUDANTINDER](https://github.com/Cauaspinheiro/estudantinder-mobile/.github/README.png)
+
 # Estudantinder Mobile App
 
 [![Expo](https://img.shields.io/badge/Code-Expo-informational?style=flat&logo=expo&logoColor=white&color=4630eb)](https://expo.io/@cauaspinheiro/projects/estudantinder-mobile)
