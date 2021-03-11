@@ -25,7 +25,7 @@ Por conta das politicas de desenvolimento da Apple, não há como usar o aplicat
 
 ## Instalação
 
-Você vai precisar de algumas ferramentas para rodar o projeto localmente, para só baixar o aplicativo, veja o tópico [Formas de Usar](#formas-de-usar)
+Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso queira só baixar o aplicativo, veja o tópico [Formas de Usar](#formas-de-usar)
 
 ### GIT
 
@@ -182,7 +182,7 @@ Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://
 ### test:badges
 
 ```shell script
-yarn test:ci
+yarn test:badges
 ```
 
 Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) gerando reports sobre o test coverage e logo após gera as badges para serem usadas pelo github.
