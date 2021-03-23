@@ -1,4 +1,4 @@
-![ESTUDANTINDER](https://raw.githubusercontent.com/Cauaspinheiro/estudantinder-mobile/main/.github/README.png)
+![ESTUDANTINDER](https://raw.githubusercontent.com/Estudantinder/estudantinder-mobile/main/.github/README.png)
 
 # Estudantinder Mobile App
 
@@ -212,7 +212,7 @@ Aqui está cada comando usado pelo husky nesse projeto:
 
 ## Ferramentas utilizadas
 
-Você pode ver todas as dependências do projeto no seguinte link: https://github.com/Cauaspinheiro/estudantinder-mobile/network/dependencies
+Você pode ver todas as dependências do projeto no seguinte link: https://github.com/Estudantinder/estudantinder-mobile/network/dependencies
 
 ## Rest API (Backend)
 
