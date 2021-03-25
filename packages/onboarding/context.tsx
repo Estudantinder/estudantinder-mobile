@@ -18,7 +18,7 @@ interface State {
 
 interface Actions {
   navigateToIndex(index: number): void
-  endOnBoarding(): void
+  endOnBoarding(): Promise<void>
   getOnBoardingHasViewed(): Promise<boolean>
 }
 
