@@ -2,6 +2,7 @@ export const UNAUTHENTICATED_ROUTES = {
   LANDING: 'Landing',
   LOGIN: 'Login',
   SIGNUP: 'SignUp',
+  ONBOARDING: 'OnBoarding',
 } as const
 
 export const SIGNUP_ROUTES = {

@@ -4,10 +4,19 @@ import React from 'react'
 
 const { Navigator } = createStackNavigator()
 
-const StackNavigation: React.FC = ({ children }) => {
+export interface StackNavigationProps {
+  initialPage?: string
+}
+
+const StackNavigation: React.FC<StackNavigationProps> = (props) => {
   return (
     <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false }}>{children}</Navigator>
+      <Navigator
+        initialRouteName={props.initialPage}
+        screenOptions={{ headerShown: false }}
+      >
+        {props.children}
+      </Navigator>
     </NavigationContainer>
   )
 }

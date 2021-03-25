@@ -1,0 +1,3 @@
+export const ONBOARDING_STORAGE_KEYS = {
+  VIEWED: 'ONBOARDING_VIEWED',
+} as const
