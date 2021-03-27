@@ -25,7 +25,6 @@ export const OnBoardingPageTitle = styled(Title)`
 `
 
 export const OnBoardingPageSubTitle = styled(Subtitle)`
-  margin-bottom: 20px;
   text-align: center;
 `
 
@@ -52,4 +51,27 @@ export const OnBoardingFooterButtonText = styled.Text`
   color: #fff;
   font-family: ${theme.fonts.input.label};
   font-size: 14px;
+`
+
+export const OnBoardingPaginationContainer = styled.View`
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  padding-bottom: 16px;
+  background-color: #fff;
+`
+
+export interface OnBoardingPaginationDotStylesProps {
+  active: boolean
+}
+
+export const OnBoardingPaginationDot = styled.View<OnBoardingPaginationDotStylesProps>`
+  width: 10px;
+  height: 10px;
+  background-color: ${(props) =>
+    props.active ? theme.colors.primary.purple : '#C4C4C4'};
+  margin-horizontal: 14px;
+  border-radius: 90px;
 `
