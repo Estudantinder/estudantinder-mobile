@@ -1,20 +1,26 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Image } from 'react-native'
 
-import { PageContainer } from 'packages/styles'
-
-import OnBoardingFooter from '../components/Footer'
-import { useOnBoardingContext } from '../context'
+import Interaction from '../assets/interaction.png'
+import {
+  OnBoardingPageContainer,
+  OnBoardingPageSubTitle,
+  OnBoardingPageTitle,
+} from '../onboarding.styles'
 
 const OnBoardingInteractionPage: React.FC = () => {
-  const { navigateToIndex } = useOnBoardingContext()
-
   return (
-    <PageContainer>
-      <Text>Dê like nos estudantes que se interessar.</Text>
-
-      <OnBoardingFooter onNextPress={() => navigateToIndex(1)} />
-    </PageContainer>
+    <OnBoardingPageContainer>
+      <Image source={Interaction} />
+      <OnBoardingPageTitle style={{ textAlign: 'center' }}>
+        Dê like nos estudantes que se interessar.
+      </OnBoardingPageTitle>
+      <OnBoardingPageSubTitle>
+        Com os botões de like e dislike você pode escolher os estudantes que
+        gostou, tendo a opção de seguir para o perfil deles para ver mais
+        informações.
+      </OnBoardingPageSubTitle>
+    </OnBoardingPageContainer>
   )
 }
 

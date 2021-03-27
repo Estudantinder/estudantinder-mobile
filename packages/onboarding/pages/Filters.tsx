@@ -1,20 +1,25 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Image } from 'react-native'
 
-import { PageContainer } from 'packages/styles'
-
-import OnBoardingFooter from '../components/Footer'
-import { useOnBoardingContext } from '../context'
+import Filters from '../assets/filters.png'
+import {
+  OnBoardingPageContainer,
+  OnBoardingPageSubTitle,
+  OnBoardingPageTitle,
+} from '../onboarding.styles'
 
 const OnBoardingFiltersPage: React.FC = () => {
-  const { navigateToIndex } = useOnBoardingContext()
-
   return (
-    <PageContainer>
-      <Text>Edite os seus filtros a qualquer momento.</Text>
-
-      <OnBoardingFooter onNextPress={() => navigateToIndex(2)} />
-    </PageContainer>
+    <OnBoardingPageContainer>
+      <Image source={Filters} />
+      <OnBoardingPageTitle style={{ textAlign: 'center' }}>
+        Edite os seus filtros a qualquer momento.
+      </OnBoardingPageTitle>
+      <OnBoardingPageSubTitle>
+        Ao lado direito da tela você encontrará os filtros onde pode definir
+        algumas coisas sobre os estudantes que espera encontrar!
+      </OnBoardingPageSubTitle>
+    </OnBoardingPageContainer>
   )
 }
 

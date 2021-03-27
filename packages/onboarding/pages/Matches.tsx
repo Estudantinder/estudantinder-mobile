@@ -1,12 +1,17 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import { Text } from 'react-native'
+import { Image } from 'react-native'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
 import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
-import { PageContainer } from 'packages/styles'
 
+import Matches from '../assets/matches.png'
 import { useOnBoardingContext } from '../context'
+import {
+  OnBoardingPageContainer,
+  OnBoardingPageSubTitle,
+  OnBoardingPageTitle,
+} from '../onboarding.styles'
 
 const OnBoardingMatchesPage: React.FC = () => {
   const { endOnBoarding } = useOnBoardingContext()
@@ -20,11 +25,19 @@ const OnBoardingMatchesPage: React.FC = () => {
   }
 
   return (
-    <PageContainer>
-      <Text>Acesse os matches para fazer cada vez mais conexões!</Text>
+    <OnBoardingPageContainer>
+      <Image source={Matches} />
+      <OnBoardingPageTitle>
+        Acesse os matches para fazer cada vez mais conexões!
+      </OnBoardingPageTitle>
+      <OnBoardingPageSubTitle>
+        Na tela Matches ficarão todos os alunos que também curtiram o seu perfil
+        e gostariam de estudar junto com você, e assim, vocês podem acessar os
+        contatos um do outro.
+      </OnBoardingPageSubTitle>
 
-      <PrimaryButton onPress={handleEndOnboarding}>CONTINUAR</PrimaryButton>
-    </PageContainer>
+      <PrimaryButton onPress={handleEndOnboarding}>COMEÇAR!</PrimaryButton>
+    </OnBoardingPageContainer>
   )
 }
 
