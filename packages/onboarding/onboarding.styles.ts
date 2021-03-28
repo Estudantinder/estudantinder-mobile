@@ -33,9 +33,10 @@ export const OnboardingFooterContainer = styled.View`
   justify-content: space-between;
   height: 50px;
 
-  background-color: ${theme.colors.primary.green};
+  background-color: #fff;
 
-  color: #fff;
+  border-top-width: 1px;
+  border-color: #f0f0f0;
 
   align-items: center;
 `
@@ -48,7 +49,7 @@ export const OnBoardingFooterButton = styled(BorderlessButton)`
 `
 
 export const OnBoardingFooterButtonText = styled.Text`
-  color: #fff;
+  color: #4f4f4f;
   font-family: ${theme.fonts.input.label};
   font-size: 14px;
 `

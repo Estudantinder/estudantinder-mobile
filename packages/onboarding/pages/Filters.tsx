@@ -17,7 +17,7 @@ const OnBoardingFiltersPage: React.FC = () => {
       </OnBoardingPageTitle>
       <OnBoardingPageSubTitle>
         Ao lado direito da tela você encontrará os filtros onde pode definir
-        algumas coisas sobre os estudantes que espera encontrar!
+        suas preferências sobre os estudantes que espera encontrar.
       </OnBoardingPageSubTitle>
     </OnBoardingPageContainer>
   )
