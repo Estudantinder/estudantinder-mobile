@@ -4,6 +4,8 @@ import React from 'react'
 import { MainContextProvider } from 'packages/main/context'
 import Settings from 'packages/main/settings'
 import TargetProfile from 'packages/main/target-profile'
+import OnBoarding from 'packages/onboarding'
+import { OnBoardingContextProvider } from 'packages/onboarding/context'
 
 import StackNavigation from '../components/StackNavigation'
 import { AUTHENTICATED_ROUTES } from '../constants'
@@ -15,21 +17,28 @@ const { Screen } = createStackNavigator()
 const AuthenticatedNavigation: React.FC = () => {
   return (
     <MainContextProvider>
-      <StackNavigation>
-        <Screen
-          name={AUTHENTICATED_ROUTES.MAIN}
-          component={MainTabNavigation}
-        />
-        <Screen name={AUTHENTICATED_ROUTES.SETTINGS} component={Settings} />
-        <Screen
-          name={AUTHENTICATED_ROUTES.TARGET_PROFILE}
-          component={TargetProfile}
-        />
-        <Screen
-          name={AUTHENTICATED_ROUTES.EDIT_AUTH_USER}
-          component={EditAuthUserScreens}
-        />
-      </StackNavigation>
+      <OnBoardingContextProvider>
+        <StackNavigation>
+          <Screen
+            name={AUTHENTICATED_ROUTES.MAIN}
+            component={MainTabNavigation}
+          />
+          <Screen name={AUTHENTICATED_ROUTES.SETTINGS} component={Settings} />
+          <Screen
+            name={AUTHENTICATED_ROUTES.ONBOARDING}
+            initialParams={{ endRoute: AUTHENTICATED_ROUTES.SETTINGS }}
+            component={OnBoarding}
+          />
+          <Screen
+            name={AUTHENTICATED_ROUTES.TARGET_PROFILE}
+            component={TargetProfile}
+          />
+          <Screen
+            name={AUTHENTICATED_ROUTES.EDIT_AUTH_USER}
+            component={EditAuthUserScreens}
+          />
+        </StackNavigation>
+      </OnBoardingContextProvider>
     </MainContextProvider>
   )
 }

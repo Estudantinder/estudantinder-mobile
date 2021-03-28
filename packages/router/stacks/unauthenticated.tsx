@@ -1,7 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React, { useEffect, useState } from 'react'
-
-import { AppLoading } from 'expo'
+import { View } from 'react-native'
 
 import Login from 'packages/auth/pages/Login'
 import Landing from 'packages/landing'
@@ -18,6 +17,8 @@ import SignUpScreens from './sign-up'
 
 const { Screen } = createStackNavigator()
 
+const LoadingComponent = () => <View />
+
 const UnauthenticatedNavigation: React.FC = () => {
   const { getOnBoardingHasViewed } = useOnBoardingContext()
   const [hasViewed, setHasViewed] = useState(true)
@@ -32,7 +33,12 @@ const UnauthenticatedNavigation: React.FC = () => {
     fn()
   }, [getOnBoardingHasViewed])
 
-  if (loading) return <AppLoading />
+  if (loading)
+    return (
+      <StackNavigation>
+        <Screen name="loading" component={LoadingComponent} />
+      </StackNavigation>
+    )
 
   const getInitialPage = () => {
     if (hasViewed) return UNAUTHENTICATED_ROUTES.LANDING
@@ -45,6 +51,7 @@ const UnauthenticatedNavigation: React.FC = () => {
       <StackNavigation initialPage={getInitialPage()}>
         <Screen
           name={UNAUTHENTICATED_ROUTES.ONBOARDING}
+          initialParams={{ endRoute: UNAUTHENTICATED_ROUTES.LANDING }}
           component={OnBoarding}
         />
 

@@ -1,28 +1,21 @@
-import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View } from 'react-native'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
-import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
 
 import OnBoardingFooter from './components/Footer'
 import OnBoardingPagination from './components/Pagination'
 import { useOnBoardingContext } from './context'
+import useSkipOnboarding from './hooks/useSkipOnboarding'
 import { OnBoardingContainer } from './onboarding.styles'
 import OnBoardingFiltersPage from './pages/Filters'
 import OnBoardingInteractionPage from './pages/Interaction'
 import OnBoardingMatchesPage from './pages/Matches'
 
 const OnBoarding: React.FC = () => {
-  const { pagerRef, navigateToIndex, endOnBoarding } = useOnBoardingContext()
+  const { pagerRef, navigateToIndex } = useOnBoardingContext()
 
-  const router = useNavigation()
-
-  const handleEndOnboarding = async () => {
-    await endOnBoarding()
-
-    router.navigate(UNAUTHENTICATED_ROUTES.LANDING)
-  }
+  const handleSkipOnboarding = useSkipOnboarding()
 
   return (
     <View style={{ flex: 1 }}>
@@ -45,7 +38,7 @@ const OnBoarding: React.FC = () => {
           <OnBoardingPagination activeIndex={2} length={3} />
 
           <View style={{ backgroundColor: '#fff', paddingHorizontal: 32 }}>
-            <PrimaryButton onPress={handleEndOnboarding}>
+            <PrimaryButton onPress={handleSkipOnboarding}>
               COMEÇAR!
             </PrimaryButton>
           </View>

@@ -1,9 +1,6 @@
-import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
-import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
-
-import { useOnBoardingContext } from '../context'
+import useSkipOnboarding from '../hooks/useSkipOnboarding'
 import {
   OnBoardingFooterButton,
   OnBoardingFooterButtonText,
@@ -15,19 +12,11 @@ export interface OnBoardingFooterProps {
 }
 
 const OnBoardingFooter: React.FC<OnBoardingFooterProps> = (props) => {
-  const router = useNavigation()
-
-  const { endOnBoarding } = useOnBoardingContext()
-
-  const handleEndOnboarding = async () => {
-    await endOnBoarding()
-
-    router.navigate(UNAUTHENTICATED_ROUTES.LANDING)
-  }
+  const handleSkipOnboarding = useSkipOnboarding()
 
   return (
     <OnboardingFooterContainer>
-      <OnBoardingFooterButton onPress={handleEndOnboarding}>
+      <OnBoardingFooterButton onPress={handleSkipOnboarding}>
         <OnBoardingFooterButtonText>Pular</OnBoardingFooterButtonText>
       </OnBoardingFooterButton>
 

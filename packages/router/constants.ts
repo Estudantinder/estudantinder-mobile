@@ -20,6 +20,7 @@ export const AUTHENTICATED_ROUTES = {
   SETTINGS: 'Settings',
   TARGET_PROFILE: 'TargetProfile',
   EDIT_AUTH_USER: 'EditAuthUser',
+  ONBOARDING: 'Signed/Onboarding',
 } as const
 
 export const EDIT_AUTH_USER_ROUTES = {

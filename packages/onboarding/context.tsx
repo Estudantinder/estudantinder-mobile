@@ -9,7 +9,7 @@ import type { default as PagerView } from 'react-native-pager-view'
 
 import env from 'env'
 
-import GetOnBoardingViewed from './use-cases/get-viewed'
+import GetOnBoardingViewedUseCase from './use-cases/get-viewed'
 import SetOnboardingAsViewedUseCase from './use-cases/set-as-viewed'
 
 interface State {
@@ -40,7 +40,7 @@ export const OnBoardingContextProvider: React.FC = ({ children }) => {
   const pagerRef = useRef<PagerView>(null)
 
   const getOnBoardingHasViewed = useCallback(
-    async () => await GetOnBoardingViewed(),
+    async () => await GetOnBoardingViewedUseCase(),
     []
   )
 
