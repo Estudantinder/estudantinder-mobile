@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
+import AboutProjectPage from 'packages/about-project'
 import { MainContextProvider } from 'packages/main/context'
 import Settings from 'packages/main/settings'
 import TargetProfile from 'packages/main/target-profile'
@@ -28,6 +29,11 @@ const AuthenticatedNavigation: React.FC = () => {
             name={AUTHENTICATED_ROUTES.ONBOARDING}
             initialParams={{ endRoute: AUTHENTICATED_ROUTES.SETTINGS }}
             component={OnBoarding}
+          />
+          <Screen
+            name={AUTHENTICATED_ROUTES.ABOUT_PROJECT}
+            initialParams={{ endRoute: AUTHENTICATED_ROUTES.ABOUT_PROJECT }}
+            component={AboutProjectPage}
           />
           <Screen
             name={AUTHENTICATED_ROUTES.TARGET_PROFILE}

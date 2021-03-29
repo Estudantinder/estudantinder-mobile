@@ -18,6 +18,7 @@ export const SIGNUP_ROUTES = {
 export const AUTHENTICATED_ROUTES = {
   MAIN: 'Main',
   SETTINGS: 'Settings',
+  ABOUT_PROJECT: 'AboutProject',
   TARGET_PROFILE: 'TargetProfile',
   EDIT_AUTH_USER: 'EditAuthUser',
   ONBOARDING: 'Signed/Onboarding',

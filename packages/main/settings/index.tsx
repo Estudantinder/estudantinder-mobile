@@ -58,6 +58,19 @@ const Settings: React.FC = () => {
         <MenuCard
           icon={
             <Feather
+              name="flag"
+              color={theme.colors.secondary.dark_purple}
+              size={28}
+            />
+          }
+          onPress={() => router.navigate(AUTHENTICATED_ROUTES.ABOUT_PROJECT)}
+        >
+          Sobre o aplicativo
+        </MenuCard>
+        <VerticalDivider />
+        <MenuCard
+          icon={
+            <Feather
               name="log-out"
               color={theme.colors.secondary.dark_purple}
               size={28}
