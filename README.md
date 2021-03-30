@@ -5,13 +5,13 @@
 [![Expo](https://img.shields.io/badge/Code-Expo-informational?style=flat&logo=expo&logoColor=white&color=4630eb)](https://expo.io/@cauaspinheiro/projects/estudantinder-mobile)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6b36bb6107777d0c951d/maintainability)](https://codeclimate.com/github/Cauaspinheiro/estudantinder-mobile/maintainability)
 
-O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.vercel.app) para mais informações
+O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.com.br) para mais informações
 
 ## Formas de usar
 
 ### Android
 
-A forma mais fácil de usar o aplicativo é baixando o apk pelo [site oficial do Estudantinder](https://estudantinder.vercel.app)
+A forma mais fácil de usar o aplicativo é baixando o apk pelo [site oficial do Estudantinder](https://estudantinder.com.br)
 
 Caso você tenha o aplicativo do [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) instalado no seu celular, você pode abrir ele pelo seguinte link:
 
@@ -48,7 +48,7 @@ Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso 
 
 ### API do Estudantinder
 
-Siga todos os tópicos necessários para instalar a API no [repositório oficial da API](https://github.com/AdamAugustinsky/estudantinder-api)
+Siga todos os tópicos necessários para instalar a API no [repositório oficial da API](https://github.com/Estudantinder/estudantinder-api)
 
 **Dica!** Guarde o host que a API usa (ex: `http://localhost:3000`), pois você vai precisar delas no próximo tópico
 
@@ -216,4 +216,4 @@ Você pode ver todas as dependências do projeto no seguinte link: https://githu
 
 ## Rest API (Backend)
 
-Você pode ver o backend da aplicação no seguinte repositório: https://github.com/AdamAugustinsky/estudantinder-api
+Você pode ver o backend da aplicação no seguinte repositório: https://github.com/Estudantinder/estudantinder-api
