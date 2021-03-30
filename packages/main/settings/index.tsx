@@ -58,7 +58,7 @@ const Settings: React.FC = () => {
         <MenuCard
           icon={
             <Feather
-              name="flag"
+              name="info"
               color={theme.colors.secondary.dark_purple}
               size={28}
             />

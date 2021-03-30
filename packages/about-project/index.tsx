@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Linking } from 'react-native'
 
-import { Feather } from '@expo/vector-icons'
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import env from 'env'
 import Constants from 'expo-constants'
 
@@ -52,8 +52,8 @@ const AboutProjectPage: React.FC = () => {
         <VerticalDivider />
         <MenuCard
           icon={
-            <Feather
-              name="globe"
+            <MaterialCommunityIcons
+              name="lightbulb-on-outline"
               color={theme.colors.secondary.dark_purple}
               size={28}
             />
