@@ -39,7 +39,7 @@ Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso 
 
 ### Yarn
 
-- Baixe a versão mais nova do yarn em <https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable>
+- Baixe a versão mais nova do yarn em <https://classic.yarnpkg.com/en/docs/install>
 - Para testar se o yarn está instalado na sua maquina, rode o seguinte comando `yarn -v`. Deverá aparecer a versão do Yarn
 
 ### Instalação dos pacotes
