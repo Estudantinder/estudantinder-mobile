@@ -3,7 +3,7 @@
 # Estudantinder Mobile App
 
 [![Expo](https://img.shields.io/badge/Code-Expo-informational?style=flat&logo=expo&logoColor=white&color=4630eb)](https://expo.io/@cauaspinheiro/projects/estudantinder-mobile)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6b36bb6107777d0c951d/maintainability)](https://codeclimate.com/github/Cauaspinheiro/estudantinder-mobile/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/402cd236daf2d3038dd3/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-mobile/maintainability)
 
 O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.com.br) para mais informações
 
