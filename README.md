@@ -19,7 +19,7 @@ Caso você tenha o aplicativo do [Expo Go](https://play.google.com/store/apps/de
 
 ### IOS
 
-Por conta das politicas de desenvolimento da Apple, não há como usar o aplicativo do Estudantinder como um aplicativo sozinho no Iphone, ao invés disso, você pode baixar o aplicativo do [Expo Go](https://apps.apple.com/br/app/expo-go/id982107779) e rodar o projeto através desse link:
+Por conta das políticas de desenvolvimento da Apple, não há como usar o aplicativo do Estudantinder como um aplicativo sozinho no IPhone, ao invés disso, você pode baixar o aplicativo do [Expo Go](https://apps.apple.com/br/app/expo-go/id982107779) e rodar o projeto através desse link:
 
 **https://expo.io/@cauaspinheiro/projects/estudantinder-mobile**
 
