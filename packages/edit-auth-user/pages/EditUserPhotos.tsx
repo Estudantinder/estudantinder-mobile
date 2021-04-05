@@ -5,7 +5,7 @@ import { View } from 'react-native'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
-import useImageLibrary from 'packages/image-library/handleSelectPicker'
+import useImageLibrary from 'packages/image-library/useImageLibrary'
 import { Row, Subtitle } from 'packages/styles'
 import theme from 'packages/styles/theme'
 

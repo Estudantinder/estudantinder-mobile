@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import * as ImagePicker from 'expo-image-picker'
 
+const MAX_IMAGES = 6
+
 export default function useImageLibrary(initialPhotos?: string[]) {
   const initialState = getInitialState(initialPhotos)
 
@@ -18,7 +20,7 @@ export default function useImageLibrary(initialPhotos?: string[]) {
       return value
     })
 
-    if (newImages.length >= 6) {
+    if (newImages.length >= MAX_IMAGES) {
       return setImages(newImages)
     }
 
@@ -35,7 +37,7 @@ function getInitialState(initialPhotos?: string[]) {
 
   const initialState = initialPhotos.filter((value) => !!value)
 
-  if (initialState.length < 6) return [...initialState, '']
+  if (initialState.length < MAX_IMAGES) return [...initialState, '']
 
   return initialState
 }
