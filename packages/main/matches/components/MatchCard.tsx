@@ -51,6 +51,10 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, handleDeleteMatch }) => {
     )
   }
 
+  const Icon = ({ name }: { name: string }) => (
+    <MaterialCommunityIcons name={name} color="#fff" size={28} />
+  )
+
   const handleOpenFacebook = () => {
     if (!match.contacts.facebook) return
 
@@ -99,7 +103,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, handleDeleteMatch }) => {
             backgroundColor="#4267B2"
             onPress={handleOpenFacebook}
           >
-            <MaterialCommunityIcons name="facebook" color="#fff" size={28} />
+            <Icon name="facebook" />
           </MatchCardContactButton>
         )}
 
@@ -108,7 +112,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, handleDeleteMatch }) => {
             backgroundColor="#fd3376"
             onPress={handleOpenInstagram}
           >
-            <MaterialCommunityIcons name="instagram" color="#fff" size={28} />
+            <Icon name="instagram" />
           </MatchCardContactButton>
         )}
 
@@ -117,7 +121,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, handleDeleteMatch }) => {
             backgroundColor="#1DA1F2"
             onPress={handleOpenTwitter}
           >
-            <MaterialCommunityIcons name="twitter" color="#fff" size={28} />
+            <Icon name="twitter" />
           </MatchCardContactButton>
         )}
 
@@ -126,7 +130,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, handleDeleteMatch }) => {
             backgroundColor="#64B161"
             onPress={handleOpenWhatsapp}
           >
-            <MaterialCommunityIcons name="whatsapp" color="#fff" size={28} />
+            <Icon name="whatsapp" />
           </MatchCardContactButton>
         )}
       </MatchCardContactsContainer>
