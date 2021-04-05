@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { Feather } from '@expo/vector-icons'
 
-import PrimaryLabel from 'packages/components/PrimaryLabel'
+import SubjectsRow from 'packages/components/SubjectsRow'
 import Subject from 'packages/entities/Subject'
-import { Row, HorizontalDivider } from 'packages/styles'
+import { Row } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
 import {
@@ -30,24 +30,7 @@ const ShowStudentSubjects: React.FC<ShowStudentSubjectsProps> = (props) => {
           <ShowStudentInfoLabel>Matérias com afinidade</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 
-        <Row>
-          {props.subjects.map((value, index) => {
-            if (props.subjects[index + 1]) {
-              return (
-                <Fragment key={value.id}>
-                  <PrimaryLabel>{value.name.toUpperCase()}</PrimaryLabel>
-                  <HorizontalDivider width={4} />
-                </Fragment>
-              )
-            }
-
-            return (
-              <PrimaryLabel key={value.id}>
-                {value.name.toUpperCase()}
-              </PrimaryLabel>
-            )
-          })}
-        </Row>
+        <SubjectsRow subjects={props.subjects} />
       </ShowStudentInfoContainer>
     </Row>
   )
