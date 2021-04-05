@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Linking } from 'react-native'
 
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import env from 'env'
 import Constants from 'expo-constants'
 
@@ -24,34 +24,16 @@ const AboutProjectPage: React.FC = () => {
   return (
     <StackPageTemplate title="Sobre o aplicativo" withoutPadding>
       <View style={{ width: '100%' }}>
-        <MenuCard
-          icon={
-            <Feather
-              name="code"
-              color={theme.colors.secondary.dark_purple}
-              size={28}
-            />
-          }
-          onPress={() => 0}
-        >
+        <MenuCard iconName="code" onPress={() => 0}>
           {`Versão: ${Constants.manifest.version}`}
         </MenuCard>
         <VerticalDivider />
-        <MenuCard
-          icon={
-            <Feather
-              name="mail"
-              color={theme.colors.secondary.dark_purple}
-              size={28}
-            />
-          }
-          onPress={handleOpenMail}
-        >
+        <MenuCard iconName="mail" onPress={handleOpenMail}>
           Email para contato
         </MenuCard>
         <VerticalDivider />
         <MenuCard
-          icon={
+          customIcon={
             <MaterialCommunityIcons
               name="lightbulb-on-outline"
               color={theme.colors.secondary.dark_purple}
