@@ -8,9 +8,10 @@ import TargetProfile from 'packages/main/target-profile'
 import OnBoarding from 'packages/onboarding'
 import { OnBoardingContextProvider } from 'packages/onboarding/context'
 
+import MainTabNavigation from '../tabs/main'
+
 import StackNavigation from '../components/StackNavigation'
 import { AUTHENTICATED_ROUTES } from '../constants'
-import MainTabNavigation from '../tabs/Main'
 import EditAuthUserScreens from './edit-auth-user'
 
 const { Screen } = createStackNavigator()
