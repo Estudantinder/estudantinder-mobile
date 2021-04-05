@@ -9,7 +9,7 @@ import {
   ImagePickerCardImage,
   ImagePickerCardDeleteContainer,
   ImagePickerCardDeleteButton,
-} from './components.styles'
+} from '../image-library.styles'
 
 export interface ImagePickerCardProps {
   imageUri: string

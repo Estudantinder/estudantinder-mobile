@@ -2,11 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useMemo, useState } from 'react'
 import { View } from 'react-native'
 
-import * as ExpoImagePicker from 'expo-image-picker'
-
-import PhotosCarrousel from 'packages/components/PhotosCarousel'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
+import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
+import useImageLibrary from 'packages/image-library/handleSelectPicker'
 import { Row, Subtitle } from 'packages/styles'
 import theme from 'packages/styles/theme'
 
@@ -19,15 +18,9 @@ const EditAuthUserPhotos: React.FC = () => {
 
   const stack = useMemo(() => new EditUserPhotosDeleteStack(), [])
 
-  const getInitialState = () => {
-    if (!context.photos?.photos) return ['']
-
-    const initialPhotos = context.photos.photos.filter((value) => !!value)
-
-    if (initialPhotos.length < 6) return [...initialPhotos, '']
-
-    return initialPhotos
-  }
+  const { handleSelectPicker, images, setImages } = useImageLibrary(
+    context.photos.photos
+  )
 
   const getNewPhotos = (photos: string[]) => {
     const newPhotos: Array<{ index: number; uri: string }> = []
@@ -44,49 +37,15 @@ const EditAuthUserPhotos: React.FC = () => {
     return newPhotos
   }
 
-  const [items, setItems] = useState(getInitialState())
-
   const router = useNavigation()
 
   const [error, setError] = useState<string>()
-
-  async function handleSelectPicker(index: number) {
-    const status = await ExpoImagePicker.requestCameraRollPermissionsAsync()
-
-    if (!status.granted) {
-      alert('Precisamos das suas fotos')
-      return
-    }
-
-    const result = await ExpoImagePicker.launchImageLibraryAsync({
-      quality: 1,
-      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
-    })
-
-    if (result.cancelled) return
-
-    const { uri } = result
-
-    const newItems = items.map((value, i) => {
-      if (i === index) return uri
-
-      return value
-    })
-
-    if (newItems.length >= 6) {
-      return setItems(newItems)
-    }
-
-    if (newItems[newItems.length - 1] === '') newItems.pop()
-
-    setItems([...newItems, ''])
-  }
 
   async function handleSubmit() {
     try {
       setError(undefined)
 
-      const formattedPhotos = items.filter((value) => value !== '')
+      const formattedPhotos = images.filter((value) => value !== '')
 
       if (!formattedPhotos.length) {
         return setError('Selecione ao menos uma foto')
@@ -113,11 +72,11 @@ const EditAuthUserPhotos: React.FC = () => {
   }
 
   const handleDeletePhoto = (index: number) => {
-    const newPhotos = items.filter((_, i) => i !== index)
+    const newPhotos = images.filter((_, i) => i !== index)
 
-    setItems([...newPhotos])
+    setImages([...newPhotos])
 
-    if (items[index].startsWith('http')) stack.addDeletePhoto(index)
+    if (images[index].startsWith('http')) stack.addDeletePhoto(index)
   }
 
   return (
@@ -128,7 +87,7 @@ const EditAuthUserPhotos: React.FC = () => {
 
       <View style={{ flex: 1, marginVertical: 32 }}>
         <PhotosCarrousel
-          photos={items}
+          photos={images}
           onPress={handleSelectPicker}
           onDeletePress={handleDeletePhoto}
         />

@@ -19,24 +19,22 @@ export interface PhotosCarrouselProps {
 const PhotosCarrousel: React.FC<PhotosCarrouselProps> = (props) => {
   const [activeIndex, setActiveIndex] = useState(0)
 
-  const renderItem = props.renderItem
-    ? props.renderItem
-    : ({ item, index }: RenderItemProps) => {
-        return (
-          <ImagePickerCard
-            imageUri={item}
-            onPress={() => props.onPress?.(index)}
-            onDeletePress={() => props.onDeletePress?.(index)}
-          />
-        )
-      }
+  const renderItem = ({ item, index }: RenderItemProps) => {
+    return (
+      <ImagePickerCard
+        imageUri={item}
+        onPress={() => props.onPress?.(index)}
+        onDeletePress={() => props.onDeletePress?.(index)}
+      />
+    )
+  }
 
   return (
     <View style={{ flex: 1 }}>
       <Carousel
         testID="photos"
         data={props.photos}
-        renderItem={renderItem}
+        renderItem={props.renderItem || renderItem}
         sliderWidth={Dimensions.get('window').width}
         itemWidth={210}
         onSnapToItem={(index) => setActiveIndex(index)}

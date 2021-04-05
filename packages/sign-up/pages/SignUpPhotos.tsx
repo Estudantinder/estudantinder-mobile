@@ -2,11 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
-import * as ExpoImagePicker from 'expo-image-picker'
-
-import PhotosCarrousel from 'packages/components/PhotosCarousel'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
+import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
+import useImageLibrary from 'packages/image-library/handleSelectPicker'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
 import { Row, Subtitle } from 'packages/styles'
 import theme from 'packages/styles/theme'
@@ -16,59 +15,19 @@ import { useSignUpContext } from '../context'
 const SignUpPhotos: React.FC = () => {
   const context = useSignUpContext()
 
-  const getInitialState = () => {
-    if (!context.photos?.photos) return ['']
-
-    const initialPhotos = context.photos.photos.filter((value) => !!value)
-
-    if (initialPhotos.length < 6) return [...initialPhotos, '']
-
-    return initialPhotos
-  }
-
-  const [items, setItems] = useState(getInitialState())
+  const { handleSelectPicker, images, setImages } = useImageLibrary(
+    context.photos?.photos
+  )
 
   const router = useNavigation()
 
   const [error, setError] = useState<string>()
 
-  async function handleSelectPicker(index: number) {
-    const status = await ExpoImagePicker.requestCameraRollPermissionsAsync()
-
-    if (!status.granted) {
-      alert('Precisamos das suas fotos')
-      return
-    }
-
-    const result = await ExpoImagePicker.launchImageLibraryAsync({
-      quality: 1,
-      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
-    })
-
-    if (result.cancelled) return
-
-    const { uri } = result
-
-    const newItems = items.map((value, i) => {
-      if (i === index) return uri
-
-      return value
-    })
-
-    if (newItems.length >= 6) {
-      return setItems(newItems)
-    }
-
-    if (newItems[newItems.length - 1] === '') newItems.pop()
-
-    setItems([...newItems, ''])
-  }
-
   async function handleSubmit() {
     try {
       setError(undefined)
 
-      const formattedPhotos = items.filter((value) => value !== '')
+      const formattedPhotos = images.filter((value) => value !== '')
 
       if (!formattedPhotos.length) {
         return setError('Selecione ao menos uma foto')
@@ -83,9 +42,9 @@ const SignUpPhotos: React.FC = () => {
   }
 
   const handleDeletePhoto = (index: number) => {
-    const newPhotos = items.filter((_, i) => i !== index)
+    const newPhotos = images.filter((_, i) => i !== index)
 
-    setItems([...newPhotos])
+    setImages([...newPhotos])
   }
 
   return (
@@ -96,7 +55,7 @@ const SignUpPhotos: React.FC = () => {
 
       <View style={{ flex: 1, marginVertical: 32 }}>
         <PhotosCarrousel
-          photos={items}
+          photos={images}
           onPress={handleSelectPicker}
           onDeletePress={handleDeletePhoto}
         />

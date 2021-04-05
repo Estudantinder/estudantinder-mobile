@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Feather } from '@expo/vector-icons'
 
-import PhotosCarrousel from 'packages/components/PhotosCarousel'
+import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
 import theme from 'packages/styles/theme'
 
 import {
