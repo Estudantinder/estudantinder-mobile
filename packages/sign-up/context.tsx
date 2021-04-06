@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react'
-import { createContext, useContext, useMemo, useState, FC } from 'react'
-
-import env from 'env'
+import { createContext, useMemo, useState, FC } from 'react'
 
 import { ContextUserSecrets } from 'packages/edit-student-info/pages/Secrets'
 import Contacts from 'packages/entities/Contacts'
@@ -12,6 +10,7 @@ import {
   StudentSchool,
 } from 'packages/entities/Student'
 import User from 'packages/entities/User'
+import useSafeContext from 'packages/hooks/useSafeContext'
 
 import CreateUserUseCase from './use-cases/create-user'
 
@@ -43,13 +42,7 @@ type Ctx = SignUpContext
 const Context = createContext<SignUpContext | null>(null)
 
 export function useSignUpContext(): SignUpContext {
-  const value = useContext(Context)
-
-  if (!env().null_context && value === null) {
-    throw new Error('CONTEXT NOT PROVIDED')
-  }
-
-  return value || ({} as SignUpContext)
+  return useSafeContext(Context) as SignUpContext
 }
 
 export const SignUpContextProvider: FC = ({ children }) => {

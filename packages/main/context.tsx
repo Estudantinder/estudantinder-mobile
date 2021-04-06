@@ -1,16 +1,9 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
-
-import env from 'env'
+import React, { createContext, useCallback, useMemo, useState } from 'react'
 
 import Match from 'packages/entities/Match'
 import Student from 'packages/entities/Student'
 import User from 'packages/entities/User'
+import useSafeContext from 'packages/hooks/useSafeContext'
 
 import DeleteMatchUseCase from './use-cases/delete-match'
 import DislikeStudentUseCase from './use-cases/dislike-student'
@@ -43,13 +36,7 @@ export type MainContext = State & Actions
 const Context = createContext<MainContext | null>(null)
 
 export function useMainContext(): MainContext {
-  const value = useContext(Context)
-
-  if (!env().null_context && value === null) {
-    throw new Error('CONTEXT NOT PROVIDED')
-  }
-
-  return value || ({} as MainContext)
+  return useSafeContext(Context) as MainContext
 }
 
 export const MainContextProvider: React.FC = ({ children }) => {

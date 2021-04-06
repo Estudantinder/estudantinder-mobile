@@ -34,9 +34,7 @@ const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
     await props.handleSubmit(data)
   }
 
-  const submitForm = () => {
-    formRef.current?.submitForm()
-  }
+  const submitForm = () => formRef.current?.submitForm()
 
   const [whatsapp, setWhatsapp] = useState(props.initialData?.whatsapp)
 

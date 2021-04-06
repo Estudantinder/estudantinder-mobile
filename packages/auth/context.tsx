@@ -1,12 +1,6 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import React, { createContext, useCallback, useMemo, useState } from 'react'
 
-import env from 'env'
+import useSafeContext from 'packages/hooks/useSafeContext'
 
 import CreateAuthTokenUseCase, {
   CreateAuthTokenData,
@@ -35,13 +29,7 @@ const INITIAL_STATE: State = {
 }
 
 export function useAuthContext(): AuthContext {
-  const value = useContext(Context)
-
-  if (!env().null_context && value === null) {
-    throw new Error('CONTEXT NOT PROVIDED')
-  }
-
-  return value || ({} as AuthContext)
+  return useSafeContext(Context) as AuthContext
 }
 
 export const AuthContextProvider: React.FC = ({ children }) => {

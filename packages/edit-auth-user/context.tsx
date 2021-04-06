@@ -1,6 +1,4 @@
-import React, { createContext, useCallback, useContext, useMemo } from 'react'
-
-import env from 'env'
+import React, { createContext, useCallback, useMemo } from 'react'
 
 import { ContextUserSecrets } from 'packages/edit-student-info/pages/Secrets'
 import Contacts from 'packages/entities/Contacts'
@@ -11,6 +9,7 @@ import {
   StudentPhotos,
 } from 'packages/entities/Student'
 import User from 'packages/entities/User'
+import useSafeContext from 'packages/hooks/useSafeContext'
 import { useMainContext } from 'packages/main/context'
 
 import EditAuthUserUseCase from './use-cases/edit-user'
@@ -37,13 +36,7 @@ export type EditAuthUserContext = State & Actions
 const Context = createContext<EditAuthUserContext | null>(null)
 
 export function useEditAuthUserContext(): EditAuthUserContext {
-  const value = useContext(Context)
-
-  if (!env().null_context && value === null) {
-    throw new Error('CONTEXT NOT PROVIDED')
-  }
-
-  return value || ({} as EditAuthUserContext)
+  return useSafeContext(Context) as EditAuthUserContext
 }
 
 export const EditAuthUserContextProvider: React.FC = ({ children }) => {

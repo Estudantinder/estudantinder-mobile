@@ -1,13 +1,7 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-} from 'react'
+import React, { createContext, useCallback, useMemo, useRef } from 'react'
 import type { default as PagerView } from 'react-native-pager-view'
 
-import env from 'env'
+import useSafeContext from 'packages/hooks/useSafeContext'
 
 import GetOnBoardingViewedUseCase from './use-cases/get-viewed'
 import SetOnboardingAsViewedUseCase from './use-cases/set-as-viewed'
@@ -27,13 +21,7 @@ export type OnBoardingContext = State & Actions
 const Context = createContext<OnBoardingContext | null>(null)
 
 export function useOnBoardingContext(): OnBoardingContext {
-  const value = useContext(Context)
-
-  if (!env().null_context && value === null) {
-    throw new Error('CONTEXT NOT PROVIDED')
-  }
-
-  return value || ({} as OnBoardingContext)
+  return useSafeContext(Context) as OnBoardingContext
 }
 
 export const OnBoardingContextProvider: React.FC = ({ children }) => {
