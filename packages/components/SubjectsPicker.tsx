@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FlatList, View, ViewProps, ViewStyle } from 'react-native'
+import { View, ViewProps, ViewStyle } from 'react-native'
 
 import { useField } from '@unform/core'
 
 import useSubjectsData from 'packages/api/swr-hooks/useSubjectsData'
-import RowOptionsButton from 'packages/components/RowOptions/Button'
 import Subject from 'packages/entities/Subject'
 import InputInfo from 'packages/inputs/components/InputInfo'
 import { InputContainer, InputLabel } from 'packages/inputs/input.styles'
 
-import { SubjectsPickerListContainer } from './components.styles'
+import SubjectsPickerList from './SubjectsPickerList'
 
 export interface SubjectsPickerProps extends ViewProps {
   label: string
@@ -78,36 +77,12 @@ const SubjectsPicker: React.FC<SubjectsPickerProps> = (props) => {
         {!subjects || !subjects.length ? 'Carregando...' : props.label}
       </InputLabel>
 
-      <SubjectsPickerListContainer>
-        <FlatList
-          data={subjects}
-          renderItem={({ item, index }) => {
-            const isActive = favoriteSubjects
-              .map((value) => String(value.id))
-              .includes(String(item.id))
-
-            return (
-              <View
-                style={{
-                  marginRight: index % 2 === 0 ? 10 : 0,
-                  marginTop: 12,
-                  flex: 1,
-                }}
-              >
-                <RowOptionsButton
-                  isActive={isActive}
-                  onPress={() => handleSubjectsChange(item)}
-                  containerStyle={props.buttonContainerStyle}
-                >
-                  {item.name}
-                </RowOptionsButton>
-              </View>
-            )
-          }}
-          numColumns={2}
-          scrollEnabled={false}
-        />
-      </SubjectsPickerListContainer>
+      <SubjectsPickerList
+        data={subjects}
+        favorites={favoriteSubjects}
+        onSubjectPress={handleSubjectsChange}
+        buttonContainerStyle={props.buttonContainerStyle}
+      />
 
       <InputInfo>{error}</InputInfo>
     </InputContainer>
