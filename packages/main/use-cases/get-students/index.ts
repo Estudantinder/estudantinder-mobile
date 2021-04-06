@@ -13,12 +13,7 @@ export default async function GetStudentsUseCase(): Promise<Student[]> {
     return response.data?.map((value) => GetStudentSerializer(value))
   } catch (error) {
     if (error.response) {
-      throw new ApiError({
-        title: error.response?.data.error || 'SOMETHING WENT WRONG',
-        message:
-          error.response.data.message ||
-          String(JSON.stringify(error.response.data)),
-      })
+      throw new ApiError(error.response)
     }
     throw error
   }

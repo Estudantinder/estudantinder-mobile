@@ -7,11 +7,7 @@ export default async function EmailExistsUseCase(email: string): Promise<void> {
     await api.post('/users/emailValidation', { email })
   } catch (error) {
     if (error.response) {
-      throw new EmailExistsError({
-        title: error.response?.data.error || 'EMAIL INVÁLIDO',
-        message:
-          error.response?.data.message || 'O email já existe ou é inválido',
-      })
+      throw new EmailExistsError(error.response)
     }
 
     throw error

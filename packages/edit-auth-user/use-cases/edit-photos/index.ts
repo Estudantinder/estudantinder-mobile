@@ -23,12 +23,7 @@ export default async function EditPhotosUseCase(
     await api.post('/users/imageUpload', data)
   } catch (error) {
     if (error.response) {
-      throw new ApiError({
-        title: error.response.data.error || 'ALGO DEU ERRADO!',
-        message:
-          error.response.data.message ||
-          String(JSON.stringify(error.response.data)),
-      })
+      throw new ApiError(error.response)
     }
 
     throw error

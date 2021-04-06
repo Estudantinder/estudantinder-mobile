@@ -6,12 +6,7 @@ export default async function DeletePhotoUseCase(index: number) {
     await api.delete(`/users/deleteImage/${index}`)
   } catch (error) {
     if (error.response) {
-      throw new ApiError({
-        title: error.response.data.error || 'ALGO DEU ERRADO!',
-        message:
-          error.response.data.message ||
-          String(JSON.stringify(error.response.data)),
-      })
+      throw new ApiError(error.response)
     }
 
     throw error
