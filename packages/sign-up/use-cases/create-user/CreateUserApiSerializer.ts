@@ -1,3 +1,4 @@
+import ContactsToApiFormat from 'packages/adapters/ContactsToApiFormat'
 import Contacts from 'packages/entities/Contacts'
 import { IGender } from 'packages/entities/Gender'
 import { SHIFTS } from 'packages/entities/Shift'
@@ -29,49 +30,11 @@ export default function CreateUserApiSerializer(user: User): CreateUserApiData {
     return [year, month, day]
   }
 
-  const getContacts = () => {
-    const contacts: Contacts = {}
-
-    const getWhatsapp = (value: string) => {
-      const number = value.match(/\d/g)?.join('')
-
-      if (number?.startsWith('11')) return `55${number}`
-
-      if (number?.startsWith('55')) return number
-
-      return undefined
-    }
-
-    const getValidUsername = (value: string) => {
-      if (value.startsWith('@')) return value.substr(1).trim()
-
-      return value.trim()
-    }
-
-    if (user.contacts.whatsapp) {
-      contacts.whatsapp = getWhatsapp(user.contacts.whatsapp)
-    }
-
-    if (user.contacts.twitter) {
-      contacts.twitter = getValidUsername(user.contacts.twitter)
-    }
-
-    if (user.contacts.facebook) {
-      contacts.facebook = getValidUsername(user.contacts.facebook)
-    }
-
-    if (user.contacts.instagram) {
-      contacts.instagram = getValidUsername(user.contacts.instagram)
-    }
-
-    return new Contacts(contacts)
-  }
-
   return {
     bio: user.bio,
     birth_date: getApiDate(),
     classroom: user.classroom,
-    contacts: getContacts(),
+    contacts: new ContactsToApiFormat(user.contacts).contacts,
     course_id: Number(user.course.id),
     email: user.email,
     name: user.name,

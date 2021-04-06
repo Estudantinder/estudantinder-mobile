@@ -1,4 +1,4 @@
-import Contacts from 'packages/entities/Contacts'
+import ContactsToApiFormat from 'packages/adapters/ContactsToApiFormat'
 import User from 'packages/entities/User'
 import { CreateUserApiData } from 'packages/sign-up/use-cases/create-user/CreateUserApiSerializer'
 
@@ -19,50 +19,6 @@ export default function EditAuthUserApiSerializer(
     return [year, month, day]
   }
 
-  const getContacts = () => {
-    if (!user.contacts) return undefined
-
-    const contacts: Contacts = {}
-
-    const getWhatsapp = (value?: string) => {
-      if (!value) return undefined
-
-      const number = value.match(/\d/g)?.join('')
-
-      if (number?.startsWith('11')) return `55${number}`
-
-      if (number?.startsWith('55')) return number
-
-      return undefined
-    }
-
-    const getValidUsername = (value: string) => {
-      if (!value) return undefined
-
-      if (value.startsWith('@')) return value.substr(1).trim()
-
-      return value.trim()
-    }
-
-    if (user.contacts.whatsapp) {
-      contacts.whatsapp = getWhatsapp(user.contacts.whatsapp)
-    }
-
-    if (user.contacts.twitter) {
-      contacts.twitter = getValidUsername(user.contacts.twitter)
-    }
-
-    if (user.contacts.facebook) {
-      contacts.facebook = getValidUsername(user.contacts.facebook)
-    }
-
-    if (user.contacts.instagram) {
-      contacts.instagram = getValidUsername(user.contacts.instagram)
-    }
-
-    return new Contacts(contacts)
-  }
-
   const numberOrUndefined = (value: unknown | undefined) => {
     if (!value) return undefined
 
@@ -77,7 +33,9 @@ export default function EditAuthUserApiSerializer(
     bio: user.bio,
     birth_date: getApiDate(),
     classroom: user.classroom,
-    contacts: getContacts(),
+    contacts: user.contacts
+      ? new ContactsToApiFormat(user.contacts).contacts
+      : undefined,
     course_id: numberOrUndefined(user.course?.id),
     email: user.email,
     name: user.name,
