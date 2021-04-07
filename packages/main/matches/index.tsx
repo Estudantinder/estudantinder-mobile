@@ -36,9 +36,7 @@ const Matches: React.FC = () => {
 
   if (isLoading) return <MatchesLoadingPage />
 
-  if (!matches.length) {
-    return <MatchesNoMatchesPage />
-  }
+  if (!matches.length) return <MatchesNoMatchesPage />
 
   return (
     <PageContainer>
