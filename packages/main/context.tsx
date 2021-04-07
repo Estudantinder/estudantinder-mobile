@@ -71,21 +71,23 @@ export const MainContextProvider: React.FC = ({ children }) => {
     [students]
   )
 
-  const likeStudent = useCallback(async () => {
-    await LikeStudentUseCase(students[0].id)
-
-    if (students.length < 4) addMoreStudents([students[0].id])
+  const afterInteraction = useCallback(() => {
+    if (students.length < 1) addMoreStudents([students[0].id])
 
     setStudents([...students.slice(1)])
   }, [addMoreStudents, students])
+
+  const likeStudent = useCallback(async () => {
+    await LikeStudentUseCase(students[0].id)
+
+    afterInteraction()
+  }, [afterInteraction, students])
 
   const dislikeStudent = useCallback(async () => {
     await DislikeStudentUseCase(students[0].id)
 
-    if (students.length < 4) addMoreStudents([students[0].id])
-
-    setStudents([...students.slice(1)])
-  }, [addMoreStudents, students])
+    afterInteraction()
+  }, [afterInteraction, students])
 
   const getMatches = useCallback(async () => {
     const newMatches = await GetMatchesUseCase()
