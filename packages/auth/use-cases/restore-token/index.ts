@@ -21,15 +21,20 @@ export default async function RestoreAuthTokenUseCase(): Promise<
     return null
   }
 
-  const expirationDate = new Date(expirationValue)
-
-  const HOUR_IN_MILLISECONDS = 60000
-
-  if (Date.now() - HOUR_IN_MILLISECONDS >= expirationDate.getTime()) {
-    return null
-  }
-
   api.defaults.headers.authorization = `Bearer ${storageToken}`
 
-  return storageToken
+  try {
+    await api.post('/users/jwtValidation')
+
+    return storageToken
+  } catch (error) {
+    api.defaults.headers.authorization = undefined
+
+    AsyncStorage.multiRemove([
+      STORAGE_AUTH_TOKEN.EXPIRATION_KEY,
+      STORAGE_AUTH_TOKEN.TOKEN_KEY,
+    ])
+
+    return null
+  }
 }
