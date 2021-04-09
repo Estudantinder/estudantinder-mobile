@@ -98,7 +98,7 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "tsc --noEmit && cross-env NODE_ENV=test jest"
+      "pre-push": "tsc --noEmit && cross-env NODE_ENV=test jest --passWithNoTests"
     }
   },
   "lint-staged": {
