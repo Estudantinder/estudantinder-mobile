@@ -8,11 +8,13 @@ import Constants from 'expo-constants'
 import MenuCard from 'packages/components/MenuCard'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { VerticalDivider } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import { EnvText } from './about-project.styles'
 
 const AboutProjectPage: React.FC = () => {
+  const { theme } = useToggleThemeContext()
+
   const handleOpenMail = () => {
     Linking.openURL('mailto:estudantinder@gmail.com')
   }
@@ -36,7 +38,7 @@ const AboutProjectPage: React.FC = () => {
           customIcon={
             <MaterialCommunityIcons
               name="lightbulb-on-outline"
-              color={theme.colors.secondary.dark_purple}
+              color={theme.dark_purple}
               size={28}
             />
           }

@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 
 import { Title } from 'packages/styles'
+import { fonts } from 'packages/styles/theme'
 
 export const FiltersContainer = styled.View`
   width: 100%;
@@ -22,7 +23,7 @@ export const FiltersScrollView = styled.ScrollView`
 `
 
 export const FiltersTooltipText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.subtitle};
+  font-family: ${fonts.subtitle};
 `
 
 export const FiltersSelectContainer = styled.View`

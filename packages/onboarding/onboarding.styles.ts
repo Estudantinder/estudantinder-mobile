@@ -4,7 +4,7 @@ import PagerView from 'react-native-pager-view'
 import styled from 'styled-components/native'
 
 import { Subtitle, Title } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { fonts } from 'packages/styles/theme'
 
 export const OnBoardingContainer = styled(PagerView)`
   flex: 1;
@@ -50,7 +50,7 @@ export const OnBoardingFooterButton = styled(BorderlessButton)`
 
 export const OnBoardingFooterButtonText = styled.Text`
   color: #4f4f4f;
-  font-family: ${theme.fonts.input.label};
+  font-family: ${fonts.input.label};
   font-size: 14px;
 `
 
@@ -72,7 +72,7 @@ export const OnBoardingPaginationDot = styled.View<OnBoardingPaginationDotStyles
   width: 10px;
   height: 10px;
   background-color: ${(props) =>
-    props.active ? theme.colors.primary.purple : '#C4C4C4'};
+    props.active ? props.theme.purple : '#C4C4C4'};
   margin-horizontal: 14px;
   border-radius: 90px;
 `

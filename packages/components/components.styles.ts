@@ -2,7 +2,7 @@ import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 
 import styled from 'styled-components/native'
 
-import theme from 'packages/styles/theme'
+import { fonts } from 'packages/styles/theme'
 
 export const ScrollMain = styled.View`
   min-height: 60%;
@@ -24,7 +24,7 @@ export const GoBackButtonContainer = styled(BorderlessButton)`
 `
 
 export const PrimaryButtonContainer = styled(RectButton)`
-  background-color: ${theme.colors.primary.green};
+  background-color: ${(props) => props.theme.green};
   width: 100%;
   height: 45px;
   justify-content: center;
@@ -34,7 +34,7 @@ export const PrimaryButtonContainer = styled(RectButton)`
 `
 
 export const PrimaryButtonText = styled.Text`
-  font-family: ${theme.fonts.button};
+  font-family: ${fonts.button};
   font-weight: 700;
   text-align: center;
   color: #fff;
@@ -45,7 +45,7 @@ export const SelectContainer = styled.View`
 `
 
 export const SelectBackground = styled.View`
-  background-color: ${theme.colors.input.background};
+  background-color: ${(props) => props.theme.input.background};
   border-radius: 4px;
   min-height: 40px;
   justify-content: center;
@@ -62,12 +62,12 @@ export const PrimaryLabelContainer = styled.View<PrimaryLabelStylesProps>`
   justify-content: center;
   flex-grow: 1;
   border-radius: 3px;
-  background-color: ${theme.colors.primary.purple};
+  background-color: ${(props) => props.theme.purple};
 `
 
 export const PrimaryLabelText = styled.Text<PrimaryLabelStylesProps>`
   color: #ffffff;
-  font-family: ${theme.fonts.primary};
+  font-family: ${fonts.primary};
   font-size: ${(props) => (props.size === 'large' ? 12 : 10)}px;
   align-items: center;
   text-align: center;
@@ -100,7 +100,7 @@ export const MenuCardIcon = styled.View`
 `
 
 export const MenuCardTitle = styled.Text`
-  font-family: ${theme.fonts.subtitle};
+  font-family: ${fonts.subtitle};
   font-size: 16px;
   line-height: 16px;
 `

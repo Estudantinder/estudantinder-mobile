@@ -2,7 +2,8 @@ import React from 'react'
 import { Text } from 'react-native'
 
 import { MAIN_ROUTES } from 'packages/router/constants'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
+import { fonts } from 'packages/styles/theme'
 
 export interface TabBarLabelProps {
   focused: boolean
@@ -10,6 +11,8 @@ export interface TabBarLabelProps {
 }
 
 export default function TabBarLabel(props: TabBarLabelProps) {
+  const { theme } = useToggleThemeContext()
+
   let labelTitle
 
   if (props.route.name === MAIN_ROUTES.USER_PROFILE) labelTitle = 'Perfil'
@@ -19,12 +22,10 @@ export default function TabBarLabel(props: TabBarLabelProps) {
     <Text
       style={{
         fontSize: 12,
-        color: props.focused ? theme.colors.primary.purple : '#4f4f4f',
+        color: props.focused ? theme.purple : '#4f4f4f',
         marginTop: -6,
         marginBottom: 2,
-        fontFamily: props.focused
-          ? theme.fonts.primary
-          : theme.fonts.input.text,
+        fontFamily: props.focused ? fonts.primary : fonts.input.text,
       }}
     >
       {labelTitle}

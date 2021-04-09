@@ -8,12 +8,14 @@ import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
 import useImageLibrary from 'packages/image-library/useImageLibrary'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
 import { Row, Subtitle } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import { useSignUpContext } from '../context'
 
 const SignUpPhotos: React.FC = () => {
   const context = useSignUpContext()
+
+  const { theme } = useToggleThemeContext()
 
   const { handleSelectPicker, images, setImages } = useImageLibrary(
     context.photos?.photos
@@ -49,7 +51,7 @@ const SignUpPhotos: React.FC = () => {
 
   return (
     <StackPageTemplate title="Suas Fotos" withoutPadding>
-      <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
+      <Subtitle style={{ color: error ? theme.input.error : '#000' }}>
         {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
 

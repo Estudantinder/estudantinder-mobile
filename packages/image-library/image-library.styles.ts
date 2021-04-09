@@ -2,15 +2,13 @@ import { RectButton } from 'react-native-gesture-handler'
 
 import styled from 'styled-components/native'
 
-import theme from 'packages/styles/theme'
-
 export const ImagePickerCardContainer = styled(RectButton)`
   flex: 1;
   height: 240px;
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.background.light_purple};
+  background-color: ${(props) => props.theme.light_purple};
   border-radius: 6px;
 `
 

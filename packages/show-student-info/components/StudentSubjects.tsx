@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import SubjectsRow from 'packages/components/SubjectsRow'
 import Subject from 'packages/entities/Subject'
 import { Row } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import {
   ShowStudentInfoContainer,
@@ -18,15 +18,13 @@ export interface ShowStudentSubjectsProps {
 }
 
 const ShowStudentSubjects: React.FC<ShowStudentSubjectsProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
     <Row style={{ paddingHorizontal: 16 }}>
       <ShowStudentInfoContainer>
         <ShowStudentInfoHeader>
-          <Feather
-            name="book-open"
-            size={20}
-            color={theme.colors.secondary.dark_purple}
-          />
+          <Feather name="book-open" size={20} color={theme.dark_purple} />
           <ShowStudentInfoLabel>Matérias com afinidade</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { Feather } from '@expo/vector-icons'
 
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import { InputInfoContainer, InputInfoText } from '../input.styles'
 
@@ -12,7 +12,9 @@ export interface InputInfoProps {
 }
 
 const InputInfo: React.FC<InputInfoProps> = (props) => {
-  const color = props.informative ? '#9b9b9b' : theme.colors.input.error
+  const { theme } = useToggleThemeContext()
+
+  const color = props.informative ? '#9b9b9b' : theme.input.error
 
   return (
     <InputInfoContainer>

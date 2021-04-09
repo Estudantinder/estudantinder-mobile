@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, DarkTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
@@ -10,7 +10,7 @@ export interface StackNavigationProps {
 
 const StackNavigation: React.FC<StackNavigationProps> = (props) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Navigator
         initialRouteName={props.initialPage}
         screenOptions={{ headerShown: false }}

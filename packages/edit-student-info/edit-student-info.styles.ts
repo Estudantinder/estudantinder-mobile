@@ -4,11 +4,12 @@ import styled from 'styled-components/native'
 
 import Input from 'packages/inputs/components/Input'
 import { InputLabel } from 'packages/inputs/input.styles'
+import { fonts } from 'packages/styles/theme'
 
 export const BirthDatePickerButton = styled.TouchableOpacity`
   min-width: 100%;
   height: 40px;
-  background-color: ${(props) => props.theme.colors.input.background};
+  background-color: ${(props) => props.theme.input.background};
   padding: 4px 15px;
   flex-direction: row;
   align-items: center;
@@ -17,8 +18,8 @@ export const BirthDatePickerButton = styled.TouchableOpacity`
 `
 
 export const BirthDatePickerText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.input.text};
-  color: ${(props) => props.theme.colors.input.active_text};
+  font-family: ${fonts.input.text};
+  color: ${(props) => props.theme.input.active_text};
 `
 
 export const GenderPickerOrText = styled(InputLabel)`

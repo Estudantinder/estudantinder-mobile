@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import theme from 'packages/styles/theme'
+import { fonts } from 'packages/styles/theme'
 
 export interface InputStylesProps {
   isActive: boolean
@@ -23,7 +23,7 @@ export interface InputInfoStylesProps {
 }
 
 export const InputInfoText = styled.Text<InputInfoStylesProps>`
-  font-family: ${theme.fonts.input.label};
+  font-family: ${fonts.input.label};
   font-size: 12px;
   color: ${(props) => props.color};
 
@@ -41,17 +41,17 @@ export const StyledInput = styled.TextInput<InputStylesProps>`
 
   padding: 4px 15px;
 
-  background-color: ${theme.colors.input.background};
-  color: ${theme.colors.input.active_text};
-  font-family: ${theme.fonts.input.text};
+  background-color: ${(props) => props.theme.input.background};
+  color: ${(props) => props.theme.input.active_text};
+  font-family: ${fonts.input.text};
 
   border-width: 2px;
   border-color: ${(props) =>
     props.isActive
-      ? theme.colors.input.active_border
+      ? props.theme.input.active_border
       : props.isInvalid
-      ? theme.colors.input.error
-      : theme.colors.input.background};
+      ? props.theme.input.error
+      : props.theme.input.background};
   border-radius: 4px;
 `
 
@@ -68,7 +68,7 @@ export const InputSuffix = styled.View`
   width: 24px;
   height: 24px;
 
-  background-color: ${theme.colors.input.background};
+  background-color: ${(props) => props.theme.input.background};
 
   display: flex;
   justify-content: center;
@@ -76,14 +76,14 @@ export const InputSuffix = styled.View`
 `
 
 export const InputLabel = styled.Text`
-  font-family: ${theme.fonts.input.label};
-  color: ${theme.colors.input.label};
+  font-family: ${fonts.input.label};
+  color: ${(props) => props.theme.input.label};
 
   margin-bottom: 10px;
 `
 
 export const SwitchInputText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.subtitle};
+  font-family: ${fonts.subtitle};
   font-size: 12px;
   margin-left: 4px;
 `

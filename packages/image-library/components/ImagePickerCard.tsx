@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Ionicons, Feather } from '@expo/vector-icons'
 
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import {
   ImagePickerCardContainer,
@@ -18,16 +18,14 @@ export interface ImagePickerCardProps {
 }
 
 const ImagePickerCard: React.FC<ImagePickerCardProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
     <ImagePickerCardContainer onPress={props.onPress}>
       {props.imageUri ? (
         <ImagePickerCardImage source={{ uri: props.imageUri }} />
       ) : (
-        <Ionicons
-          name="ios-camera"
-          size={36}
-          color={theme.colors.primary.purple}
-        />
+        <Ionicons name="ios-camera" size={36} color={theme.purple} />
       )}
 
       {props.imageUri ? (

@@ -6,7 +6,7 @@ import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import Contacts from 'packages/entities/Contacts'
 import { StyledForm, Subtitle } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 import focusOnInput from 'packages/utils/focusOnInput'
 
 import {
@@ -21,6 +21,8 @@ export type EditStudentContactsProps = EditStudentInfoProps<Contacts>
 
 const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
   const formRef = props.formRef
+
+  const { theme } = useToggleThemeContext()
 
   const [isEmpty, setIsEmpty] = useState(false)
 
@@ -48,7 +50,7 @@ const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
 
   return (
     <StackPageTemplate title="Adicione seus contatos">
-      <Subtitle style={{ color: isEmpty ? theme.colors.input.error : '#000' }}>
+      <Subtitle style={{ color: isEmpty ? theme.input.error : '#000' }}>
         Informe pelos menos um contato abaixo
       </Subtitle>
 

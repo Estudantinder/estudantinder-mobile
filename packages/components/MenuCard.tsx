@@ -1,8 +1,7 @@
 import React from 'react'
 
 import { Feather } from '@expo/vector-icons'
-
-import theme from 'packages/styles/theme'
+import { useTheme } from 'styled-components'
 
 import {
   MenuCardContainer,
@@ -20,13 +19,15 @@ export interface MenuCardProps {
 const MenuCard: React.FC<MenuCardProps> = (props) => {
   const isCustomIcon = !!props.customIcon || !props.iconName
 
+  const theme = useTheme()
+
   const getIcon = () => {
     if (isCustomIcon) return props.customIcon
 
     return (
       <Feather
         name={props.iconName || ''}
-        color={theme.colors.secondary.dark_purple}
+        color={theme.dark_purple}
         size={28}
       />
     )

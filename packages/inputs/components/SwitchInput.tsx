@@ -48,9 +48,9 @@ const SwitchInput: React.FC<SwitchInputProps> = (props) => {
           ref={inputRef}
           trackColor={{
             false: '#767577',
-            true: theme.colors.background.light_purple,
+            true: theme.light_purple,
           }}
-          thumbColor={isEnabled ? theme.colors.primary.purple : '#f4f3f4'}
+          thumbColor={isEnabled ? theme.purple : '#f4f3f4'}
           ios_backgroundColor="#3e3e3e"
           onValueChange={handleChangeValue}
           value={isEnabled}

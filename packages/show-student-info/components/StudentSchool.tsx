@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 
 import StudentDataAdapter from 'packages/adapters/StudentAdapter'
 import { Row } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 import capitalize from 'packages/utils/capitalize'
 
 import {
@@ -22,15 +22,13 @@ export interface ShowStudentSchoolProps {
 }
 
 const ShowStudentSchool: React.FC<ShowStudentSchoolProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
     <Row style={{ paddingHorizontal: 16 }}>
       <ShowStudentInfoContainer>
         <ShowStudentInfoHeader>
-          <Feather
-            name="award"
-            size={20}
-            color={theme.colors.secondary.dark_purple}
-          />
+          <Feather name="award" size={20} color={theme.dark_purple} />
           <ShowStudentInfoLabel>Informações escolares</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 

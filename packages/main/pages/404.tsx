@@ -4,7 +4,7 @@ import { Image, RefreshControl } from 'react-native'
 import PrimaryButton from 'packages/components/PrimaryButton'
 import Scroll from 'packages/components/Scroll'
 import { PageContainer } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import {
   NotFoundContainer,
@@ -23,6 +23,8 @@ export interface Main404PageProps {
 
 const Main404Page: React.FC<Main404PageProps> = (props) => {
   const [refreshing, setRefreshing] = useState(false)
+
+  const { theme } = useToggleThemeContext()
 
   const onRefresh = useCallback(() => {
     let isRendered = true
@@ -45,7 +47,7 @@ const Main404Page: React.FC<Main404PageProps> = (props) => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={[theme.colors.primary.purple, theme.colors.primary.green]}
+            colors={[theme.purple, theme.green]}
             size={36}
           />
         }

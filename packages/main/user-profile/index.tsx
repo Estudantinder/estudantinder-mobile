@@ -8,7 +8,7 @@ import Scroll from 'packages/components/Scroll'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import ShowStudent from 'packages/show-student-info'
 import { Title, PageContainer } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 import alertModal from 'packages/utils/alertModal'
 
 import { useMainContext } from '../context'
@@ -19,6 +19,8 @@ import {
 
 const UserProfile: React.FC = () => {
   const { getProfile, profile } = useMainContext()
+
+  const { theme } = useToggleThemeContext()
 
   const router = useNavigation()
 
@@ -42,7 +44,7 @@ const UserProfile: React.FC = () => {
     return (
       <PageContainer>
         <Title>Carregando...</Title>
-        <ActivityIndicator size={44} color={theme.colors.primary.purple} />
+        <ActivityIndicator size={44} color={theme.purple} />
       </PageContainer>
     )
 
@@ -52,7 +54,7 @@ const UserProfile: React.FC = () => {
 
       <UserProfileEditButtonContainer>
         <UserProfileEditButton onPress={navigateToEditAuthUser}>
-          <Feather name="edit" color={theme.colors.primary.purple} size={24} />
+          <Feather name="edit" color={theme.purple} size={24} />
         </UserProfileEditButton>
       </UserProfileEditButtonContainer>
 

@@ -20,11 +20,16 @@ import { ThemeProvider } from 'styled-components'
 
 import { AuthContextProvider } from 'packages/auth/context'
 import Router from 'packages/router'
-import theme from 'packages/styles/theme'
+import {
+  ToggleThemeContextProvider,
+  useToggleThemeContext,
+} from 'packages/styles/context'
 
 LogBox.ignoreLogs(['nested'])
 
-export default function App() {
+const App: React.FC = () => {
+  const { theme } = useToggleThemeContext()
+
   const [fontsLoaded] = useFonts({
     Archivo_400Regular,
     Archivo_600SemiBold,
@@ -48,3 +53,13 @@ export default function App() {
     </ThemeProvider>
   )
 }
+
+const WithToggleThemeProvider: React.FC = () => {
+  return (
+    <ToggleThemeContextProvider>
+      <App />
+    </ToggleThemeContextProvider>
+  )
+}
+
+export default WithToggleThemeProvider

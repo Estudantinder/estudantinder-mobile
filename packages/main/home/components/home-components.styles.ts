@@ -5,12 +5,12 @@ import Constants from 'expo-constants'
 import styled from 'styled-components/native'
 
 import { Row } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { fonts } from 'packages/styles/theme'
 
 export const TopBarContainer = styled(Row)`
   justify-content: space-between;
   margin-bottom: 12px;
-  background-color: ${theme.colors.primary.green};
+  background-color: ${(props) => props.theme.green};
   padding: 0px 16px;
   padding-bottom: 8px;
   padding-top: ${Constants.statusBarHeight + 8}px;
@@ -54,13 +54,13 @@ export const StudentCardProfileButton = styled(BorderlessButton)`
 `
 
 export const StudentCardNameText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.titles.secondary};
+  font-family: ${fonts.titles.secondary};
   font-size: 18px;
-  color: ${(props) => props.theme.colors.primary.green};
+  color: ${(props) => props.theme.green};
 `
 
 export const StudentCardFooterText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.primary};
+  font-family: ${fonts.primary};
   color: #2d2d2d;
   font-size: 13px;
 `

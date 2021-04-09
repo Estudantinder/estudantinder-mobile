@@ -2,7 +2,7 @@ import { Form } from '@unform/mobile'
 import Constants from 'expo-constants'
 import styled from 'styled-components/native'
 
-import theme from './theme'
+import { fonts } from './theme'
 
 export interface PageContainerStylesProps {
   withoutPadding?: boolean
@@ -19,7 +19,7 @@ export const PageContainer = styled.KeyboardAvoidingView<PageContainerStylesProp
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
 
-  background-color: ${theme.colors.background.page};
+  background-color: ${(props) => props.theme.background};
 `
 
 export const StyledForm = styled(Form)`
@@ -28,12 +28,12 @@ export const StyledForm = styled(Form)`
 `
 
 export const Subtitle = styled.Text`
-  font-family: ${theme.fonts.subtitle};
+  font-family: ${fonts.subtitle};
   text-align: center;
 `
 
 export const Title = styled.Text`
-  font-family: ${theme.fonts.titles.primary};
+  font-family: ${fonts.titles.primary};
   font-size: 20px;
 
   margin-bottom: 12px;

@@ -4,6 +4,7 @@ import { RectButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
 import { Row } from 'packages/styles'
+import { fonts } from 'packages/styles/theme'
 
 export const MatchCardContainer = styled.View`
   min-height: ${Dimensions.get('window').height / 1.6}px;
@@ -34,7 +35,7 @@ export const MatchCardTopBarButton = styled(RectButton)`
 
 export const MatchCardTopBarTitle = styled.Text`
   font-size: 16px;
-  font-family: ${(props) => props.theme.fonts.titles.secondary};
+  font-family: ${fonts.titles.secondary};
   color: #fff;
   padding-top: 2px;
 `

@@ -2,7 +2,7 @@ import React, { RefObject } from 'react'
 import { Dimensions } from 'react-native'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import FiltersView from './FiltersView'
 
@@ -11,6 +11,8 @@ export interface FilterDrawerProps {
 }
 
 const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
     <DrawerLayout
       ref={props.drawerRef as never}
@@ -22,7 +24,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
       drawerWidth={Math.round((Dimensions.get('screen').width / 10) * 8.5)}
       drawerPosition="right"
       drawerType="front"
-      drawerBackgroundColor={theme.colors.background.light_purple}
+      drawerBackgroundColor={theme.light_purple}
     >
       {props.children}
     </DrawerLayout>

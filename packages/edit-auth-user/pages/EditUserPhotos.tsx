@@ -7,7 +7,7 @@ import StackPageTemplate from 'packages/components/StackPageTemplate'
 import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
 import useImageLibrary from 'packages/image-library/useImageLibrary'
 import { Row, Subtitle } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import { useEditAuthUserContext } from '../context'
 import EditPhotosUseCase from '../use-cases/edit-photos'
@@ -15,6 +15,8 @@ import EditUserPhotosDeleteStack from '../utils/EditUserPhotosDeleteStack'
 
 const EditAuthUserPhotos: React.FC = () => {
   const context = useEditAuthUserContext()
+
+  const { theme } = useToggleThemeContext()
 
   const stack = useMemo(() => new EditUserPhotosDeleteStack(), [])
 
@@ -81,7 +83,7 @@ const EditAuthUserPhotos: React.FC = () => {
 
   return (
     <StackPageTemplate title="Suas Fotos" withoutPadding>
-      <Subtitle style={{ color: error ? theme.colors.input.error : '#000' }}>
+      <Subtitle style={{ color: error ? theme.input.error : '#000' }}>
         {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
 

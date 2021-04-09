@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 import { Row } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { fonts } from 'packages/styles/theme'
 
 export const ShowStudentContainer = styled.View`
   flex: 1;
@@ -22,8 +22,8 @@ export const ShowStudentInfoContainer = styled.View`
 
 export const ShowStudentInfoLabel = styled.Text`
   font-size: 14px;
-  font-family: ${theme.fonts.primary};
-  color: ${theme.colors.secondary.dark_purple};
+  font-family: ${fonts.primary};
+  color: ${(props) => props.theme.dark_purple};
   margin-left: 4px;
 `
 
@@ -46,13 +46,13 @@ export const ShowStudentInfoHeader = styled(Row)`
 export const ShowStudentBioContainer = styled.View`
   padding: 12px 8px;
   width: 100%;
-  background-color: ${theme.colors.input.background};
+  background-color: ${(props) => props.theme.input.background};
   border-radius: 4px;
 `
 
 export const ShowStudentBioText = styled.Text`
   font-size: 12px;
-  font-family: ${theme.fonts.input.text};
+  font-family: ${fonts.input.text};
 `
 
 export const ShowStudentSchoolRow = styled(Row)`
@@ -60,9 +60,9 @@ export const ShowStudentSchoolRow = styled(Row)`
 `
 
 export const ShowStudentSchoolLabel = styled.Text`
-  font-family: ${theme.fonts.primary};
+  font-family: ${fonts.primary};
   font-size: 14px;
-  color: ${theme.colors.input.active_text};
+  color: ${(props) => props.theme.input.active_text};
   padding-top: 12px;
 `
 

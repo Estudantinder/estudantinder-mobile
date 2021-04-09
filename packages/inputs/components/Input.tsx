@@ -4,7 +4,7 @@ import { TextInput, TextInputProps } from 'react-native'
 import { useField } from '@unform/core'
 
 import { Row } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import {
   InputContainer,
@@ -30,6 +30,8 @@ const Input: React.FC<InputProps> = ({ children, ...props }) => {
   const inputRef = useRef<ValueRef<TextInput>>(null)
 
   const [isActive, setIsActive] = useState(false)
+
+  const { theme } = useToggleThemeContext()
 
   const { registerField, ...field } = useField(props.name)
 
@@ -63,8 +65,8 @@ const Input: React.FC<InputProps> = ({ children, ...props }) => {
           isInvalid={!!field.error}
           isActive={isActive}
           defaultValue={field.defaultValue}
-          placeholderTextColor={theme.colors.input.placeholder}
-          selectionColor={theme.colors.primary.purple}
+          placeholderTextColor={theme.input.placeholder}
+          selectionColor={theme.purple}
           returnKeyType="next"
           blurOnSubmit={false}
           {...props}

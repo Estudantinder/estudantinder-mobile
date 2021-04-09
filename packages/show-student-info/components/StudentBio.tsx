@@ -3,7 +3,7 @@ import React from 'react'
 import { Feather } from '@expo/vector-icons'
 
 import { Row } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import {
   ShowStudentInfoContainer,
@@ -18,15 +18,13 @@ export interface ShowStudentBioProps {
 }
 
 const ShowStudentBio: React.FC<ShowStudentBioProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
     <Row style={{ paddingHorizontal: 16 }}>
       <ShowStudentInfoContainer>
         <ShowStudentInfoHeader>
-          <Feather
-            name="type"
-            color={theme.colors.secondary.dark_purple}
-            size={20}
-          />
+          <Feather name="type" color={theme.dark_purple} size={20} />
           <ShowStudentInfoLabel>Biografia</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 

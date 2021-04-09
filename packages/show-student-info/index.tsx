@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import StudentDataAdapter from 'packages/adapters/StudentAdapter'
 import Student from 'packages/entities/Student'
 import { Row, Title } from 'packages/styles'
-import theme from 'packages/styles/theme'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import ShowStudentBio from './components/StudentBio'
 import ShowStudentPhotos from './components/StudentPhotos'
@@ -23,6 +23,8 @@ export interface ShowStudentProps {
 }
 
 const ShowStudent: React.FC<ShowStudentProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   const studentAdapter = new StudentDataAdapter(props.student)
 
   return (
@@ -43,11 +45,7 @@ const ShowStudent: React.FC<ShowStudentProps> = (props) => {
         <Row style={{ paddingHorizontal: 16 }}>
           <ShowStudentInfoContainer>
             <Row>
-              <Feather
-                name="flag"
-                size={20}
-                color={theme.colors.secondary.dark_purple}
-              />
+              <Feather name="flag" size={20} color={theme.dark_purple} />
               <ShowStudentInfoLabel>
                 Gênero: {studentAdapter.getGender()}
               </ShowStudentInfoLabel>
