@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components'
 import {
   MenuCardContainer,
   MenuCardIcon,
+  MenuCardSuffix,
   MenuCardTitle,
 } from './components.styles'
 
@@ -14,6 +15,7 @@ export interface MenuCardProps {
   iconName?: string
   customIcon?: JSX.Element
   onPress(): void
+  suffix?: JSX.Element
 }
 
 const MenuCard: React.FC<MenuCardProps> = (props) => {
@@ -38,6 +40,8 @@ const MenuCard: React.FC<MenuCardProps> = (props) => {
       <MenuCardIcon>{getIcon()}</MenuCardIcon>
 
       <MenuCardTitle>{props.children}</MenuCardTitle>
+
+      <MenuCardSuffix>{props.suffix}</MenuCardSuffix>
     </MenuCardContainer>
   )
 }

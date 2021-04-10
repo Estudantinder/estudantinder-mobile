@@ -104,3 +104,10 @@ export const MenuCardTitle = styled.Text`
   font-size: 16px;
   line-height: 16px;
 `
+
+export const MenuCardSuffix = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding-right: 32px;
+`
