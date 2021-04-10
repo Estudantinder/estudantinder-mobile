@@ -16,34 +16,86 @@ export const fonts: Fonts = {
 
 export const lightTheme: Theme = {
   name: 'light',
-  green: '#0FAD58',
-  purple: '#6D36DA',
-  dark_purple: '#3900BB',
-  light_purple: '#F3EDFF',
-  background: '#fff',
+
+  base: {
+    green: '#0FAD58',
+    purple: '#6D36DA',
+    secondary_purple: '#3900BB',
+  },
+  text: {
+    default: '#000000',
+    button: '#ffffff',
+  },
+  icon: {
+    default: '#2d2d2d',
+  },
   input: {
     background: '#F0F0F0',
-    active_border: '#6D36DA',
     active_text: '#2D2D2D',
     placeholder: '#D2D2D2',
-    label: '#000000',
     error: '#E50302',
+  },
+  background: {
+    default: '#ffffff',
+    light_purple: '#F3EDFF',
+  },
+  pages: {
+    contacts: {
+      inputs: {
+        facebook: '#dfe5f2',
+        instagram: '#fde6ef',
+        whatsapp: '#e0efdf',
+        twitter: '#d2ecfc',
+      },
+    },
+  },
+  components: {
+    divider: '#E8E6E6',
+    photos: {
+      pagination: { active_dot: '#646464', inactive_dot: '#AFAFAF' },
+    },
   },
 }
 
 export const darkTheme: Theme = {
   name: 'dark',
-  green: '#0FAD58',
-  purple: '#8470E0',
-  dark_purple: '#8470E0',
-  light_purple: '#222222',
-  background: '#141414',
+
+  base: {
+    green: '#0CAB55',
+    purple: '#8470E0',
+    secondary_purple: '#8470E0',
+  },
+  icon: {
+    default: '#d2d2d2',
+  },
+  text: {
+    default: '#E8E8E8',
+    button: '#f0f0f0',
+  },
   input: {
-    background: '#F0F0F0',
-    active_border: '#6D36DA',
-    active_text: '#2D2D2D',
-    placeholder: '#D2D2D2',
-    label: '#000000',
-    error: '#E50302',
+    active_text: '#C7C7C7',
+    background: '#222222',
+    error: '#FF2E2E',
+    placeholder: '#4F4E4E',
+  },
+  background: {
+    default: '#141414',
+    light_purple: '#222222',
+  },
+  pages: {
+    contacts: {
+      inputs: {
+        facebook: '#222',
+        instagram: '#222',
+        whatsapp: '#222',
+        twitter: '#222',
+      },
+    },
+  },
+  components: {
+    divider: '#262424',
+    photos: {
+      pagination: { active_dot: '#A0A0A0', inactive_dot: '#595959' },
+    },
   },
 }

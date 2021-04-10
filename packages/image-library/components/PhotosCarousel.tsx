@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Dimensions, View } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
+import { useToggleThemeContext } from 'packages/styles/context'
+
 import ImagePickerCard from './ImagePickerCard'
 
 interface RenderItemProps {
@@ -18,6 +20,8 @@ export interface PhotosCarrouselProps {
 
 const PhotosCarrousel: React.FC<PhotosCarrouselProps> = (props) => {
   const [activeIndex, setActiveIndex] = useState(0)
+
+  const { theme } = useToggleThemeContext()
 
   const renderItem = ({ item, index }: RenderItemProps) => {
     return (
@@ -44,8 +48,8 @@ const PhotosCarrousel: React.FC<PhotosCarrouselProps> = (props) => {
         dotsLength={props.photos.length}
         activeDotIndex={activeIndex}
         dotStyle={{ width: 30, height: 4, marginHorizontal: -6 }}
-        inactiveDotColor="#B3B3B3"
-        dotColor="#666"
+        inactiveDotColor={theme.components.photos.pagination.inactive_dot}
+        dotColor={theme.components.photos.pagination.active_dot}
         animatedDuration={150}
         animatedFriction={10}
         animatedTension={10}

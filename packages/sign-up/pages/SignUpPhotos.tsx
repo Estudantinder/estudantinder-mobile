@@ -51,7 +51,9 @@ const SignUpPhotos: React.FC = () => {
 
   return (
     <StackPageTemplate title="Suas Fotos" withoutPadding>
-      <Subtitle style={{ color: error ? theme.input.error : '#000' }}>
+      <Subtitle
+        style={{ color: error ? theme.input.error : theme.text.default }}
+      >
         {error || 'Escolha uma ou até seis fotos para o seu perfil'}
       </Subtitle>
 

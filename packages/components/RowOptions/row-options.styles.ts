@@ -15,12 +15,12 @@ export const RowOptionsButtonContainer = styled.TouchableOpacity<RowOptionsButto
   border-radius: 3px;
 
   background-color: ${(props) =>
-    props.isActive ? props.theme.purple : '#fff'};
+    props.isActive ? props.theme.base.purple : props.theme.background.default};
   border-width: 1px;
-  border-color: ${(props) => props.theme.purple};
+  border-color: ${(props) => props.theme.base.purple};
 `
 
 export const RowOptionsButtonText = styled.Text<RowOptionsButtonStyleProps>`
   font-family: ${fonts.button};
-  color: ${(props) => (props.isActive ? '#fff' : props.theme.purple)};
+  color: ${(props) => (props.isActive ? '#fff' : props.theme.base.purple)};
 `

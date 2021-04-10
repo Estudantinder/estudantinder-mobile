@@ -24,7 +24,11 @@ const ShowStudentSubjects: React.FC<ShowStudentSubjectsProps> = (props) => {
     <Row style={{ paddingHorizontal: 16 }}>
       <ShowStudentInfoContainer>
         <ShowStudentInfoHeader>
-          <Feather name="book-open" size={20} color={theme.dark_purple} />
+          <Feather
+            name="book-open"
+            size={20}
+            color={theme.base.secondary_purple}
+          />
           <ShowStudentInfoLabel>Matérias com afinidade</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 

@@ -50,7 +50,9 @@ const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
 
   return (
     <StackPageTemplate title="Adicione seus contatos">
-      <Subtitle style={{ color: isEmpty ? theme.input.error : '#000' }}>
+      <Subtitle
+        style={{ color: isEmpty ? theme.input.error : theme.text.default }}
+      >
         Informe pelos menos um contato abaixo
       </Subtitle>
 

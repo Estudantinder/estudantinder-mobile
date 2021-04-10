@@ -20,18 +20,46 @@ export interface Fonts {
 export interface Theme {
   name: ThemeNames
 
-  green: string
-  purple: string
-  dark_purple: string
-  light_purple: string
-  background: string
+  base: {
+    purple: string
+    secondary_purple: string
+    green: string
+  }
+  text: {
+    default: string
+    button: string
+  }
+  icon: {
+    default: string
+  }
   input: {
     background: string
-    active_border: string
     active_text: string
     placeholder: string
-    label: string
     error: string
+  }
+  background: {
+    default: string
+    light_purple: string
+  }
+  pages: {
+    contacts: {
+      inputs: {
+        facebook: string
+        instagram: string
+        whatsapp: string
+        twitter: string
+      }
+    }
+  }
+  components: {
+    divider: string
+    photos: {
+      pagination: {
+        inactive_dot: string
+        active_dot: string
+      }
+    }
   }
 }
 

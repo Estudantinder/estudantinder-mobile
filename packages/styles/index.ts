@@ -19,7 +19,7 @@ export const PageContainer = styled.KeyboardAvoidingView<PageContainerStylesProp
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
 
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.background.default};
 `
 
 export const StyledForm = styled(Form)`
@@ -30,11 +30,13 @@ export const StyledForm = styled(Form)`
 export const Subtitle = styled.Text`
   font-family: ${fonts.subtitle};
   text-align: center;
+  color: ${(props) => props.theme.text.default};
 `
 
 export const Title = styled.Text`
   font-family: ${fonts.titles.primary};
   font-size: 20px;
+  color: ${(props) => props.theme.text.default};
 
   margin-bottom: 12px;
 `
@@ -68,5 +70,5 @@ export const HorizontalDivider = styled.View<HorizontalDividerProps>`
 export const VerticalDivider = styled.View`
   width: 100%;
   height: 1px;
-  background-color: #e8e6e6;
+  background-color: ${(props) => props.theme.components.divider};
 `

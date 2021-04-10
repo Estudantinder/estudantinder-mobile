@@ -15,6 +15,7 @@ import {
   InputSuffix,
 } from 'packages/inputs/input.styles'
 import { Row } from 'packages/styles'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import {
   BirthDatePickerButton,
@@ -27,6 +28,8 @@ import {
 
 const BirthDatePicker: React.FC = () => {
   const { registerField, ...field } = useField('birth_date')
+
+  const { theme } = useToggleThemeContext()
 
   const [wasSelected, setWasSelected] = useState(!!field.defaultValue)
 
@@ -85,10 +88,14 @@ const BirthDatePicker: React.FC = () => {
 
           <InputSuffix>
             <BorderlessButton
+              style={{ marginBottom: 6 }}
               onPress={() => setShow(true)}
-              style={{ marginTop: 2 }}
             >
-              <Entypo name="chevron-thin-right" size={14} color="#2d2d2d" />
+              <Entypo
+                name="chevron-thin-right"
+                size={14}
+                color={theme.input.active_text}
+              />
             </BorderlessButton>
           </InputSuffix>
         </Row>

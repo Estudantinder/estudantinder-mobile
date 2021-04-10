@@ -45,7 +45,11 @@ const ShowStudent: React.FC<ShowStudentProps> = (props) => {
         <Row style={{ paddingHorizontal: 16 }}>
           <ShowStudentInfoContainer>
             <Row>
-              <Feather name="flag" size={20} color={theme.dark_purple} />
+              <Feather
+                name="flag"
+                size={20}
+                color={theme.base.secondary_purple}
+              />
               <ShowStudentInfoLabel>
                 Gênero: {studentAdapter.getGender()}
               </ShowStudentInfoLabel>

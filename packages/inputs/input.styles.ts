@@ -48,7 +48,7 @@ export const StyledInput = styled.TextInput<InputStylesProps>`
   border-width: 2px;
   border-color: ${(props) =>
     props.isActive
-      ? props.theme.input.active_border
+      ? props.theme.base.purple
       : props.isInvalid
       ? props.theme.input.error
       : props.theme.input.background};
@@ -77,13 +77,15 @@ export const InputSuffix = styled.View`
 
 export const InputLabel = styled.Text`
   font-family: ${fonts.input.label};
-  color: ${(props) => props.theme.input.label};
+  color: ${(props) => props.theme.text.default};
 
   margin-bottom: 10px;
 `
 
 export const SwitchInputText = styled.Text`
   font-family: ${fonts.subtitle};
+
+  color: ${(props) => props.theme.text.default};
   font-size: 12px;
   margin-left: 4px;
 `

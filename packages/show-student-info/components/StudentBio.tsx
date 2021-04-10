@@ -24,7 +24,7 @@ const ShowStudentBio: React.FC<ShowStudentBioProps> = (props) => {
     <Row style={{ paddingHorizontal: 16 }}>
       <ShowStudentInfoContainer>
         <ShowStudentInfoHeader>
-          <Feather name="type" color={theme.dark_purple} size={20} />
+          <Feather name="type" color={theme.base.secondary_purple} size={20} />
           <ShowStudentInfoLabel>Biografia</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 

@@ -44,7 +44,7 @@ const UserProfile: React.FC = () => {
     return (
       <PageContainer>
         <Title>Carregando...</Title>
-        <ActivityIndicator size={44} color={theme.purple} />
+        <ActivityIndicator size={44} color={theme.base.purple} />
       </PageContainer>
     )
 
@@ -54,7 +54,7 @@ const UserProfile: React.FC = () => {
 
       <UserProfileEditButtonContainer>
         <UserProfileEditButton onPress={navigateToEditAuthUser}>
-          <Feather name="edit" color={theme.purple} size={24} />
+          <Feather name="edit" color={theme.base.purple} size={24} />
         </UserProfileEditButton>
       </UserProfileEditButtonContainer>
 

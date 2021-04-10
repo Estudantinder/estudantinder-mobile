@@ -7,6 +7,7 @@ import { useField } from '@unform/core'
 import { InputCoreProps } from 'packages/inputs/components/Input'
 import InputInfo from 'packages/inputs/components/InputInfo'
 import { InputLabel } from 'packages/inputs/input.styles'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import { SelectBackground, SelectContainer } from './components.styles'
 
@@ -25,6 +26,8 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
   const inputRef = useRef<ValueRef<Picker, string>>(null)
 
   const { registerField, ...field } = useField(props.name)
+
+  const { theme } = useToggleThemeContext()
 
   const [value, setValue] = useState(props.defaultValue || field.defaultValue)
 
@@ -61,7 +64,8 @@ const Select: React.FC<SelectProps> = ({ children, ...props }) => {
           value={value}
           style={{
             inputAndroid: {
-              color: '#000',
+              color: theme.input.active_text,
+
               height:
                 props.backgroundStyle?.minHeight ||
                 props.backgroundStyle?.height ||

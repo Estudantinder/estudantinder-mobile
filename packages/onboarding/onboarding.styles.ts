@@ -72,7 +72,7 @@ export const OnBoardingPaginationDot = styled.View<OnBoardingPaginationDotStyles
   width: 10px;
   height: 10px;
   background-color: ${(props) =>
-    props.active ? props.theme.purple : '#C4C4C4'};
+    props.active ? props.theme.base.purple : '#C4C4C4'};
   margin-horizontal: 14px;
   border-radius: 90px;
 `

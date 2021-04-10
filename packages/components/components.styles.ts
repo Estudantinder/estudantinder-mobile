@@ -24,7 +24,7 @@ export const GoBackButtonContainer = styled(BorderlessButton)`
 `
 
 export const PrimaryButtonContainer = styled(RectButton)`
-  background-color: ${(props) => props.theme.green};
+  background-color: ${(props) => props.theme.base.green};
   width: 100%;
   height: 45px;
   justify-content: center;
@@ -37,7 +37,7 @@ export const PrimaryButtonText = styled.Text`
   font-family: ${fonts.button};
   font-weight: 700;
   text-align: center;
-  color: #fff;
+  color: ${(props) => props.theme.text.button};
 `
 
 export const SelectContainer = styled.View`
@@ -62,7 +62,7 @@ export const PrimaryLabelContainer = styled.View<PrimaryLabelStylesProps>`
   justify-content: center;
   flex-grow: 1;
   border-radius: 3px;
-  background-color: ${(props) => props.theme.purple};
+  background-color: ${(props) => props.theme.base.purple};
 `
 
 export const PrimaryLabelText = styled.Text<PrimaryLabelStylesProps>`
@@ -103,6 +103,7 @@ export const MenuCardTitle = styled.Text`
   font-family: ${fonts.subtitle};
   font-size: 16px;
   line-height: 16px;
+  color: ${(props) => props.theme.text.default};
 `
 
 export const MenuCardSuffix = styled.View`

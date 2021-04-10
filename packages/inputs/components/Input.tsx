@@ -66,7 +66,7 @@ const Input: React.FC<InputProps> = ({ children, ...props }) => {
           isActive={isActive}
           defaultValue={field.defaultValue}
           placeholderTextColor={theme.input.placeholder}
-          selectionColor={theme.purple}
+          selectionColor={theme.base.purple}
           returnKeyType="next"
           blurOnSubmit={false}
           {...props}

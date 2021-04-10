@@ -22,7 +22,7 @@ export default function TabBarLabel(props: TabBarLabelProps) {
     <Text
       style={{
         fontSize: 12,
-        color: props.focused ? theme.purple : '#4f4f4f',
+        color: props.focused ? theme.base.purple : '#4f4f4f',
         marginTop: -6,
         marginBottom: 2,
         fontFamily: props.focused ? fonts.primary : fonts.input.text,

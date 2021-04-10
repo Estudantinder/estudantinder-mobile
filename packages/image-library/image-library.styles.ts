@@ -8,7 +8,7 @@ export const ImagePickerCardContainer = styled(RectButton)`
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.theme.light_purple};
+  background-color: ${(props) => props.theme.background.light_purple};
   border-radius: 6px;
 `
 

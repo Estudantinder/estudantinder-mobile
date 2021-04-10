@@ -11,7 +11,7 @@ const MatchesLoadingPage: React.FC = () => {
   return (
     <PageContainer>
       <NotFoundContainer>
-        <ActivityIndicator size={44} color={theme.purple} />
+        <ActivityIndicator size={44} color={theme.base.purple} />
       </NotFoundContainer>
     </PageContainer>
   )

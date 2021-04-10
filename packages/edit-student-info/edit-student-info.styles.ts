@@ -31,23 +31,23 @@ export const GenderPickerOrText = styled(InputLabel)`
 `
 
 export const FacebookInput = styled(Input)`
-  background-color: #dfe5f2;
-  border-color: #dfe5f2;
+  background-color: ${(props) => props.theme.pages.contacts.inputs.facebook};
+  border-color: ${(props) => props.theme.pages.contacts.inputs.facebook};
 `
 
 export const InstagramInput = styled(Input)`
-  background-color: #fde6ef;
-  border-color: #fde6ef;
+  background-color: ${(props) => props.theme.pages.contacts.inputs.instagram};
+  border-color: ${(props) => props.theme.pages.contacts.inputs.instagram};
 `
 
 export const WhatsappInput = styled(Input)`
-  background-color: #e0efdf;
-  border-color: #e0efdf;
+  background-color: ${(props) => props.theme.pages.contacts.inputs.whatsapp};
+  border-color: ${(props) => props.theme.pages.contacts.inputs.whatsapp};
 `
 
 export const TwitterInput = styled(Input)`
-  background-color: #d2ecfc;
-  border-color: #d2ecfc;
+  background-color: ${(props) => props.theme.pages.contacts.inputs.twitter};
+  border-color: ${(props) => props.theme.pages.contacts.inputs.twitter};
 `
 
 export const TextAreaInput = styled(Input)`

@@ -12,7 +12,7 @@ const LandingTitle = styled.Text`
   font-family: ${fonts.titles.primary};
   font-size: 18px;
   text-align: center;
-  color: #4f4f4f;
+  color: ${(props) => props.theme.text.default};
 `
 
 const LandingFooter = styled.View`
@@ -21,7 +21,7 @@ const LandingFooter = styled.View`
 `
 
 const SignInButton = styled.TouchableOpacity`
-  border-color: ${(props) => props.theme.green};
+  border-color: ${(props) => props.theme.base.green};
   border-width: 2px;
 
   width: 100%;
@@ -38,7 +38,7 @@ const SignInText = styled.Text`
   font-weight: 700;
   text-align: center;
 
-  color: ${(props) => props.theme.green};
+  color: ${(props) => props.theme.base.green};
 `
 
 export default {

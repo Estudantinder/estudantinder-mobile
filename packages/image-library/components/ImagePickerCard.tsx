@@ -25,7 +25,7 @@ const ImagePickerCard: React.FC<ImagePickerCardProps> = (props) => {
       {props.imageUri ? (
         <ImagePickerCardImage source={{ uri: props.imageUri }} />
       ) : (
-        <Ionicons name="ios-camera" size={36} color={theme.purple} />
+        <Ionicons name="ios-camera" size={36} color={theme.base.purple} />
       )}
 
       {props.imageUri ? (

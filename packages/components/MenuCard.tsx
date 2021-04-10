@@ -29,7 +29,7 @@ const MenuCard: React.FC<MenuCardProps> = (props) => {
     return (
       <Feather
         name={props.iconName || ''}
-        color={theme.dark_purple}
+        color={theme.base.secondary_purple}
         size={28}
       />
     )

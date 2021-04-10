@@ -24,7 +24,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = (props) => {
       drawerWidth={Math.round((Dimensions.get('screen').width / 10) * 8.5)}
       drawerPosition="right"
       drawerType="front"
-      drawerBackgroundColor={theme.light_purple}
+      drawerBackgroundColor={theme.background.light_purple}
     >
       {props.children}
     </DrawerLayout>

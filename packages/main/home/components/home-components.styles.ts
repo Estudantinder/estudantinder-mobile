@@ -10,7 +10,7 @@ import { fonts } from 'packages/styles/theme'
 export const TopBarContainer = styled(Row)`
   justify-content: space-between;
   margin-bottom: 12px;
-  background-color: ${(props) => props.theme.green};
+  background-color: ${(props) => props.theme.base.green};
   padding: 0px 16px;
   padding-bottom: 8px;
   padding-top: ${Constants.statusBarHeight + 8}px;
@@ -56,7 +56,7 @@ export const StudentCardProfileButton = styled(BorderlessButton)`
 export const StudentCardNameText = styled.Text`
   font-family: ${fonts.titles.secondary};
   font-size: 18px;
-  color: ${(props) => props.theme.green};
+  color: ${(props) => props.theme.base.green};
 `
 
 export const StudentCardFooterText = styled.Text`

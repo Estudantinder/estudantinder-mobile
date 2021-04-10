@@ -23,10 +23,10 @@ export default function MainTabNavigation() {
         tabBarLabel: (props) => TabBarLabel({ route, ...props }),
       })}
       tabBarOptions={{
-        activeTintColor: theme.purple,
-        inactiveTintColor: theme.purple,
-        activeBackgroundColor: theme.background,
-        inactiveBackgroundColor: theme.background,
+        activeTintColor: theme.base.purple,
+        inactiveTintColor: theme.base.purple,
+        activeBackgroundColor: theme.background.default,
+        inactiveBackgroundColor: theme.background.default,
       }}
     >
       <Screen name={MAIN_ROUTES.MATCHES} component={Matches} />

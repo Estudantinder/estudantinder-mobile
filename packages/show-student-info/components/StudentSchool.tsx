@@ -28,7 +28,7 @@ const ShowStudentSchool: React.FC<ShowStudentSchoolProps> = (props) => {
     <Row style={{ paddingHorizontal: 16 }}>
       <ShowStudentInfoContainer>
         <ShowStudentInfoHeader>
-          <Feather name="award" size={20} color={theme.dark_purple} />
+          <Feather name="award" size={20} color={theme.base.secondary_purple} />
           <ShowStudentInfoLabel>Informações escolares</ShowStudentInfoLabel>
         </ShowStudentInfoHeader>
 

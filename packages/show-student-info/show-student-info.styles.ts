@@ -23,7 +23,7 @@ export const ShowStudentInfoContainer = styled.View`
 export const ShowStudentInfoLabel = styled.Text`
   font-size: 14px;
   font-family: ${fonts.primary};
-  color: ${(props) => props.theme.dark_purple};
+  color: ${(props) => props.theme.base.secondary_purple};
   margin-left: 4px;
 `
 
@@ -53,6 +53,7 @@ export const ShowStudentBioContainer = styled.View`
 export const ShowStudentBioText = styled.Text`
   font-size: 12px;
   font-family: ${fonts.input.text};
+  color: ${(props) => props.theme.input.active_text};
 `
 
 export const ShowStudentSchoolRow = styled(Row)`
@@ -62,7 +63,7 @@ export const ShowStudentSchoolRow = styled(Row)`
 export const ShowStudentSchoolLabel = styled.Text`
   font-family: ${fonts.primary};
   font-size: 14px;
-  color: ${(props) => props.theme.input.active_text};
+  color: ${(props) => props.theme.text.default};
   padding-top: 12px;
 `
 

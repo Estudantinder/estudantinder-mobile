@@ -25,7 +25,7 @@ const ShowStudentPhotos: React.FC<ShowStudentPhotos> = (props) => {
   return (
     <ShowStudentInfoContainer>
       <ShowStudentInfoHeader style={{ paddingHorizontal: 16 }}>
-        <Feather name="image" color={theme.dark_purple} size={20} />
+        <Feather name="image" color={theme.base.secondary_purple} size={20} />
         <ShowStudentInfoLabel>Fotos</ShowStudentInfoLabel>
       </ShowStudentInfoHeader>
 

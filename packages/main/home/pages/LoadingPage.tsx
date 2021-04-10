@@ -22,7 +22,7 @@ const HomeLoadingPage: React.FC<HomeLoadingPageProps> = (props) => {
       <HomeTopBar onFiltersPressed={openDrawer} />
 
       <NotFoundContainer>
-        <ActivityIndicator size={44} color={theme.purple} />
+        <ActivityIndicator size={44} color={theme.base.purple} />
       </NotFoundContainer>
     </PageContainer>
   )

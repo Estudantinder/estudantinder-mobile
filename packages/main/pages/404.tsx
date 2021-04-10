@@ -47,7 +47,7 @@ const Main404Page: React.FC<Main404PageProps> = (props) => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={[theme.purple, theme.green]}
+            colors={[theme.base.purple, theme.base.green]}
             size={36}
           />
         }
