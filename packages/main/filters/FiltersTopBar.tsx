@@ -17,7 +17,7 @@ export interface FiltersTopBar {
 
 const FiltersTopBar: React.FC<FiltersTopBar> = (props) => {
   return (
-    <Row justifyContent="space-between" style={{ marginBottom: 16 }}>
+    <Row justifyContent="space-between" style={{ marginVertical: 16 }}>
       <Tooltip
         backgroundColor="#fff"
         height={100}

@@ -11,6 +11,7 @@ import alertModal from 'packages/utils/alertModal'
 import { useMainContext } from '../context'
 import { FiltersContainer, FiltersScrollView } from './filters.styles'
 import FiltersInputs from './FiltersForm'
+import FiltersTopBar from './FiltersTopBar'
 import GetFiltersUseCase from './use-cases/get-filters'
 import UpdateFiltersUseCase from './use-cases/update-filters'
 import { FiltersFormData } from './use-cases/update-filters/UpdateFiltersSerializer'
@@ -58,6 +59,8 @@ const FiltersView = (props: FiltersViewProps): JSX.Element => {
           alignItems: 'center',
         }}
       >
+        <FiltersTopBar closeDrawer={props.closeDrawer} />
+
         <Form
           style={{
             marginTop: 8,
