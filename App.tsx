@@ -1,5 +1,6 @@
 import React from 'react'
 import { LogBox } from 'react-native'
+import { AppearanceProvider } from 'react-native-appearance'
 
 import {
   Archivo_400Regular,
@@ -54,12 +55,14 @@ const App: React.FC = () => {
   )
 }
 
-const WithToggleThemeProvider: React.FC = () => {
+const WithThemeProviders: React.FC = () => {
   return (
-    <ToggleThemeContextProvider>
-      <App />
-    </ToggleThemeContextProvider>
+    <AppearanceProvider>
+      <ToggleThemeContextProvider>
+        <App />
+      </ToggleThemeContextProvider>
+    </AppearanceProvider>
   )
 }
 
-export default WithToggleThemeProvider
+export default WithThemeProviders

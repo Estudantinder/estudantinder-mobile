@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useMemo, useState } from 'react'
+import { useColorScheme } from 'react-native-appearance'
 
 import useSafeContext from 'packages/hooks/useSafeContext'
 
@@ -22,7 +23,11 @@ export function useToggleThemeContext(): ToggleThemeContext {
 }
 
 export const ToggleThemeContextProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(darkTheme)
+  const scheme = useColorScheme()
+
+  const [theme, setTheme] = useState<Theme>(
+    scheme === 'dark' ? darkTheme : lightTheme
+  )
 
   const toggle = useCallback(() => {
     if (theme.name === 'light') return setTheme(darkTheme)
