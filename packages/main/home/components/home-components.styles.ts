@@ -30,7 +30,7 @@ export const StudentCardImage = styled.Image`
 
 export const StudentCardFooter = styled.View`
   width: 100%;
-  background-color: #f0f0f0;
+  background-color: ${(props) => props.theme.pages.home.card.background};
   padding: 12px;
   justify-content: space-between;
   position: relative;
@@ -61,7 +61,7 @@ export const StudentCardNameText = styled.Text`
 
 export const StudentCardFooterText = styled.Text`
   font-family: ${fonts.primary};
-  color: #2d2d2d;
+  color: ${(props) => props.theme.pages.home.card.foreground};
   font-size: 13px;
 `
 
@@ -74,7 +74,7 @@ export const HomeLikeAndDislikeButton = styled(RectButton)`
   border-radius: 999px;
   width: 52px;
   height: 52px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background.default};
   display: flex;
   align-items: center;
   justify-content: center;

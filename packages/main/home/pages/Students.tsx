@@ -9,6 +9,7 @@ import Student from 'packages/entities/Student'
 import { useMainContext } from 'packages/main/context'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import { PageContainer } from 'packages/styles'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import HomeLikeAndDislike from '../components/LikeAndDislike'
 import StudentCard from '../components/StudentCard'
@@ -23,6 +24,8 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
   const swiperRef = useRef<Swiper<Student>>(null)
 
   const router = useNavigation()
+
+  const { theme } = useToggleThemeContext()
 
   const context = useMainContext()
 
@@ -72,7 +75,7 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
           ref={swiperRef}
           childrenOnTop
           cardVerticalMargin={0}
-          backgroundColor="#fff"
+          backgroundColor={theme.background.default}
           cards={[context.students[0], context.students[1]]}
           renderCard={(student) =>
             student ? <StudentCard student={student} /> : <View />

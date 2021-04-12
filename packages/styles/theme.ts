@@ -54,6 +54,10 @@ export const lightTheme: Theme = {
         icons: '#FFFFFF',
         background: '#0FAD58',
       },
+      card: {
+        background: '#f0f0f0',
+        foreground: '#2d2d2d',
+      },
     },
   },
   components: {
@@ -100,6 +104,10 @@ export const darkTheme: Theme = {
       topbar: {
         icons: '#797979',
         background: '#1F1F1F',
+      },
+      card: {
+        background: '#212121',
+        foreground: '#D2D2D2',
       },
     },
   },

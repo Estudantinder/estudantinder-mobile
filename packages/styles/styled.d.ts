@@ -57,6 +57,10 @@ export interface Theme {
         icons: string
         background: string
       }
+      card: {
+        background: string
+        foreground: string
+      }
     }
   }
   components: {
