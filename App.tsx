@@ -13,6 +13,7 @@ import {
 import {
   Poppins_500Medium,
   Poppins_600SemiBold,
+  Poppins_800ExtraBold,
 } from '@expo-google-fonts/poppins'
 import { AppLoading } from 'expo'
 import { useFonts } from 'expo-font'
@@ -36,6 +37,7 @@ const App: React.FC = () => {
     Archivo_600SemiBold,
     Poppins_500Medium,
     Poppins_600SemiBold,
+    Poppins_800ExtraBold,
     NotoSans_400Regular,
     NotoSans_700Bold,
   })

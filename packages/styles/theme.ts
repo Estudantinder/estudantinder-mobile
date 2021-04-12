@@ -12,6 +12,7 @@ export const fonts: Fonts = {
     label: 'Archivo_600SemiBold',
     text: 'NotoSans_400Regular',
   },
+  logo: 'Poppins_800ExtraBold',
 }
 
 export const lightTheme: Theme = {
@@ -46,6 +47,12 @@ export const lightTheme: Theme = {
         instagram: '#fde6ef',
         whatsapp: '#e0efdf',
         twitter: '#d2ecfc',
+      },
+    },
+    home: {
+      topbar: {
+        icons: '#FFFFFF',
+        background: '#0FAD58',
       },
     },
   },
@@ -89,6 +96,12 @@ export const darkTheme: Theme = {
         instagram: '#222',
         whatsapp: '#222',
         twitter: '#222',
+      },
+    },
+    home: {
+      topbar: {
+        icons: '#797979',
+        background: '#1F1F1F',
       },
     },
   },

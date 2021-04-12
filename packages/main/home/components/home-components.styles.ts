@@ -10,7 +10,7 @@ import { fonts } from 'packages/styles/theme'
 export const TopBarContainer = styled(Row)`
   justify-content: space-between;
   margin-bottom: 12px;
-  background-color: ${(props) => props.theme.base.green};
+  background-color: ${(props) => props.theme.pages.home.topbar.background};
   padding: 0px 16px;
   padding-bottom: 8px;
   padding-top: ${Constants.statusBarHeight + 8}px;

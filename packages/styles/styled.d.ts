@@ -15,6 +15,7 @@ export interface Fonts {
     label: string
     text: string
   }
+  logo: string
 }
 
 export interface Theme {
@@ -49,6 +50,12 @@ export interface Theme {
         instagram: string
         whatsapp: string
         twitter: string
+      }
+    }
+    home: {
+      topbar: {
+        icons: string
+        background: string
       }
     }
   }
