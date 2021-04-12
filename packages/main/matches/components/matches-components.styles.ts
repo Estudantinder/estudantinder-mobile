@@ -20,7 +20,7 @@ export const MatchCardImage = styled.Image`
 export const MatchCardTopBar = styled(Row)`
   position: absolute;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   height: 32px;
   justify-content: space-between;
 `
@@ -28,7 +28,6 @@ export const MatchCardTopBar = styled(Row)`
 export const MatchCardTopBarButton = styled(RectButton)`
   height: 100%;
   width: 40px;
-  background-color: rgba(255, 255, 255, 0.6);
   justify-content: center;
   align-items: center;
 `
