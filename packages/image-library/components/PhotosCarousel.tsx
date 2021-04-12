@@ -48,8 +48,8 @@ const PhotosCarrousel: React.FC<PhotosCarrouselProps> = (props) => {
         dotsLength={props.photos.length}
         activeDotIndex={activeIndex}
         dotStyle={{ width: 30, height: 4, marginHorizontal: -6 }}
-        inactiveDotColor={theme.components.photos.pagination.inactive_dot}
-        dotColor={theme.components.photos.pagination.active_dot}
+        inactiveDotColor={theme.components.pagination.inactive_dot}
+        dotColor={theme.components.pagination.active_dot}
         animatedDuration={150}
         animatedFriction={10}
         animatedTension={10}

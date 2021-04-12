@@ -1,7 +1,10 @@
 import React from 'react'
 import { Image } from 'react-native'
 
-import Filters from '../assets/filters.png'
+import { useToggleThemeContext } from 'packages/styles/context'
+
+import DarkFilters from '../assets/dark-filters.png'
+import LightFilters from '../assets/filters.png'
 import {
   OnBoardingPageContainer,
   OnBoardingPageSubTitle,
@@ -9,6 +12,10 @@ import {
 } from '../onboarding.styles'
 
 const OnBoardingFiltersPage: React.FC = () => {
+  const { theme } = useToggleThemeContext()
+
+  const Filters = theme.name === 'dark' ? DarkFilters : LightFilters
+
   return (
     <OnBoardingPageContainer>
       <Image source={Filters} />

@@ -58,9 +58,7 @@ export const lightTheme: Theme = {
   },
   components: {
     divider: '#E8E6E6',
-    photos: {
-      pagination: { active_dot: '#646464', inactive_dot: '#AFAFAF' },
-    },
+    pagination: { active_dot: '#646464', inactive_dot: '#c4c4c4' },
   },
 }
 
@@ -107,8 +105,6 @@ export const darkTheme: Theme = {
   },
   components: {
     divider: '#262424',
-    photos: {
-      pagination: { active_dot: '#A0A0A0', inactive_dot: '#595959' },
-    },
+    pagination: { active_dot: '#A0A0A0', inactive_dot: '#595959' },
   },
 }

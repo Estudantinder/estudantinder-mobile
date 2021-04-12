@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 import OnBoardingFooter from './components/Footer'
 import OnBoardingPagination from './components/Pagination'
@@ -16,6 +17,8 @@ const OnBoarding: React.FC = () => {
   const { pagerRef, navigateToIndex } = useOnBoardingContext()
 
   const handleSkipOnboarding = useSkipOnboarding()
+
+  const { theme } = useToggleThemeContext()
 
   return (
     <View style={{ flex: 1 }}>
@@ -37,7 +40,12 @@ const OnBoarding: React.FC = () => {
 
           <OnBoardingPagination activeIndex={2} length={3} />
 
-          <View style={{ backgroundColor: '#fff', paddingHorizontal: 32 }}>
+          <View
+            style={{
+              backgroundColor: theme.background.default,
+              paddingHorizontal: 32,
+            }}
+          >
             <PrimaryButton onPress={handleSkipOnboarding}>
               COMEÇAR!
             </PrimaryButton>

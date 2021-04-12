@@ -1,7 +1,10 @@
 import React from 'react'
 import { Image } from 'react-native'
 
-import Matches from '../assets/matches.png'
+import { useToggleThemeContext } from 'packages/styles/context'
+
+import DarkMatches from '../assets/dark-matches.png'
+import LightMatches from '../assets/matches.png'
 import {
   OnBoardingPageContainer,
   OnBoardingPageSubTitle,
@@ -9,6 +12,10 @@ import {
 } from '../onboarding.styles'
 
 const OnBoardingMatchesPage: React.FC = () => {
+  const { theme } = useToggleThemeContext()
+
+  const Matches = theme.name === 'dark' ? DarkMatches : LightMatches
+
   return (
     <OnBoardingPageContainer>
       <Image source={Matches} />

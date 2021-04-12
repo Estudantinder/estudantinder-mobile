@@ -14,7 +14,7 @@ export const OnBoardingPageContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background.default};
   padding-top: 32px;
   padding-horizontal: 20px;
 `
@@ -33,10 +33,10 @@ export const OnboardingFooterContainer = styled.View`
   justify-content: space-between;
   height: 50px;
 
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background.default};
 
   border-top-width: 1px;
-  border-color: #f0f0f0;
+  border-color: ${(props) => props.theme.components.divider};
 
   align-items: center;
 `
@@ -49,7 +49,7 @@ export const OnBoardingFooterButton = styled(BorderlessButton)`
 `
 
 export const OnBoardingFooterButtonText = styled.Text`
-  color: #4f4f4f;
+  color: ${(props) => props.theme.text.default};
   font-family: ${fonts.input.label};
   font-size: 14px;
 `
@@ -61,7 +61,7 @@ export const OnBoardingPaginationContainer = styled.View`
   align-items: center;
   height: 64px;
   padding-bottom: 16px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background.default};
 `
 
 export interface OnBoardingPaginationDotStylesProps {
@@ -72,7 +72,9 @@ export const OnBoardingPaginationDot = styled.View<OnBoardingPaginationDotStyles
   width: 10px;
   height: 10px;
   background-color: ${(props) =>
-    props.active ? props.theme.base.purple : '#C4C4C4'};
+    props.active
+      ? props.theme.base.purple
+      : props.theme.components.pagination.inactive_dot};
   margin-horizontal: 14px;
   border-radius: 90px;
 `

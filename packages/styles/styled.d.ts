@@ -61,11 +61,9 @@ export interface Theme {
   }
   components: {
     divider: string
-    photos: {
-      pagination: {
-        inactive_dot: string
-        active_dot: string
-      }
+    pagination: {
+      inactive_dot: string
+      active_dot: string
     }
   }
 }
