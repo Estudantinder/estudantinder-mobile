@@ -25,8 +25,6 @@ export default function MainTabNavigation() {
       tabBarOptions={{
         activeTintColor: theme.base.purple,
         inactiveTintColor: theme.base.purple,
-        activeBackgroundColor: theme.background.default,
-        inactiveBackgroundColor: theme.background.default,
       }}
     >
       <Screen name={MAIN_ROUTES.MATCHES} component={Matches} />

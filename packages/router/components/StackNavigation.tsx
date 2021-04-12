@@ -2,6 +2,8 @@ import { NavigationContainer, DarkTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
+import { useToggleThemeContext } from 'packages/styles/context'
+
 const { Navigator } = createStackNavigator()
 
 export interface StackNavigationProps {
@@ -9,8 +11,10 @@ export interface StackNavigationProps {
 }
 
 const StackNavigation: React.FC<StackNavigationProps> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer theme={theme.name === 'dark' ? DarkTheme : undefined}>
       <Navigator
         initialRouteName={props.initialPage}
         screenOptions={{ headerShown: false }}
