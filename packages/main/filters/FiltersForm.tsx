@@ -9,6 +9,7 @@ import Course from 'packages/entities/Course'
 import { GENDERS } from 'packages/entities/Gender'
 import School from 'packages/entities/School'
 import { SHIFTS } from 'packages/entities/Shift'
+import { useToggleThemeContext } from 'packages/styles/context'
 
 export interface FiltersInputs {
   formRef: RefObject<FormHandles>
@@ -17,12 +18,14 @@ export interface FiltersInputs {
 }
 
 const FiltersInputs: React.FC<FiltersInputs> = (props) => {
+  const { theme } = useToggleThemeContext()
+
   return (
     <Fragment>
       <SchoolCoursePicker
         formRef={props.formRef}
         selectBackgroundStyle={{
-          backgroundColor: '#fff',
+          backgroundColor: theme.background.default,
           borderRadius: 2,
           minHeight: 36,
           padding: 4,

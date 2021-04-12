@@ -24,6 +24,7 @@ export const FiltersScrollView = styled.ScrollView`
 
 export const FiltersTooltipText = styled.Text`
   font-family: ${fonts.subtitle};
+  color: ${(props) => props.theme.text.default};
 `
 
 export const FiltersSelectContainer = styled.View`
