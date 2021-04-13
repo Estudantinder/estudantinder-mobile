@@ -1,18 +1,13 @@
-import { useNavigation } from '@react-navigation/native'
-import React, { RefObject, useState } from 'react'
-import { useRef } from 'react'
-import { View } from 'react-native'
-import Swiper from 'react-native-deck-swiper'
+import React, { RefObject, useRef, useState } from 'react'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
-import Student from 'packages/entities/Student'
 import { useMainContext } from 'packages/main/context'
-import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import { PageContainer } from 'packages/styles'
-import { useToggleThemeContext } from 'packages/styles/context'
 
 import HomeLikeAndDislike from '../components/LikeAndDislike'
-import StudentCard from '../components/StudentCard'
+import HomeStudentsStack, {
+  HomeStudentsStackRef,
+} from '../components/StudentsStack'
 import HomeTopBar from '../components/Topbar'
 import { HomeMain } from './home-pages.styles'
 
@@ -21,11 +16,7 @@ export interface HomeStudentsPageProps {
 }
 
 const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
-  const swiperRef = useRef<Swiper<Student>>(null)
-
-  const router = useNavigation()
-
-  const { theme } = useToggleThemeContext()
+  const ref = useRef<HomeStudentsStackRef>(null)
 
   const context = useMainContext()
 
@@ -40,30 +31,21 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
 
     setTimeout(() => setIsAnimationActive(false), 1000)
 
-    if (side === 'left') swiperRef.current?.swipeLeft()
+    if (side === 'left') ref.current?.swipeLeft()
 
-    if (side === 'right') swiperRef.current?.swipeRight()
+    if (side === 'right') ref.current?.swipeRight()
   }
 
   const handleLike = async () => {
-    await context.likeStudent()
+    // await context.likeStudent()
 
-    swiperRef.current?.jumpToCardIndex(0)
+    handleSwipeAnimation('left')
   }
 
   const handleDislike = async () => {
-    await context.dislikeStudent()
+    // await context.dislikeStudent()
 
-    swiperRef.current?.jumpToCardIndex(0)
-  }
-
-  const handleNavigateToTargetProfile = () => {
-    router.navigate(AUTHENTICATED_ROUTES.TARGET_PROFILE, {
-      student: {
-        ...context.students[0],
-        birth_date: context.students[0].birth_date.getTime(),
-      },
-    })
+    handleSwipeAnimation('right')
   }
 
   return (
@@ -71,30 +53,13 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
       <HomeTopBar onFiltersPressed={openDrawer} />
 
       <HomeMain>
-        <Swiper
-          ref={swiperRef}
-          childrenOnTop
-          cardVerticalMargin={0}
-          backgroundColor={theme.background.default}
-          cards={[context.students[0], context.students[1]]}
-          renderCard={(student) =>
-            student ? <StudentCard student={student} /> : <View />
-          }
-          animateCardOpacity
-          verticalSwipe={false}
-          stackSeparation={0}
-          stackSize={2}
-          horizontalSwipe={false}
-          onSwipedLeft={handleLike}
-          onSwipedRight={handleDislike}
-          onTapCard={handleNavigateToTargetProfile}
-        />
+        <HomeStudentsStack ref={ref} students={context.students} />
       </HomeMain>
 
       <HomeLikeAndDislike
         isActive={isAnimationActive}
-        onLike={() => handleSwipeAnimation('left')}
-        onDislike={() => handleSwipeAnimation('right')}
+        onLike={handleLike}
+        onDislike={handleDislike}
       />
     </PageContainer>
   )
