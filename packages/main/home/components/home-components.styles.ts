@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native'
+import { Animated } from 'react-native'
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 
 import Constants from 'expo-constants'
@@ -17,8 +17,11 @@ export const TopBarContainer = styled(Row)`
   elevation: 8;
 `
 
-export const StudentCardContainer = styled.View`
-  height: ${Dimensions.get('window').height - 210}px;
+export const StudentCardContainer = styled(Animated.View)`
+  position: absolute;
+  flex: 1;
+  width: 100%;
+  height: 100%;
 `
 
 export const StudentCardImage = styled.Image`
@@ -79,4 +82,10 @@ export const HomeLikeAndDislikeButton = styled(RectButton)`
   align-items: center;
   justify-content: center;
   elevation: 5;
+`
+
+export const StudentStackContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  padding-top: 4px;
 `

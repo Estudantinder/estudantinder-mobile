@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { Animated, RegisteredStyle, ViewStyle } from 'react-native'
 
 import StudentDataAdapter from 'packages/adapters/StudentAdapter'
 import SubjectsRow from 'packages/components/SubjectsRow'
@@ -16,15 +17,23 @@ import {
 
 export interface StudentCardProps {
   student: Student
+  style?:
+    | false
+    | RegisteredStyle<ViewStyle>
+    | Animated.Value
+    | Animated.AnimatedInterpolation
+    | Animated.WithAnimatedObject<ViewStyle>
+    | null
+    | undefined
 }
 
-const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
+const StudentCard: React.FC<StudentCardProps> = ({ student, style }) => {
   const studentAdapter = useMemo(() => new StudentDataAdapter(student), [
     student,
   ])
 
   return (
-    <StudentCardContainer>
+    <StudentCardContainer style={style}>
       <StudentCardImage
         resizeMode="cover"
         source={{
