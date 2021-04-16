@@ -1,7 +1,7 @@
 import React, { RefObject, useRef, useState } from 'react'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
-import { useMainContext } from 'packages/main/context'
+import { useMainHomeContext } from 'packages/main/context/home'
 import { PageContainer } from 'packages/styles'
 
 import HomeLikeAndDislike from '../components/LikeAndDislike'
@@ -18,18 +18,21 @@ export interface HomeStudentsPageProps {
 const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
   const ref = useRef<HomeStudentsStackRef>(null)
 
-  const context = useMainContext()
+  const { dislikeStudent, likeStudent, students } = useMainHomeContext()
 
   const [isAnimationActive, setIsAnimationActive] = useState(false)
 
   const openDrawer = () => props.drawerRef.current?.openDrawer()
 
-  const handleSwipeAnimation = (side: 'left' | 'right') => {
+  const handleSwipeAnimation = (side: 'left' | 'right', cb?: () => void) => {
     if (isAnimationActive) return
 
     setIsAnimationActive(true)
 
-    setTimeout(() => setIsAnimationActive(false), 1000)
+    setTimeout(() => {
+      setIsAnimationActive(false)
+      cb?.()
+    }, 1000)
 
     if (side === 'left') ref.current?.swipeLeft()
 
@@ -37,15 +40,11 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
   }
 
   const handleLike = async () => {
-    // await context.likeStudent()
-
-    handleSwipeAnimation('left')
+    handleSwipeAnimation('left', likeStudent)
   }
 
   const handleDislike = async () => {
-    // await context.dislikeStudent()
-
-    handleSwipeAnimation('right')
+    handleSwipeAnimation('right', dislikeStudent)
   }
 
   return (
@@ -53,7 +52,7 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
       <HomeTopBar onFiltersPressed={openDrawer} />
 
       <HomeMain>
-        <HomeStudentsStack ref={ref} students={context.students} />
+        <HomeStudentsStack ref={ref} students={students} />
       </HomeMain>
 
       <HomeLikeAndDislike

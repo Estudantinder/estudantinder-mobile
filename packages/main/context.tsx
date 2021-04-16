@@ -1,29 +1,20 @@
 import React, { createContext, useCallback, useMemo, useState } from 'react'
 
 import Match from 'packages/entities/Match'
-import Student from 'packages/entities/Student'
 import User from 'packages/entities/User'
 import useSafeContext from 'packages/hooks/useSafeContext'
 
+import { MainHomeContextProvider } from './context/home'
 import DeleteMatchUseCase from './use-cases/delete-match'
-import DislikeStudentUseCase from './use-cases/dislike-student'
 import GetMatchesUseCase from './use-cases/get-matches'
-import GetStudentsUseCase from './use-cases/get-students'
 import GetUserProfileUseCase from './use-cases/get-user-profile'
-import LikeStudentUseCase from './use-cases/like-student'
 
 interface State {
-  students: Student[]
   matches: Match[]
   profile: User | null
 }
 
 interface Actions {
-  addMoreStudents(): Promise<void>
-  likeStudent(): Promise<void>
-  dislikeStudent(): Promise<void>
-  reloadAllStudents(): Promise<void>
-
   getMatches(): Promise<void>
   deleteMatch(id: string): Promise<void>
 
@@ -40,54 +31,8 @@ export function useMainContext(): MainContext {
 }
 
 export const MainContextProvider: React.FC = ({ children }) => {
-  const [students, setStudents] = useState<Student[]>([])
   const [matches, setMatches] = useState<Match[]>([])
   const [profile, setProfile] = useState<User | null>(null)
-
-  const reloadAllStudents = useCallback(async () => {
-    const apiStudents = await GetStudentsUseCase()
-
-    setStudents(apiStudents)
-  }, [])
-
-  const addMoreStudents = useCallback(
-    async (removeStudentsIds?: string[]) => {
-      const apiStudents = await GetStudentsUseCase()
-
-      const notRemovedStudents = students.filter(
-        (value) => !removeStudentsIds?.includes(value.id)
-      )
-
-      const studentsIds = notRemovedStudents.map((value) => value.id)
-
-      const newStudents = apiStudents.filter(
-        (student) =>
-          !studentsIds.includes(student.id) &&
-          !removeStudentsIds?.includes(student.id)
-      )
-
-      setStudents([...notRemovedStudents, ...newStudents])
-    },
-    [students]
-  )
-
-  const afterInteraction = useCallback(() => {
-    if (students.length < 1) addMoreStudents([students[0].id])
-
-    setStudents([...students.slice(1)])
-  }, [addMoreStudents, students])
-
-  const likeStudent = useCallback(async () => {
-    await LikeStudentUseCase(students[0].id)
-
-    afterInteraction()
-  }, [afterInteraction, students])
-
-  const dislikeStudent = useCallback(async () => {
-    await DislikeStudentUseCase(students[0].id)
-
-    afterInteraction()
-  }, [afterInteraction, students])
 
   const getMatches = useCallback(async () => {
     const newMatches = await GetMatchesUseCase()
@@ -114,11 +59,6 @@ export const MainContextProvider: React.FC = ({ children }) => {
 
   const value = useMemo<MainContext>(() => {
     return {
-      students,
-      addMoreStudents,
-      likeStudent,
-      dislikeStudent,
-      reloadAllStudents,
       getMatches,
       deleteMatch,
       getProfile,
@@ -126,18 +66,11 @@ export const MainContextProvider: React.FC = ({ children }) => {
       profile,
       setProfile,
     }
-  }, [
-    students,
-    addMoreStudents,
-    likeStudent,
-    dislikeStudent,
-    reloadAllStudents,
-    getMatches,
-    deleteMatch,
-    getProfile,
-    matches,
-    profile,
-  ])
+  }, [getMatches, deleteMatch, getProfile, matches, profile])
 
-  return <Context.Provider value={value}>{children}</Context.Provider>
+  return (
+    <MainHomeContextProvider>
+      <Context.Provider value={value}>{children}</Context.Provider>
+    </MainHomeContextProvider>
+  )
 }

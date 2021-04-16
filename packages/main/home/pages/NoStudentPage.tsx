@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React, { RefObject } from 'react'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
-import { useMainContext } from 'packages/main/context'
+import { useMainHomeContext } from 'packages/main/context/home'
 import Main404Page from 'packages/main/pages/404'
 import { MAIN_ROUTES } from 'packages/router/constants'
 
@@ -15,7 +15,7 @@ export interface HomeNoStudentPageProps {
 const HomeNoStudentPage: React.FC<HomeNoStudentPageProps> = (props) => {
   const router = useNavigation()
 
-  const { reloadAllStudents } = useMainContext()
+  const { reloadAllStudents } = useMainHomeContext()
 
   const openDrawer = () => props.drawerRef.current?.openDrawer()
 
