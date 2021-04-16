@@ -8,7 +8,7 @@ import PrimaryButton from 'packages/components/PrimaryButton'
 import Filter from 'packages/entities/Filter'
 import alertModal from 'packages/utils/alertModal'
 
-import { useMainContext } from '../context'
+import { useMainHomeContext } from '../context/home'
 import { FiltersContainer, FiltersScrollView } from './filters.styles'
 import FiltersInputs from './FiltersForm'
 import FiltersTopBar from './FiltersTopBar'
@@ -25,7 +25,7 @@ const FiltersView = (props: FiltersViewProps): JSX.Element => {
 
   const [filters, setFilters] = useState<Filter>()
 
-  const { reloadAllStudents } = useMainContext()
+  const { reloadAllStudents } = useMainHomeContext()
 
   useEffect(() => {
     GetFiltersUseCase().then(setFilters).catch(alertModal)
