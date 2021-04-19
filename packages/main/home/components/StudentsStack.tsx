@@ -48,7 +48,7 @@ const HomeStudentsStackComponent: ForwardRefRenderFunction<
     (toValue: number) =>
       Animated.timing(cardX, {
         toValue,
-        duration: 1000,
+        duration: 800,
         useNativeDriver: false,
         easing: Easing.inOut(Easing.ease),
       }),
@@ -76,8 +76,8 @@ const HomeStudentsStackComponent: ForwardRefRenderFunction<
     [cardBack]
   )
 
-  const SWIPE_LEFT_DIMENSION = -Dimensions.get('screen').width * 1.4
-  const SWIPE_RIGHT_DIMENSION = Dimensions.get('screen').width * 1.4
+  const SWIPE_LEFT_DIMENSION = -Dimensions.get('screen').width * 1.5
+  const SWIPE_RIGHT_DIMENSION = Dimensions.get('screen').width * 1.5
 
   useImperativeHandle(
     ref,
