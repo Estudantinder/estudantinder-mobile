@@ -32,7 +32,7 @@ const HomeStudentsPage: React.FC<HomeStudentsPageProps> = (props) => {
     setTimeout(() => {
       setIsAnimationActive(false)
       cb?.()
-    }, 1000)
+    }, 800)
 
     if (side === 'left') ref.current?.swipeLeft()
 

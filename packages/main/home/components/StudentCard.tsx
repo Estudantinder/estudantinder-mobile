@@ -1,10 +1,15 @@
+import { useNavigation } from '@react-navigation/core'
 import React, { useMemo } from 'react'
 import { Animated, RegisteredStyle, ViewStyle } from 'react-native'
+
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import StudentDataAdapter from 'packages/adapters/StudentAdapter'
 import SubjectsRow from 'packages/components/SubjectsRow'
 import Student from 'packages/entities/Student'
+import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import { Row } from 'packages/styles'
+import { useToggleThemeContext } from 'packages/styles/context'
 import capitalize from 'packages/utils/capitalize'
 
 import {
@@ -13,6 +18,8 @@ import {
   StudentCardFooterText,
   StudentCardImage,
   StudentCardNameText,
+  StudentCardProfileButton,
+  StudentCardProfileButtonContainer,
 } from './home-components.styles'
 
 export interface StudentCardProps {
@@ -32,6 +39,16 @@ const StudentCard: React.FC<StudentCardProps> = ({ student, style }) => {
     student,
   ])
 
+  const router = useNavigation()
+
+  const { theme } = useToggleThemeContext()
+
+  const handleNavigateToTargetProfile = () => {
+    router.navigate(AUTHENTICATED_ROUTES.TARGET_PROFILE, {
+      student: { ...student, birth_date: student.birth_date.getTime() },
+    })
+  }
+
   return (
     <StudentCardContainer style={style}>
       <StudentCardImage
@@ -42,6 +59,16 @@ const StudentCard: React.FC<StudentCardProps> = ({ student, style }) => {
       />
 
       <StudentCardFooter>
+        <StudentCardProfileButtonContainer>
+          <StudentCardProfileButton onPress={handleNavigateToTargetProfile}>
+            <MaterialCommunityIcons
+              name="account-box"
+              size={28}
+              color={theme.pages.home.card.foreground}
+            />
+          </StudentCardProfileButton>
+        </StudentCardProfileButtonContainer>
+
         <Row>
           <StudentCardNameText>
             {studentAdapter.getCompactedName()}, {studentAdapter.getAge()}
