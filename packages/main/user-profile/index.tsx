@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import Scroll from 'packages/components/Scroll'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import ShowStudent from 'packages/show-student-info'
-import { Title, PageContainer } from 'packages/styles'
+import { Title, PageContainer, SafeAreaContainer } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
 import alertModal from 'packages/utils/alertModal'
 
@@ -49,7 +49,7 @@ const UserProfile: React.FC = () => {
     )
 
   return (
-    <PageContainer withoutPadding>
+    <SafeAreaContainer>
       <Title>Meu Perfil</Title>
 
       <UserProfileEditButtonContainer>
@@ -61,7 +61,7 @@ const UserProfile: React.FC = () => {
       <Scroll>
         <ShowStudent student={profile} />
       </Scroll>
-    </PageContainer>
+    </SafeAreaContainer>
   )
 }
 

@@ -22,6 +22,18 @@ export const PageContainer = styled.KeyboardAvoidingView<PageContainerStylesProp
   background-color: ${(props) => props.theme.background.default};
 `
 
+export const SafeAreaContainer = styled.SafeAreaView`
+  flex: 1;
+  width: 100%;
+
+  justify-content: space-around;
+  align-items: center;
+
+  padding-top: ${Constants.statusBarHeight + 20}px;
+  padding-bottom: 0px;
+  background-color: ${(props) => props.theme.background.default};
+`
+
 export const StyledForm = styled(Form)`
   margin-bottom: 24px;
   width: 100%;
