@@ -65,7 +65,7 @@ const EditStudentContacts: React.FC<EditStudentContactsProps> = (props) => {
           label="Facebook"
           name="facebook"
           testID="facebook"
-          placeholder="Ex: estudantinder"
+          placeholder="Ex: estudantinder.oficial"
           autoCompleteType="username"
           autoCapitalize="none"
           onSubmitEditing={() => focusOnInput(formRef, 'instagram')}
