@@ -5,70 +5,72 @@
 [![Expo](https://img.shields.io/badge/Code-Expo-informational?style=flat&logo=expo&logoColor=white&color=4630eb)](https://expo.io/@cauaspinheiro/projects/estudantinder-mobile)
 [![Maintainability](https://api.codeclimate.com/v1/badges/402cd236daf2d3038dd3/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-mobile/maintainability)
 
-O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.com.br) para mais informações
+Languages: [![EN](/.github/EN.png)**EN**](/README.md) | [![BR](/.github/BR.png)**BR**](/README.pt-br.md)
 
-## Formas de usar
+Estudantinder deals with the search and encounter of other students, in order to increasingly develop their autonomy in their studies. See [Estudantinder's official website](https://estudantinder.com.br/) for more information.
+
+## Usage
 
 ### Android
 
-A forma mais fácil de usar o aplicativo é baixando o apk pelo [site oficial do Estudantinder](https://estudantinder.com.br)
+The easiest way to use the app is to download the apk from [Estudantinder's official website](https://estudantinder.com.br/)
 
-Caso você tenha o aplicativo do [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) instalado no seu celular, você pode abrir ele pelo seguinte link:
+If you have the [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) application installed on your phone, you can open it by following link:
 
 **https://expo.io/@cauaspinheiro/projects/estudantinder-mobile**
 
 ### IOS
 
-Por conta das políticas de desenvolvimento da Apple, não há como usar o aplicativo do Estudantinder como um aplicativo sozinho no IPhone, ao invés disso, você pode baixar o aplicativo do [Expo Go](https://apps.apple.com/br/app/expo-go/id982107779) e rodar o projeto através desse link:
+Due to Apple's development policies, there is no way to use the Estudantinder as an standalone app on the Iphone, instead you can download the [Expo Go](https://apps.apple.com/br/app/expo-go/id982107779) app and run the project through this link:
 
 **https://expo.io/@cauaspinheiro/projects/estudantinder-mobile**
 
-## Instalação
+## Installation
 
-Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso queira só baixar o aplicativo, veja o tópico [Formas de Usar](#formas-de-usar)
+You will need some tools to run the project locally. If you just want to access the app, see the topic [Usage](#usage)
 
 ### GIT
 
-- Instale o git em sua máquina: [https://git-scm.com/downloads](https://git-scm.com/downloads)
-- Com o git instalado na sua máquina, clone o repositório usando o botão **Code** em https://github.com/Cauaspinheiro/estudantinder-mobile
+- Install git on your machine: https://git-scm.com/downloads
+- With git installed on your machine, clone the repository using the **Code** button at https://github.com/Estudantinder/estudantinder-mobile
 
 ### NodeJS
 
-- Baixe a versão LTS do node em <https://nodejs.org/en/>
-- Para testar se o node está instalado na sua maquina, rode o seguinte comando `node -v`. Deverá aparecer a versão do NodeJS
+- Download the LTS version of the node at https://nodejs.org/en/
+- To test whether node is installed on your machine, run the following `node -v` command. The NodeJS version should appear
 
 ### Yarn
 
-- Baixe a versão mais nova do yarn em <https://classic.yarnpkg.com/en/docs/install>
-- Para testar se o yarn está instalado na sua maquina, rode o seguinte comando `yarn -v`. Deverá aparecer a versão do Yarn
+- Download the newest version of yarn at https://classic.yarnpkg.com/en/docs/install
+- To test whether yarn is installed on your machine, run the following `yarn -v` command. The version of Yarn should appear
 
-### Instalação dos pacotes
+### Installing the packages
 
-- Dentro na pasta do projeto, rode o seguinte comando: `yarn`
+- Inside the project folder, run the following command: `yarn`
 
-### API do Estudantinder
+### Estudantinder API
 
-Siga todos os tópicos necessários para instalar a API no [repositório oficial da API](https://github.com/Estudantinder/estudantinder-api)
+Follow all the topics needed to install the API in the [official API repository](https://github.com/Estudantinder/estudantinder-api)
 
-**Dica!** Guarde o host que a API usa (ex: `http://localhost:3000`), pois você vai precisar delas no próximo tópico
+**Tip!** Save the host the API uses (ex: `http://localhost:3000`), as you will need them in the next topic
 
-### Variáveis do Ambiente
+### Environment Variables
 
-Dentro da pasta do projeto, você verá um arquivo chamado `.env.example.ts`, dentro dele, você deverá seguir todas as instruções que forem pedidas.
+Inside the project folder, you will see a file called `.env.example.ts`, inside it, you must follow all the instructions that are requested.
 
 ### Expo
 
-Siga todas as instruções do [site oficial do Expo](https://docs.expo.io/get-started/installation/)
+Follow all instructions on the [official Expo website](https://docs.expo.io/get-started/installation/)
 
 ---
 
-**Pronto!** Você já pode começar a testar o aplicativo, vá para a aba [Scripts](#scripts) para ver quais scripts estão disponíveis para uso
+**Well done!** You can now start using the API, go to the [Scripts](#scripts) tab to see which scripts are available for use
 
 ## Scripts
 
-Todos esses scripts pode ser rodados na sua máquina usando o yarn
+All of these scripts can be run on your machine using yarn
 
-Os parâmetros dos scripts serão representados com um prefixo `$`
+The script parameters will be represented with a `$` prefix
 
 ### ct
 
@@ -76,9 +78,9 @@ Os parâmetros dos scripts serão representados com um prefixo `$`
 yarn ct
 ```
 
-Faz commits mais rápidos e eficientes usando o [Commitizen](https://github.com/commitizen/cz-cli)
+Makes commits faster and more efficient using [Commitizen](https://github.com/commitizen/cz-cli)
 
-**Antes de rodar o script:** Roda os testes automatizados dos arquivos em stage pelo git
+**Before running the script:** Run automated testing of files on stage by git
 
 ### start
 
@@ -86,7 +88,7 @@ Faz commits mais rápidos e eficientes usando o [Commitizen](https://github.com/
 yarn start
 ```
 
-Roda o aplicativo localmente usando expo, para mais detalhes, veja a [documentação oficial do Expo](https://docs.expo.io/get-started/create-a-new-app/#starting-the-development-server)
+Runs the application locally using expo, for more details, see the [official Expo documentation](https://docs.expo.io/get-started/create-a-new-app/#starting-the-development-server)
 
 ### deploy
 
@@ -94,12 +96,12 @@ Roda o aplicativo localmente usando expo, para mais detalhes, veja a [documenta�
 yarn deploy $branch
 ```
 
-Faz o [publish](https://docs.expo.io/workflow/publishing/) do projeto para o release channel especificado por `$branch`. Também faz push dos arquivos para o github
+[Publish](https://docs.expo.io/workflow/publishing/) the project for the release channel specified by `$branch`. It also pushes files to github
 
 **Parâmetros necessários:**
 
-- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o deploy
-  - Exemplo: `yarn deploy main`
+- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) to be done the build
+  - Example: `yarn deploy main`
 
 ### build:android
 
@@ -107,14 +109,14 @@ Faz o [publish](https://docs.expo.io/workflow/publishing/) do projeto para o rel
 yarn build:android $branch
 ```
 
-Faz o [build](https://docs.expo.io/distribution/building-standalone-apps/) **android** do projeto para o release channel especificado por `$branch`. Também faz push dos arquivos para o github
+Does the **Android** [build](https://docs.expo.io/distribution/building-standalone-apps/) the project for the release channel specified by `$branch`. It also pushes files to github
 
-Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja, os antigos aplicativos serão atualizados automaticamente para essa nova versão quando abertos.
+Reminder: This also causes the expo to publish the version for OTA, that is, the old applications will be automatically updated to this new version when opened.
 
-**Parâmetros necessários:**
+**Required parameters:**
 
-- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o build
-  - Exemplo: `yarn build:android main`
+- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) to be done the build
+  - Example: `yarn build:android main`
 
 ### build:ios
 
@@ -122,14 +124,14 @@ Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja
 yarn build:ios $branch
 ```
 
-Faz o [build](https://docs.expo.io/distribution/building-standalone-apps/) **ios** do projeto para o release channel especificado por `$branch`. Também faz push dos arquivos para o github
+Does the **iOS** [build](https://docs.expo.io/distribution/building-standalone-apps/) of the project for the release channel specified by `$branch`. It also pushes files to github
 
-Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja, os antigos aplicativos serão atualizados automaticamente para essa nova versão quando abertos.
+Reminder: This also causes the expo to publish the version for OTA, that is, the old applications will be automatically updated to this new version when opened.
 
-**Parâmetros necessários:**
+**Required parameters:**
 
-- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) que será feito o build
-  - Exemplo: `yarn build:ios main`
+- $branch: [Release channel](https://docs.expo.io/distribution/release-channels/) to be done the build
+  - Example: `yarn build:ios main`
 
 ### verify
 
@@ -137,7 +139,7 @@ Lembrete: Isso também faz com que o expo publique a versão para o OTA, ou seja
 yarn verify
 ```
 
-Verifica se o Typescript (não o Expo) consegue compilar o projeto normalmente, use esse comando somente para verificar se não existe nenhum erro do Typescript no código
+Checks if Typescript (not Expo) can compile the project normally, use this command only to check if there is no Typescript error in the code
 
 ### test
 
@@ -145,9 +147,9 @@ Verifica se o Typescript (não o Expo) consegue compilar o projeto normalmente, 
 yarn test
 ```
 
-Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) no modo verboso.
+Runs tests locally in the test environment using [Jest](https://jestjs.io/docs/getting-started) in verbose mode.
 
-Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+Optionally, you can pass [any parameter accepted by Jest](https://jestjs.io/docs/cli#options)
 
 ### jest
 
@@ -155,9 +157,9 @@ Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://
 yarn jest
 ```
 
-Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) sem nenhum tipo de configuração adicional.
+Runs tests locally in the test environment using [Jest](https://jestjs.io/docs/getting-started) without any additional configuration.
 
-Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+Optionally, you can pass [any parameter accepted by Jest](https://jestjs.io/docs/cli#options)
 
 ### test:quiet
 
@@ -165,9 +167,9 @@ Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://
 yarn test:quiet
 ```
 
-Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) notificando assim que todos os testes forem concluídos.
+Runs the tests locally in the test environment using [Jest](https://jestjs.io/docs/getting-started) notifying as soon as all tests are completed.
 
-Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+Optionally, you can pass [any parameter accepted by Jest](https://jestjs.io/docs/cli#options)
 
 ### test:ci
 
@@ -175,9 +177,9 @@ Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://
 yarn test:ci
 ```
 
-Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) gerando reports sobre o test coverage.
+Runs tests locally in the test environment using [Jest](https://jestjs.io/docs/getting-started) generating reports on test coverage.
 
-Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+Optionally, you can pass [any parameter accepted by Jest](https://jestjs.io/docs/cli#options)
 
 ### test:badges
 
@@ -185,9 +187,9 @@ Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://
 yarn test:badges
 ```
 
-Roda os testes localmente no ambiente de testes usando o [Jest](https://jestjs.io/docs/getting-started) gerando reports sobre o test coverage e logo após gera as badges para serem usadas pelo github.
+Runs the tests locally in the test environment using [Jest](https://jestjs.io/docs/getting-started) generating reports on test coverage and then generating badges to be used by github.
 
-Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://jestjs.io/docs/cli#options)
+Optionally, you can pass [any parameter accepted by Jest](https://jestjs.io/docs/cli#options)
 
 ### repo
 
@@ -195,25 +197,35 @@ Opcionalmente, você pode passar [qualquer parâmetro aceito pelo Jest](https://
 yarn repo
 ```
 
-Abre o repositório do projeto usando o navegador padrão da máquina
+Opens the project repository using the machine's default browser
 
 ### Husky
 
-O husky é uma ferramenta para rodar scripts com base nos [git-hooks](https://githooks.com/).
+The husky is a tool for running scripts based on [git-hooks](https://githooks.com/).
 
-Aqui está cada comando usado pelo husky nesse projeto:
+Here is each command used by the husky in this project:
 
 - `pre-commit`
-  - Roda o linter do projeto nos arquivos staged usando o [lint-staged](https://github.com/okonet/lint-staged)
+
+  - Runs the project linter on staged files using [lint-staged](https://github.com/okonet/lint-staged)
+
 - `commit-msg`
-  - Roda o linter da mensagem de commit usando o [commitlint](https://commitlint.js.org/)
+
+  - Runs the commit message linter using [commitlint](https://commitlint.js.org/)
+
 - `pre-push`
-  - roda o script [verify](#verify) e roda todos os testes.
+  - Runs the [verify](https://github.com/estudantinder/estudantinder-mobile#verify) script and run all tests.
 
-## Ferramentas utilizadas
+## Used tools
 
-Você pode ver todas as dependências do projeto no seguinte link: https://github.com/Estudantinder/estudantinder-mobile/network/dependencies
+You can see all the project's dependencies at the following link: https://github.com/Estudantinder/estudantinder-mobile/network/dependencies
 
 ## Rest API (Backend)
 
-Você pode ver o backend da aplicação no seguinte repositório: https://github.com/Estudantinder/estudantinder-api
+You can see the backend application in the following repository: https://github.com/Estudantinder/estudantinder-api
+
+## Website
+
+You can see the web application in the following repository:
+
+https://github.com/Cauaspinheiro/estudantinder-web
