@@ -96,7 +96,6 @@
     "ts-jest": "^26.5.0",
     "typescript": "^4.1.3"
   },
-  "private": true,
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
