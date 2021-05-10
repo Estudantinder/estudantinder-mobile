@@ -2,6 +2,8 @@ import { Form } from '@unform/mobile'
 import Constants from 'expo-constants'
 import styled from 'styled-components/native'
 
+import theme from 'packages/utils/theme'
+
 import { fonts } from './theme'
 
 export interface PageContainerStylesProps {
@@ -19,7 +21,13 @@ export const PageContainer = styled.KeyboardAvoidingView<PageContainerStylesProp
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
 
-  background-color: ${(props) => props.theme.background.default};
+  background-color: ${(props) => theme(props).background.default};
+`
+
+export const TextContainer = styled.View`
+  width: 200px;
+  height: 200px;
+  background-color: ${(props) => theme(props).background.default};
 `
 
 export const SafeAreaContainer = styled.SafeAreaView`
@@ -31,7 +39,7 @@ export const SafeAreaContainer = styled.SafeAreaView`
 
   padding-top: ${Constants.statusBarHeight + 20}px;
   padding-bottom: 0px;
-  background-color: ${(props) => props.theme.background.default};
+  background-color: ${(props) => theme(props).background.default};
 `
 
 export const StyledForm = styled(Form)`
@@ -42,13 +50,13 @@ export const StyledForm = styled(Form)`
 export const Subtitle = styled.Text`
   font-family: ${fonts.subtitle};
   text-align: center;
-  color: ${(props) => props.theme.text.default};
+  color: ${(props) => theme(props).text.default};
 `
 
 export const Title = styled.Text`
   font-family: ${fonts.titles.primary};
   font-size: 20px;
-  color: ${(props) => props.theme.text.default};
+  color: ${(props) => theme(props).text.default};
 
   margin-bottom: 12px;
 `
@@ -82,5 +90,5 @@ export const HorizontalDivider = styled.View<HorizontalDividerProps>`
 export const VerticalDivider = styled.View`
   width: 100%;
   height: 1px;
-  background-color: ${(props) => props.theme.components.divider};
+  background-color: ${(props) => theme(props).components.divider};
 `

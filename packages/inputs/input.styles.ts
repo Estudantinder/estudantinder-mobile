@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 
 import { fonts } from 'packages/styles/theme'
+import theme from 'packages/utils/theme'
 
 export interface InputStylesProps {
   isActive: boolean
@@ -41,17 +42,17 @@ export const StyledInput = styled.TextInput<InputStylesProps>`
 
   padding: 4px 15px;
 
-  background-color: ${(props) => props.theme.input.background};
-  color: ${(props) => props.theme.input.active_text};
+  background-color: ${(props) => theme(props).input.background};
+  color: ${(props) => theme(props).input.active_text};
   font-family: ${fonts.input.text};
 
   border-width: 2px;
   border-color: ${(props) =>
     props.isActive
-      ? props.theme.base.purple
+      ? theme(props).base.purple
       : props.isInvalid
-      ? props.theme.input.error
-      : props.theme.input.background};
+      ? theme(props).input.error
+      : theme(props).input.background};
   border-radius: 4px;
 `
 
@@ -68,7 +69,7 @@ export const InputSuffix = styled.View`
   width: 24px;
   height: 24px;
 
-  background-color: ${(props) => props.theme.input.background};
+  background-color: ${(props) => theme(props).input.background};
 
   display: flex;
   justify-content: center;
@@ -77,7 +78,7 @@ export const InputSuffix = styled.View`
 
 export const InputLabel = styled.Text`
   font-family: ${fonts.input.label};
-  color: ${(props) => props.theme.text.default};
+  color: ${(props) => theme(props).text.default};
 
   margin-bottom: 10px;
 `
@@ -85,7 +86,7 @@ export const InputLabel = styled.Text`
 export const SwitchInputText = styled.Text`
   font-family: ${fonts.subtitle};
 
-  color: ${(props) => props.theme.text.default};
+  color: ${(props) => theme(props).text.default};
   font-size: 12px;
   margin-left: 4px;
 `

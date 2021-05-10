@@ -6,11 +6,12 @@ import styled from 'styled-components/native'
 
 import { Row } from 'packages/styles'
 import { fonts } from 'packages/styles/theme'
+import theme from 'packages/utils/theme'
 
 export const TopBarContainer = styled(Row)`
   justify-content: space-between;
   margin-bottom: 12px;
-  background-color: ${(props) => props.theme.pages.home.topbar.background};
+  background-color: ${(props) => theme(props).pages.home.topbar.background};
   padding: 0px 16px;
   padding-bottom: 8px;
   padding-top: ${Constants.statusBarHeight + 8}px;
@@ -33,7 +34,7 @@ export const StudentCardImage = styled.Image`
 
 export const StudentCardFooter = styled.View`
   width: 100%;
-  background-color: ${(props) => props.theme.pages.home.card.background};
+  background-color: ${(props) => theme(props).pages.home.card.background};
   padding: 12px;
   justify-content: space-between;
   position: relative;
@@ -59,12 +60,12 @@ export const StudentCardProfileButton = styled(BorderlessButton)`
 export const StudentCardNameText = styled.Text`
   font-family: ${fonts.titles.secondary};
   font-size: 18px;
-  color: ${(props) => props.theme.base.green};
+  color: ${(props) => theme(props).base.green};
 `
 
 export const StudentCardFooterText = styled.Text`
   font-family: ${fonts.primary};
-  color: ${(props) => props.theme.pages.home.card.foreground};
+  color: ${(props) => theme(props).pages.home.card.foreground};
   font-size: 13px;
 `
 
@@ -77,7 +78,7 @@ export const HomeLikeAndDislikeButton = styled(RectButton)`
   border-radius: 999px;
   width: 52px;
   height: 52px;
-  background-color: ${(props) => props.theme.background.default};
+  background-color: ${(props) => theme(props).background.default};
   display: flex;
   align-items: center;
   justify-content: center;

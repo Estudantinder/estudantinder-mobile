@@ -19,6 +19,7 @@ const EditStudentAbout: React.FC<EditStudentAboutProps> = (props) => {
     <StackPageTemplate title="Suas informações">
       <StyledForm
         ref={props.formRef}
+        testID="form"
         onSubmit={props.handleSubmit}
         initialData={props.initialData}
       >

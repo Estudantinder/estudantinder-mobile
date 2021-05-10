@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 
 import { Subtitle, Title } from 'packages/styles'
 import { fonts } from 'packages/styles/theme'
+import theme from 'packages/utils/theme'
 
 export const OnBoardingContainer = styled(PagerView)`
   flex: 1;
@@ -14,7 +15,7 @@ export const OnBoardingPageContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.theme.background.default};
+  background-color: ${(props) => theme(props).background.default};
   padding-top: 32px;
   padding-horizontal: 20px;
 `
@@ -33,10 +34,10 @@ export const OnboardingFooterContainer = styled.View`
   justify-content: space-between;
   height: 50px;
 
-  background-color: ${(props) => props.theme.background.default};
+  background-color: ${(props) => theme(props).background.default};
 
   border-top-width: 1px;
-  border-color: ${(props) => props.theme.components.divider};
+  border-color: ${(props) => theme(props).components.divider};
 
   align-items: center;
 `
@@ -49,7 +50,7 @@ export const OnBoardingFooterButton = styled(BorderlessButton)`
 `
 
 export const OnBoardingFooterButtonText = styled.Text`
-  color: ${(props) => props.theme.text.default};
+  color: ${(props) => theme(props).text.default};
   font-family: ${fonts.input.label};
   font-size: 14px;
 `
@@ -61,7 +62,7 @@ export const OnBoardingPaginationContainer = styled.View`
   align-items: center;
   height: 64px;
   padding-bottom: 16px;
-  background-color: ${(props) => props.theme.background.default};
+  background-color: ${(props) => theme(props).background.default};
 `
 
 export interface OnBoardingPaginationDotStylesProps {
@@ -73,8 +74,8 @@ export const OnBoardingPaginationDot = styled.View<OnBoardingPaginationDotStyles
   height: 10px;
   background-color: ${(props) =>
     props.active
-      ? props.theme.base.purple
-      : props.theme.components.pagination.inactive_dot};
+      ? theme(props).base.purple
+      : theme(props).components.pagination.inactive_dot};
   margin-horizontal: 14px;
   border-radius: 90px;
 `

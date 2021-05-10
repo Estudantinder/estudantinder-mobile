@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 
 import { fonts } from 'packages/styles/theme'
+import theme from 'packages/utils/theme'
 
 interface RowOptionsButtonStyleProps {
   isActive: boolean
@@ -15,12 +16,14 @@ export const RowOptionsButtonContainer = styled.TouchableOpacity<RowOptionsButto
   border-radius: 3px;
 
   background-color: ${(props) =>
-    props.isActive ? props.theme.base.purple : props.theme.background.default};
+    props.isActive
+      ? theme(props).base.purple
+      : theme(props).background.default};
   border-width: 1px;
-  border-color: ${(props) => props.theme.base.purple};
+  border-color: ${(props) => theme(props).base.purple};
 `
 
 export const RowOptionsButtonText = styled.Text<RowOptionsButtonStyleProps>`
   font-family: ${fonts.button};
-  color: ${(props) => (props.isActive ? '#fff' : props.theme.base.purple)};
+  color: ${(props) => (props.isActive ? '#fff' : theme(props).base.purple)};
 `

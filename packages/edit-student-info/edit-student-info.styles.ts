@@ -5,11 +5,12 @@ import styled from 'styled-components/native'
 import Input from 'packages/inputs/components/Input'
 import { InputLabel } from 'packages/inputs/input.styles'
 import { fonts } from 'packages/styles/theme'
+import theme from 'packages/utils/theme'
 
 export const BirthDatePickerButton = styled.TouchableOpacity`
   min-width: 100%;
   height: 40px;
-  background-color: ${(props) => props.theme.input.background};
+  background-color: ${(props) => theme(props).input.background};
   padding: 4px 15px;
   flex-direction: row;
   align-items: center;
@@ -19,7 +20,7 @@ export const BirthDatePickerButton = styled.TouchableOpacity`
 
 export const BirthDatePickerText = styled.Text`
   font-family: ${fonts.input.text};
-  color: ${(props) => props.theme.input.active_text};
+  color: ${(props) => theme(props).input.active_text};
 `
 
 export const GenderPickerOrText = styled(InputLabel)`
@@ -31,23 +32,23 @@ export const GenderPickerOrText = styled(InputLabel)`
 `
 
 export const FacebookInput = styled(Input)`
-  background-color: ${(props) => props.theme.pages.contacts.inputs.facebook};
-  border-color: ${(props) => props.theme.pages.contacts.inputs.facebook};
+  background-color: ${(props) => theme(props).pages.contacts.inputs.facebook};
+  border-color: ${(props) => theme(props).pages.contacts.inputs.facebook};
 `
 
 export const InstagramInput = styled(Input)`
-  background-color: ${(props) => props.theme.pages.contacts.inputs.instagram};
-  border-color: ${(props) => props.theme.pages.contacts.inputs.instagram};
+  background-color: ${(props) => theme(props).pages.contacts.inputs.instagram};
+  border-color: ${(props) => theme(props).pages.contacts.inputs.instagram};
 `
 
 export const WhatsappInput = styled(Input)`
-  background-color: ${(props) => props.theme.pages.contacts.inputs.whatsapp};
-  border-color: ${(props) => props.theme.pages.contacts.inputs.whatsapp};
+  background-color: ${(props) => theme(props).pages.contacts.inputs.whatsapp};
+  border-color: ${(props) => theme(props).pages.contacts.inputs.whatsapp};
 `
 
 export const TwitterInput = styled(Input)`
-  background-color: ${(props) => props.theme.pages.contacts.inputs.twitter};
-  border-color: ${(props) => props.theme.pages.contacts.inputs.twitter};
+  background-color: ${(props) => theme(props).pages.contacts.inputs.twitter};
+  border-color: ${(props) => theme(props).pages.contacts.inputs.twitter};
 `
 
 export const TextAreaInput = styled(Input)`
