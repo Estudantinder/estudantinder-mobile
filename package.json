@@ -3,6 +3,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "version": "1.4.0",
   "scripts": {
+    "prect": "cross-env NODE_ENV=test jest -o",
     "ct": "git-cz",
     "start": "expo start",
     "deploy": "git push && expo publish --release-channel",
