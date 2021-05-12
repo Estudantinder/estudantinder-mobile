@@ -14,12 +14,12 @@ export interface ContextUserSecrets extends UserSecrets {
   confirm_password: string
 }
 
-type EditStudentSecrets = EditStudentInfoProps<ContextUserSecrets> & {
+export type EditStudentSecretsProps = EditStudentInfoProps<ContextUserSecrets> & {
   title?: string
   fixedEmail?: boolean
 }
 
-const EditStudentSecrets: React.FC<EditStudentSecrets> = (props) => {
+const EditStudentSecrets: React.FC<EditStudentSecretsProps> = (props) => {
   const submitForm = () => props.formRef.current?.submitForm()
 
   return (
