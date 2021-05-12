@@ -142,8 +142,12 @@ describe('edit-student-info/secrets', () => {
 
       await waitNavigationRender()
 
-      expect(pageProps.formRef.current?.getFieldValue('email')).toBe(
-        pageProps.initialData.email
+      pageProps.formRef.current?.submitForm()
+
+      expect(pageProps.handleSubmit).toBeCalledWith(
+        pageProps.initialData,
+        { reset: expect.any(Function) },
+        undefined
       )
     })
   })
