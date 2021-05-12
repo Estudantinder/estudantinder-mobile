@@ -89,6 +89,7 @@ const GenderPicker: React.FC = () => {
       <GenderPickerOrText>ou</GenderPickerOrText>
 
       <Input
+        testID="custom-gender"
         label="Digite o seu gênero"
         onChangeText={handleChangeGender}
         value={gender}

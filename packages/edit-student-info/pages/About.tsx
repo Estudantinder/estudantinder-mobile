@@ -10,7 +10,7 @@ import BirthDatePicker from '../components/BirthDatePicker'
 import GenderPicker from '../components/GenderPicker'
 import { EditStudentInfoProps } from '../EditStudentInfoProps'
 
-type EditStudentAboutProps = EditStudentInfoProps<StudentAbout>
+export type EditStudentAboutProps = EditStudentInfoProps<StudentAbout>
 
 const EditStudentAbout: React.FC<EditStudentAboutProps> = (props) => {
   const submitForm = () => props.formRef.current?.submitForm()

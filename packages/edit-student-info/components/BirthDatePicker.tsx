@@ -1,12 +1,11 @@
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Platform, Text } from 'react-native'
+import { View, Platform } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
 import { Entypo } from '@expo/vector-icons'
 import { useField } from '@unform/core'
 import { formatToDate } from 'brazilian-values'
-import env from 'env'
 
 import InputInfo from 'packages/inputs/components/InputInfo'
 import {
@@ -77,7 +76,7 @@ const BirthDatePicker: React.FC = () => {
   }
 
   return (
-    <InputContainer ref={ref} testID="birth_date">
+    <InputContainer ref={ref} testID="birthday">
       <InputLabel>Data de nascimento</InputLabel>
 
       {Platform.OS !== 'ios' && (
@@ -104,10 +103,6 @@ const BirthDatePicker: React.FC = () => {
       <InputInfo informative={!field.error}>
         {field.error || 'Você precisa ter entre 14 e 21 anos'}
       </InputInfo>
-
-      {env().env_name === 'test' && (
-        <Text testID="birth_date-open">{show}</Text>
-      )}
 
       {show && (
         <DateTimePicker
