@@ -59,6 +59,14 @@ describe('edit-student-info/about', () => {
 
       expect(queryByTestId('custom-gender')).not.toBeNull()
     })
+
+    test('should have a submit button', async () => {
+      const { queryByTestId } = render(<TestingComponent />)
+
+      await waitNavigationRender()
+
+      expect(queryByTestId('submit-button')).not.toBeNull()
+    })
   })
 
   describe('form completion:', () => {
