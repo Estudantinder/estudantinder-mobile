@@ -70,7 +70,9 @@ describe('edit-student-info/secrets', () => {
 
       expect(pageProps.formRef.current?.getFieldValue('email')).toBe(fakeEmail)
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         { email: fakeEmail, password: undefined, confirm_password: undefined },
@@ -94,7 +96,9 @@ describe('edit-student-info/secrets', () => {
         fakePassword
       )
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         {
@@ -122,7 +126,9 @@ describe('edit-student-info/secrets', () => {
         fakePassword
       )
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         {
@@ -146,11 +152,13 @@ describe('edit-student-info/secrets', () => {
         password: fakePassword,
       }
 
-      render(<TestingComponent />)
+      const { getByTestId } = render(<TestingComponent />)
 
       await waitNavigationRender()
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         pageProps.initialData,

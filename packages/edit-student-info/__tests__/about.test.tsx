@@ -83,7 +83,9 @@ describe('edit-student-info/about', () => {
 
       expect(pageProps.formRef.current?.getFieldValue('name')).toBe(fakeName)
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         { name: fakeName, birthday: undefined, gender: undefined },
@@ -93,7 +95,7 @@ describe('edit-student-info/about', () => {
     })
 
     test('should set gender input and returns its value on submit', async () => {
-      const { getByText } = render(<TestingComponent />)
+      const { getByText, getByTestId } = render(<TestingComponent />)
 
       await waitNavigationRender()
 
@@ -105,7 +107,9 @@ describe('edit-student-info/about', () => {
         GENDERS.MALE
       )
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         { name: undefined, birthday: undefined, gender: GENDERS.MALE },
@@ -129,7 +133,9 @@ describe('edit-student-info/about', () => {
         fakeCustomGender
       )
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         {
@@ -154,7 +160,8 @@ describe('edit-student-info/about', () => {
         name: faker.name.findName(),
         gender: faker.random.boolean() ? GENDERS.FEMALE : GENDERS.MALE,
       }
-      render(
+
+      const { getByTestId } = render(
         <MockNavigator>
           <Screen name="secrets">
             {() => (
@@ -170,7 +177,9 @@ describe('edit-student-info/about', () => {
 
       await waitNavigationRender()
 
-      pageProps.formRef.current?.submitForm()
+      const submitButton = getByTestId('submit-button')
+
+      fireEvent.press(submitButton)
 
       expect(pageProps.handleSubmit).toBeCalledWith(
         initialData,
