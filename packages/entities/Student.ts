@@ -1,3 +1,5 @@
+import env from 'env'
+
 import Course from './Course'
 import Gender, { IGender } from './Gender'
 import School from './School'
@@ -66,6 +68,17 @@ export default class Student implements StudentInfo {
     this.shift = new Shift(props.shift).shift
 
     this.subjects = props.subjects.map((value) => new Subject(value))
-    this.photos = props.photos
+
+    if (!props.photos?.length) {
+      if (env().env_name === 'dev') {
+        this.photos = [
+          'https://images.unsplash.com/photo-1529778873920-4da4926a72c2',
+        ]
+      } else {
+        this.photos = ['']
+      }
+    } else {
+      this.photos = props.photos
+    }
   }
 }
