@@ -11,6 +11,8 @@ import { Title, PageContainer, SafeAreaContainer } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
 import alertModal from 'packages/utils/alertModal'
 
+import { NotFoundContainer } from '../main.styles'
+
 import { useMainContext } from '../context'
 import {
   UserProfileEditButtonContainer,
@@ -43,8 +45,9 @@ const UserProfile: React.FC = () => {
   if (!profile)
     return (
       <PageContainer>
-        <Title>Carregando...</Title>
-        <ActivityIndicator size={44} color={theme.base.purple} />
+        <NotFoundContainer>
+          <ActivityIndicator size={44} color={theme.base.purple} />
+        </NotFoundContainer>
       </PageContainer>
     )
 
