@@ -21,6 +21,7 @@
     "@expo-google-fonts/archivo": "^0.1.0",
     "@expo-google-fonts/noto-sans": "^0.1.0",
     "@expo-google-fonts/poppins": "^0.1.0",
+    "@gorhom/bottom-sheet": "2",
     "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/datetimepicker": "3.0.0",
     "@react-native-community/masked-view": "0.1.10",
