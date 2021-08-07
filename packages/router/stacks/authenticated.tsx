@@ -5,6 +5,7 @@ import AboutProjectPage from 'packages/about-project'
 import { MainContextProvider } from 'packages/main/context'
 import Settings from 'packages/main/settings'
 import TargetProfile from 'packages/main/target-profile'
+import TargetProfileCustomReportPage from 'packages/main/target-profile/components/CustomReportPage'
 import OnBoarding from 'packages/onboarding'
 import { OnBoardingContextProvider } from 'packages/onboarding/context'
 
@@ -39,6 +40,10 @@ const AuthenticatedNavigation: React.FC = () => {
           <Screen
             name={AUTHENTICATED_ROUTES.TARGET_PROFILE}
             component={TargetProfile}
+          />
+          <Screen
+            name={AUTHENTICATED_ROUTES.CUSTOM_REPORT}
+            component={TargetProfileCustomReportPage}
           />
           <Screen
             name={AUTHENTICATED_ROUTES.EDIT_AUTH_USER}

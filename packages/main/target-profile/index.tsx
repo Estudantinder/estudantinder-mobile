@@ -1,4 +1,4 @@
-import { Route, useRoute } from '@react-navigation/native'
+import { Route, useNavigation, useRoute } from '@react-navigation/native'
 import React, { useCallback, useRef, useState } from 'react'
 
 import { Feather } from '@expo/vector-icons'
@@ -9,6 +9,7 @@ import {
 
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import Student from 'packages/entities/Student'
+import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import ShowStudent from 'packages/show-student-info'
 import { useToggleThemeContext } from 'packages/styles/context'
 
@@ -26,6 +27,8 @@ export interface TargetProfileRouteProps {
 }
 
 const TargetProfile = () => {
+  const router = useNavigation()
+
   const {
     params: { student },
   } = useRoute<Route<'TargetProfile', TargetProfileRouteProps>>()
@@ -50,6 +53,12 @@ const TargetProfile = () => {
       targetProfileSheets[sheet].component({
         navigateTo: handleNavigateToAnotherSheet,
         data: data,
+        onFinish() {
+          router.goBack()
+        },
+        navigateToCustomPage() {
+          router.navigate(AUTHENTICATED_ROUTES.CUSTOM_REPORT)
+        },
       })
     )
     setBottomSheetSize(targetProfileSheets[sheet].size)
@@ -59,6 +68,12 @@ const TargetProfile = () => {
     return targetProfileSheets[TargetProfileSheets.startMenu].component({
       navigateTo: handleNavigateToAnotherSheet,
       data: undefined,
+      onFinish() {
+        router.goBack()
+      },
+      navigateToCustomPage() {
+        router.navigate(AUTHENTICATED_ROUTES.CUSTOM_REPORT)
+      },
     })
   })
 

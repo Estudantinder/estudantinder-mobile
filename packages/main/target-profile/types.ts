@@ -7,4 +7,6 @@ export enum TargetProfileSheets {
 export interface TargetProfileSheetProps<T = any> {
   navigateTo(sheet: TargetProfileSheets, data?: T): void
   data: T
+  onFinish(): void
+  navigateToCustomPage(): void
 }
