@@ -29,7 +29,9 @@ const TargetProfileActionsSheet: React.FC<TargetProfileSheetProps> = (
         Nos ajude a entender qual é o problema
       </Title>
 
-      <Subtitle>Escolha uma das opções abaixo</Subtitle>
+      <Subtitle style={{ paddingTop: 8, paddingBottom: 16 }}>
+        Escolha uma das opções abaixo
+      </Subtitle>
 
       <MenuCard
         iconName="user"

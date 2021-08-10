@@ -8,7 +8,7 @@ import TargetProfileReportButton from './ReportButton'
 
 import { TargetProfileBasicReportSheetContainer } from '../styles'
 
-export const targetProfileBasicReportSheetSize = '35%'
+export const targetProfileBasicReportSheetSize = '36%'
 
 export interface TargetProfileBasicReportSheetProps {
   title: string
@@ -22,7 +22,7 @@ const TargetProfileBasicReportSheet: React.FC<
     <TargetProfileBasicReportSheetContainer>
       <Title style={{ textAlign: 'center' }}>{props.data.title}</Title>
 
-      <Subtitle>
+      <Subtitle style={{ paddingBottom: 24 }}>
         Não se preocupe, sua denúncia será anônima.{'\n'}
         Obrigado pela contribuição.
       </Subtitle>

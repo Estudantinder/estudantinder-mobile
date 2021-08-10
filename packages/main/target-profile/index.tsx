@@ -14,6 +14,7 @@ import ShowStudent from 'packages/show-student-info'
 import { useToggleThemeContext } from 'packages/styles/context'
 
 import { useMainContext } from '../context'
+import TargetProfileCustomBackdrop from './components/CustomBackdrop'
 import { TargetProfileSheets } from './types'
 import { targetProfileSheets } from './utils'
 
@@ -108,6 +109,7 @@ const TargetProfile = () => {
       </StackPageTemplate>
 
       <BottomSheetModal
+        backdropComponent={TargetProfileCustomBackdrop}
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={[bottomSheetSize]}

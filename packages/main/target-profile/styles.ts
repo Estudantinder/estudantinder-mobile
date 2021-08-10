@@ -35,7 +35,7 @@ export const TargetProfileBasicReportSheetContainer = styled.View`
   text-align: center;
   padding: 16px 24px;
   padding-top: 16px;
-  justify-content: space-around;
+  justify-content: space-between;
   flex: 1;
 `
 
