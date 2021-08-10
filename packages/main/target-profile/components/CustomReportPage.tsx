@@ -2,12 +2,11 @@ import { useRoute, Route, useNavigation } from '@react-navigation/native'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
-import { Form } from '@unform/mobile'
 
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { TextAreaInput } from 'packages/edit-student-info/edit-student-info.styles'
 import { useMainContext } from 'packages/main/context'
-import { Subtitle } from 'packages/styles'
+import { StyledForm, Subtitle } from 'packages/styles'
 
 import { ReportTypes } from '../report_types'
 import TargetProfileReportButton from './ReportButton'
@@ -43,14 +42,18 @@ const TargetProfileCustomReportPage: React.FC = () => {
   }
 
   return (
-    <StackPageTemplate title="Outro Motivo" scrollEnabled>
-      <Subtitle>
+    <StackPageTemplate title="Outro Motivo">
+      <Subtitle style={{ paddingBottom: 52, paddingTop: 16 }}>
         Não se preocupe, sua denúncia será anônima. Você pode entrar em contato
         conosco pelo campo abaixo ou mandar um email para
         estudantinder@gmail.com
       </Subtitle>
 
-      <Form onSubmit={handleSubmit} ref={formRef}>
+      <StyledForm
+        onSubmit={handleSubmit}
+        ref={formRef}
+        style={{ paddingBottom: 60 }}
+      >
         <TextAreaInput
           label="Descreva o que está acontecendo"
           name="report"
@@ -59,7 +62,7 @@ const TargetProfileCustomReportPage: React.FC = () => {
           textAlignVertical="top"
           multiline
         />
-      </Form>
+      </StyledForm>
 
       <TargetProfileReportButton
         onPress={() => formRef.current?.submitForm()}
