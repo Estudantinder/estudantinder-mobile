@@ -29,7 +29,7 @@ const TargetProfileBasicReportSheet: React.FC<
 
       <TargetProfileReportButton
         onPress={() => {
-          props.onFinish()
+          props.reportUser({ type: props.data.type })
         }}
       />
     </TargetProfileBasicReportSheetContainer>

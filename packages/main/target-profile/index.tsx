@@ -13,6 +13,7 @@ import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import ShowStudent from 'packages/show-student-info'
 import { useToggleThemeContext } from 'packages/styles/context'
 
+import { useMainContext } from '../context'
 import { TargetProfileSheets } from './types'
 import { targetProfileSheets } from './utils'
 
@@ -45,6 +46,8 @@ const TargetProfile = () => {
 
   const { theme } = useToggleThemeContext()
 
+  const { reportUser: reportUserUseCase } = useMainContext()
+
   const handleNavigateToAnotherSheet = (
     sheet: TargetProfileSheets,
     data?: never
@@ -53,11 +56,15 @@ const TargetProfile = () => {
       targetProfileSheets[sheet].component({
         navigateTo: handleNavigateToAnotherSheet,
         data: data,
-        onFinish() {
-          router.goBack()
-        },
         navigateToCustomPage() {
-          router.navigate(AUTHENTICATED_ROUTES.CUSTOM_REPORT)
+          router.navigate(AUTHENTICATED_ROUTES.CUSTOM_REPORT, {
+            studentId: student.id,
+          })
+        },
+        async reportUser(props) {
+          await reportUserUseCase({ id: student.id, ...props })
+
+          router.goBack()
         },
       })
     )
@@ -68,11 +75,16 @@ const TargetProfile = () => {
     return targetProfileSheets[TargetProfileSheets.startMenu].component({
       navigateTo: handleNavigateToAnotherSheet,
       data: undefined,
-      onFinish() {
-        router.goBack()
-      },
+
       navigateToCustomPage() {
-        router.navigate(AUTHENTICATED_ROUTES.CUSTOM_REPORT)
+        router.navigate(AUTHENTICATED_ROUTES.CUSTOM_REPORT, {
+          studentId: student.id,
+        })
+      },
+      async reportUser(props) {
+        await reportUserUseCase({ id: student.id, ...props })
+
+        router.goBack()
       },
     })
   })

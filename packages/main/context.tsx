@@ -8,6 +8,9 @@ import { MainHomeContextProvider } from './context/home'
 import DeleteMatchUseCase from './use-cases/delete-match'
 import GetMatchesUseCase from './use-cases/get-matches'
 import GetUserProfileUseCase from './use-cases/get-user-profile'
+import ReportUserUseCase, {
+  ReportUserUseCaseProps,
+} from './use-cases/report-user'
 
 interface State {
   matches: Match[]
@@ -20,6 +23,8 @@ interface Actions {
 
   getProfile(): Promise<void>
   setProfile(user: User): void
+
+  reportUser(props: ReportUserUseCaseProps): Promise<void>
 }
 
 export type MainContext = State & Actions
@@ -57,6 +62,10 @@ export const MainContextProvider: React.FC = ({ children }) => {
     setProfile(newProfile)
   }, [])
 
+  const reportUser = useCallback(async (props: ReportUserUseCaseProps) => {
+    await ReportUserUseCase(props)
+  }, [])
+
   const value = useMemo<MainContext>(() => {
     return {
       getMatches,
@@ -65,8 +74,9 @@ export const MainContextProvider: React.FC = ({ children }) => {
       matches,
       profile,
       setProfile,
+      reportUser,
     }
-  }, [getMatches, deleteMatch, getProfile, matches, profile])
+  }, [getMatches, deleteMatch, getProfile, matches, profile, reportUser])
 
   return (
     <MainHomeContextProvider>
