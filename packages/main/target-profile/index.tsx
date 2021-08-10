@@ -15,6 +15,7 @@ import { useToggleThemeContext } from 'packages/styles/context'
 
 import { useMainContext } from '../context'
 import TargetProfileCustomBackdrop from './components/CustomBackdrop'
+import TargetProfileCustomBackground from './components/CustomBackground'
 import { TargetProfileSheets } from './types'
 import { targetProfileSheets } from './utils'
 
@@ -109,6 +110,7 @@ const TargetProfile = () => {
       </StackPageTemplate>
 
       <BottomSheetModal
+        backgroundComponent={TargetProfileCustomBackground}
         backdropComponent={TargetProfileCustomBackdrop}
         ref={bottomSheetModalRef}
         index={0}
