@@ -66,7 +66,7 @@ const TargetProfile = () => {
         async reportUser(props) {
           await reportUserUseCase({ id: student.id, ...props })
 
-          router.goBack()
+          router.navigate(AUTHENTICATED_ROUTES.REPORT_SUCCESS)
         },
       })
     )
@@ -86,7 +86,7 @@ const TargetProfile = () => {
       async reportUser(props) {
         await reportUserUseCase({ id: student.id, ...props })
 
-        router.goBack()
+        router.navigate(AUTHENTICATED_ROUTES.REPORT_SUCCESS)
       },
     })
   })

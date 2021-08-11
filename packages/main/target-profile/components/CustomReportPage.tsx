@@ -6,6 +6,7 @@ import { FormHandles } from '@unform/core'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { TextAreaInput } from 'packages/edit-student-info/edit-student-info.styles'
 import { useMainContext } from 'packages/main/context'
+import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
 import { StyledForm, Subtitle } from 'packages/styles'
 
 import { ReportTypes } from '../report_types'
@@ -20,8 +21,7 @@ const TargetProfileCustomReportPage: React.FC = () => {
 
   const { reportUser } = useMainContext()
 
-  // using any because type definitions are wrong
-  const router = useNavigation() as any
+  const router = useNavigation()
 
   const {
     params: { studentId },
@@ -38,7 +38,7 @@ const TargetProfileCustomReportPage: React.FC = () => {
       message: data.report,
     })
 
-    router.popToTop()
+    router.navigate(AUTHENTICATED_ROUTES.REPORT_SUCCESS)
   }
 
   return (
