@@ -30,7 +30,11 @@ const TargetProfileCustomReportPage: React.FC = () => {
   >()
 
   const handleSubmit = async (data: { report?: string }) => {
-    if (!data.report) return alert('Descreva o problema desse usuário')
+    const report = data.report?.trim()
+
+    if (!report) {
+      return formRef.current?.setFieldError('report', 'Digite sua mensagem')
+    }
 
     await reportUser({
       id: studentId,
