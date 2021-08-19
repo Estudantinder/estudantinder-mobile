@@ -12,14 +12,10 @@ export default async function ReportUserUseCase(
   props: ReportUserUseCaseProps
 ): Promise<void> {
   try {
-    api
-    props
-
-    return
-    // await api.post(`/users/report/${props.id}`, {
-    //   type: props.type,
-    //   message: props.message,
-    // })
+    await api.post(`/report/${props.id}`, {
+      type: props.type,
+      description: props.message,
+    })
   } catch (error) {
     if (error.response) {
       throw new ApiError(error.response)
