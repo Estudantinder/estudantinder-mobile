@@ -6,7 +6,7 @@ import Subject from 'packages/entities/Subject'
 
 export interface GetStudentsApiData {
   bio: string
-  birth_date: Array<number>
+  birth_date: string
   classroom: string
   course: Course
   gender: IGender
@@ -38,11 +38,7 @@ export default function GetStudentSerializer(
 
   const serializedStudent = new Student({
     bio: data.bio,
-    birth_date: new Date(
-      data.birth_date[0],
-      data.birth_date[1],
-      data.birth_date[2]
-    ),
+    birth_date: new Date(data.birth_date),
     classroom: data.classroom,
     name: data.name,
     school_year: data.school_year,
