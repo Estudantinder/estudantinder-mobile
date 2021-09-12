@@ -4,7 +4,7 @@ import type { default as PagerView } from 'react-native-pager-view'
 import useSafeContext from 'packages/hooks/useSafeContext'
 
 import GetOnBoardingViewedUseCase from './use-cases/get-viewed'
-import SetOnboardingAsViewedUseCase from './use-cases/set-as-viewed'
+import SetOnboardingViewedUseCase from './use-cases/set-viewed'
 
 interface State {
   pagerRef: React.RefObject<PagerView>
@@ -14,6 +14,7 @@ interface Actions {
   navigateToIndex(index: number): void
   endOnBoarding(): Promise<void>
   getOnBoardingHasViewed(): Promise<boolean>
+  setOnBoardingAsNotViewed(): Promise<void>
 }
 
 export type OnBoardingContext = State & Actions
@@ -37,7 +38,11 @@ export const OnBoardingContextProvider: React.FC = ({ children }) => {
   }, [])
 
   const endOnBoarding = useCallback(async () => {
-    await SetOnboardingAsViewedUseCase()
+    await SetOnboardingViewedUseCase()
+  }, [])
+
+  const setOnBoardingAsNotViewed = useCallback(async () => {
+    await SetOnboardingViewedUseCase(false)
   }, [])
 
   const value = useMemo<OnBoardingContext>(
@@ -46,8 +51,14 @@ export const OnBoardingContextProvider: React.FC = ({ children }) => {
       navigateToIndex,
       endOnBoarding,
       getOnBoardingHasViewed,
+      setOnBoardingAsNotViewed,
     }),
-    [endOnBoarding, getOnBoardingHasViewed, navigateToIndex]
+    [
+      endOnBoarding,
+      getOnBoardingHasViewed,
+      navigateToIndex,
+      setOnBoardingAsNotViewed,
+    ]
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>

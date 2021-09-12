@@ -21,6 +21,7 @@ import { StatusBar } from 'expo-status-bar'
 import { ThemeProvider } from 'styled-components'
 
 import { AuthContextProvider } from 'packages/auth/context'
+import { OnBoardingContextProvider } from 'packages/onboarding/context'
 import Router from 'packages/router'
 import {
   ToggleThemeContextProvider,
@@ -61,7 +62,9 @@ const WithThemeProviders: React.FC = () => {
   return (
     <AppearanceProvider>
       <ToggleThemeContextProvider>
-        <App />
+        <OnBoardingContextProvider>
+          <App />
+        </OnBoardingContextProvider>
       </ToggleThemeContextProvider>
     </AppearanceProvider>
   )
