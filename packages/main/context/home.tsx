@@ -3,6 +3,7 @@ import React, { createContext, useCallback, useMemo, useState } from 'react'
 import Student from 'packages/entities/Student'
 import useSafeContext from 'packages/hooks/useSafeContext'
 
+import DislikeStudentUseCase from '../use-cases/dislike-student'
 import GetStudentsUseCase from '../use-cases/get-students'
 import LikeStudentUseCase from '../use-cases/like-student'
 
@@ -52,7 +53,7 @@ export const MainHomeContextProvider: React.FC = ({ children }) => {
   }, [actualIndex, afterInteraction, students])
 
   const dislikeStudent = useCallback(async () => {
-    LikeStudentUseCase(students[actualIndex].id)
+    DislikeStudentUseCase(students[actualIndex].id)
     afterInteraction()
   }, [actualIndex, afterInteraction, students])
 
