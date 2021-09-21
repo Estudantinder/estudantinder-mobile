@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React, { useEffect } from 'react'
 
-import { AppLoading } from 'expo'
+import AppLoading from 'expo-app-loading'
 
 import { useAuthContext } from 'packages/auth/context'
 

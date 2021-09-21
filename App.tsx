@@ -15,7 +15,7 @@ import {
   Poppins_600SemiBold,
   Poppins_800ExtraBold,
 } from '@expo-google-fonts/poppins'
-import { AppLoading } from 'expo'
+import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
 import { StatusBar } from 'expo-status-bar'
 import { ThemeProvider } from 'styled-components'
