@@ -3,7 +3,7 @@ import ApiError from 'packages/api/ApiError'
 import Match from 'packages/entities/Match'
 
 export interface GetMatchApiData {
-  matchedStudent: Modify<Match, { birth_date: Array<number> }>
+  matchedStudent: Match
   matchId: number
 }
 
@@ -15,11 +15,7 @@ export default async function GetMatchesUseCase() {
       ({ matchedStudent, matchId }) =>
         new Match({
           ...matchedStudent,
-          birth_date: new Date(
-            matchedStudent.birth_date[0],
-            matchedStudent.birth_date[1],
-            matchedStudent.birth_date[2]
-          ),
+          birth_date: new Date(matchedStudent.birth_date),
           match_id: String(matchId),
         })
     )
