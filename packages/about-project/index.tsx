@@ -27,7 +27,7 @@ const AboutProjectPage: React.FC = () => {
     <StackPageTemplate title="Sobre o aplicativo" withoutPadding>
       <View style={{ width: '100%' }}>
         <MenuCard iconName="code" onPress={() => 0}>
-          {`Versão: ${Constants.manifest.version}`}
+          {`Versão: ${Constants.manifest?.version}`}
         </MenuCard>
         <VerticalDivider />
         <MenuCard iconName="mail" onPress={handleOpenMail}>

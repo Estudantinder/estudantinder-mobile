@@ -51,9 +51,11 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, handleDeleteMatch }) => {
     )
   }
 
-  const Icon = ({ name }: { name: string }) => (
-    <MaterialCommunityIcons name={name} color="#fff" size={28} />
-  )
+  const Icon = ({
+    name,
+  }: {
+    name: 'facebook' | 'instagram' | 'twitter' | 'whatsapp'
+  }) => <MaterialCommunityIcons name={name} color="#fff" size={28} />
 
   const handleOpenFacebook = () => {
     if (!match.contacts.facebook) return

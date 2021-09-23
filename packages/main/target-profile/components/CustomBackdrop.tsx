@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import Animated, { Extrapolate, interpolate } from 'react-native-reanimated'
+import Animated, { Extrapolate, interpolateNode } from 'react-native-reanimated'
 
 import { BottomSheetBackdropProps } from '@gorhom/bottom-sheet'
 
@@ -9,7 +9,7 @@ const TargetProfileCustomBackdrop = ({
 }: BottomSheetBackdropProps) => {
   const animatedOpacity = useMemo(
     () =>
-      interpolate(animatedIndex, {
+      interpolateNode(animatedIndex, {
         inputRange: [0, 0.6],
         outputRange: [0, 0.6],
         extrapolate: Extrapolate.CLAMP,

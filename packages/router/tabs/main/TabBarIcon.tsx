@@ -28,7 +28,7 @@ export default function TabBarIcon(props: TabBarIconProps) {
 }
 
 function handleGetHomeIcon(props: TabBarIconProps) {
-  let iconName
+  let iconName: 'home' | 'home-outline'
 
   if (props.focused) iconName = 'home'
   else iconName = 'home-outline'
@@ -43,7 +43,7 @@ function handleGetHomeIcon(props: TabBarIconProps) {
 }
 
 function handleGetProfileIcon(props: TabBarIconProps) {
-  let iconName
+  let iconName: 'account' | 'account-outline'
 
   if (props.focused) iconName = 'account'
   else iconName = 'account-outline'
@@ -58,7 +58,7 @@ function handleGetProfileIcon(props: TabBarIconProps) {
 }
 
 function handleGetMatchesIcon(props: TabBarIconProps) {
-  let iconName
+  let iconName: 'message-text' | 'message-text-outline'
 
   if (props.focused) iconName = 'message-text'
   else iconName = 'message-text-outline'
@@ -73,7 +73,7 @@ function handleGetMatchesIcon(props: TabBarIconProps) {
 }
 
 function handleGetDefaultIcon(props: TabBarIconProps) {
-  let iconName
+  let iconName: 'square' | 'square-full'
 
   if (props.focused) iconName = 'square-full'
   else iconName = 'square'
