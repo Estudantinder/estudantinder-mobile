@@ -14,11 +14,10 @@ module.exports = function (api) {
             shared: './src/shared',
             views: './src/views',
             env: './env.ts',
-            packages: './packages'
+            packages: './packages',
           },
         },
       ],
-      "transform-flow-strip-types"
     ],
   }
 }
