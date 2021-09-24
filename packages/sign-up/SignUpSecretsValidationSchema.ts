@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 import { ContextUserSecrets } from 'packages/edit-student-info/pages/Secrets'
 
-type SecretsKeys = Record<keyof ContextUserSecrets, unknown>
+type SecretsKeys = Record<keyof ContextUserSecrets, Yup.AnySchema>
 
 export default Yup.object().shape<SecretsKeys>({
   email: Yup.string()

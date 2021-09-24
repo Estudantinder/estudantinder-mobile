@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 
 import Contacts from 'packages/entities/Contacts'
 
-type ContactsKeys = Record<keyof Contacts, unknown>
+type ContactsKeys = Record<keyof Contacts, Yup.AnySchema>
 
 export default Yup.object().shape<ContactsKeys>({
   whatsapp: Yup.string()

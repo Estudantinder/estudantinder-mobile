@@ -1,13 +1,14 @@
 import * as Yup from 'yup'
+import { ValidateOptions } from 'yup/lib/types'
 
 import UnformValidationError from './UnformValidationError'
 
-export const DEFAULT_VALIDATION_OPTIONS: Yup.ValidateOptions = {
+export const DEFAULT_VALIDATION_OPTIONS: ValidateOptions = {
   abortEarly: false,
 }
 
 export default async function validateSchema<DataType>(
-  schema: Yup.ObjectSchema,
+  schema: Yup.AnyObjectSchema,
   data: DataType
 ): Promise<DataType> {
   try {

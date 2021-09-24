@@ -9,7 +9,7 @@ const TargetProfileCustomBackdrop = ({
 }: BottomSheetBackdropProps) => {
   const animatedOpacity = useMemo(
     () =>
-      interpolateNode(animatedIndex, {
+      interpolateNode(animatedIndex as never, {
         inputRange: [0, 0.6],
         outputRange: [0, 0.6],
         extrapolate: Extrapolate.CLAMP,

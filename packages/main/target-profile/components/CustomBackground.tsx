@@ -14,7 +14,7 @@ const TargetProfileCustomBackground = ({
   // animated variables
   const animatedBackground = useMemo(
     () =>
-      interpolateColors(animatedIndex, {
+      interpolateColors(animatedIndex as never, {
         inputRange: [0, 1],
         outputColorRange: [theme.background.default, theme.background.default],
       }),

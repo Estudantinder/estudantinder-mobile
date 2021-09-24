@@ -4,7 +4,7 @@ import School from 'packages/entities/School'
 
 import CourseSchema from './CourseSchema'
 
-type SchoolKeys = Record<keyof School, unknown>
+type SchoolKeys = Record<keyof School, Yup.AnySchema>
 
 export default Yup.object().shape<SchoolKeys>({
   address: Yup.string().required(),

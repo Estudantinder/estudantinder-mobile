@@ -2,7 +2,12 @@ import * as Yup from 'yup'
 
 import { CreateAuthTokenData } from '../use-cases/create-token'
 
-export default Yup.object().shape<CreateAuthTokenData>({
+type CreateAuthTokenDataSchema = Record<
+  keyof CreateAuthTokenData,
+  Yup.AnySchema
+>
+
+export default Yup.object().shape<CreateAuthTokenDataSchema>({
   email: Yup.string()
     .email('Digite um e-mail válido')
     .required('Digite um e-mail'),

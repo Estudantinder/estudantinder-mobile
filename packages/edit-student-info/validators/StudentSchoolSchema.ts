@@ -5,7 +5,7 @@ import { StudentSchool } from 'packages/entities/Student'
 import CourseSchema from 'packages/validation/schemas/CourseSchema'
 import SchoolSchema from 'packages/validation/schemas/SchoolSchema'
 
-type StudentSchoolKeys = Record<keyof StudentSchool, unknown>
+type StudentSchoolKeys = Record<keyof StudentSchool, Yup.AnySchema>
 
 export default Yup.object().shape<StudentSchoolKeys>({
   school: SchoolSchema.required(),
