@@ -78,13 +78,6 @@
     "prettier": "^2.4.1",
     "typescript": "~4.0.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "tsc --noEmit"
-    }
-  },
   "lint-staged": {
     "**/*.ts?(x)": [
       "eslint --cache --fix",
