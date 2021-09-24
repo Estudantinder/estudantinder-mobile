@@ -3,7 +3,6 @@
   "main": "node_modules/expo/AppEntry.js",
   "version": "1.4.1",
   "scripts": {
-    "prect": "cross-env NODE_ENV=test jest -o",
     "ct": "git-cz",
     "start": "expo start",
     "deploy": "git push && expo publish --release-channel",
@@ -18,9 +17,9 @@
     "repo": "start msedge https://github.com/Cauaspinheiro/estudantinder-mobile"
   },
   "dependencies": {
-    "@expo-google-fonts/archivo": "^0.1.0",
-    "@expo-google-fonts/noto-sans": "^0.1.0",
-    "@expo-google-fonts/poppins": "^0.1.0",
+    "@expo-google-fonts/archivo": "^0.2.0",
+    "@expo-google-fonts/noto-sans": "^0.2.0",
+    "@expo-google-fonts/poppins": "^0.2.0",
     "@gorhom/bottom-sheet": "2",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/datetimepicker": "3.5.2",

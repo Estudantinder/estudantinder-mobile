@@ -2153,20 +2153,20 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@expo-google-fonts/archivo@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/archivo/-/archivo-0.1.0.tgz#3ed76d5ef3c6ceb711646fda0a5e6eeda8d08def"
-  integrity sha512-OWevCTcQOKDJHWpLbnDEonGSbs4RjxrahbQY/n7XdZm+ys0NQkdk9mL2m4+Ivpi3RYsJRaWv5ISNCi00OjmfcA==
+"@expo-google-fonts/archivo@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/archivo/-/archivo-0.2.0.tgz#f94343a106507de272a76a6e7b01fbebcea6eb63"
+  integrity sha512-4erhp8X2J0lKNeCqTMgbfn5JX9bdoQd6MTm/f+k4+iXlzfN5Odd5s20RGtFS7onxy/D1HuSViBgpJoAp2EPN9g==
 
-"@expo-google-fonts/noto-sans@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/noto-sans/-/noto-sans-0.1.0.tgz#6cf6117ceb9170ce3bdc674820f165a6dca12e1d"
-  integrity sha512-Zx6XRp0gJiaqfI9PXUB7CQTxCC3udrTERyIVOxlyPGgjNnLRu+AljoiftTiMzJyT55rMSSsEBbmSE3UbKwfkUA==
+"@expo-google-fonts/noto-sans@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/noto-sans/-/noto-sans-0.2.0.tgz#e5bb0d73235e963d318d38b859c3470aa197ab58"
+  integrity sha512-Qk9goIvIQxAF0FRHSpw63smmp0uGBKmcRdhIqI4SvJNYEomQzH/Xzy5MA5MJanh/UhYx9KnyaidSH6FiJLLXeg==
 
-"@expo-google-fonts/poppins@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/poppins/-/poppins-0.1.0.tgz#aae4df9e80d68ec9dc6764e57dc931f1f64016cd"
-  integrity sha512-iC8ii7hYyK22N3ivvLyIspLQ0D4dn1mB+llhYnUCr/h/QfwUWyEosq1uWiwNC47yCedsiPiZ99vJSfpYRjBDrA==
+"@expo-google-fonts/poppins@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/poppins/-/poppins-0.2.0.tgz#f6df892909142740b53d3227cb5eb24990ece151"
+  integrity sha512-NIwmzadXGHmS7F7nznfpObVAAi4PdSvueLKnPN3ERG0yMYrC8svEP2IY25H4xLoIGBazgkN192ZkStM3PMYajA==
 
 "@expo/config-plugins@2.0.4":
   version "2.0.4"
