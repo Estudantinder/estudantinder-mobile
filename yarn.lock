@@ -2759,6 +2759,11 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/lodash@^4.14.165":
+  version "4.14.173"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.173.tgz#9d3b674c67a26cf673756f6aca7b429f237f91ed"
+  integrity sha512-vv0CAYoaEjCw/mLy96GBTnRoZrSxkGE0BKzKimdR8P3OzrNYNvBgtW7p055A+E8C31vXNUhWKoFCbhq7gbyhFg==
+
 "@types/minimist@^1.2.0":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
@@ -2861,10 +2866,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@types/yup@^0.29.9":
-  version "0.29.9"
-  resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.29.9.tgz#e2015187ae5739fd3b791b3b7ab9094f2aa5a474"
-  integrity sha512-ZtjjlrHuHTYctHDz3c8XgInjj0v+Hahe32N/4cDa2banibf9w6aAgxwx0jZtBjKKzmGIU4NXhofEsBW1BbqrNg==
+"@types/yup@^0.29.13":
+  version "0.29.13"
+  resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.29.13.tgz#21b137ba60841307a3c8a1050d3bf4e63ad561e9"
+  integrity sha512-qRyuv+P/1t1JK1rA+elmK1MmCL1BapEzKKfbEhDBV/LMMse4lmhZ/XbgETI39JveDJRpLjmToOI6uFtMW/WR2g==
 
 "@typescript-eslint/eslint-plugin@^4.31.2":
   version "4.31.2"
@@ -2935,17 +2940,19 @@
     "@typescript-eslint/types" "4.31.2"
     eslint-visitor-keys "^2.0.0"
 
-"@unform/core@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@unform/core/-/core-2.1.3.tgz#d3529f9f7a75d71a93f21d2b324d3f41806096d9"
-  integrity sha512-d6xQJWFrLfEyfN7f5t2IdYBLJE/OrvPKILCzGKPSoAmY3+vAnEc4CPE5l6zB+LxWSfMn69QhsqzI20tIRNT7EA==
+"@unform/core@2.1.6", "@unform/core@^2.1.6":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@unform/core/-/core-2.1.6.tgz#75df5fe813d4e94af46ad3570da068ff13d71b99"
+  integrity sha512-coz9rOS1Y+0zygxTTQB+hY1HJ5ee0A40KBdIy/1IdaiFGT5LhZhCWqMorFh8KcqY3J+SInrpGDMmJYObsjEW9w==
   dependencies:
-    dot-object "^2.1.2"
+    dot-object "^2.1.4"
 
-"@unform/mobile@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@unform/mobile/-/mobile-2.1.3.tgz#07e34d65ce85f59b5d076e0022b8fb09ea3c795a"
-  integrity sha512-8XdH7rJF7ftZl7ju6xH/wQU/ljq6GdlgBB4jLYoxnJm7WExRrARxyBVZ8+L4KZlbmGUzvsor5ZuOthFAcpaujA==
+"@unform/mobile@^2.1.6":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@unform/mobile/-/mobile-2.1.6.tgz#d55bfd2a943662a5783287dbe8d2639792d55c47"
+  integrity sha512-ny5xnzj0tFSRISALgc6dUikG6LSeS1SOKCzYXdV625yZ1r72lc7RUExeps3gmHjdvALeXHQodtot/DuFoBSh3w==
+  dependencies:
+    "@unform/core" "2.1.6"
 
 "@unimodules/core@~7.1.1":
   version "7.1.2"
@@ -4349,7 +4356,7 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dot-object@^2.1.2:
+dot-object@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/dot-object/-/dot-object-2.1.4.tgz#c6c54e9fca510b4d0ea4d65acf33726963843b5f"
   integrity sha512-7FXnyyCLFawNYJ+NhkqyP9Wd2yzuo+7n9pGiYpkmXCTYa8Ci2U0eUNDVg5OuO5Pm6aFXI2SWN8/N/w7SJWu1WA==
@@ -6474,10 +6481,10 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.11:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
-  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+lodash-es@^4.17.15:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
@@ -7096,6 +7103,11 @@ nan@^2.12.1:
   version "2.14.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.2.tgz#f5376400695168f4cc694ac9393d0c9585eeea19"
   integrity sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
+
+nanoclone@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/nanoclone/-/nanoclone-0.2.1.tgz#dd4090f8f1a110d26bb32c49ed2f5b9235209ed4"
+  integrity sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
 
 nanoid@^3.1.15:
   version "3.1.17"
@@ -9695,13 +9707,15 @@ yargs@^17.0.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yup@^0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/yup/-/yup-0.31.0.tgz#e882ab42940a15a980ab8d9cc19f2489418253d2"
-  integrity sha512-t4nFalWdyIZW2n9wgJVracCe/VPbFmh0/fKaKz40gxcZHCZPOhm4akWYg08t0OOiBhV5xvqLY+fnqzCnLh+ItQ==
+yup@^0.32.9:
+  version "0.32.9"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-0.32.9.tgz#9367bec6b1b0e39211ecbca598702e106019d872"
+  integrity sha512-Ci1qN+i2H0XpY7syDQ0k5zKQ/DoxO0LzPg8PAR/X4Mpj6DqaeCoIYEEjDJwhArh3Fa7GWbQQVDZKeXYlSH4JMg==
   dependencies:
     "@babel/runtime" "^7.10.5"
+    "@types/lodash" "^4.14.165"
     lodash "^4.17.20"
-    lodash-es "^4.17.11"
+    lodash-es "^4.17.15"
+    nanoclone "^0.2.1"
     property-expr "^2.0.4"
     toposort "^2.0.2"
