@@ -1,1 +1,5 @@
 *.js
+*.md
+*.json
+*.lock
+LICENSE
