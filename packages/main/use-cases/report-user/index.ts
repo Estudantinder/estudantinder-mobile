@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 import { ReportTypes } from 'packages/main/target-profile/report_types'
@@ -17,8 +19,10 @@ export default async function ReportUserUseCase(
       description: props.message,
     })
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
 
     throw error

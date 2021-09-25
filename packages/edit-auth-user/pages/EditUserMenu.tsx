@@ -1,14 +1,23 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { View } from 'react-native'
 
 import MenuCard from 'packages/components/MenuCard'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { EDIT_AUTH_USER_ROUTES } from 'packages/router/constants'
+import { EditAuthUserPageParamsProps } from 'packages/router/stacks/edit-auth-user'
 import { VerticalDivider } from 'packages/styles'
 
+type PageProps = NativeStackScreenProps<
+  EditAuthUserPageParamsProps,
+  typeof EDIT_AUTH_USER_ROUTES.MENU
+>
+
+type Navigation = PageProps['navigation']
+
 const EditAuthUserMenu: React.FC = () => {
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   return (
     <StackPageTemplate title="Editar Perfil" withoutPadding>

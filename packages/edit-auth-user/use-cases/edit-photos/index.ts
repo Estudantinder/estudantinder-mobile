@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 
@@ -22,8 +24,10 @@ export default async function EditPhotosUseCase(
   try {
     await api.post('/users/imageUpload', data)
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
 
     throw error

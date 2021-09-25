@@ -1,8 +1,9 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
 import AboutProjectPage from 'packages/about-project'
+import Student from 'packages/entities/Student'
 import { MainContextProvider } from 'packages/main/context'
 import Settings from 'packages/main/settings'
 import TargetProfile from 'packages/main/target-profile'
@@ -17,7 +18,32 @@ import StackNavigation from '../components/StackNavigation'
 import { AUTHENTICATED_ROUTES } from '../constants'
 import EditAuthUserScreens from './edit-auth-user'
 
-const { Screen } = createStackNavigator()
+export type AuthenticatedNavigationPagesParamsProps = {
+  [AUTHENTICATED_ROUTES.MAIN]: undefined
+  [AUTHENTICATED_ROUTES.ABOUT_PROJECT]:
+    | {
+        endRoute: string
+      }
+    | undefined
+  [AUTHENTICATED_ROUTES.SETTINGS]: undefined
+  [AUTHENTICATED_ROUTES.TARGET_PROFILE]: {
+    student: Modify<Student, { birth_date: number }>
+  }
+  [AUTHENTICATED_ROUTES.REPORT_SUCCESS]: undefined
+  loading: undefined
+  [AUTHENTICATED_ROUTES.ONBOARDING]:
+    | {
+        endRoute: string
+      }
+    | undefined
+  [AUTHENTICATED_ROUTES.CUSTOM_REPORT]: {
+    studentId: string
+  }
+  [AUTHENTICATED_ROUTES.EDIT_AUTH_USER]: undefined
+}
+
+const { Screen } =
+  createNativeStackNavigator<AuthenticatedNavigationPagesParamsProps>()
 
 const LoadingComponent = () => <View />
 

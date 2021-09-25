@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 
 import { EditAuthUserContextProvider } from 'packages/edit-auth-user/context'
@@ -12,7 +12,18 @@ import EditAuthUserSecrets from 'packages/edit-auth-user/pages/EditUserSecrets'
 
 import { EDIT_AUTH_USER_ROUTES } from '../constants'
 
-const { Screen, Navigator } = createStackNavigator()
+export type EditAuthUserPageParamsProps = {
+  [EDIT_AUTH_USER_ROUTES.ABOUT]: undefined
+  [EDIT_AUTH_USER_ROUTES.CONTACTS]: undefined
+  [EDIT_AUTH_USER_ROUTES.DETAILS]: undefined
+  [EDIT_AUTH_USER_ROUTES.MENU]: undefined
+  [EDIT_AUTH_USER_ROUTES.PHOTOS]: undefined
+  [EDIT_AUTH_USER_ROUTES.SCHOOL]: undefined
+  [EDIT_AUTH_USER_ROUTES.SECRETS]: undefined
+}
+
+const { Screen, Navigator } =
+  createNativeStackNavigator<EditAuthUserPageParamsProps>()
 
 const EditAuthUserScreens: React.FC = () => {
   return (

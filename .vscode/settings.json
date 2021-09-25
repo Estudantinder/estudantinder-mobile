@@ -1,3 +1,4 @@
 {
-  "emmet.excludeLanguages": ["typescriptreact"]
+  "emmet.excludeLanguages": ["typescriptreact"],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

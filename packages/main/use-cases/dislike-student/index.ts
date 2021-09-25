@@ -1,3 +1,4 @@
+import axios from 'axios'
 import env from 'env'
 
 import api from 'packages/api'
@@ -9,8 +10,10 @@ export default async function DislikeStudentUseCase(id: string): Promise<void> {
 
     await api.post(`/students/dislikes/${id}`)
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
 
     throw error

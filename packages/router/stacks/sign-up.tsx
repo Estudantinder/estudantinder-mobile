@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 
 import SignUpAbout from 'packages/sign-up/pages/SignUpAbout'
@@ -11,10 +11,21 @@ import SignUpSecrets from 'packages/sign-up/pages/SignUpSecrets'
 
 import { SIGNUP_ROUTES } from '../constants'
 
-const { Screen, Navigator } = createStackNavigator()
+export type SignUpNavigationPagesParamsProps = {
+  [SIGNUP_ROUTES.ABOUT]: undefined
+  [SIGNUP_ROUTES.CONTACTS]: undefined
+  [SIGNUP_ROUTES.DETAILS]: undefined
+  [SIGNUP_ROUTES.PHOTOS]: undefined
+  [SIGNUP_ROUTES.PROFILE]: undefined
+  [SIGNUP_ROUTES.SCHOOL]: undefined
+  [SIGNUP_ROUTES.SECRETS]: undefined
+}
+
+const { Navigator, Screen } =
+  createNativeStackNavigator<SignUpNavigationPagesParamsProps>()
 
 export interface SignUpScreensProps {
-  initialRoute?: string
+  initialRoute?: keyof SignUpNavigationPagesParamsProps
   children?: undefined
 }
 

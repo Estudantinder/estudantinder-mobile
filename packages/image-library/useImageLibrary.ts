@@ -51,7 +51,7 @@ async function getImageFromLibrary(): Promise<string | undefined> {
 }
 
 async function getImagePermission() {
-  const status = await ImagePicker.getCameraRollPermissionsAsync()
+  const status = await ImagePicker.requestMediaLibraryPermissionsAsync()
 
   if (!status.granted) {
     alert('Precisamos das suas fotos')

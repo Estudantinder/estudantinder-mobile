@@ -1,4 +1,5 @@
 import { Route, useNavigation, useRoute } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useCallback, useRef, useState } from 'react'
 
 import { Feather } from '@expo/vector-icons'
@@ -10,6 +11,7 @@ import {
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import Student from 'packages/entities/Student'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { AuthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/authenticated'
 import ShowStudent from 'packages/show-student-info'
 import { useToggleThemeContext } from 'packages/styles/context'
 
@@ -25,12 +27,19 @@ import {
   TargetProfileSheetContainer,
 } from './styles'
 
+type PageProps = NativeStackScreenProps<
+  AuthenticatedNavigationPagesParamsProps,
+  typeof AUTHENTICATED_ROUTES.TARGET_PROFILE
+>
+
+type Navigation = PageProps['navigation']
+
 export interface TargetProfileRouteProps {
   student: Modify<Student, { birth_date: number }>
 }
 
 const TargetProfile = () => {
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   const {
     params: { student },

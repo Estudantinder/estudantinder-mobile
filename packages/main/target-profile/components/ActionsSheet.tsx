@@ -9,7 +9,7 @@ import { TargetProfileBasicReportSheetProps } from './BasicReportSheet'
 
 import { TargetProfileActionsSheetContainer } from '../styles'
 
-export const targetProfileActionsSheetSize = '85%'
+export const targetProfileActionsSheetSize = '90%'
 
 const TargetProfileActionsSheet: React.FC<TargetProfileSheetProps> = (
   props

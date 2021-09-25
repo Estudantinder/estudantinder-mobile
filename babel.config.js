@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 module.exports = function (api) {
   api.cache(true)
   return {
@@ -14,11 +13,11 @@ module.exports = function (api) {
             shared: './src/shared',
             views: './src/views',
             env: './env.ts',
-            packages: './packages'
+            packages: './packages',
           },
         },
       ],
-      "transform-flow-strip-types"
+      'react-native-reanimated/plugin',
     ],
   }
 }

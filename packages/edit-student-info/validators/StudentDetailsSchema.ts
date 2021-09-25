@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 import { StudentDetails } from 'packages/entities/Student'
 
-type DetailsKeys = Record<keyof StudentDetails, unknown>
+type DetailsKeys = Record<keyof StudentDetails, Yup.AnySchema>
 
 export default Yup.object().shape<DetailsKeys>({
   bio: Yup.string()

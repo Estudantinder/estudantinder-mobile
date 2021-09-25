@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
@@ -7,6 +8,7 @@ import EditStudentSecrets, {
   ContextUserSecrets,
 } from 'packages/edit-student-info/pages/Secrets'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
+import { SignUpNavigationPagesParamsProps } from 'packages/router/stacks/sign-up'
 import alertModal from 'packages/utils/alertModal'
 import validateSchema from 'packages/validation'
 import UnformValidationError from 'packages/validation/UnformValidationError'
@@ -16,12 +18,19 @@ import SignUpSecretsValidationSchema from '../SignUpSecretsValidationSchema'
 import EmailExistsUseCase from '../use-cases/email-exists'
 import EmailExistsError from '../use-cases/email-exists/EmailExistsError'
 
+type PageProps = NativeStackScreenProps<
+  SignUpNavigationPagesParamsProps,
+  typeof SIGNUP_ROUTES.SECRETS
+>
+
+type Navigation = PageProps['navigation']
+
 const SignUpSecrets: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
   const context = useSignUpContext()
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   const handleSubmit = async (data: ContextUserSecrets) => {
     try {

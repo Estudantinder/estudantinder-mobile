@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 import { StudentAbout } from 'packages/entities/Student'
 
-type AboutKeys = Record<keyof StudentAbout, unknown>
+type AboutKeys = Record<keyof StudentAbout, Yup.AnySchema>
 
 const ACTUAL_YEAR = new Date().getFullYear()
 

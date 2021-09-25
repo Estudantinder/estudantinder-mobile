@@ -1,35 +1,36 @@
 import React, { useMemo } from 'react'
-import Animated, { Extrapolate, interpolate } from 'react-native-reanimated'
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated'
 
 import { BottomSheetBackdropProps } from '@gorhom/bottom-sheet'
 
-const TargetProfileCustomBackdrop = ({
-  animatedIndex,
-  style,
-}: BottomSheetBackdropProps) => {
-  const animatedOpacity = useMemo(
-    () =>
-      interpolate(animatedIndex, {
-        inputRange: [0, 0.6],
-        outputRange: [0, 0.6],
-        extrapolate: Extrapolate.CLAMP,
-      }),
-    [animatedIndex]
-  )
+const CustomBackdrop = ({ animatedIndex, style }: BottomSheetBackdropProps) => {
+  // animated variables
+  const containerAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      animatedIndex.value,
+      [-1, 0],
+      [0, 0.6],
+      Extrapolate.CLAMP
+    ),
+  }))
 
   // styles
   const containerStyle = useMemo(
     () => [
       style,
       {
-        backgroundColor: '#000000',
-        opacity: animatedOpacity,
+        backgroundColor: '#000',
       },
+      containerAnimatedStyle,
     ],
-    [style, animatedOpacity]
+    [style, containerAnimatedStyle]
   )
 
   return <Animated.View style={containerStyle} />
 }
 
-export default TargetProfileCustomBackdrop
+export default CustomBackdrop

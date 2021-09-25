@@ -1,17 +1,26 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Image } from 'react-native'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
 import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { UnauthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/unauthenticated'
 import { PageContainer } from 'packages/styles'
 
 import LandingImage from './assets/landing.png'
 import Logo from './assets/logo.png'
 import Styled from './landing.styles'
 
+type PageProps = NativeStackScreenProps<
+  UnauthenticatedNavigationPagesParamsProps,
+  typeof UNAUTHENTICATED_ROUTES.LANDING
+>
+
+type Navigation = PageProps['navigation']
+
 const Landing: React.FC = () => {
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   function handleNavigationToSignUp() {
     router.navigate(UNAUTHENTICATED_ROUTES.SIGNUP)

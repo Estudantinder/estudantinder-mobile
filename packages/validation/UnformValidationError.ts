@@ -9,6 +9,8 @@ export default class UnformValidationError extends Error {
     const errors: Record<string, string> = {}
 
     error.inner.forEach((error) => {
+      if (!error.path) return
+
       errors[error.path] = error.message
     })
 

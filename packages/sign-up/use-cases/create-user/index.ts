@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 import User from 'packages/entities/User'
@@ -19,8 +21,10 @@ export default async function CreateUserUseCase(user: User): Promise<string> {
 
     return data.id
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
 
     throw error

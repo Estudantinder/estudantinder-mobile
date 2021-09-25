@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
 
@@ -6,6 +7,7 @@ import { Feather } from '@expo/vector-icons'
 
 import Scroll from 'packages/components/Scroll'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { AuthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/authenticated'
 import ShowStudent from 'packages/show-student-info'
 import { Title, PageContainer, SafeAreaContainer } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
@@ -19,12 +21,19 @@ import {
   UserProfileEditButton,
 } from './user-profile.styles'
 
+type MainPageProps = NativeStackScreenProps<
+  AuthenticatedNavigationPagesParamsProps,
+  'Main'
+>
+
+type Navigation = MainPageProps['navigation']
+
 const UserProfile: React.FC = () => {
   const { getProfile, profile } = useMainContext()
 
   const { theme } = useToggleThemeContext()
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   useEffect(() => {
     const fn = async () => {

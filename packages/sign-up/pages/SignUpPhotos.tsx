@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
@@ -7,10 +8,18 @@ import StackPageTemplate from 'packages/components/StackPageTemplate'
 import PhotosCarrousel from 'packages/image-library/components/PhotosCarousel'
 import useImageLibrary from 'packages/image-library/useImageLibrary'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
+import { SignUpNavigationPagesParamsProps } from 'packages/router/stacks/sign-up'
 import { Row, Subtitle } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
 
 import { useSignUpContext } from '../context'
+
+type PageProps = NativeStackScreenProps<
+  SignUpNavigationPagesParamsProps,
+  typeof SIGNUP_ROUTES.PHOTOS
+>
+
+type Navigation = PageProps['navigation']
 
 const SignUpPhotos: React.FC = () => {
   const context = useSignUpContext()
@@ -21,7 +30,7 @@ const SignUpPhotos: React.FC = () => {
     context.photos?.photos
   )
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   const [error, setError] = useState<string>()
 
