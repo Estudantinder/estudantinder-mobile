@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { useEffect } from 'react'
 
 import AppLoading from 'expo-app-loading'
@@ -9,7 +9,7 @@ import StackNavigation from './components/StackNavigation'
 import AuthenticatedNavigation from './stacks/authenticated'
 import UnauthenticatedNavigation from './stacks/unauthenticated'
 
-const { Screen } = createStackNavigator()
+const { Screen } = createNativeStackNavigator()
 
 export default function Router() {
   const { isLoading, token, restoreToken } = useAuthContext()

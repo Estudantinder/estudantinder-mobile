@@ -7,7 +7,7 @@ interface Paths<T> {
   value: keyof T
 }
 
-export default function arrayToItems<T extends Record<symbol, unknown>>(
+export default function arrayToItems<T>(
   value: T[],
   paths: Paths<T>,
   capitalize = true

@@ -1,4 +1,5 @@
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useMemo } from 'react'
 import { Animated, RegisteredStyle, ViewStyle } from 'react-native'
 
@@ -8,6 +9,7 @@ import StudentDataAdapter from 'packages/adapters/StudentAdapter'
 import SubjectsRow from 'packages/components/SubjectsRow'
 import Student from 'packages/entities/Student'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { AuthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/authenticated'
 import { Row } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
 import capitalize from 'packages/utils/capitalize'
@@ -34,12 +36,20 @@ export interface StudentCardProps {
     | undefined
 }
 
-const StudentCard: React.FC<StudentCardProps> = ({ student, style }) => {
-  const studentAdapter = useMemo(() => new StudentDataAdapter(student), [
-    student,
-  ])
+type PageProps = NativeStackScreenProps<
+  AuthenticatedNavigationPagesParamsProps,
+  typeof AUTHENTICATED_ROUTES.MAIN
+>
 
-  const router = useNavigation()
+type Navigation = PageProps['navigation']
+
+const StudentCard: React.FC<StudentCardProps> = ({ student, style }) => {
+  const studentAdapter = useMemo(
+    () => new StudentDataAdapter(student),
+    [student]
+  )
+
+  const router = useNavigation<Navigation>()
 
   const { theme } = useToggleThemeContext()
 

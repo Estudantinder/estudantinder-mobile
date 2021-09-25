@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+import axios from 'axios'
+
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 import { STORAGE_AUTH_TOKEN } from 'packages/auth/shared'
@@ -47,8 +49,10 @@ export default async function CreateAuthTokenUseCase(
 
     return response.data.jwt
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
 
     throw error

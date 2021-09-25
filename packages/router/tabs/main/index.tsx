@@ -10,7 +10,14 @@ import { MAIN_ROUTES } from '../../constants'
 import TabBarIcon from './TabBarIcon'
 import TabBarLabel from './TabBarLabel'
 
-const { Navigator, Screen } = createBottomTabNavigator()
+export type MainTabsNavigationPageParams = {
+  [MAIN_ROUTES.HOME]: undefined
+  [MAIN_ROUTES.MATCHES]: undefined
+  [MAIN_ROUTES.USER_PROFILE]: undefined
+}
+
+const { Navigator, Screen } =
+  createBottomTabNavigator<MainTabsNavigationPageParams>()
 
 export default function MainTabNavigation() {
   const { theme } = useToggleThemeContext()
@@ -21,11 +28,10 @@ export default function MainTabNavigation() {
       screenOptions={({ route }) => ({
         tabBarIcon: (props) => TabBarIcon({ route, ...props }),
         tabBarLabel: (props) => TabBarLabel({ route, ...props }),
+        tabBarActiveTintColor: theme.base.purple,
+        tabBarInactiveTintColor: theme.base.purple,
+        headerShown: false,
       })}
-      tabBarOptions={{
-        activeTintColor: theme.base.purple,
-        inactiveTintColor: theme.base.purple,
-      }}
     >
       <Screen name={MAIN_ROUTES.MATCHES} component={Matches} />
       <Screen name={MAIN_ROUTES.HOME} component={Home} />

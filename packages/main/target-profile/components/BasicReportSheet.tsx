@@ -8,7 +8,7 @@ import TargetProfileReportButton from './ReportButton'
 
 import { TargetProfileBasicReportSheetContainer } from '../styles'
 
-export const targetProfileBasicReportSheetSize = '36%'
+export const targetProfileBasicReportSheetSize = '42%'
 
 export interface TargetProfileBasicReportSheetProps {
   title: string

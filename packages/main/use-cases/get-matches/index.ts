@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 import Match from 'packages/entities/Match'
@@ -28,8 +30,10 @@ export default async function GetMatchesUseCase() {
 
     return matches
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
 
     throw error

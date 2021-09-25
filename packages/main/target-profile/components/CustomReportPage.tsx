@@ -1,4 +1,5 @@
 import { useRoute, Route, useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
@@ -7,6 +8,7 @@ import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { TextAreaInput } from 'packages/edit-student-info/edit-student-info.styles'
 import { useMainContext } from 'packages/main/context'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { AuthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/authenticated'
 import { StyledForm, Subtitle } from 'packages/styles'
 
 import { ReportTypes } from '../report_types'
@@ -16,18 +18,24 @@ export interface TargetProfileCustomReportPageRouteProps {
   studentId: string
 }
 
+type PageProps = NativeStackScreenProps<
+  AuthenticatedNavigationPagesParamsProps,
+  typeof AUTHENTICATED_ROUTES.CUSTOM_REPORT
+>
+
+type Navigation = PageProps['navigation']
+
 const TargetProfileCustomReportPage: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
   const { reportUser } = useMainContext()
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   const {
     params: { studentId },
-  } = useRoute<
-    Route<'TargetProfile', TargetProfileCustomReportPageRouteProps>
-  >()
+  } =
+    useRoute<Route<'TargetProfile', TargetProfileCustomReportPageRouteProps>>()
 
   const handleSubmit = async (data: { report?: string }) => {
     const report = data.report?.trim()

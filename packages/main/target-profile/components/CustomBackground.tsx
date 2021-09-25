@@ -1,40 +1,32 @@
 import React, { useMemo } from 'react'
-import Animated, { interpolateColors } from 'react-native-reanimated'
+import Animated, {
+  useAnimatedStyle,
+  interpolateColor,
+} from 'react-native-reanimated'
 
 import { BottomSheetBackgroundProps } from '@gorhom/bottom-sheet'
 
 import { useToggleThemeContext } from 'packages/styles/context'
 
-const TargetProfileCustomBackground = ({
-  animatedIndex,
+const CustomBackground: React.FC<BottomSheetBackgroundProps> = ({
   style,
-}: BottomSheetBackgroundProps) => {
+  animatedIndex,
+}) => {
   const { theme } = useToggleThemeContext()
 
-  // animated variables
-  const animatedBackground = useMemo(
-    () =>
-      interpolateColors(animatedIndex as never, {
-        inputRange: [0, 1],
-        outputColorRange: [theme.background.default, theme.background.default],
-      }),
-    [animatedIndex, theme.background.default]
-  )
-
-  // styles
+  const containerAnimatedStyle = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(
+      animatedIndex.value,
+      [0, 1],
+      [theme.background.default, theme.background.default]
+    ),
+  }))
   const containerStyle = useMemo(
-    () => [
-      style,
-      {
-        backgroundColor: animatedBackground,
-        borderRadius: 14,
-      },
-    ],
-    [style, animatedBackground]
+    () => [style, containerAnimatedStyle],
+    [style, containerAnimatedStyle]
   )
 
-  // making as any because wrong type definitions from the package
-  return <Animated.View style={containerStyle as any} />
+  return <Animated.View pointerEvents="none" style={containerStyle} />
 }
 
-export default TargetProfileCustomBackground
+export default CustomBackground

@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/core'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Alert, View } from 'react-native'
 
@@ -6,17 +7,25 @@ import { useAuthContext } from 'packages/auth/context'
 import MenuCard from 'packages/components/MenuCard'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { AUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { AuthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/authenticated'
 import { VerticalDivider } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
 
 import DeleteUserUseCase from './use-cases/delete-user'
+
+type PageProps = NativeStackScreenProps<
+  AuthenticatedNavigationPagesParamsProps,
+  typeof AUTHENTICATED_ROUTES.SETTINGS
+>
+
+type Navigation = PageProps['navigation']
 
 const Settings: React.FC = () => {
   const { signOut } = useAuthContext()
 
   const { theme, toggle } = useToggleThemeContext()
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   const handleDeleteUser = async () => {
     await DeleteUserUseCase()

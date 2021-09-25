@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useRef } from 'react'
 
 import { FormHandles } from '@unform/core'
@@ -7,13 +8,21 @@ import EditStudentContactsSubmit from 'packages/edit-student-info/controllers/Co
 import EditStudentContacts from 'packages/edit-student-info/pages/Contacts'
 import Contacts from 'packages/entities/Contacts'
 import { SIGNUP_ROUTES } from 'packages/router/constants'
+import { SignUpNavigationPagesParamsProps } from 'packages/router/stacks/sign-up'
 
 import { useSignUpContext } from '../context'
+
+type PageProps = NativeStackScreenProps<
+  SignUpNavigationPagesParamsProps,
+  typeof SIGNUP_ROUTES.CONTACTS
+>
+
+type Navigation = PageProps['navigation']
 
 const SignUpContacts: React.FC = () => {
   const context = useSignUpContext()
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   const onSubmitSuccess = (data: Contacts) => {
     context.setContacts(data)

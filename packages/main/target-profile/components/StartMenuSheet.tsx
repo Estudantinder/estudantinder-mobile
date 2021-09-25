@@ -4,7 +4,7 @@ import MenuCard from 'packages/components/MenuCard'
 
 import { TargetProfileSheetProps, TargetProfileSheets } from '../types'
 
-export const targetProfileStartMenuSheetSize = '10%'
+export const targetProfileStartMenuSheetSize = '15%'
 
 const TargetProfileStartMenuSheet: React.FC<TargetProfileSheetProps> = (
   props

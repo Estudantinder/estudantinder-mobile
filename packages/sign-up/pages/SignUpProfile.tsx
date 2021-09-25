@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 
 import { useAuthContext } from 'packages/auth/context'
@@ -6,12 +7,20 @@ import PrimaryButton from 'packages/components/PrimaryButton'
 import StackPageTemplate from 'packages/components/StackPageTemplate'
 import { useOnBoardingContext } from 'packages/onboarding/context'
 import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
+import { UnauthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/unauthenticated'
 import ShowStudent from 'packages/show-student-info'
 import { Row, Subtitle } from 'packages/styles'
 import alertModal from 'packages/utils/alertModal'
 
 import { useSignUpContext } from '../context'
 import UploadPhotosUseCase from '../use-cases/upload-photos'
+
+type PageProps = NativeStackScreenProps<
+  UnauthenticatedNavigationPagesParamsProps,
+  typeof UNAUTHENTICATED_ROUTES.SIGNUP
+>
+
+type Navigation = PageProps['navigation']
 
 const SignUpProfile: React.FC = () => {
   const signUpContext = useSignUpContext()
@@ -20,7 +29,7 @@ const SignUpProfile: React.FC = () => {
 
   const user = signUpContext.getUser()
 
-  const router = useNavigation()
+  const router = useNavigation<Navigation>()
 
   if (!user) {
     return (

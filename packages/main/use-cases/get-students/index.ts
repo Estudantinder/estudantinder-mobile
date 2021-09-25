@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import api from 'packages/api'
 import ApiError from 'packages/api/ApiError'
 import Student from 'packages/entities/Student'
@@ -12,9 +14,12 @@ export default async function GetStudentsUseCase(): Promise<Student[]> {
 
     return response.data?.map((value) => GetStudentSerializer(value))
   } catch (error) {
-    if (error.response) {
-      throw new ApiError(error.response)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        throw new ApiError(error.response)
+      }
     }
+
     throw error
   }
 }

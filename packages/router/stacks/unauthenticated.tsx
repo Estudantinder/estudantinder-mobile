@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 
 import Login from 'packages/auth/pages/Login'
@@ -9,7 +9,14 @@ import StackNavigation from '../components/StackNavigation'
 import { UNAUTHENTICATED_ROUTES } from '../constants'
 import SignUpScreens from './sign-up'
 
-const { Screen } = createStackNavigator()
+export type UnauthenticatedNavigationPagesParamsProps = {
+  [UNAUTHENTICATED_ROUTES.LANDING]: undefined
+  [UNAUTHENTICATED_ROUTES.LOGIN]: undefined
+  [UNAUTHENTICATED_ROUTES.SIGNUP]: undefined
+}
+
+const { Screen } =
+  createNativeStackNavigator<UnauthenticatedNavigationPagesParamsProps>()
 
 const UnauthenticatedNavigation: React.FC = () => {
   return (
