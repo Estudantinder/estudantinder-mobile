@@ -22,7 +22,7 @@ export type AuthenticatedNavigationPagesParamsProps = {
   [AUTHENTICATED_ROUTES.MAIN]: undefined
   [AUTHENTICATED_ROUTES.ABOUT_PROJECT]:
     | {
-        endRoute: string
+        endRoute: keyof AuthenticatedNavigationPagesParamsProps
       }
     | undefined
   [AUTHENTICATED_ROUTES.SETTINGS]: undefined

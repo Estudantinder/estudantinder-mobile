@@ -38,7 +38,6 @@ export const OnBoardingContextProvider: React.FC = ({ children }) => {
   }, [])
 
   const endOnBoarding = useCallback(async () => {
-    pagerRef.current?.setPage(0)
     await SetOnboardingViewedUseCase()
   }, [])
 
