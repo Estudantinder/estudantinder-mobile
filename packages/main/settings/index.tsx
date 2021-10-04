@@ -73,6 +73,15 @@ const Settings: React.FC = () => {
           Sobre o aplicativo
         </MenuCard>
         <VerticalDivider />
+
+        <MenuCard
+          iconName="edit"
+          onPress={() => router.navigate(AUTHENTICATED_ROUTES.EDIT_AUTH_USER)}
+        >
+          Editar Perfil
+        </MenuCard>
+        <VerticalDivider />
+
         <MenuCard iconName="log-out" onPress={signOut}>
           Sair do App
         </MenuCard>
