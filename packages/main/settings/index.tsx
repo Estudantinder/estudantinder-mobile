@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
-import { Alert, View } from 'react-native'
+import { Alert, Linking, View } from 'react-native'
 
 import { useAuthContext } from 'packages/auth/context'
 import MenuCard from 'packages/components/MenuCard'
@@ -26,6 +26,10 @@ const Settings: React.FC = () => {
   const { theme, toggle } = useToggleThemeContext()
 
   const router = useNavigation<Navigation>()
+
+  const handleOpenMail = () => {
+    Linking.openURL('mailto:estudantinder@gmail.com')
+  }
 
   const handleDeleteUser = async () => {
     await DeleteUserUseCase()
@@ -72,6 +76,12 @@ const Settings: React.FC = () => {
         >
           Sobre o aplicativo
         </MenuCard>
+        <VerticalDivider />
+
+        <MenuCard iconName="mail" onPress={handleOpenMail}>
+          Email para contato
+        </MenuCard>
+
         <VerticalDivider />
 
         <MenuCard

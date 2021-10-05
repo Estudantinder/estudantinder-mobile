@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
@@ -11,7 +11,6 @@ import { AuthenticatedNavigationPagesParamsProps } from 'packages/router/stacks/
 import ShowStudent from 'packages/show-student-info'
 import { Title, PageContainer, SafeAreaContainer } from 'packages/styles'
 import { useToggleThemeContext } from 'packages/styles/context'
-import alertModal from 'packages/utils/alertModal'
 
 import { NotFoundContainer } from '../main.styles'
 
@@ -29,23 +28,11 @@ type MainPageProps = NativeStackScreenProps<
 type Navigation = MainPageProps['navigation']
 
 const UserProfile: React.FC = () => {
-  const { getProfile, profile } = useMainContext()
+  const { profile } = useMainContext()
 
   const { theme } = useToggleThemeContext()
 
   const router = useNavigation<Navigation>()
-
-  useEffect(() => {
-    const fn = async () => {
-      try {
-        await getProfile()
-      } catch (error) {
-        alertModal(error)
-      }
-    }
-
-    fn()
-  }, [getProfile])
 
   const navigateToEditAuthUser = () => {
     router.navigate(AUTHENTICATED_ROUTES.EDIT_AUTH_USER)

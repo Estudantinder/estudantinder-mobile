@@ -1,10 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import React from 'react'
+import React, { useEffect } from 'react'
 
+import { useMainContext } from 'packages/main/context'
 import Home from 'packages/main/home'
 import Matches from 'packages/main/matches'
 import UserProfile from 'packages/main/user-profile'
 import { useToggleThemeContext } from 'packages/styles/context'
+import alertModal from 'packages/utils/alertModal'
 
 import { MAIN_ROUTES } from '../../constants'
 import TabBarIcon from './TabBarIcon'
@@ -21,6 +23,21 @@ const { Navigator, Screen } =
 
 export default function MainTabNavigation() {
   const { theme } = useToggleThemeContext()
+
+  // load profile now because it's needed for the user profile screen
+  const { getProfile } = useMainContext()
+
+  useEffect(() => {
+    const fn = async () => {
+      try {
+        await getProfile()
+      } catch (error) {
+        alertModal(error)
+      }
+    }
+
+    fn()
+  }, [getProfile])
 
   return (
     <Navigator
