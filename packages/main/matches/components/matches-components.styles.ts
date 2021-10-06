@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
+import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 
 import styled from 'styled-components/native'
 
@@ -11,6 +11,8 @@ export const MatchCardContainer = styled.View`
   width: 100%;
   position: relative;
   margin-bottom: 40px;
+  overflow: hidden;
+  border-radius: 6px;
 `
 
 export const MatchCardImage = styled.Image`
@@ -49,7 +51,7 @@ export interface ContactButtonStylesProps {
 }
 
 export const MatchCardContactButton = styled(
-  RectButton
+  BorderlessButton
 )<ContactButtonStylesProps>`
   flex: 1;
   height: 100%;
