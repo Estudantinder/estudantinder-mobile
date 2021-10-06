@@ -5,9 +5,11 @@
   "scripts": {
     "ct": "git-cz",
     "start": "expo start",
-    "deploy": "git push && expo publish --release-channel",
-    "build:android": "git push && expo build:android --release-channel",
-    "build:ios": "git push && expo build:ios --release-channel",
+    "prepare:deploy": "git push && yarn build:licenses",
+    "deploy": "yarn prepare:deploy expo publish --release-channel",
+    "build:android": "yarn prepare:deploy expo build:android --release-channel",
+    "build:ios": "yarn prepare:deploy && expo build:ios --release-channel",
+    "build:licenses": "cross-env NODE_ENV=production yarn licenses generate-disclaimer > licenses.txt",
     "verify": "tsc --noEmit && eslint *",
     "repo": "start https://github.com/Cauaspinheiro/estudantinder-mobile",
     "prepare": "husky install"
@@ -66,6 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "babel-plugin-module-resolver": "^4.1.0",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
     "eslint-config-react": "^1.1.7",
