@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
 import AboutProjectPage from 'packages/about-project'
+import CreditsPage from 'packages/credits'
 import Student from 'packages/entities/Student'
 import { MainContextProvider } from 'packages/main/context'
 import Settings from 'packages/main/settings'
@@ -40,6 +41,7 @@ export type AuthenticatedNavigationPagesParamsProps = {
     studentId: string
   }
   [AUTHENTICATED_ROUTES.EDIT_AUTH_USER]: undefined
+  [AUTHENTICATED_ROUTES.CREDITS_PAGE]: undefined
 }
 
 const { Screen } =
@@ -111,6 +113,10 @@ const AuthenticatedNavigation: React.FC = () => {
         <Screen
           name={AUTHENTICATED_ROUTES.EDIT_AUTH_USER}
           component={EditAuthUserScreens}
+        />
+        <Screen
+          name={AUTHENTICATED_ROUTES.CREDITS_PAGE}
+          component={CreditsPage}
         />
       </StackNavigation>
     </MainContextProvider>

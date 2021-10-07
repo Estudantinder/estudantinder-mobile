@@ -24,6 +24,7 @@ export const AUTHENTICATED_ROUTES = {
   ONBOARDING: 'Signed/Onboarding',
   CUSTOM_REPORT: 'CustomReport',
   REPORT_SUCCESS: 'ReportSuccess',
+  CREDITS_PAGE: 'Credits',
 } as const
 
 export const EDIT_AUTH_USER_ROUTES = {

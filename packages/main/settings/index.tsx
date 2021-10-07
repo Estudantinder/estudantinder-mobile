@@ -78,6 +78,14 @@ const Settings: React.FC = () => {
         </MenuCard>
         <VerticalDivider />
 
+        <MenuCard
+          iconName="file-text"
+          onPress={() => router.navigate(AUTHENTICATED_ROUTES.CREDITS_PAGE)}
+        >
+          Créditos
+        </MenuCard>
+        <VerticalDivider />
+
         <MenuCard iconName="mail" onPress={handleOpenMail}>
           Email para contato
         </MenuCard>
