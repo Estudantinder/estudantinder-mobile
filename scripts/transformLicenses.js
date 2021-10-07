@@ -27,10 +27,6 @@ licenses.split('-----').forEach((license) => {
 
   if (!licenseText) return
 
-  if (licenseText.length > 3000) {
-    console.log(licenseName, licenseText.length)
-  }
-
   licensesObj[licenseName] = licenseText
 })
 
