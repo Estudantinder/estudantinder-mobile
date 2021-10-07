@@ -42,14 +42,16 @@ export const LicenseItemTitle = styled.Text`
 
 export const LicenseItemTextContainer = styled.View`
   width: 100%;
-  padding-vertical: 16px;
-  padding-horizontal: 12px;
+  padding-vertical: 12px;
+  padding-horizontal: 8px;
   border-radius: 8px;
+  max-height: 2000px;
+  overflow: hidden;
   background-color: ${(props) => theme(props).input.background};
 `
 
 export const LicenseItemText = styled.Text`
   color: ${(props) => theme(props).text.default}
   font-family: ${fonts.input.text}
-  font-size: 12px;
+  font-size: 8px;
 `

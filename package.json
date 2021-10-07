@@ -9,7 +9,8 @@
     "deploy": "yarn prepare:deploy expo publish --release-channel",
     "build:android": "yarn prepare:deploy expo build:android --release-channel",
     "build:ios": "yarn prepare:deploy && expo build:ios --release-channel",
-    "build:licenses": "cross-env NODE_ENV=production yarn licenses generate-disclaimer > licenses.txt",
+    "prebuild:licenses": "cross-env NODE_ENV=production yarn licenses generate-disclaimer > licenses.txt",
+    "build:licenses": "node scripts/transformLicenses.js",
     "verify": "tsc --noEmit && eslint *",
     "repo": "start https://github.com/Cauaspinheiro/estudantinder-mobile",
     "prepare": "husky install"
@@ -33,6 +34,7 @@
     "expo": "^42.0.0",
     "expo-app-loading": "^1.1.2",
     "expo-constants": "~11.0.1",
+    "expo-file-system": "~11.1.3",
     "expo-font": "~9.2.1",
     "expo-image-picker": "~10.2.2",
     "expo-status-bar": "~1.0.4",

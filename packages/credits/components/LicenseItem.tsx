@@ -13,18 +13,20 @@ export interface LicenseItemProps {
   label: string
 }
 
-const LicenseItem: React.FC<LicenseItemProps> = (props) => {
-  return (
-    <LicenseItemContainer>
-      <LicenseItemTitle>{props.label}</LicenseItemTitle>
+class LicenseItem extends React.PureComponent<LicenseItemProps> {
+  public render() {
+    return (
+      <LicenseItemContainer>
+        <LicenseItemTitle>{this.props.label}</LicenseItemTitle>
 
-      <View style={{ height: 16 }} />
+        <View style={{ height: 16 }} />
 
-      <LicenseItemTextContainer>
-        <LicenseItemText>{props.license}</LicenseItemText>
-      </LicenseItemTextContainer>
-    </LicenseItemContainer>
-  )
+        <LicenseItemTextContainer>
+          <LicenseItemText>{this.props.license}</LicenseItemText>
+        </LicenseItemTextContainer>
+      </LicenseItemContainer>
+    )
+  }
 }
 
 export default LicenseItem
