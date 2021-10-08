@@ -50,7 +50,7 @@ const HomeTopBar: React.FC<HomeTopBarProps> = (props) => {
 
       <BorderlessButton onPress={props.onFiltersPressed}>
         <Feather
-          name="filter"
+          name="sliders"
           color={theme.pages.home.topbar.icons}
           size={24}
         />

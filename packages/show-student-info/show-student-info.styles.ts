@@ -18,7 +18,7 @@ export const ShowStudentProfileImage = styled.Image`
 export const ShowStudentInfoContainer = styled.View`
   width: 100%;
   justify-content: space-around;
-  padding: 16px 4px;
+  padding: 24px 4px;
 `
 
 export const ShowStudentInfoLabel = styled.Text`

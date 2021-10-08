@@ -14,6 +14,7 @@ const LandingTitle = styled.Text`
   font-size: 18px;
   text-align: center;
   color: ${(props) => theme(props).text.default};
+  padding-vertical: 12px;
 `
 
 const LandingFooter = styled.View`

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
-import { Image } from 'react-native'
+import { Image, View } from 'react-native'
 
 import PrimaryButton from 'packages/components/PrimaryButton'
 import { UNAUTHENTICATED_ROUTES } from 'packages/router/constants'
@@ -34,10 +34,23 @@ const Landing: React.FC = () => {
     <PageContainer style={{ paddingBottom: 16 }}>
       <Image source={Logo} />
 
-      <Image source={LandingImage} />
+      <View
+        style={{
+          flex: 1,
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Image
+          source={LandingImage}
+          resizeMode="contain"
+          style={{ width: '90%' }}
+        />
+      </View>
 
       <Styled.LandingTitle>
-        Crie novas conexões enquanto aprende!!
+        Crie novas conexões enquanto aprende
       </Styled.LandingTitle>
 
       <Styled.LandingButtonsContainer>
