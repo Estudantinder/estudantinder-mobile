@@ -5,9 +5,9 @@
   "scripts": {
     "ct": "git-cz",
     "start": "expo start",
-    "prepare:deploy": "git push && yarn build:licenses",
-    "deploy": "yarn prepare:deploy expo publish --release-channel",
-    "build:android": "yarn prepare:deploy expo build:android --release-channel",
+    "prepare:deploy": "yarn build:licenses && git push",
+    "deploy": "yarn prepare:deploy && expo publish --release-channel",
+    "build:android": "yarn prepare:deploy && expo build:android --release-channel",
     "build:ios": "yarn prepare:deploy && expo build:ios --release-channel",
     "prebuild:licenses": "cross-env NODE_ENV=production yarn licenses generate-disclaimer > licenses.txt",
     "build:licenses": "node scripts/transformLicenses.js",
