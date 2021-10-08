@@ -12,6 +12,7 @@ import {
   NotFoundTitle,
 } from '../main.styles'
 
+import NoStudentsDark from '../assets/not_found_dark.png'
 import NoStudents from '../assets/not_found.png'
 
 export interface Main404PageProps {
@@ -55,7 +56,9 @@ const Main404Page: React.FC<Main404PageProps> = (props) => {
         {props.topBar}
 
         <NotFoundContainer>
-          <Image source={NoStudents} />
+          <Image
+            source={theme.name === 'light' ? NoStudents : NoStudentsDark}
+          />
 
           <NotFoundTitle>{props.message.title}</NotFoundTitle>
           <NotFoundSubTitle>{props.message.subtitle}</NotFoundSubTitle>
