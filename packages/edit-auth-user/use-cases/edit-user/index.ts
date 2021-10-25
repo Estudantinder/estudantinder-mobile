@@ -12,7 +12,7 @@ export default async function EditAuthUserUseCase(
   try {
     const serializedUser = EditAuthUserApiSerializer(user)
 
-    await api.put('/users', serializedUser)
+    await api.put('/users/me', serializedUser)
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

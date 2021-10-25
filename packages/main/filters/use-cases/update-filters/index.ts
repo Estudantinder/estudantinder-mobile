@@ -11,7 +11,7 @@ export default async function UpdateFiltersUseCase(data: FiltersFormData) {
   try {
     const serializedFilters = UpdateFiltersSerializer(data)
 
-    await api.put('/users/filters', serializedFilters)
+    await api.put('/users/me/filters', serializedFilters)
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

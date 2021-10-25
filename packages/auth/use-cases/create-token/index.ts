@@ -13,7 +13,7 @@ export interface CreateAuthTokenData {
 }
 
 export interface CreateAuthTokenApiResponse {
-  expireDate: string
+  expire_date: string
   jwt: string
 }
 
@@ -22,14 +22,14 @@ export default async function CreateAuthTokenUseCase(
 ): Promise<string> {
   try {
     const response = await api.post<CreateAuthTokenApiResponse>(
-      '/users/login',
+      '/users/session',
       {
         email: data.email,
         password: data.password,
       }
     )
 
-    if (!response.data.jwt || !response.data.expireDate) {
+    if (!response.data.jwt || !response.data.expire_date) {
       throw new Error('JWT OR EXPIRE DATE NOT FOUND FROM SUCCESS RETURN')
     }
 
@@ -43,7 +43,7 @@ export default async function CreateAuthTokenUseCase(
 
       AsyncStorage.setItem(
         STORAGE_AUTH_TOKEN.EXPIRATION_KEY,
-        String(response.data.expireDate)
+        String(response.data.expire_date)
       )
     }
 

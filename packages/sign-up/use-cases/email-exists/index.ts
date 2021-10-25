@@ -6,7 +6,7 @@ import EmailExistsError from './EmailExistsError'
 
 export default async function EmailExistsUseCase(email: string): Promise<void> {
   try {
-    await api.post('/users/emailValidation', { email })
+    await api.post('/users/emails/available', { email })
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

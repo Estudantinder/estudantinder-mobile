@@ -9,7 +9,7 @@ import GetFiltersSerializer, {
 
 export default async function GetFiltersUseCase() {
   try {
-    const response = await api.get<GetFiltersApiResponse>('/users/filters')
+    const response = await api.get<GetFiltersApiResponse>('/users/me/filters')
 
     return GetFiltersSerializer(response.data)
   } catch (error) {

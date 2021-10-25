@@ -8,7 +8,7 @@ import GetStudentSerializer from '../get-students/GetStudentSerializer'
 
 export default async function GetUserProfileUseCase() {
   try {
-    const response = await api.get(`/users`)
+    const response = await api.get(`/users/me`)
 
     const student = GetStudentSerializer(response.data)
 

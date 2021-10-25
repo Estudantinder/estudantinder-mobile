@@ -24,7 +24,7 @@ export default async function RestoreAuthTokenUseCase(): Promise<
   api.defaults.headers.authorization = `Bearer ${storageToken}`
 
   try {
-    await api.post('/users/jwtValidation')
+    await api.get('/users/me/session')
 
     return storageToken
   } catch (error) {

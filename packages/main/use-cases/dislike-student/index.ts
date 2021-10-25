@@ -8,7 +8,7 @@ export default async function DislikeStudentUseCase(id: string): Promise<void> {
   try {
     if (!env().like_and_dislike) return
 
-    await api.post(`/students/dislikes/${id}`)
+    await api.post(`/students/${id}/dislike`)
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

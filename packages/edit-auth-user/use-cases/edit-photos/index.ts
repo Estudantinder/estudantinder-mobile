@@ -22,7 +22,7 @@ export default async function EditPhotosUseCase(
   })
 
   try {
-    await api.post('/users/imageUpload', data)
+    await api.post('/users/me/images', data)
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

@@ -5,20 +5,20 @@ import ApiError from 'packages/api/ApiError'
 import Match from 'packages/entities/Match'
 
 export interface GetMatchApiData {
-  matchedStudent: Match
-  matchId: number
+  matched_student: Match
+  match_id: number
 }
 
 export default async function GetMatchesUseCase() {
   try {
-    const response = await api.get<GetMatchApiData[]>('/students/matchs')
+    const response = await api.get<GetMatchApiData[]>('/students/matches')
 
     const matches = response.data.map(
-      ({ matchedStudent, matchId }) =>
+      ({ matched_student, match_id }) =>
         new Match({
-          ...matchedStudent,
-          birth_date: new Date(matchedStudent.birth_date),
-          match_id: String(matchId),
+          ...matched_student,
+          birth_date: new Date(matched_student.birth_date),
+          match_id: String(match_id),
         })
     )
 

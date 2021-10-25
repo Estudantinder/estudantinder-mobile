@@ -14,7 +14,7 @@ export default async function ReportUserUseCase(
   props: ReportUserUseCaseProps
 ): Promise<void> {
   try {
-    await api.post(`/report/${props.id}`, {
+    await api.post(`/users/${props.id}/report`, {
       type: props.type,
       description: props.message,
     })

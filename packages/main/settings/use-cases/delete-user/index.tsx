@@ -5,7 +5,7 @@ import ApiError from 'packages/api/ApiError'
 
 export default async function DeleteUserUseCase() {
   try {
-    await api.delete('/users')
+    await api.delete('/users/me')
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
