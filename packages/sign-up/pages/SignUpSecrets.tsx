@@ -52,7 +52,7 @@ const SignUpSecrets: React.FC = () => {
       }
 
       if (error instanceof EmailExistsError) {
-        return formRef.current?.setFieldError('email', error.message)
+        return formRef.current?.setFieldError('email', error.title)
       }
 
       return alertModal(error)
