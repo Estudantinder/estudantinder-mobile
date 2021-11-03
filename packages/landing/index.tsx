@@ -32,7 +32,7 @@ const Landing: React.FC = () => {
 
   return (
     <PageContainer style={{ paddingBottom: 16 }}>
-      <Image source={Logo} />
+      <Image resizeMode="contain" source={Logo} />
 
       <View
         style={{

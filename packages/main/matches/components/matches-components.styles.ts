@@ -44,7 +44,6 @@ export const MatchCardTopBarTitle = styled.Text`
 export const MatchCardContactsContainer = styled(Row)`
   height: 36px;
   width: 100%;
-  border-radius: 6px;
   overflow: hidden;
 `
 
